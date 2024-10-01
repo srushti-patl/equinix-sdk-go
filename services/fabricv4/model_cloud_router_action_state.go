@@ -18,14 +18,14 @@ type CloudRouterActionState string
 
 // List of CloudRouterActionState
 const (
-	CLOUDROUTERACTIONSTATE_DONE    CloudRouterActionState = "DONE"
-	CLOUDROUTERACTIONSTATE_FAILED  CloudRouterActionState = "FAILED"
-	CLOUDROUTERACTIONSTATE_PENDING CloudRouterActionState = "PENDING"
+	CLOUDROUTERACTIONSTATE_SUCCEEDED CloudRouterActionState = "SUCCEEDED"
+	CLOUDROUTERACTIONSTATE_FAILED    CloudRouterActionState = "FAILED"
+	CLOUDROUTERACTIONSTATE_PENDING   CloudRouterActionState = "PENDING"
 )
 
 // All allowed values of CloudRouterActionState enum
 var AllowedCloudRouterActionStateEnumValues = []CloudRouterActionState{
-	"DONE",
+	"SUCCEEDED",
 	"FAILED",
 	"PENDING",
 }

@@ -18,16 +18,16 @@ type PtpAdvanceConfigurationTransportMode string
 
 // List of ptpAdvanceConfiguration_transportMode
 const (
-	PTPADVANCECONFIGURATIONTRANSPORTMODE_MULTICAST PtpAdvanceConfigurationTransportMode = "Multicast"
-	PTPADVANCECONFIGURATIONTRANSPORTMODE_UNICAST   PtpAdvanceConfigurationTransportMode = "Unicast"
-	PTPADVANCECONFIGURATIONTRANSPORTMODE_HYBRID    PtpAdvanceConfigurationTransportMode = "Hybrid"
+	PTPADVANCECONFIGURATIONTRANSPORTMODE_MULTICAST PtpAdvanceConfigurationTransportMode = "MULTICAST"
+	PTPADVANCECONFIGURATIONTRANSPORTMODE_UNICAST   PtpAdvanceConfigurationTransportMode = "UNICAST"
+	PTPADVANCECONFIGURATIONTRANSPORTMODE_HYBRID    PtpAdvanceConfigurationTransportMode = "HYBRID"
 )
 
 // All allowed values of PtpAdvanceConfigurationTransportMode enum
 var AllowedPtpAdvanceConfigurationTransportModeEnumValues = []PtpAdvanceConfigurationTransportMode{
-	"Multicast",
-	"Unicast",
-	"Hybrid",
+	"MULTICAST",
+	"UNICAST",
+	"HYBRID",
 }
 
 func (v *PtpAdvanceConfigurationTransportMode) UnmarshalJSON(src []byte) error {

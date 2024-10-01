@@ -16,9 +16,11 @@ import (
 // checks if the SubscriptionTrial type satisfies the MappedNullable interface at compile time
 var _ MappedNullable = &SubscriptionTrial{}
 
-// SubscriptionTrial Trial
+// SubscriptionTrial Free Trial Subscription
 type SubscriptionTrial struct {
-	Enabled              *bool      `json:"enabled,omitempty"`
+	// Free Trial Enabled
+	Enabled *bool `json:"enabled,omitempty"`
+	// Free Trial Expiry Date
 	ExpiryDateTime       *time.Time `json:"expiryDateTime,omitempty"`
 	AdditionalProperties map[string]interface{}
 }

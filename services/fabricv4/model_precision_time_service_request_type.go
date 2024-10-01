@@ -13,7 +13,7 @@ import (
 	"fmt"
 )
 
-// PrecisionTimeServiceRequestType Indicate the entity is EPT service
+// PrecisionTimeServiceRequestType Precision Time Service Type refers to the corresponding Protocol.
 type PrecisionTimeServiceRequestType string
 
 // List of precisionTimeServiceRequest_type

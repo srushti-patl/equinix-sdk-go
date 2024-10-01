@@ -198,7 +198,7 @@ func (r ApiGetPortStatsRequest) Metros(metros []string) ApiGetPortStatsRequest {
 	return r
 }
 
-// Key or set of keys that organizes the search payload by property (such as createdDate or metroCode) or by direction. Ascending (ASC) is the default value. The \&quot;?\&quot; prefix indicates descending (DESC) order.
+// Key or set of keys that organizes the search payload by property (such as createdDate or metroCode) or by direction. Ascending (ASC) is the default value. The \&quot;‒\&quot; prefix indicates descending (DESC) order.
 func (r ApiGetPortStatsRequest) Sort(sort Sort) ApiGetPortStatsRequest {
 	r.sort = &sort
 	return r

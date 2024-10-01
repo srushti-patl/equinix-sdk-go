@@ -35,7 +35,7 @@ import (
 )
 
 func main() {
-	serviceToken := *openapiclient.NewServiceToken("Uuid_example") // ServiceToken | 
+	serviceToken := *openapiclient.NewServiceToken() // ServiceToken | 
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -154,7 +154,7 @@ Name | Type | Description  | Notes
 
 ## DeleteServiceTokenByUuid
 
-> DeleteServiceTokenByUuid(ctx, serviceTokenId).Execute()
+> ServiceToken DeleteServiceTokenByUuid(ctx, serviceTokenId).Execute()
 
 Delete Token by uuid
 
@@ -177,11 +177,13 @@ func main() {
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	r, err := apiClient.ServiceTokensApi.DeleteServiceTokenByUuid(context.Background(), serviceTokenId).Execute()
+	resp, r, err := apiClient.ServiceTokensApi.DeleteServiceTokenByUuid(context.Background(), serviceTokenId).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `ServiceTokensApi.DeleteServiceTokenByUuid``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
+	// response from `DeleteServiceTokenByUuid`: ServiceToken
+	fmt.Fprintf(os.Stdout, "Response from `ServiceTokensApi.DeleteServiceTokenByUuid`: %v\n", resp)
 }
 ```
 
@@ -204,7 +206,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
- (empty response body)
+[**ServiceToken**](ServiceToken.md)
 
 ### Authorization
 
@@ -446,7 +448,7 @@ import (
 
 func main() {
 	serviceTokenId := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | Service Token UUID
-	serviceTokenChangeOperation := []openapiclient.ServiceTokenChangeOperation{*openapiclient.NewServiceTokenChangeOperation(openapiclient.ServiceTokenChangeOperation_op("replace"), "/expirationDateTime", interface{}(123))} // []ServiceTokenChangeOperation | 
+	serviceTokenChangeOperation := []openapiclient.ServiceTokenChangeOperation{*openapiclient.NewServiceTokenChangeOperation(openapiclient.precisionTimeChangeOperation_op("replace"), "/expirationDateTime", interface{}(123))} // []ServiceTokenChangeOperation | 
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)

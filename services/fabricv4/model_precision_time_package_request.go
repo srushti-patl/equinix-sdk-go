@@ -16,10 +16,9 @@ import (
 // checks if the PrecisionTimePackageRequest type satisfies the MappedNullable interface at compile time
 var _ MappedNullable = &PrecisionTimePackageRequest{}
 
-// PrecisionTimePackageRequest EPT Package Request
+// PrecisionTimePackageRequest Precision Time Service Level Request
 type PrecisionTimePackageRequest struct {
-	Href                 *string                                          `json:"href,omitempty"`
-	Code                 GetTimeServicesPackageByCodePackageCodeParameter `json:"code"`
+	Code                 PrecisionTimePackageRequestCode `json:"code"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -29,7 +28,7 @@ type _PrecisionTimePackageRequest PrecisionTimePackageRequest
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewPrecisionTimePackageRequest(code GetTimeServicesPackageByCodePackageCodeParameter) *PrecisionTimePackageRequest {
+func NewPrecisionTimePackageRequest(code PrecisionTimePackageRequestCode) *PrecisionTimePackageRequest {
 	this := PrecisionTimePackageRequest{}
 	this.Code = code
 	return &this
@@ -43,42 +42,10 @@ func NewPrecisionTimePackageRequestWithDefaults() *PrecisionTimePackageRequest {
 	return &this
 }
 
-// GetHref returns the Href field value if set, zero value otherwise.
-func (o *PrecisionTimePackageRequest) GetHref() string {
-	if o == nil || IsNil(o.Href) {
-		var ret string
-		return ret
-	}
-	return *o.Href
-}
-
-// GetHrefOk returns a tuple with the Href field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *PrecisionTimePackageRequest) GetHrefOk() (*string, bool) {
-	if o == nil || IsNil(o.Href) {
-		return nil, false
-	}
-	return o.Href, true
-}
-
-// HasHref returns a boolean if a field has been set.
-func (o *PrecisionTimePackageRequest) HasHref() bool {
-	if o != nil && !IsNil(o.Href) {
-		return true
-	}
-
-	return false
-}
-
-// SetHref gets a reference to the given string and assigns it to the Href field.
-func (o *PrecisionTimePackageRequest) SetHref(v string) {
-	o.Href = &v
-}
-
 // GetCode returns the Code field value
-func (o *PrecisionTimePackageRequest) GetCode() GetTimeServicesPackageByCodePackageCodeParameter {
+func (o *PrecisionTimePackageRequest) GetCode() PrecisionTimePackageRequestCode {
 	if o == nil {
-		var ret GetTimeServicesPackageByCodePackageCodeParameter
+		var ret PrecisionTimePackageRequestCode
 		return ret
 	}
 
@@ -87,7 +54,7 @@ func (o *PrecisionTimePackageRequest) GetCode() GetTimeServicesPackageByCodePack
 
 // GetCodeOk returns a tuple with the Code field value
 // and a boolean to check if the value has been set.
-func (o *PrecisionTimePackageRequest) GetCodeOk() (*GetTimeServicesPackageByCodePackageCodeParameter, bool) {
+func (o *PrecisionTimePackageRequest) GetCodeOk() (*PrecisionTimePackageRequestCode, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -95,7 +62,7 @@ func (o *PrecisionTimePackageRequest) GetCodeOk() (*GetTimeServicesPackageByCode
 }
 
 // SetCode sets field value
-func (o *PrecisionTimePackageRequest) SetCode(v GetTimeServicesPackageByCodePackageCodeParameter) {
+func (o *PrecisionTimePackageRequest) SetCode(v PrecisionTimePackageRequestCode) {
 	o.Code = v
 }
 
@@ -109,9 +76,6 @@ func (o PrecisionTimePackageRequest) MarshalJSON() ([]byte, error) {
 
 func (o PrecisionTimePackageRequest) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if !IsNil(o.Href) {
-		toSerialize["href"] = o.Href
-	}
 	toSerialize["code"] = o.Code
 
 	for key, value := range o.AdditionalProperties {
@@ -156,7 +120,6 @@ func (o *PrecisionTimePackageRequest) UnmarshalJSON(data []byte) (err error) {
 	additionalProperties := make(map[string]interface{})
 
 	if err = json.Unmarshal(data, &additionalProperties); err == nil {
-		delete(additionalProperties, "href")
 		delete(additionalProperties, "code")
 		o.AdditionalProperties = additionalProperties
 	}

@@ -109,7 +109,7 @@ import (
 
 func main() {
 	metros := []string{"Inner_example"} // []string | Two-letter prefix indicating the metropolitan area in which a specified Equinix asset is located.
-	sort := openapiclient.sort("-bandwidthUtilization") // Sort | Key or set of keys that organizes the search payload by property (such as createdDate or metroCode) or by direction. Ascending (ASC) is the default value. The \"?\" prefix indicates descending (DESC) order. (optional) (default to "-bandwidthUtilization")
+	sort := openapiclient.sort("-bandwidthUtilization") // Sort | Key or set of keys that organizes the search payload by property (such as createdDate or metroCode) or by direction. Ascending (ASC) is the default value. The \"‒\" prefix indicates descending (DESC) order. (optional) (default to "-bandwidthUtilization")
 	top := int32(56) // int32 | Filter returning only the specified number of most heavily trafficked ports. The standard value is [1...10], and the default is 5. (optional) (default to 5)
 	duration := openapiclient.duration("P7D") // Duration | duration (optional) (default to "P7D")
 	direction := openapiclient.query_direction("inbound") // QueryDirection | Direction of traffic from the requester's viewpoint. The default is outbound. (optional) (default to "outbound")
@@ -140,7 +140,7 @@ Other parameters are passed through a pointer to a apiGetPortStatsRequest struct
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **metros** | **[]string** | Two-letter prefix indicating the metropolitan area in which a specified Equinix asset is located. | 
- **sort** | [**Sort**](Sort.md) | Key or set of keys that organizes the search payload by property (such as createdDate or metroCode) or by direction. Ascending (ASC) is the default value. The \&quot;?\&quot; prefix indicates descending (DESC) order. | [default to &quot;-bandwidthUtilization&quot;]
+ **sort** | [**Sort**](Sort.md) | Key or set of keys that organizes the search payload by property (such as createdDate or metroCode) or by direction. Ascending (ASC) is the default value. The \&quot;‒\&quot; prefix indicates descending (DESC) order. | [default to &quot;-bandwidthUtilization&quot;]
  **top** | **int32** | Filter returning only the specified number of most heavily trafficked ports. The standard value is [1...10], and the default is 5. | [default to 5]
  **duration** | [**Duration**](Duration.md) | duration | [default to &quot;P7D&quot;]
  **direction** | [**QueryDirection**](QueryDirection.md) | Direction of traffic from the requester&#39;s viewpoint. The default is outbound. | [default to &quot;outbound&quot;]

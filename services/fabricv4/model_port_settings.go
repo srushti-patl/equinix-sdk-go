@@ -17,17 +17,19 @@ var _ MappedNullable = &PortSettings{}
 
 // PortSettings Port configuration settings
 type PortSettings struct {
-	// Product name
-	Product                *string                        `json:"product,omitempty"`
-	Buyout                 *bool                          `json:"buyout,omitempty"`
-	ViewPortPermission     *bool                          `json:"viewPortPermission,omitempty"`
-	PlaceVcOrderPermission *bool                          `json:"placeVcOrderPermission,omitempty"`
-	Layer3Enabled          *bool                          `json:"layer3Enabled,omitempty"`
-	ProductCode            *string                        `json:"productCode,omitempty"`
-	SharedPortType         *bool                          `json:"sharedPortType,omitempty"`
-	SharedPortProduct      *PortSettingsSharedPortProduct `json:"sharedPortProduct,omitempty"`
-	PackageType            *PortSettingsPackageType       `json:"packageType,omitempty"`
-	AdditionalProperties   map[string]interface{}
+	// Deprecated
+	Buyout *bool `json:"buyout,omitempty"`
+	// Deprecated
+	ViewPortPermission *bool `json:"viewPortPermission,omitempty"`
+	// Deprecated
+	PlaceVcOrderPermission *bool `json:"placeVcOrderPermission,omitempty"`
+	// Deprecated
+	Layer3Enabled     *bool                          `json:"layer3Enabled,omitempty"`
+	SharedPortType    *bool                          `json:"sharedPortType,omitempty"`
+	SharedPortProduct *PortSettingsSharedPortProduct `json:"sharedPortProduct,omitempty"`
+	// Deprecated
+	PackageType          *PortSettingsPackageType `json:"packageType,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _PortSettings PortSettings
@@ -49,39 +51,8 @@ func NewPortSettingsWithDefaults() *PortSettings {
 	return &this
 }
 
-// GetProduct returns the Product field value if set, zero value otherwise.
-func (o *PortSettings) GetProduct() string {
-	if o == nil || IsNil(o.Product) {
-		var ret string
-		return ret
-	}
-	return *o.Product
-}
-
-// GetProductOk returns a tuple with the Product field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *PortSettings) GetProductOk() (*string, bool) {
-	if o == nil || IsNil(o.Product) {
-		return nil, false
-	}
-	return o.Product, true
-}
-
-// HasProduct returns a boolean if a field has been set.
-func (o *PortSettings) HasProduct() bool {
-	if o != nil && !IsNil(o.Product) {
-		return true
-	}
-
-	return false
-}
-
-// SetProduct gets a reference to the given string and assigns it to the Product field.
-func (o *PortSettings) SetProduct(v string) {
-	o.Product = &v
-}
-
 // GetBuyout returns the Buyout field value if set, zero value otherwise.
+// Deprecated
 func (o *PortSettings) GetBuyout() bool {
 	if o == nil || IsNil(o.Buyout) {
 		var ret bool
@@ -92,6 +63,7 @@ func (o *PortSettings) GetBuyout() bool {
 
 // GetBuyoutOk returns a tuple with the Buyout field value if set, nil otherwise
 // and a boolean to check if the value has been set.
+// Deprecated
 func (o *PortSettings) GetBuyoutOk() (*bool, bool) {
 	if o == nil || IsNil(o.Buyout) {
 		return nil, false
@@ -109,11 +81,13 @@ func (o *PortSettings) HasBuyout() bool {
 }
 
 // SetBuyout gets a reference to the given bool and assigns it to the Buyout field.
+// Deprecated
 func (o *PortSettings) SetBuyout(v bool) {
 	o.Buyout = &v
 }
 
 // GetViewPortPermission returns the ViewPortPermission field value if set, zero value otherwise.
+// Deprecated
 func (o *PortSettings) GetViewPortPermission() bool {
 	if o == nil || IsNil(o.ViewPortPermission) {
 		var ret bool
@@ -124,6 +98,7 @@ func (o *PortSettings) GetViewPortPermission() bool {
 
 // GetViewPortPermissionOk returns a tuple with the ViewPortPermission field value if set, nil otherwise
 // and a boolean to check if the value has been set.
+// Deprecated
 func (o *PortSettings) GetViewPortPermissionOk() (*bool, bool) {
 	if o == nil || IsNil(o.ViewPortPermission) {
 		return nil, false
@@ -141,11 +116,13 @@ func (o *PortSettings) HasViewPortPermission() bool {
 }
 
 // SetViewPortPermission gets a reference to the given bool and assigns it to the ViewPortPermission field.
+// Deprecated
 func (o *PortSettings) SetViewPortPermission(v bool) {
 	o.ViewPortPermission = &v
 }
 
 // GetPlaceVcOrderPermission returns the PlaceVcOrderPermission field value if set, zero value otherwise.
+// Deprecated
 func (o *PortSettings) GetPlaceVcOrderPermission() bool {
 	if o == nil || IsNil(o.PlaceVcOrderPermission) {
 		var ret bool
@@ -156,6 +133,7 @@ func (o *PortSettings) GetPlaceVcOrderPermission() bool {
 
 // GetPlaceVcOrderPermissionOk returns a tuple with the PlaceVcOrderPermission field value if set, nil otherwise
 // and a boolean to check if the value has been set.
+// Deprecated
 func (o *PortSettings) GetPlaceVcOrderPermissionOk() (*bool, bool) {
 	if o == nil || IsNil(o.PlaceVcOrderPermission) {
 		return nil, false
@@ -173,11 +151,13 @@ func (o *PortSettings) HasPlaceVcOrderPermission() bool {
 }
 
 // SetPlaceVcOrderPermission gets a reference to the given bool and assigns it to the PlaceVcOrderPermission field.
+// Deprecated
 func (o *PortSettings) SetPlaceVcOrderPermission(v bool) {
 	o.PlaceVcOrderPermission = &v
 }
 
 // GetLayer3Enabled returns the Layer3Enabled field value if set, zero value otherwise.
+// Deprecated
 func (o *PortSettings) GetLayer3Enabled() bool {
 	if o == nil || IsNil(o.Layer3Enabled) {
 		var ret bool
@@ -188,6 +168,7 @@ func (o *PortSettings) GetLayer3Enabled() bool {
 
 // GetLayer3EnabledOk returns a tuple with the Layer3Enabled field value if set, nil otherwise
 // and a boolean to check if the value has been set.
+// Deprecated
 func (o *PortSettings) GetLayer3EnabledOk() (*bool, bool) {
 	if o == nil || IsNil(o.Layer3Enabled) {
 		return nil, false
@@ -205,40 +186,9 @@ func (o *PortSettings) HasLayer3Enabled() bool {
 }
 
 // SetLayer3Enabled gets a reference to the given bool and assigns it to the Layer3Enabled field.
+// Deprecated
 func (o *PortSettings) SetLayer3Enabled(v bool) {
 	o.Layer3Enabled = &v
-}
-
-// GetProductCode returns the ProductCode field value if set, zero value otherwise.
-func (o *PortSettings) GetProductCode() string {
-	if o == nil || IsNil(o.ProductCode) {
-		var ret string
-		return ret
-	}
-	return *o.ProductCode
-}
-
-// GetProductCodeOk returns a tuple with the ProductCode field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *PortSettings) GetProductCodeOk() (*string, bool) {
-	if o == nil || IsNil(o.ProductCode) {
-		return nil, false
-	}
-	return o.ProductCode, true
-}
-
-// HasProductCode returns a boolean if a field has been set.
-func (o *PortSettings) HasProductCode() bool {
-	if o != nil && !IsNil(o.ProductCode) {
-		return true
-	}
-
-	return false
-}
-
-// SetProductCode gets a reference to the given string and assigns it to the ProductCode field.
-func (o *PortSettings) SetProductCode(v string) {
-	o.ProductCode = &v
 }
 
 // GetSharedPortType returns the SharedPortType field value if set, zero value otherwise.
@@ -306,6 +256,7 @@ func (o *PortSettings) SetSharedPortProduct(v PortSettingsSharedPortProduct) {
 }
 
 // GetPackageType returns the PackageType field value if set, zero value otherwise.
+// Deprecated
 func (o *PortSettings) GetPackageType() PortSettingsPackageType {
 	if o == nil || IsNil(o.PackageType) {
 		var ret PortSettingsPackageType
@@ -316,6 +267,7 @@ func (o *PortSettings) GetPackageType() PortSettingsPackageType {
 
 // GetPackageTypeOk returns a tuple with the PackageType field value if set, nil otherwise
 // and a boolean to check if the value has been set.
+// Deprecated
 func (o *PortSettings) GetPackageTypeOk() (*PortSettingsPackageType, bool) {
 	if o == nil || IsNil(o.PackageType) {
 		return nil, false
@@ -333,6 +285,7 @@ func (o *PortSettings) HasPackageType() bool {
 }
 
 // SetPackageType gets a reference to the given PortSettingsPackageType and assigns it to the PackageType field.
+// Deprecated
 func (o *PortSettings) SetPackageType(v PortSettingsPackageType) {
 	o.PackageType = &v
 }
@@ -347,9 +300,6 @@ func (o PortSettings) MarshalJSON() ([]byte, error) {
 
 func (o PortSettings) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if !IsNil(o.Product) {
-		toSerialize["product"] = o.Product
-	}
 	if !IsNil(o.Buyout) {
 		toSerialize["buyout"] = o.Buyout
 	}
@@ -361,9 +311,6 @@ func (o PortSettings) ToMap() (map[string]interface{}, error) {
 	}
 	if !IsNil(o.Layer3Enabled) {
 		toSerialize["layer3Enabled"] = o.Layer3Enabled
-	}
-	if !IsNil(o.ProductCode) {
-		toSerialize["productCode"] = o.ProductCode
 	}
 	if !IsNil(o.SharedPortType) {
 		toSerialize["sharedPortType"] = o.SharedPortType
@@ -396,12 +343,10 @@ func (o *PortSettings) UnmarshalJSON(data []byte) (err error) {
 	additionalProperties := make(map[string]interface{})
 
 	if err = json.Unmarshal(data, &additionalProperties); err == nil {
-		delete(additionalProperties, "product")
 		delete(additionalProperties, "buyout")
 		delete(additionalProperties, "viewPortPermission")
 		delete(additionalProperties, "placeVcOrderPermission")
 		delete(additionalProperties, "layer3Enabled")
-		delete(additionalProperties, "productCode")
 		delete(additionalProperties, "sharedPortType")
 		delete(additionalProperties, "sharedPortProduct")
 		delete(additionalProperties, "packageType")
