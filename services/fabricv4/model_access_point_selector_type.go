@@ -18,12 +18,16 @@ type AccessPointSelectorType string
 
 // List of AccessPointSelector_type
 const (
-	ACCESSPOINTSELECTORTYPE_COLO AccessPointSelectorType = "COLO"
+	ACCESSPOINTSELECTORTYPE_COLO    AccessPointSelectorType = "COLO"
+	ACCESSPOINTSELECTORTYPE_VD      AccessPointSelectorType = "VD"
+	ACCESSPOINTSELECTORTYPE_NETWORK AccessPointSelectorType = "NETWORK"
 )
 
 // All allowed values of AccessPointSelectorType enum
 var AllowedAccessPointSelectorTypeEnumValues = []AccessPointSelectorType{
 	"COLO",
+	"VD",
+	"NETWORK",
 }
 
 func (v *AccessPointSelectorType) UnmarshalJSON(src []byte) error {

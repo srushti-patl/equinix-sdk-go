@@ -35,16 +35,17 @@ type SimplifiedPort struct {
 	Project          *Project   `json:"project,omitempty"`
 	State            *PortState `json:"state,omitempty"`
 	// Equinix assigned response attribute for Unique ID for a virtual port.
-	CvpId       *string                  `json:"cvpId,omitempty"`
-	Operation   *PortOperation           `json:"operation,omitempty"`
-	Account     *SimplifiedAccount       `json:"account,omitempty"`
-	ServiceType *PortResponseServiceType `json:"serviceType,omitempty"`
+	CvpId     *string            `json:"cvpId,omitempty"`
+	Operation *PortOperation     `json:"operation,omitempty"`
+	Account   *SimplifiedAccount `json:"account,omitempty"`
+	// Deprecated
+	ServiceType *PortServiceType `json:"serviceType,omitempty"`
 	// Equinix assigned response attribute for Port bandwidth in Mbps
-	Bandwidth *int32 `json:"bandwidth,omitempty"`
+	Bandwidth *int64 `json:"bandwidth,omitempty"`
 	// Equinix assigned response attribute for Port available bandwidth in Mbps
-	AvailableBandwidth *int32 `json:"availableBandwidth,omitempty"`
+	AvailableBandwidth *int64 `json:"availableBandwidth,omitempty"`
 	// Equinix assigned response attribute for Port used bandwidth in Mbps
-	UsedBandwidth    *int32                `json:"usedBandwidth,omitempty"`
+	UsedBandwidth    *int64                `json:"usedBandwidth,omitempty"`
 	Location         *SimplifiedLocation   `json:"location,omitempty"`
 	Device           *PortDevice           `json:"device,omitempty"`
 	Interface        *PortInterface        `json:"interface,omitempty"`
@@ -54,6 +55,7 @@ type SimplifiedPort struct {
 	Encapsulation    *PortEncapsulation    `json:"encapsulation,omitempty"`
 	// If LAG enabled
 	LagEnabled *bool         `json:"lagEnabled,omitempty"`
+	Package    *Package      `json:"package,omitempty"`
 	Settings   *PortSettings `json:"settings,omitempty"`
 	// Number of physical ports
 	PhysicalPortQuantity *int32 `json:"physicalPortQuantity,omitempty"`
@@ -500,9 +502,10 @@ func (o *SimplifiedPort) SetAccount(v SimplifiedAccount) {
 }
 
 // GetServiceType returns the ServiceType field value if set, zero value otherwise.
-func (o *SimplifiedPort) GetServiceType() PortResponseServiceType {
+// Deprecated
+func (o *SimplifiedPort) GetServiceType() PortServiceType {
 	if o == nil || IsNil(o.ServiceType) {
-		var ret PortResponseServiceType
+		var ret PortServiceType
 		return ret
 	}
 	return *o.ServiceType
@@ -510,7 +513,8 @@ func (o *SimplifiedPort) GetServiceType() PortResponseServiceType {
 
 // GetServiceTypeOk returns a tuple with the ServiceType field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *SimplifiedPort) GetServiceTypeOk() (*PortResponseServiceType, bool) {
+// Deprecated
+func (o *SimplifiedPort) GetServiceTypeOk() (*PortServiceType, bool) {
 	if o == nil || IsNil(o.ServiceType) {
 		return nil, false
 	}
@@ -526,15 +530,16 @@ func (o *SimplifiedPort) HasServiceType() bool {
 	return false
 }
 
-// SetServiceType gets a reference to the given PortResponseServiceType and assigns it to the ServiceType field.
-func (o *SimplifiedPort) SetServiceType(v PortResponseServiceType) {
+// SetServiceType gets a reference to the given PortServiceType and assigns it to the ServiceType field.
+// Deprecated
+func (o *SimplifiedPort) SetServiceType(v PortServiceType) {
 	o.ServiceType = &v
 }
 
 // GetBandwidth returns the Bandwidth field value if set, zero value otherwise.
-func (o *SimplifiedPort) GetBandwidth() int32 {
+func (o *SimplifiedPort) GetBandwidth() int64 {
 	if o == nil || IsNil(o.Bandwidth) {
-		var ret int32
+		var ret int64
 		return ret
 	}
 	return *o.Bandwidth
@@ -542,7 +547,7 @@ func (o *SimplifiedPort) GetBandwidth() int32 {
 
 // GetBandwidthOk returns a tuple with the Bandwidth field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *SimplifiedPort) GetBandwidthOk() (*int32, bool) {
+func (o *SimplifiedPort) GetBandwidthOk() (*int64, bool) {
 	if o == nil || IsNil(o.Bandwidth) {
 		return nil, false
 	}
@@ -558,15 +563,15 @@ func (o *SimplifiedPort) HasBandwidth() bool {
 	return false
 }
 
-// SetBandwidth gets a reference to the given int32 and assigns it to the Bandwidth field.
-func (o *SimplifiedPort) SetBandwidth(v int32) {
+// SetBandwidth gets a reference to the given int64 and assigns it to the Bandwidth field.
+func (o *SimplifiedPort) SetBandwidth(v int64) {
 	o.Bandwidth = &v
 }
 
 // GetAvailableBandwidth returns the AvailableBandwidth field value if set, zero value otherwise.
-func (o *SimplifiedPort) GetAvailableBandwidth() int32 {
+func (o *SimplifiedPort) GetAvailableBandwidth() int64 {
 	if o == nil || IsNil(o.AvailableBandwidth) {
-		var ret int32
+		var ret int64
 		return ret
 	}
 	return *o.AvailableBandwidth
@@ -574,7 +579,7 @@ func (o *SimplifiedPort) GetAvailableBandwidth() int32 {
 
 // GetAvailableBandwidthOk returns a tuple with the AvailableBandwidth field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *SimplifiedPort) GetAvailableBandwidthOk() (*int32, bool) {
+func (o *SimplifiedPort) GetAvailableBandwidthOk() (*int64, bool) {
 	if o == nil || IsNil(o.AvailableBandwidth) {
 		return nil, false
 	}
@@ -590,15 +595,15 @@ func (o *SimplifiedPort) HasAvailableBandwidth() bool {
 	return false
 }
 
-// SetAvailableBandwidth gets a reference to the given int32 and assigns it to the AvailableBandwidth field.
-func (o *SimplifiedPort) SetAvailableBandwidth(v int32) {
+// SetAvailableBandwidth gets a reference to the given int64 and assigns it to the AvailableBandwidth field.
+func (o *SimplifiedPort) SetAvailableBandwidth(v int64) {
 	o.AvailableBandwidth = &v
 }
 
 // GetUsedBandwidth returns the UsedBandwidth field value if set, zero value otherwise.
-func (o *SimplifiedPort) GetUsedBandwidth() int32 {
+func (o *SimplifiedPort) GetUsedBandwidth() int64 {
 	if o == nil || IsNil(o.UsedBandwidth) {
-		var ret int32
+		var ret int64
 		return ret
 	}
 	return *o.UsedBandwidth
@@ -606,7 +611,7 @@ func (o *SimplifiedPort) GetUsedBandwidth() int32 {
 
 // GetUsedBandwidthOk returns a tuple with the UsedBandwidth field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *SimplifiedPort) GetUsedBandwidthOk() (*int32, bool) {
+func (o *SimplifiedPort) GetUsedBandwidthOk() (*int64, bool) {
 	if o == nil || IsNil(o.UsedBandwidth) {
 		return nil, false
 	}
@@ -622,8 +627,8 @@ func (o *SimplifiedPort) HasUsedBandwidth() bool {
 	return false
 }
 
-// SetUsedBandwidth gets a reference to the given int32 and assigns it to the UsedBandwidth field.
-func (o *SimplifiedPort) SetUsedBandwidth(v int32) {
+// SetUsedBandwidth gets a reference to the given int64 and assigns it to the UsedBandwidth field.
+func (o *SimplifiedPort) SetUsedBandwidth(v int64) {
 	o.UsedBandwidth = &v
 }
 
@@ -883,6 +888,38 @@ func (o *SimplifiedPort) SetLagEnabled(v bool) {
 	o.LagEnabled = &v
 }
 
+// GetPackage returns the Package field value if set, zero value otherwise.
+func (o *SimplifiedPort) GetPackage() Package {
+	if o == nil || IsNil(o.Package) {
+		var ret Package
+		return ret
+	}
+	return *o.Package
+}
+
+// GetPackageOk returns a tuple with the Package field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *SimplifiedPort) GetPackageOk() (*Package, bool) {
+	if o == nil || IsNil(o.Package) {
+		return nil, false
+	}
+	return o.Package, true
+}
+
+// HasPackage returns a boolean if a field has been set.
+func (o *SimplifiedPort) HasPackage() bool {
+	if o != nil && !IsNil(o.Package) {
+		return true
+	}
+
+	return false
+}
+
+// SetPackage gets a reference to the given Package and assigns it to the Package field.
+func (o *SimplifiedPort) SetPackage(v Package) {
+	o.Package = &v
+}
+
 // GetSettings returns the Settings field value if set, zero value otherwise.
 func (o *SimplifiedPort) GetSettings() PortSettings {
 	if o == nil || IsNil(o.Settings) {
@@ -1096,6 +1133,9 @@ func (o SimplifiedPort) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.LagEnabled) {
 		toSerialize["lagEnabled"] = o.LagEnabled
 	}
+	if !IsNil(o.Package) {
+		toSerialize["package"] = o.Package
+	}
 	if !IsNil(o.Settings) {
 		toSerialize["settings"] = o.Settings
 	}
@@ -1155,6 +1195,7 @@ func (o *SimplifiedPort) UnmarshalJSON(data []byte) (err error) {
 		delete(additionalProperties, "redundancy")
 		delete(additionalProperties, "encapsulation")
 		delete(additionalProperties, "lagEnabled")
+		delete(additionalProperties, "package")
 		delete(additionalProperties, "settings")
 		delete(additionalProperties, "physicalPortQuantity")
 		delete(additionalProperties, "additionalInfo")

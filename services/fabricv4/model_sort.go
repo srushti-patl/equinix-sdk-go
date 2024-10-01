@@ -13,7 +13,7 @@ import (
 	"fmt"
 )
 
-// Sort Key or set of keys that organizes the search payload by property (such as createdDate or metroCode) or by direction. Ascending (ASC) is the default value. The \"?\" prefix indicates descending (DESC) order.
+// Sort Key or set of keys that organizes the search payload by property (such as createdDate or metroCode) or by direction. Ascending (ASC) is the default value. The \"‒\" prefix indicates descending (DESC) order.
 type Sort string
 
 // List of sort

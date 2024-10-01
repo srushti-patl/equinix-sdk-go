@@ -11,8 +11,11 @@ Name | Type | Description | Notes
 **Account** | Pointer to [**SimplifiedAccount**](SimplifiedAccount.md) |  | [optional] 
 **InterfaceSpeed** | Pointer to **int32** | Physical Port Speed in Mbps | [optional] 
 **InterfaceType** | Pointer to **string** | Physical Port Interface Type | [optional] 
+**Uuid** | Pointer to **string** | Equinix assigned response attribute for physical port identifier | [optional] 
 **Tether** | Pointer to [**PortTether**](PortTether.md) |  | [optional] 
 **DemarcationPoint** | Pointer to [**PortDemarcationPoint**](PortDemarcationPoint.md) |  | [optional] 
+**Settings** | Pointer to [**PhysicalPortSettings**](PhysicalPortSettings.md) |  | [optional] 
+**Interface** | Pointer to [**PortInterface**](PortInterface.md) |  | [optional] 
 **Notifications** | Pointer to [**[]PortNotification**](PortNotification.md) | Notification preferences | [optional] 
 **AdditionalInfo** | Pointer to [**[]PortAdditionalInfo**](PortAdditionalInfo.md) | Physical Port additional information | [optional] 
 **Order** | Pointer to [**PortOrder**](PortOrder.md) |  | [optional] 
@@ -213,6 +216,31 @@ SetInterfaceType sets InterfaceType field to given value.
 
 HasInterfaceType returns a boolean if a field has been set.
 
+### GetUuid
+
+`func (o *PhysicalPort) GetUuid() string`
+
+GetUuid returns the Uuid field if non-nil, zero value otherwise.
+
+### GetUuidOk
+
+`func (o *PhysicalPort) GetUuidOk() (*string, bool)`
+
+GetUuidOk returns a tuple with the Uuid field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetUuid
+
+`func (o *PhysicalPort) SetUuid(v string)`
+
+SetUuid sets Uuid field to given value.
+
+### HasUuid
+
+`func (o *PhysicalPort) HasUuid() bool`
+
+HasUuid returns a boolean if a field has been set.
+
 ### GetTether
 
 `func (o *PhysicalPort) GetTether() PortTether`
@@ -262,6 +290,56 @@ SetDemarcationPoint sets DemarcationPoint field to given value.
 `func (o *PhysicalPort) HasDemarcationPoint() bool`
 
 HasDemarcationPoint returns a boolean if a field has been set.
+
+### GetSettings
+
+`func (o *PhysicalPort) GetSettings() PhysicalPortSettings`
+
+GetSettings returns the Settings field if non-nil, zero value otherwise.
+
+### GetSettingsOk
+
+`func (o *PhysicalPort) GetSettingsOk() (*PhysicalPortSettings, bool)`
+
+GetSettingsOk returns a tuple with the Settings field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetSettings
+
+`func (o *PhysicalPort) SetSettings(v PhysicalPortSettings)`
+
+SetSettings sets Settings field to given value.
+
+### HasSettings
+
+`func (o *PhysicalPort) HasSettings() bool`
+
+HasSettings returns a boolean if a field has been set.
+
+### GetInterface
+
+`func (o *PhysicalPort) GetInterface() PortInterface`
+
+GetInterface returns the Interface field if non-nil, zero value otherwise.
+
+### GetInterfaceOk
+
+`func (o *PhysicalPort) GetInterfaceOk() (*PortInterface, bool)`
+
+GetInterfaceOk returns a tuple with the Interface field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetInterface
+
+`func (o *PhysicalPort) SetInterface(v PortInterface)`
+
+SetInterface sets Interface field to given value.
+
+### HasInterface
+
+`func (o *PhysicalPort) HasInterface() bool`
+
+HasInterface returns a boolean if a field has been set.
 
 ### GetNotifications
 

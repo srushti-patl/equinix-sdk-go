@@ -19,6 +19,7 @@ var _ MappedNullable = &PhysicalPort{}
 type PhysicalPort struct {
 	Type *PhysicalPortType `json:"type,omitempty"`
 	// Equinix assigned response attribute for Physical Port Id
+	// Deprecated
 	Id *int32 `json:"id,omitempty"`
 	// Equinix assigned response attribute for an absolute URL that is the subject of the link's context.
 	Href    *string            `json:"href,omitempty"`
@@ -27,9 +28,13 @@ type PhysicalPort struct {
 	// Physical Port Speed in Mbps
 	InterfaceSpeed *int32 `json:"interfaceSpeed,omitempty"`
 	// Physical Port Interface Type
-	InterfaceType    *string               `json:"interfaceType,omitempty"`
+	InterfaceType *string `json:"interfaceType,omitempty"`
+	// Equinix assigned response attribute for physical port identifier
+	Uuid             *string               `json:"uuid,omitempty"`
 	Tether           *PortTether           `json:"tether,omitempty"`
 	DemarcationPoint *PortDemarcationPoint `json:"demarcationPoint,omitempty"`
+	Settings         *PhysicalPortSettings `json:"settings,omitempty"`
+	Interface        *PortInterface        `json:"interface,omitempty"`
 	// Notification preferences
 	Notifications []PortNotification `json:"notifications,omitempty"`
 	// Physical Port additional information
@@ -93,6 +98,7 @@ func (o *PhysicalPort) SetType(v PhysicalPortType) {
 }
 
 // GetId returns the Id field value if set, zero value otherwise.
+// Deprecated
 func (o *PhysicalPort) GetId() int32 {
 	if o == nil || IsNil(o.Id) {
 		var ret int32
@@ -103,6 +109,7 @@ func (o *PhysicalPort) GetId() int32 {
 
 // GetIdOk returns a tuple with the Id field value if set, nil otherwise
 // and a boolean to check if the value has been set.
+// Deprecated
 func (o *PhysicalPort) GetIdOk() (*int32, bool) {
 	if o == nil || IsNil(o.Id) {
 		return nil, false
@@ -120,6 +127,7 @@ func (o *PhysicalPort) HasId() bool {
 }
 
 // SetId gets a reference to the given int32 and assigns it to the Id field.
+// Deprecated
 func (o *PhysicalPort) SetId(v int32) {
 	o.Id = &v
 }
@@ -284,6 +292,38 @@ func (o *PhysicalPort) SetInterfaceType(v string) {
 	o.InterfaceType = &v
 }
 
+// GetUuid returns the Uuid field value if set, zero value otherwise.
+func (o *PhysicalPort) GetUuid() string {
+	if o == nil || IsNil(o.Uuid) {
+		var ret string
+		return ret
+	}
+	return *o.Uuid
+}
+
+// GetUuidOk returns a tuple with the Uuid field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *PhysicalPort) GetUuidOk() (*string, bool) {
+	if o == nil || IsNil(o.Uuid) {
+		return nil, false
+	}
+	return o.Uuid, true
+}
+
+// HasUuid returns a boolean if a field has been set.
+func (o *PhysicalPort) HasUuid() bool {
+	if o != nil && !IsNil(o.Uuid) {
+		return true
+	}
+
+	return false
+}
+
+// SetUuid gets a reference to the given string and assigns it to the Uuid field.
+func (o *PhysicalPort) SetUuid(v string) {
+	o.Uuid = &v
+}
+
 // GetTether returns the Tether field value if set, zero value otherwise.
 func (o *PhysicalPort) GetTether() PortTether {
 	if o == nil || IsNil(o.Tether) {
@@ -346,6 +386,70 @@ func (o *PhysicalPort) HasDemarcationPoint() bool {
 // SetDemarcationPoint gets a reference to the given PortDemarcationPoint and assigns it to the DemarcationPoint field.
 func (o *PhysicalPort) SetDemarcationPoint(v PortDemarcationPoint) {
 	o.DemarcationPoint = &v
+}
+
+// GetSettings returns the Settings field value if set, zero value otherwise.
+func (o *PhysicalPort) GetSettings() PhysicalPortSettings {
+	if o == nil || IsNil(o.Settings) {
+		var ret PhysicalPortSettings
+		return ret
+	}
+	return *o.Settings
+}
+
+// GetSettingsOk returns a tuple with the Settings field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *PhysicalPort) GetSettingsOk() (*PhysicalPortSettings, bool) {
+	if o == nil || IsNil(o.Settings) {
+		return nil, false
+	}
+	return o.Settings, true
+}
+
+// HasSettings returns a boolean if a field has been set.
+func (o *PhysicalPort) HasSettings() bool {
+	if o != nil && !IsNil(o.Settings) {
+		return true
+	}
+
+	return false
+}
+
+// SetSettings gets a reference to the given PhysicalPortSettings and assigns it to the Settings field.
+func (o *PhysicalPort) SetSettings(v PhysicalPortSettings) {
+	o.Settings = &v
+}
+
+// GetInterface returns the Interface field value if set, zero value otherwise.
+func (o *PhysicalPort) GetInterface() PortInterface {
+	if o == nil || IsNil(o.Interface) {
+		var ret PortInterface
+		return ret
+	}
+	return *o.Interface
+}
+
+// GetInterfaceOk returns a tuple with the Interface field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *PhysicalPort) GetInterfaceOk() (*PortInterface, bool) {
+	if o == nil || IsNil(o.Interface) {
+		return nil, false
+	}
+	return o.Interface, true
+}
+
+// HasInterface returns a boolean if a field has been set.
+func (o *PhysicalPort) HasInterface() bool {
+	if o != nil && !IsNil(o.Interface) {
+		return true
+	}
+
+	return false
+}
+
+// SetInterface gets a reference to the given PortInterface and assigns it to the Interface field.
+func (o *PhysicalPort) SetInterface(v PortInterface) {
+	o.Interface = &v
 }
 
 // GetNotifications returns the Notifications field value if set, zero value otherwise.
@@ -539,11 +643,20 @@ func (o PhysicalPort) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.InterfaceType) {
 		toSerialize["interfaceType"] = o.InterfaceType
 	}
+	if !IsNil(o.Uuid) {
+		toSerialize["uuid"] = o.Uuid
+	}
 	if !IsNil(o.Tether) {
 		toSerialize["tether"] = o.Tether
 	}
 	if !IsNil(o.DemarcationPoint) {
 		toSerialize["demarcationPoint"] = o.DemarcationPoint
+	}
+	if !IsNil(o.Settings) {
+		toSerialize["settings"] = o.Settings
+	}
+	if !IsNil(o.Interface) {
+		toSerialize["interface"] = o.Interface
 	}
 	if !IsNil(o.Notifications) {
 		toSerialize["notifications"] = o.Notifications
@@ -589,8 +702,11 @@ func (o *PhysicalPort) UnmarshalJSON(data []byte) (err error) {
 		delete(additionalProperties, "account")
 		delete(additionalProperties, "interfaceSpeed")
 		delete(additionalProperties, "interfaceType")
+		delete(additionalProperties, "uuid")
 		delete(additionalProperties, "tether")
 		delete(additionalProperties, "demarcationPoint")
+		delete(additionalProperties, "settings")
+		delete(additionalProperties, "interface")
 		delete(additionalProperties, "notifications")
 		delete(additionalProperties, "additionalInfo")
 		delete(additionalProperties, "order")

@@ -19,7 +19,7 @@ var _ MappedNullable = &AllPortsResponse{}
 type AllPortsResponse struct {
 	Pagination *Pagination `json:"pagination,omitempty"`
 	// GET All User Port Across Fabric Metros
-	Data                 []PortResponse `json:"data,omitempty"`
+	Data                 []Port `json:"data,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -75,9 +75,9 @@ func (o *AllPortsResponse) SetPagination(v Pagination) {
 }
 
 // GetData returns the Data field value if set, zero value otherwise.
-func (o *AllPortsResponse) GetData() []PortResponse {
+func (o *AllPortsResponse) GetData() []Port {
 	if o == nil || IsNil(o.Data) {
-		var ret []PortResponse
+		var ret []Port
 		return ret
 	}
 	return o.Data
@@ -85,7 +85,7 @@ func (o *AllPortsResponse) GetData() []PortResponse {
 
 // GetDataOk returns a tuple with the Data field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *AllPortsResponse) GetDataOk() ([]PortResponse, bool) {
+func (o *AllPortsResponse) GetDataOk() ([]Port, bool) {
 	if o == nil || IsNil(o.Data) {
 		return nil, false
 	}
@@ -101,8 +101,8 @@ func (o *AllPortsResponse) HasData() bool {
 	return false
 }
 
-// SetData gets a reference to the given []PortResponse and assigns it to the Data field.
-func (o *AllPortsResponse) SetData(v []PortResponse) {
+// SetData gets a reference to the given []Port and assigns it to the Data field.
+func (o *AllPortsResponse) SetData(v []Port) {
 	o.Data = v
 }
 

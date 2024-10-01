@@ -18,17 +18,17 @@ var _ MappedNullable = &RouteTableEntry{}
 
 // RouteTableEntry Route table entry object
 type RouteTableEntry struct {
-	Type                 RouteTableEntryType          `json:"type"`
-	ProtocolType         *RouteTableEntryProtocolType `json:"protocolType,omitempty"`
-	State                RouteTableEntryState         `json:"state"`
-	Age                  *string                      `json:"age,omitempty"`
-	Prefix               *string                      `json:"prefix,omitempty"`
-	NextHop              *string                      `json:"nextHop,omitempty"`
-	Metric               *int32                       `json:"metric,omitempty"`
-	LocalPreference      *int32                       `json:"localPreference,omitempty"`
-	AsPath               []int32                      `json:"asPath,omitempty"`
-	Connection           *RouteTableEntryConnection   `json:"connection,omitempty"`
-	ChangeLog            Changelog                    `json:"changeLog"`
+	Type                 RouteTableEntryType                  `json:"type"`
+	ProtocolType         *RouteTableEntryProtocolType         `json:"protocolType,omitempty"`
+	State                RouteTableEntryState                 `json:"state"`
+	Age                  *string                              `json:"age,omitempty"`
+	Prefix               *string                              `json:"prefix,omitempty"`
+	NextHop              *string                              `json:"nextHop,omitempty"`
+	MED                  *int32                               `json:"MED,omitempty"`
+	LocalPreference      *int32                               `json:"localPreference,omitempty"`
+	AsPath               []int32                              `json:"asPath,omitempty"`
+	Connection           *ConnectionRouteTableEntryConnection `json:"connection,omitempty"`
+	ChangeLog            Changelog                            `json:"changeLog"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -230,36 +230,36 @@ func (o *RouteTableEntry) SetNextHop(v string) {
 	o.NextHop = &v
 }
 
-// GetMetric returns the Metric field value if set, zero value otherwise.
-func (o *RouteTableEntry) GetMetric() int32 {
-	if o == nil || IsNil(o.Metric) {
+// GetMED returns the MED field value if set, zero value otherwise.
+func (o *RouteTableEntry) GetMED() int32 {
+	if o == nil || IsNil(o.MED) {
 		var ret int32
 		return ret
 	}
-	return *o.Metric
+	return *o.MED
 }
 
-// GetMetricOk returns a tuple with the Metric field value if set, nil otherwise
+// GetMEDOk returns a tuple with the MED field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *RouteTableEntry) GetMetricOk() (*int32, bool) {
-	if o == nil || IsNil(o.Metric) {
+func (o *RouteTableEntry) GetMEDOk() (*int32, bool) {
+	if o == nil || IsNil(o.MED) {
 		return nil, false
 	}
-	return o.Metric, true
+	return o.MED, true
 }
 
-// HasMetric returns a boolean if a field has been set.
-func (o *RouteTableEntry) HasMetric() bool {
-	if o != nil && !IsNil(o.Metric) {
+// HasMED returns a boolean if a field has been set.
+func (o *RouteTableEntry) HasMED() bool {
+	if o != nil && !IsNil(o.MED) {
 		return true
 	}
 
 	return false
 }
 
-// SetMetric gets a reference to the given int32 and assigns it to the Metric field.
-func (o *RouteTableEntry) SetMetric(v int32) {
-	o.Metric = &v
+// SetMED gets a reference to the given int32 and assigns it to the MED field.
+func (o *RouteTableEntry) SetMED(v int32) {
+	o.MED = &v
 }
 
 // GetLocalPreference returns the LocalPreference field value if set, zero value otherwise.
@@ -327,9 +327,9 @@ func (o *RouteTableEntry) SetAsPath(v []int32) {
 }
 
 // GetConnection returns the Connection field value if set, zero value otherwise.
-func (o *RouteTableEntry) GetConnection() RouteTableEntryConnection {
+func (o *RouteTableEntry) GetConnection() ConnectionRouteTableEntryConnection {
 	if o == nil || IsNil(o.Connection) {
-		var ret RouteTableEntryConnection
+		var ret ConnectionRouteTableEntryConnection
 		return ret
 	}
 	return *o.Connection
@@ -337,7 +337,7 @@ func (o *RouteTableEntry) GetConnection() RouteTableEntryConnection {
 
 // GetConnectionOk returns a tuple with the Connection field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *RouteTableEntry) GetConnectionOk() (*RouteTableEntryConnection, bool) {
+func (o *RouteTableEntry) GetConnectionOk() (*ConnectionRouteTableEntryConnection, bool) {
 	if o == nil || IsNil(o.Connection) {
 		return nil, false
 	}
@@ -353,8 +353,8 @@ func (o *RouteTableEntry) HasConnection() bool {
 	return false
 }
 
-// SetConnection gets a reference to the given RouteTableEntryConnection and assigns it to the Connection field.
-func (o *RouteTableEntry) SetConnection(v RouteTableEntryConnection) {
+// SetConnection gets a reference to the given ConnectionRouteTableEntryConnection and assigns it to the Connection field.
+func (o *RouteTableEntry) SetConnection(v ConnectionRouteTableEntryConnection) {
 	o.Connection = &v
 }
 
@@ -406,8 +406,8 @@ func (o RouteTableEntry) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.NextHop) {
 		toSerialize["nextHop"] = o.NextHop
 	}
-	if !IsNil(o.Metric) {
-		toSerialize["metric"] = o.Metric
+	if !IsNil(o.MED) {
+		toSerialize["MED"] = o.MED
 	}
 	if !IsNil(o.LocalPreference) {
 		toSerialize["localPreference"] = o.LocalPreference
@@ -470,7 +470,7 @@ func (o *RouteTableEntry) UnmarshalJSON(data []byte) (err error) {
 		delete(additionalProperties, "age")
 		delete(additionalProperties, "prefix")
 		delete(additionalProperties, "nextHop")
-		delete(additionalProperties, "metric")
+		delete(additionalProperties, "MED")
 		delete(additionalProperties, "localPreference")
 		delete(additionalProperties, "asPath")
 		delete(additionalProperties, "connection")

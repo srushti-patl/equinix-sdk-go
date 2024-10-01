@@ -13,7 +13,7 @@ import (
 	"fmt"
 )
 
-// SubscriptionResponseOfferType the model 'SubscriptionResponseOfferType'
+// SubscriptionResponseOfferType Marketplace Offer Type
 type SubscriptionResponseOfferType string
 
 // List of SubscriptionResponse_offerType

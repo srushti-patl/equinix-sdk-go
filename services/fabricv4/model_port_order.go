@@ -24,7 +24,7 @@ type PortOrder struct {
 	CustomerReferenceId *string `json:"customerReferenceId,omitempty"`
 	// Order Reference Number
 	OrderNumber *string `json:"orderNumber,omitempty"`
-	// Equinix-assigned order identifier
+	// Equinix-assigned order identifier, this is a derived response atrribute
 	Uuid                 *string             `json:"uuid,omitempty"`
 	Signature            *PortOrderSignature `json:"signature,omitempty"`
 	AdditionalProperties map[string]interface{}

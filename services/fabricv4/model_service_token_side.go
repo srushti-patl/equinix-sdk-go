@@ -15,7 +15,7 @@ import (
 // checks if the ServiceTokenSide type satisfies the MappedNullable interface at compile time
 var _ MappedNullable = &ServiceTokenSide{}
 
-// ServiceTokenSide Connection link protocol configuration
+// ServiceTokenSide Connection link protocol,virtual device or network configuration
 type ServiceTokenSide struct {
 	// List of AccessPointSelectors
 	AccessPointSelectors []AccessPointSelector `json:"accessPointSelectors,omitempty"`

@@ -168,13 +168,13 @@ func (a *PortsApiService) AddToLagExecute(r ApiAddToLagRequest) (*AllPhysicalPor
 }
 
 type ApiCreateBulkPortRequest struct {
-	ctx        context.Context
-	ApiService *PortsApiService
-	bulkPort   *BulkPort
+	ctx             context.Context
+	ApiService      *PortsApiService
+	bulkPortRequest *BulkPortRequest
 }
 
-func (r ApiCreateBulkPortRequest) BulkPort(bulkPort BulkPort) ApiCreateBulkPortRequest {
-	r.bulkPort = &bulkPort
+func (r ApiCreateBulkPortRequest) BulkPortRequest(bulkPortRequest BulkPortRequest) ApiCreateBulkPortRequest {
+	r.bulkPortRequest = &bulkPortRequest
 	return r
 }
 
@@ -185,7 +185,7 @@ func (r ApiCreateBulkPortRequest) Execute() (*AllPortsResponse, *http.Response, 
 /*
 CreateBulkPort Create Port
 
-Create Port creates Equinix Fabric? Port.<font color="red"> <sup color='red'>Preview</sup></font>
+Create Port creates Equinix Fabric™ Port.<font color="red"> <sup color='red'>Preview</sup></font>
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@return ApiCreateBulkPortRequest
@@ -218,8 +218,8 @@ func (a *PortsApiService) CreateBulkPortExecute(r ApiCreateBulkPortRequest) (*Al
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
-	if r.bulkPort == nil {
-		return localVarReturnValue, nil, reportError("bulkPort is required and must be specified")
+	if r.bulkPortRequest == nil {
+		return localVarReturnValue, nil, reportError("bulkPortRequest is required and must be specified")
 	}
 
 	// to determine the Content-Type header
@@ -240,7 +240,7 @@ func (a *PortsApiService) CreateBulkPortExecute(r ApiCreateBulkPortRequest) (*Al
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.bulkPort
+	localVarPostBody = r.bulkPortRequest
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, nil, err
@@ -279,24 +279,24 @@ func (a *PortsApiService) CreateBulkPortExecute(r ApiCreateBulkPortRequest) (*Al
 }
 
 type ApiCreatePortRequest struct {
-	ctx        context.Context
-	ApiService *PortsApiService
-	port       *Port
+	ctx         context.Context
+	ApiService  *PortsApiService
+	portRequest *PortRequest
 }
 
-func (r ApiCreatePortRequest) Port(port Port) ApiCreatePortRequest {
-	r.port = &port
+func (r ApiCreatePortRequest) PortRequest(portRequest PortRequest) ApiCreatePortRequest {
+	r.portRequest = &portRequest
 	return r
 }
 
-func (r ApiCreatePortRequest) Execute() (*PortResponse, *http.Response, error) {
+func (r ApiCreatePortRequest) Execute() (*Port, *http.Response, error) {
 	return r.ApiService.CreatePortExecute(r)
 }
 
 /*
 CreatePort Create Port
 
-Creates Equinix Fabric? Port.
+Creates Equinix Fabric™ Port.
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@return ApiCreatePortRequest
@@ -310,13 +310,13 @@ func (a *PortsApiService) CreatePort(ctx context.Context) ApiCreatePortRequest {
 
 // Execute executes the request
 //
-//	@return PortResponse
-func (a *PortsApiService) CreatePortExecute(r ApiCreatePortRequest) (*PortResponse, *http.Response, error) {
+//	@return Port
+func (a *PortsApiService) CreatePortExecute(r ApiCreatePortRequest) (*Port, *http.Response, error) {
 	var (
 		localVarHTTPMethod  = http.MethodPost
 		localVarPostBody    interface{}
 		formFiles           []formFile
-		localVarReturnValue *PortResponse
+		localVarReturnValue *Port
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "PortsApiService.CreatePort")
@@ -329,8 +329,8 @@ func (a *PortsApiService) CreatePortExecute(r ApiCreatePortRequest) (*PortRespon
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
-	if r.port == nil {
-		return localVarReturnValue, nil, reportError("port is required and must be specified")
+	if r.portRequest == nil {
+		return localVarReturnValue, nil, reportError("portRequest is required and must be specified")
 	}
 
 	// to determine the Content-Type header
@@ -351,7 +351,7 @@ func (a *PortsApiService) CreatePortExecute(r ApiCreatePortRequest) (*PortRespon
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.port
+	localVarPostBody = r.portRequest
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, nil, err
@@ -552,7 +552,7 @@ type ApiGetPortByUuidRequest struct {
 	portId     string
 }
 
-func (r ApiGetPortByUuidRequest) Execute() (*PortResponse, *http.Response, error) {
+func (r ApiGetPortByUuidRequest) Execute() (*Port, *http.Response, error) {
 	return r.ApiService.GetPortByUuidExecute(r)
 }
 
@@ -575,13 +575,13 @@ func (a *PortsApiService) GetPortByUuid(ctx context.Context, portId string) ApiG
 
 // Execute executes the request
 //
-//	@return PortResponse
-func (a *PortsApiService) GetPortByUuidExecute(r ApiGetPortByUuidRequest) (*PortResponse, *http.Response, error) {
+//	@return Port
+func (a *PortsApiService) GetPortByUuidExecute(r ApiGetPortByUuidRequest) (*Port, *http.Response, error) {
 	var (
 		localVarHTTPMethod  = http.MethodGet
 		localVarPostBody    interface{}
 		formFiles           []formFile
-		localVarReturnValue *PortResponse
+		localVarReturnValue *Port
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "PortsApiService.GetPortByUuid")

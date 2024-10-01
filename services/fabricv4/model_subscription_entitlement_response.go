@@ -18,9 +18,12 @@ var _ MappedNullable = &SubscriptionEntitlementResponse{}
 // SubscriptionEntitlementResponse Subscription entitlement
 type SubscriptionEntitlementResponse struct {
 	// Subscription Entitlement Id
-	Uuid                 *string            `json:"uuid,omitempty"`
-	QuantityEntitled     *int32             `json:"quantityEntitled,omitempty"`
-	QuantityConsumed     *int32             `json:"quantityConsumed,omitempty"`
+	Uuid *string `json:"uuid,omitempty"`
+	// Quantity entitled for the subscription
+	QuantityEntitled *int32 `json:"quantityEntitled,omitempty"`
+	// Quantity consumed from the entitlement
+	QuantityConsumed *int32 `json:"quantityConsumed,omitempty"`
+	// Quantity available from the entitlement
 	QuantityAvailable    *int32             `json:"quantityAvailable,omitempty"`
 	Asset                *SubscriptionAsset `json:"asset,omitempty"`
 	AdditionalProperties map[string]interface{}

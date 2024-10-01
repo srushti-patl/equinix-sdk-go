@@ -23,7 +23,7 @@ type RouteFilterRulesPatchRequestItem struct {
 	// path to change
 	Path string `json:"path"`
 	// new value for updated parameter
-	Value                interface{} `json:"value"`
+	Value                map[string]interface{} `json:"value"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -33,7 +33,7 @@ type _RouteFilterRulesPatchRequestItem RouteFilterRulesPatchRequestItem
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewRouteFilterRulesPatchRequestItem(op string, path string, value interface{}) *RouteFilterRulesPatchRequestItem {
+func NewRouteFilterRulesPatchRequestItem(op string, path string, value map[string]interface{}) *RouteFilterRulesPatchRequestItem {
 	this := RouteFilterRulesPatchRequestItem{}
 	this.Op = op
 	this.Path = path
@@ -98,10 +98,9 @@ func (o *RouteFilterRulesPatchRequestItem) SetPath(v string) {
 }
 
 // GetValue returns the Value field value
-// If the value is explicit nil, the zero value for interface{} will be returned
-func (o *RouteFilterRulesPatchRequestItem) GetValue() interface{} {
+func (o *RouteFilterRulesPatchRequestItem) GetValue() map[string]interface{} {
 	if o == nil {
-		var ret interface{}
+		var ret map[string]interface{}
 		return ret
 	}
 
@@ -110,16 +109,15 @@ func (o *RouteFilterRulesPatchRequestItem) GetValue() interface{} {
 
 // GetValueOk returns a tuple with the Value field value
 // and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *RouteFilterRulesPatchRequestItem) GetValueOk() (*interface{}, bool) {
-	if o == nil || IsNil(o.Value) {
-		return nil, false
+func (o *RouteFilterRulesPatchRequestItem) GetValueOk() (map[string]interface{}, bool) {
+	if o == nil {
+		return map[string]interface{}{}, false
 	}
-	return &o.Value, true
+	return o.Value, true
 }
 
 // SetValue sets field value
-func (o *RouteFilterRulesPatchRequestItem) SetValue(v interface{}) {
+func (o *RouteFilterRulesPatchRequestItem) SetValue(v map[string]interface{}) {
 	o.Value = v
 }
 
@@ -135,9 +133,7 @@ func (o RouteFilterRulesPatchRequestItem) ToMap() (map[string]interface{}, error
 	toSerialize := map[string]interface{}{}
 	toSerialize["op"] = o.Op
 	toSerialize["path"] = o.Path
-	if o.Value != nil {
-		toSerialize["value"] = o.Value
-	}
+	toSerialize["value"] = o.Value
 
 	for key, value := range o.AdditionalProperties {
 		toSerialize[key] = value

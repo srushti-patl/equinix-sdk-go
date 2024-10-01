@@ -18,12 +18,14 @@ type ServiceTokenType string
 
 // List of ServiceTokenType
 const (
-	SERVICETOKENTYPE_VC_TOKEN ServiceTokenType = "VC_TOKEN"
+	SERVICETOKENTYPE_VC_TOKEN  ServiceTokenType = "VC_TOKEN"
+	SERVICETOKENTYPE_EPL_TOKEN ServiceTokenType = "EPL_TOKEN"
 )
 
 // All allowed values of ServiceTokenType enum
 var AllowedServiceTokenTypeEnumValues = []ServiceTokenType{
 	"VC_TOKEN",
+	"EPL_TOKEN",
 }
 
 func (v *ServiceTokenType) UnmarshalJSON(src []byte) error {

@@ -19,7 +19,7 @@ var _ MappedNullable = &ConnectionActionRequest{}
 // ConnectionActionRequest Connection action request
 type ConnectionActionRequest struct {
 	Type Actions `json:"type"`
-	// Connection rejection reason datail
+	// Connection rejection reason detail
 	Description          *string                   `json:"description,omitempty"`
 	Data                 *ConnectionAcceptanceData `json:"data,omitempty"`
 	AdditionalProperties map[string]interface{}

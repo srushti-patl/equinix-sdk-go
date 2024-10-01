@@ -18,14 +18,16 @@ type PortOperationOperationalStatus string
 
 // List of PortOperation_operationalStatus
 const (
-	PORTOPERATIONOPERATIONALSTATUS_UP   PortOperationOperationalStatus = "UP"
-	PORTOPERATIONOPERATIONALSTATUS_DOWN PortOperationOperationalStatus = "DOWN"
+	PORTOPERATIONOPERATIONALSTATUS_UP      PortOperationOperationalStatus = "UP"
+	PORTOPERATIONOPERATIONALSTATUS_DOWN    PortOperationOperationalStatus = "DOWN"
+	PORTOPERATIONOPERATIONALSTATUS_PARTIAL PortOperationOperationalStatus = "PARTIAL"
 )
 
 // All allowed values of PortOperationOperationalStatus enum
 var AllowedPortOperationOperationalStatusEnumValues = []PortOperationOperationalStatus{
 	"UP",
 	"DOWN",
+	"PARTIAL",
 }
 
 func (v *PortOperationOperationalStatus) UnmarshalJSON(src []byte) error {
