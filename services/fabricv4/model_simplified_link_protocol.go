@@ -19,10 +19,21 @@ type SimplifiedLinkProtocol struct {
 	Type *LinkProtocolType `json:"type,omitempty"`
 	// vlanTag value specified for DOT1Q connections
 	VlanTag *int32 `json:"vlanTag,omitempty"`
+	// vlanTag Min value specified for DOT1Q connections
+	VlanTagMin *int32 `json:"vlanTagMin,omitempty"`
+	// vlanTag Max value specified for DOT1Q connections
+	VlanTagMax *int32 `json:"vlanTagMax,omitempty"`
 	// vlanSTag value specified for QINQ connections
 	VlanSTag *int32 `json:"vlanSTag,omitempty"`
 	// vlanCTag value specified for QINQ connections
-	VlanCTag             *int32 `json:"vlanCTag,omitempty"`
+	VlanCTag *int32 `json:"vlanCTag,omitempty"`
+	// vlanCTag Minvalue specified for QINQ connections
+	VlanCTagMin *int32 `json:"vlanCTagMin,omitempty"`
+	// vlanCTag max value specified for QINQ connections
+	VlanCTagMax          *int32 `json:"vlanCTagMax,omitempty"`
+	Unit                 *int32 `json:"unit,omitempty"`
+	Vni                  *int32 `json:"vni,omitempty"`
+	IntUnit              *int32 `json:"intUnit,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -109,6 +120,70 @@ func (o *SimplifiedLinkProtocol) SetVlanTag(v int32) {
 	o.VlanTag = &v
 }
 
+// GetVlanTagMin returns the VlanTagMin field value if set, zero value otherwise.
+func (o *SimplifiedLinkProtocol) GetVlanTagMin() int32 {
+	if o == nil || IsNil(o.VlanTagMin) {
+		var ret int32
+		return ret
+	}
+	return *o.VlanTagMin
+}
+
+// GetVlanTagMinOk returns a tuple with the VlanTagMin field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *SimplifiedLinkProtocol) GetVlanTagMinOk() (*int32, bool) {
+	if o == nil || IsNil(o.VlanTagMin) {
+		return nil, false
+	}
+	return o.VlanTagMin, true
+}
+
+// HasVlanTagMin returns a boolean if a field has been set.
+func (o *SimplifiedLinkProtocol) HasVlanTagMin() bool {
+	if o != nil && !IsNil(o.VlanTagMin) {
+		return true
+	}
+
+	return false
+}
+
+// SetVlanTagMin gets a reference to the given int32 and assigns it to the VlanTagMin field.
+func (o *SimplifiedLinkProtocol) SetVlanTagMin(v int32) {
+	o.VlanTagMin = &v
+}
+
+// GetVlanTagMax returns the VlanTagMax field value if set, zero value otherwise.
+func (o *SimplifiedLinkProtocol) GetVlanTagMax() int32 {
+	if o == nil || IsNil(o.VlanTagMax) {
+		var ret int32
+		return ret
+	}
+	return *o.VlanTagMax
+}
+
+// GetVlanTagMaxOk returns a tuple with the VlanTagMax field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *SimplifiedLinkProtocol) GetVlanTagMaxOk() (*int32, bool) {
+	if o == nil || IsNil(o.VlanTagMax) {
+		return nil, false
+	}
+	return o.VlanTagMax, true
+}
+
+// HasVlanTagMax returns a boolean if a field has been set.
+func (o *SimplifiedLinkProtocol) HasVlanTagMax() bool {
+	if o != nil && !IsNil(o.VlanTagMax) {
+		return true
+	}
+
+	return false
+}
+
+// SetVlanTagMax gets a reference to the given int32 and assigns it to the VlanTagMax field.
+func (o *SimplifiedLinkProtocol) SetVlanTagMax(v int32) {
+	o.VlanTagMax = &v
+}
+
 // GetVlanSTag returns the VlanSTag field value if set, zero value otherwise.
 func (o *SimplifiedLinkProtocol) GetVlanSTag() int32 {
 	if o == nil || IsNil(o.VlanSTag) {
@@ -173,6 +248,166 @@ func (o *SimplifiedLinkProtocol) SetVlanCTag(v int32) {
 	o.VlanCTag = &v
 }
 
+// GetVlanCTagMin returns the VlanCTagMin field value if set, zero value otherwise.
+func (o *SimplifiedLinkProtocol) GetVlanCTagMin() int32 {
+	if o == nil || IsNil(o.VlanCTagMin) {
+		var ret int32
+		return ret
+	}
+	return *o.VlanCTagMin
+}
+
+// GetVlanCTagMinOk returns a tuple with the VlanCTagMin field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *SimplifiedLinkProtocol) GetVlanCTagMinOk() (*int32, bool) {
+	if o == nil || IsNil(o.VlanCTagMin) {
+		return nil, false
+	}
+	return o.VlanCTagMin, true
+}
+
+// HasVlanCTagMin returns a boolean if a field has been set.
+func (o *SimplifiedLinkProtocol) HasVlanCTagMin() bool {
+	if o != nil && !IsNil(o.VlanCTagMin) {
+		return true
+	}
+
+	return false
+}
+
+// SetVlanCTagMin gets a reference to the given int32 and assigns it to the VlanCTagMin field.
+func (o *SimplifiedLinkProtocol) SetVlanCTagMin(v int32) {
+	o.VlanCTagMin = &v
+}
+
+// GetVlanCTagMax returns the VlanCTagMax field value if set, zero value otherwise.
+func (o *SimplifiedLinkProtocol) GetVlanCTagMax() int32 {
+	if o == nil || IsNil(o.VlanCTagMax) {
+		var ret int32
+		return ret
+	}
+	return *o.VlanCTagMax
+}
+
+// GetVlanCTagMaxOk returns a tuple with the VlanCTagMax field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *SimplifiedLinkProtocol) GetVlanCTagMaxOk() (*int32, bool) {
+	if o == nil || IsNil(o.VlanCTagMax) {
+		return nil, false
+	}
+	return o.VlanCTagMax, true
+}
+
+// HasVlanCTagMax returns a boolean if a field has been set.
+func (o *SimplifiedLinkProtocol) HasVlanCTagMax() bool {
+	if o != nil && !IsNil(o.VlanCTagMax) {
+		return true
+	}
+
+	return false
+}
+
+// SetVlanCTagMax gets a reference to the given int32 and assigns it to the VlanCTagMax field.
+func (o *SimplifiedLinkProtocol) SetVlanCTagMax(v int32) {
+	o.VlanCTagMax = &v
+}
+
+// GetUnit returns the Unit field value if set, zero value otherwise.
+func (o *SimplifiedLinkProtocol) GetUnit() int32 {
+	if o == nil || IsNil(o.Unit) {
+		var ret int32
+		return ret
+	}
+	return *o.Unit
+}
+
+// GetUnitOk returns a tuple with the Unit field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *SimplifiedLinkProtocol) GetUnitOk() (*int32, bool) {
+	if o == nil || IsNil(o.Unit) {
+		return nil, false
+	}
+	return o.Unit, true
+}
+
+// HasUnit returns a boolean if a field has been set.
+func (o *SimplifiedLinkProtocol) HasUnit() bool {
+	if o != nil && !IsNil(o.Unit) {
+		return true
+	}
+
+	return false
+}
+
+// SetUnit gets a reference to the given int32 and assigns it to the Unit field.
+func (o *SimplifiedLinkProtocol) SetUnit(v int32) {
+	o.Unit = &v
+}
+
+// GetVni returns the Vni field value if set, zero value otherwise.
+func (o *SimplifiedLinkProtocol) GetVni() int32 {
+	if o == nil || IsNil(o.Vni) {
+		var ret int32
+		return ret
+	}
+	return *o.Vni
+}
+
+// GetVniOk returns a tuple with the Vni field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *SimplifiedLinkProtocol) GetVniOk() (*int32, bool) {
+	if o == nil || IsNil(o.Vni) {
+		return nil, false
+	}
+	return o.Vni, true
+}
+
+// HasVni returns a boolean if a field has been set.
+func (o *SimplifiedLinkProtocol) HasVni() bool {
+	if o != nil && !IsNil(o.Vni) {
+		return true
+	}
+
+	return false
+}
+
+// SetVni gets a reference to the given int32 and assigns it to the Vni field.
+func (o *SimplifiedLinkProtocol) SetVni(v int32) {
+	o.Vni = &v
+}
+
+// GetIntUnit returns the IntUnit field value if set, zero value otherwise.
+func (o *SimplifiedLinkProtocol) GetIntUnit() int32 {
+	if o == nil || IsNil(o.IntUnit) {
+		var ret int32
+		return ret
+	}
+	return *o.IntUnit
+}
+
+// GetIntUnitOk returns a tuple with the IntUnit field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *SimplifiedLinkProtocol) GetIntUnitOk() (*int32, bool) {
+	if o == nil || IsNil(o.IntUnit) {
+		return nil, false
+	}
+	return o.IntUnit, true
+}
+
+// HasIntUnit returns a boolean if a field has been set.
+func (o *SimplifiedLinkProtocol) HasIntUnit() bool {
+	if o != nil && !IsNil(o.IntUnit) {
+		return true
+	}
+
+	return false
+}
+
+// SetIntUnit gets a reference to the given int32 and assigns it to the IntUnit field.
+func (o *SimplifiedLinkProtocol) SetIntUnit(v int32) {
+	o.IntUnit = &v
+}
+
 func (o SimplifiedLinkProtocol) MarshalJSON() ([]byte, error) {
 	toSerialize, err := o.ToMap()
 	if err != nil {
@@ -189,11 +424,32 @@ func (o SimplifiedLinkProtocol) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.VlanTag) {
 		toSerialize["vlanTag"] = o.VlanTag
 	}
+	if !IsNil(o.VlanTagMin) {
+		toSerialize["vlanTagMin"] = o.VlanTagMin
+	}
+	if !IsNil(o.VlanTagMax) {
+		toSerialize["vlanTagMax"] = o.VlanTagMax
+	}
 	if !IsNil(o.VlanSTag) {
 		toSerialize["vlanSTag"] = o.VlanSTag
 	}
 	if !IsNil(o.VlanCTag) {
 		toSerialize["vlanCTag"] = o.VlanCTag
+	}
+	if !IsNil(o.VlanCTagMin) {
+		toSerialize["vlanCTagMin"] = o.VlanCTagMin
+	}
+	if !IsNil(o.VlanCTagMax) {
+		toSerialize["vlanCTagMax"] = o.VlanCTagMax
+	}
+	if !IsNil(o.Unit) {
+		toSerialize["unit"] = o.Unit
+	}
+	if !IsNil(o.Vni) {
+		toSerialize["vni"] = o.Vni
+	}
+	if !IsNil(o.IntUnit) {
+		toSerialize["intUnit"] = o.IntUnit
 	}
 
 	for key, value := range o.AdditionalProperties {
@@ -219,8 +475,15 @@ func (o *SimplifiedLinkProtocol) UnmarshalJSON(data []byte) (err error) {
 	if err = json.Unmarshal(data, &additionalProperties); err == nil {
 		delete(additionalProperties, "type")
 		delete(additionalProperties, "vlanTag")
+		delete(additionalProperties, "vlanTagMin")
+		delete(additionalProperties, "vlanTagMax")
 		delete(additionalProperties, "vlanSTag")
 		delete(additionalProperties, "vlanCTag")
+		delete(additionalProperties, "vlanCTagMin")
+		delete(additionalProperties, "vlanCTagMax")
+		delete(additionalProperties, "unit")
+		delete(additionalProperties, "vni")
+		delete(additionalProperties, "intUnit")
 		o.AdditionalProperties = additionalProperties
 	}
 

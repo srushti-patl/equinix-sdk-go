@@ -6,6 +6,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Name** | Pointer to **string** | Device name | [optional] 
 **Redundancy** | Pointer to [**PortDeviceRedundancy**](PortDeviceRedundancy.md) |  | [optional] 
+**ConfigModel** | Pointer to **string** |  | [optional] 
 
 ## Methods
 
@@ -75,6 +76,31 @@ SetRedundancy sets Redundancy field to given value.
 `func (o *PortDevice) HasRedundancy() bool`
 
 HasRedundancy returns a boolean if a field has been set.
+
+### GetConfigModel
+
+`func (o *PortDevice) GetConfigModel() string`
+
+GetConfigModel returns the ConfigModel field if non-nil, zero value otherwise.
+
+### GetConfigModelOk
+
+`func (o *PortDevice) GetConfigModelOk() (*string, bool)`
+
+GetConfigModelOk returns a tuple with the ConfigModel field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetConfigModel
+
+`func (o *PortDevice) SetConfigModel(v string)`
+
+SetConfigModel sets ConfigModel field to given value.
+
+### HasConfigModel
+
+`func (o *PortDevice) HasConfigModel() bool`
+
+HasConfigModel returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

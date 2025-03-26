@@ -14,6 +14,7 @@ Name | Type | Description | Notes
 **ConnectionsCount** | Pointer to **int32** | Equinix assigned response attribute for Connection count | [optional] 
 **Project** | Pointer to [**Project**](Project.md) |  | [optional] 
 **State** | Pointer to [**PortState**](PortState.md) |  | [optional] 
+**CvpId** | Pointer to **string** | Equinix assigned response attribute for Unique ID for a virtual port. | [optional] 
 **Operation** | Pointer to [**PortOperation**](PortOperation.md) |  | [optional] 
 **Account** | Pointer to [**SimplifiedAccount**](SimplifiedAccount.md) |  | [optional] 
 **ServiceType** | Pointer to [**PortServiceType**](PortServiceType.md) |  | [optional] 
@@ -302,6 +303,31 @@ SetState sets State field to given value.
 `func (o *SimplifiedPort) HasState() bool`
 
 HasState returns a boolean if a field has been set.
+
+### GetCvpId
+
+`func (o *SimplifiedPort) GetCvpId() string`
+
+GetCvpId returns the CvpId field if non-nil, zero value otherwise.
+
+### GetCvpIdOk
+
+`func (o *SimplifiedPort) GetCvpIdOk() (*string, bool)`
+
+GetCvpIdOk returns a tuple with the CvpId field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetCvpId
+
+`func (o *SimplifiedPort) SetCvpId(v string)`
+
+SetCvpId sets CvpId field to given value.
+
+### HasCvpId
+
+`func (o *SimplifiedPort) HasCvpId() bool`
+
+HasCvpId returns a boolean if a field has been set.
 
 ### GetOperation
 

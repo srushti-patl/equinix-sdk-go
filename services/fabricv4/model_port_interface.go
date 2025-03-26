@@ -17,7 +17,9 @@ var _ MappedNullable = &PortInterface{}
 // PortInterface Port interface
 type PortInterface struct {
 	// Port interface type
-	Type                 *string `json:"type,omitempty"`
+	Type *string `json:"type,omitempty"`
+	// Port interface name
+	Name                 *string `json:"name,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -72,6 +74,38 @@ func (o *PortInterface) SetType(v string) {
 	o.Type = &v
 }
 
+// GetName returns the Name field value if set, zero value otherwise.
+func (o *PortInterface) GetName() string {
+	if o == nil || IsNil(o.Name) {
+		var ret string
+		return ret
+	}
+	return *o.Name
+}
+
+// GetNameOk returns a tuple with the Name field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *PortInterface) GetNameOk() (*string, bool) {
+	if o == nil || IsNil(o.Name) {
+		return nil, false
+	}
+	return o.Name, true
+}
+
+// HasName returns a boolean if a field has been set.
+func (o *PortInterface) HasName() bool {
+	if o != nil && !IsNil(o.Name) {
+		return true
+	}
+
+	return false
+}
+
+// SetName gets a reference to the given string and assigns it to the Name field.
+func (o *PortInterface) SetName(v string) {
+	o.Name = &v
+}
+
 func (o PortInterface) MarshalJSON() ([]byte, error) {
 	toSerialize, err := o.ToMap()
 	if err != nil {
@@ -84,6 +118,9 @@ func (o PortInterface) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if !IsNil(o.Type) {
 		toSerialize["type"] = o.Type
+	}
+	if !IsNil(o.Name) {
+		toSerialize["name"] = o.Name
 	}
 
 	for key, value := range o.AdditionalProperties {
@@ -108,6 +145,7 @@ func (o *PortInterface) UnmarshalJSON(data []byte) (err error) {
 
 	if err = json.Unmarshal(data, &additionalProperties); err == nil {
 		delete(additionalProperties, "type")
+		delete(additionalProperties, "name")
 		o.AdditionalProperties = additionalProperties
 	}
 

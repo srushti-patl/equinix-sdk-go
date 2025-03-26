@@ -5,6 +5,8 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **ErrorMessage** | Pointer to **string** |  | [optional] 
+**SharedPortType** | Pointer to **string** |  | [optional] 
+**SharedPortProduct** | Pointer to **string** |  | [optional] 
 **PackageType** | Pointer to **string** |  | [optional] 
 
 ## Methods
@@ -50,6 +52,56 @@ SetErrorMessage sets ErrorMessage field to given value.
 `func (o *PhysicalPortSettings) HasErrorMessage() bool`
 
 HasErrorMessage returns a boolean if a field has been set.
+
+### GetSharedPortType
+
+`func (o *PhysicalPortSettings) GetSharedPortType() string`
+
+GetSharedPortType returns the SharedPortType field if non-nil, zero value otherwise.
+
+### GetSharedPortTypeOk
+
+`func (o *PhysicalPortSettings) GetSharedPortTypeOk() (*string, bool)`
+
+GetSharedPortTypeOk returns a tuple with the SharedPortType field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetSharedPortType
+
+`func (o *PhysicalPortSettings) SetSharedPortType(v string)`
+
+SetSharedPortType sets SharedPortType field to given value.
+
+### HasSharedPortType
+
+`func (o *PhysicalPortSettings) HasSharedPortType() bool`
+
+HasSharedPortType returns a boolean if a field has been set.
+
+### GetSharedPortProduct
+
+`func (o *PhysicalPortSettings) GetSharedPortProduct() string`
+
+GetSharedPortProduct returns the SharedPortProduct field if non-nil, zero value otherwise.
+
+### GetSharedPortProductOk
+
+`func (o *PhysicalPortSettings) GetSharedPortProductOk() (*string, bool)`
+
+GetSharedPortProductOk returns a tuple with the SharedPortProduct field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetSharedPortProduct
+
+`func (o *PhysicalPortSettings) SetSharedPortProduct(v string)`
+
+SetSharedPortProduct sets SharedPortProduct field to given value.
+
+### HasSharedPortProduct
+
+`func (o *PhysicalPortSettings) HasSharedPortProduct() bool`
+
+HasSharedPortProduct returns a boolean if a field has been set.
 
 ### GetPackageType
 

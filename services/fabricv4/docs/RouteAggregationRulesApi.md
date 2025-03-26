@@ -18,7 +18,7 @@ Method | HTTP request | Description
 
 ## CreateRouteAggregationRule
 
-> RouteAggregationRulesData CreateRouteAggregationRule(ctx, routeAggregationId).RouteAggregationRulesBase(routeAggregationRulesBase).Execute()
+> RouteAggregationRulesData CreateRouteAggregationRule(ctx, routeAggregationId).RouteAggregationRulesBase(routeAggregationRulesBase).XCORRELATIONID(xCORRELATIONID).XAUTHUSERNAME(xAUTHUSERNAME).XSOURCE(xSOURCE).Execute()
 
 Create RARule
 
@@ -39,10 +39,13 @@ import (
 func main() {
 	routeAggregationId := "routeAggregationId_example" // string | Route Aggregations Id
 	routeAggregationRulesBase := *openapiclient.NewRouteAggregationRulesBase("192.168.0.0/24") // RouteAggregationRulesBase | 
+	xCORRELATIONID := "xCORRELATIONID_example" // string | Correlation identifier (optional)
+	xAUTHUSERNAME := "xAUTHUSERNAME_example" // string | User name (optional)
+	xSOURCE := "xSOURCE_example" // string | source (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.RouteAggregationRulesApi.CreateRouteAggregationRule(context.Background(), routeAggregationId).RouteAggregationRulesBase(routeAggregationRulesBase).Execute()
+	resp, r, err := apiClient.RouteAggregationRulesApi.CreateRouteAggregationRule(context.Background(), routeAggregationId).RouteAggregationRulesBase(routeAggregationRulesBase).XCORRELATIONID(xCORRELATIONID).XAUTHUSERNAME(xAUTHUSERNAME).XSOURCE(xSOURCE).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `RouteAggregationRulesApi.CreateRouteAggregationRule``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -69,6 +72,9 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
  **routeAggregationRulesBase** | [**RouteAggregationRulesBase**](RouteAggregationRulesBase.md) |  | 
+ **xCORRELATIONID** | **string** | Correlation identifier | 
+ **xAUTHUSERNAME** | **string** | User name | 
+ **xSOURCE** | **string** | source | 
 
 ### Return type
 
@@ -90,7 +96,7 @@ Name | Type | Description  | Notes
 
 ## CreateRouteAggregationRulesInBulk
 
-> GetRouteAggregationRulesResponse CreateRouteAggregationRulesInBulk(ctx, routeAggregationId).RouteAggregationRulesPostRequest(routeAggregationRulesPostRequest).Execute()
+> GetRouteAggregationRulesResponse CreateRouteAggregationRulesInBulk(ctx, routeAggregationId).RouteAggregationRulesPostRequest(routeAggregationRulesPostRequest).XCORRELATIONID(xCORRELATIONID).XAUTHUSERNAME(xAUTHUSERNAME).XSOURCE(xSOURCE).Execute()
 
 Bulk RARules
 
@@ -111,10 +117,13 @@ import (
 func main() {
 	routeAggregationId := "routeAggregationId_example" // string | Route Aggregations Id
 	routeAggregationRulesPostRequest := *openapiclient.NewRouteAggregationRulesPostRequest() // RouteAggregationRulesPostRequest | 
+	xCORRELATIONID := "xCORRELATIONID_example" // string | Correlation identifier (optional)
+	xAUTHUSERNAME := "xAUTHUSERNAME_example" // string | User name (optional)
+	xSOURCE := "xSOURCE_example" // string | source (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.RouteAggregationRulesApi.CreateRouteAggregationRulesInBulk(context.Background(), routeAggregationId).RouteAggregationRulesPostRequest(routeAggregationRulesPostRequest).Execute()
+	resp, r, err := apiClient.RouteAggregationRulesApi.CreateRouteAggregationRulesInBulk(context.Background(), routeAggregationId).RouteAggregationRulesPostRequest(routeAggregationRulesPostRequest).XCORRELATIONID(xCORRELATIONID).XAUTHUSERNAME(xAUTHUSERNAME).XSOURCE(xSOURCE).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `RouteAggregationRulesApi.CreateRouteAggregationRulesInBulk``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -141,6 +150,9 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
  **routeAggregationRulesPostRequest** | [**RouteAggregationRulesPostRequest**](RouteAggregationRulesPostRequest.md) |  | 
+ **xCORRELATIONID** | **string** | Correlation identifier | 
+ **xAUTHUSERNAME** | **string** | User name | 
+ **xSOURCE** | **string** | source | 
 
 ### Return type
 
@@ -162,7 +174,7 @@ Name | Type | Description  | Notes
 
 ## DeleteRouteAggregationRuleByUuid
 
-> RouteAggregationRulesData DeleteRouteAggregationRuleByUuid(ctx, routeAggregationId, routeAggregationRuleId).Execute()
+> RouteAggregationRulesData DeleteRouteAggregationRuleByUuid(ctx, routeAggregationId, routeAggregationRuleId).XCORRELATIONID(xCORRELATIONID).XAUTHUSERNAME(xAUTHUSERNAME).XSOURCE(xSOURCE).Execute()
 
 DeleteRARule
 
@@ -183,10 +195,13 @@ import (
 func main() {
 	routeAggregationId := "routeAggregationId_example" // string | Route Aggregations Id
 	routeAggregationRuleId := "routeAggregationRuleId_example" // string | Route Aggregation Rules Id
+	xCORRELATIONID := "xCORRELATIONID_example" // string | Correlation identifier (optional)
+	xAUTHUSERNAME := "xAUTHUSERNAME_example" // string | User name (optional)
+	xSOURCE := "xSOURCE_example" // string | source (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.RouteAggregationRulesApi.DeleteRouteAggregationRuleByUuid(context.Background(), routeAggregationId, routeAggregationRuleId).Execute()
+	resp, r, err := apiClient.RouteAggregationRulesApi.DeleteRouteAggregationRuleByUuid(context.Background(), routeAggregationId, routeAggregationRuleId).XCORRELATIONID(xCORRELATIONID).XAUTHUSERNAME(xAUTHUSERNAME).XSOURCE(xSOURCE).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `RouteAggregationRulesApi.DeleteRouteAggregationRuleByUuid``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -214,6 +229,9 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
 
+ **xCORRELATIONID** | **string** | Correlation identifier | 
+ **xAUTHUSERNAME** | **string** | User name | 
+ **xSOURCE** | **string** | source | 
 
 ### Return type
 
@@ -235,7 +253,7 @@ Name | Type | Description  | Notes
 
 ## GetRouteAggregationRuleByUuid
 
-> RouteAggregationRulesData GetRouteAggregationRuleByUuid(ctx, routeAggregationId, routeAggregationRuleId).Execute()
+> RouteAggregationRulesData GetRouteAggregationRuleByUuid(ctx, routeAggregationId, routeAggregationRuleId).XCORRELATIONID(xCORRELATIONID).XAUTHUSERNAME(xAUTHUSERNAME).XSOURCE(xSOURCE).Execute()
 
 GetRARule By UUID
 
@@ -256,10 +274,13 @@ import (
 func main() {
 	routeAggregationId := "routeAggregationId_example" // string | Route Aggregations Id
 	routeAggregationRuleId := "routeAggregationRuleId_example" // string | Route Aggregation Rules Id
+	xCORRELATIONID := "xCORRELATIONID_example" // string | Correlation identifier (optional)
+	xAUTHUSERNAME := "xAUTHUSERNAME_example" // string | User name (optional)
+	xSOURCE := "xSOURCE_example" // string | source (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.RouteAggregationRulesApi.GetRouteAggregationRuleByUuid(context.Background(), routeAggregationId, routeAggregationRuleId).Execute()
+	resp, r, err := apiClient.RouteAggregationRulesApi.GetRouteAggregationRuleByUuid(context.Background(), routeAggregationId, routeAggregationRuleId).XCORRELATIONID(xCORRELATIONID).XAUTHUSERNAME(xAUTHUSERNAME).XSOURCE(xSOURCE).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `RouteAggregationRulesApi.GetRouteAggregationRuleByUuid``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -287,6 +308,9 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
 
+ **xCORRELATIONID** | **string** | Correlation identifier | 
+ **xAUTHUSERNAME** | **string** | User name | 
+ **xSOURCE** | **string** | source | 
 
 ### Return type
 
@@ -308,7 +332,7 @@ Name | Type | Description  | Notes
 
 ## GetRouteAggregationRuleChangeByUuid
 
-> RouteAggregationRulesChangeData GetRouteAggregationRuleChangeByUuid(ctx, routeAggregationId, routeAggregationRuleId, changeId).Execute()
+> RouteAggregationRulesChangeData GetRouteAggregationRuleChangeByUuid(ctx, routeAggregationId, routeAggregationRuleId, changeId).XCORRELATIONID(xCORRELATIONID).XAUTHUSERNAME(xAUTHUSERNAME).Execute()
 
 Get Change By ID
 
@@ -330,10 +354,12 @@ func main() {
 	routeAggregationId := "routeAggregationId_example" // string | Route Aggregations Id
 	routeAggregationRuleId := "routeAggregationRuleId_example" // string | Route Aggregation Rules Id
 	changeId := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | Route Aggregation Rule Change UUID
+	xCORRELATIONID := "12345-6789-10123" // string | Correlation identifier (optional)
+	xAUTHUSERNAME := "alice" // string | User name (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.RouteAggregationRulesApi.GetRouteAggregationRuleChangeByUuid(context.Background(), routeAggregationId, routeAggregationRuleId, changeId).Execute()
+	resp, r, err := apiClient.RouteAggregationRulesApi.GetRouteAggregationRuleChangeByUuid(context.Background(), routeAggregationId, routeAggregationRuleId, changeId).XCORRELATIONID(xCORRELATIONID).XAUTHUSERNAME(xAUTHUSERNAME).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `RouteAggregationRulesApi.GetRouteAggregationRuleChangeByUuid``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -363,6 +389,8 @@ Name | Type | Description  | Notes
 
 
 
+ **xCORRELATIONID** | **string** | Correlation identifier | 
+ **xAUTHUSERNAME** | **string** | User name | 
 
 ### Return type
 
@@ -384,7 +412,7 @@ Name | Type | Description  | Notes
 
 ## GetRouteAggregationRuleChanges
 
-> RouteAggregationRulesChangeDataResponse GetRouteAggregationRuleChanges(ctx, routeAggregationId, routeAggregationRuleId).Offset(offset).Limit(limit).Execute()
+> RouteAggregationRulesChangeDataResponse GetRouteAggregationRuleChanges(ctx, routeAggregationId, routeAggregationRuleId).XCORRELATIONID(xCORRELATIONID).XAUTHUSERNAME(xAUTHUSERNAME).Offset(offset).Limit(limit).Execute()
 
 Get All Changes
 
@@ -405,12 +433,14 @@ import (
 func main() {
 	routeAggregationId := "routeAggregationId_example" // string | Route Aggregations Id
 	routeAggregationRuleId := "routeAggregationRuleId_example" // string | Route Aggregation Rules Id
+	xCORRELATIONID := "12345-6789-10123" // string | Correlation identifier (optional)
+	xAUTHUSERNAME := "alice" // string | User name (optional)
 	offset := int32(1) // int32 | offset (optional)
 	limit := int32(10) // int32 | number of records to fetch (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.RouteAggregationRulesApi.GetRouteAggregationRuleChanges(context.Background(), routeAggregationId, routeAggregationRuleId).Offset(offset).Limit(limit).Execute()
+	resp, r, err := apiClient.RouteAggregationRulesApi.GetRouteAggregationRuleChanges(context.Background(), routeAggregationId, routeAggregationRuleId).XCORRELATIONID(xCORRELATIONID).XAUTHUSERNAME(xAUTHUSERNAME).Offset(offset).Limit(limit).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `RouteAggregationRulesApi.GetRouteAggregationRuleChanges``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -438,6 +468,8 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
 
+ **xCORRELATIONID** | **string** | Correlation identifier | 
+ **xAUTHUSERNAME** | **string** | User name | 
  **offset** | **int32** | offset | 
  **limit** | **int32** | number of records to fetch | 
 
@@ -461,7 +493,7 @@ Name | Type | Description  | Notes
 
 ## GetRouteAggregationRules
 
-> GetRouteAggregationRulesResponse GetRouteAggregationRules(ctx, routeAggregationId).Offset(offset).Limit(limit).Execute()
+> GetRouteAggregationRulesResponse GetRouteAggregationRules(ctx, routeAggregationId).XCORRELATIONID(xCORRELATIONID).XAUTHUSERNAME(xAUTHUSERNAME).XSOURCE(xSOURCE).Offset(offset).Limit(limit).Execute()
 
 GetRARules
 
@@ -481,12 +513,15 @@ import (
 
 func main() {
 	routeAggregationId := "routeAggregationId_example" // string | Route Aggregations Id
+	xCORRELATIONID := "xCORRELATIONID_example" // string | Correlation identifier (optional)
+	xAUTHUSERNAME := "xAUTHUSERNAME_example" // string | User name (optional)
+	xSOURCE := "xSOURCE_example" // string | source (optional)
 	offset := int32(1) // int32 | offset (optional)
 	limit := int32(10) // int32 | number of records to fetch (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.RouteAggregationRulesApi.GetRouteAggregationRules(context.Background(), routeAggregationId).Offset(offset).Limit(limit).Execute()
+	resp, r, err := apiClient.RouteAggregationRulesApi.GetRouteAggregationRules(context.Background(), routeAggregationId).XCORRELATIONID(xCORRELATIONID).XAUTHUSERNAME(xAUTHUSERNAME).XSOURCE(xSOURCE).Offset(offset).Limit(limit).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `RouteAggregationRulesApi.GetRouteAggregationRules``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -512,6 +547,9 @@ Other parameters are passed through a pointer to a apiGetRouteAggregationRulesRe
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
+ **xCORRELATIONID** | **string** | Correlation identifier | 
+ **xAUTHUSERNAME** | **string** | User name | 
+ **xSOURCE** | **string** | source | 
  **offset** | **int32** | offset | 
  **limit** | **int32** | number of records to fetch | 
 
@@ -535,7 +573,7 @@ Name | Type | Description  | Notes
 
 ## PatchRouteAggregationRuleByUuid
 
-> RouteAggregationRulesData PatchRouteAggregationRuleByUuid(ctx, routeAggregationId, routeAggregationRuleId).RouteAggregationRulesPatchRequestItem(routeAggregationRulesPatchRequestItem).Execute()
+> RouteAggregationRulesData PatchRouteAggregationRuleByUuid(ctx, routeAggregationId, routeAggregationRuleId).RouteAggregationRulesPatchRequestItem(routeAggregationRulesPatchRequestItem).XCORRELATIONID(xCORRELATIONID).XAUTHUSERNAME(xAUTHUSERNAME).XSOURCE(xSOURCE).Execute()
 
 PatchRARule
 
@@ -557,10 +595,13 @@ func main() {
 	routeAggregationId := "routeAggregationId_example" // string | Route Aggregations Id
 	routeAggregationRuleId := "routeAggregationRuleId_example" // string | Route Aggregation Rules Id
 	routeAggregationRulesPatchRequestItem := []openapiclient.RouteAggregationRulesPatchRequestItem{*openapiclient.NewRouteAggregationRulesPatchRequestItem("replace", "/prefix", interface{}(123))} // []RouteAggregationRulesPatchRequestItem | 
+	xCORRELATIONID := "xCORRELATIONID_example" // string | Correlation identifier (optional)
+	xAUTHUSERNAME := "xAUTHUSERNAME_example" // string | User name (optional)
+	xSOURCE := "xSOURCE_example" // string | source (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.RouteAggregationRulesApi.PatchRouteAggregationRuleByUuid(context.Background(), routeAggregationId, routeAggregationRuleId).RouteAggregationRulesPatchRequestItem(routeAggregationRulesPatchRequestItem).Execute()
+	resp, r, err := apiClient.RouteAggregationRulesApi.PatchRouteAggregationRuleByUuid(context.Background(), routeAggregationId, routeAggregationRuleId).RouteAggregationRulesPatchRequestItem(routeAggregationRulesPatchRequestItem).XCORRELATIONID(xCORRELATIONID).XAUTHUSERNAME(xAUTHUSERNAME).XSOURCE(xSOURCE).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `RouteAggregationRulesApi.PatchRouteAggregationRuleByUuid``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -589,6 +630,9 @@ Name | Type | Description  | Notes
 
 
  **routeAggregationRulesPatchRequestItem** | [**[]RouteAggregationRulesPatchRequestItem**](RouteAggregationRulesPatchRequestItem.md) |  | 
+ **xCORRELATIONID** | **string** | Correlation identifier | 
+ **xAUTHUSERNAME** | **string** | User name | 
+ **xSOURCE** | **string** | source | 
 
 ### Return type
 
@@ -610,7 +654,7 @@ Name | Type | Description  | Notes
 
 ## ReplaceRouteAggregationRuleByUuid
 
-> RouteAggregationRulesData ReplaceRouteAggregationRuleByUuid(ctx, routeAggregationId, routeAggregationRuleId).RouteAggregationRulesBase(routeAggregationRulesBase).Execute()
+> RouteAggregationRulesData ReplaceRouteAggregationRuleByUuid(ctx, routeAggregationId, routeAggregationRuleId).RouteAggregationRulesBase(routeAggregationRulesBase).XCORRELATIONID(xCORRELATIONID).XAUTHUSERNAME(xAUTHUSERNAME).XSOURCE(xSOURCE).Execute()
 
 ReplaceRARule
 
@@ -632,10 +676,13 @@ func main() {
 	routeAggregationId := "routeAggregationId_example" // string | Route Aggregations Id
 	routeAggregationRuleId := "routeAggregationRuleId_example" // string | Route Aggregation Rules Id
 	routeAggregationRulesBase := *openapiclient.NewRouteAggregationRulesBase("192.168.0.0/24") // RouteAggregationRulesBase | 
+	xCORRELATIONID := "xCORRELATIONID_example" // string | Correlation identifier (optional)
+	xAUTHUSERNAME := "xAUTHUSERNAME_example" // string | User name (optional)
+	xSOURCE := "xSOURCE_example" // string | source (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.RouteAggregationRulesApi.ReplaceRouteAggregationRuleByUuid(context.Background(), routeAggregationId, routeAggregationRuleId).RouteAggregationRulesBase(routeAggregationRulesBase).Execute()
+	resp, r, err := apiClient.RouteAggregationRulesApi.ReplaceRouteAggregationRuleByUuid(context.Background(), routeAggregationId, routeAggregationRuleId).RouteAggregationRulesBase(routeAggregationRulesBase).XCORRELATIONID(xCORRELATIONID).XAUTHUSERNAME(xAUTHUSERNAME).XSOURCE(xSOURCE).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `RouteAggregationRulesApi.ReplaceRouteAggregationRuleByUuid``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -664,6 +711,9 @@ Name | Type | Description  | Notes
 
 
  **routeAggregationRulesBase** | [**RouteAggregationRulesBase**](RouteAggregationRulesBase.md) |  | 
+ **xCORRELATIONID** | **string** | Correlation identifier | 
+ **xAUTHUSERNAME** | **string** | User name | 
+ **xSOURCE** | **string** | source | 
 
 ### Return type
 

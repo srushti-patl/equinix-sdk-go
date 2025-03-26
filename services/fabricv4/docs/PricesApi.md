@@ -10,7 +10,7 @@ Method | HTTP request | Description
 
 ## SearchPrices
 
-> PriceSearchResponse SearchPrices(ctx).FilterBody(filterBody).Execute()
+> PriceSearchResponse SearchPrices(ctx).FilterBody(filterBody).CorrelationId(correlationId).Execute()
 
 Get Prices
 
@@ -30,10 +30,11 @@ import (
 
 func main() {
 	filterBody := *openapiclient.NewFilterBody() // FilterBody | 
+	correlationId := "correlationId_example" // string | Correlation identifier (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.PricesApi.SearchPrices(context.Background()).FilterBody(filterBody).Execute()
+	resp, r, err := apiClient.PricesApi.SearchPrices(context.Background()).FilterBody(filterBody).CorrelationId(correlationId).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `PricesApi.SearchPrices``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -55,6 +56,7 @@ Other parameters are passed through a pointer to a apiSearchPricesRequest struct
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **filterBody** | [**FilterBody**](FilterBody.md) |  | 
+ **correlationId** | **string** | Correlation identifier | 
 
 ### Return type
 

@@ -16,7 +16,9 @@ var _ MappedNullable = &PhysicalPortSettings{}
 
 // PhysicalPortSettings Physical Port configuration settings
 type PhysicalPortSettings struct {
-	ErrorMessage *string `json:"errorMessage,omitempty"`
+	ErrorMessage      *string `json:"errorMessage,omitempty"`
+	SharedPortType    *string `json:"sharedPortType,omitempty"`
+	SharedPortProduct *string `json:"sharedPortProduct,omitempty"`
 	// Deprecated
 	PackageType          *string `json:"packageType,omitempty"`
 	AdditionalProperties map[string]interface{}
@@ -73,6 +75,70 @@ func (o *PhysicalPortSettings) SetErrorMessage(v string) {
 	o.ErrorMessage = &v
 }
 
+// GetSharedPortType returns the SharedPortType field value if set, zero value otherwise.
+func (o *PhysicalPortSettings) GetSharedPortType() string {
+	if o == nil || IsNil(o.SharedPortType) {
+		var ret string
+		return ret
+	}
+	return *o.SharedPortType
+}
+
+// GetSharedPortTypeOk returns a tuple with the SharedPortType field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *PhysicalPortSettings) GetSharedPortTypeOk() (*string, bool) {
+	if o == nil || IsNil(o.SharedPortType) {
+		return nil, false
+	}
+	return o.SharedPortType, true
+}
+
+// HasSharedPortType returns a boolean if a field has been set.
+func (o *PhysicalPortSettings) HasSharedPortType() bool {
+	if o != nil && !IsNil(o.SharedPortType) {
+		return true
+	}
+
+	return false
+}
+
+// SetSharedPortType gets a reference to the given string and assigns it to the SharedPortType field.
+func (o *PhysicalPortSettings) SetSharedPortType(v string) {
+	o.SharedPortType = &v
+}
+
+// GetSharedPortProduct returns the SharedPortProduct field value if set, zero value otherwise.
+func (o *PhysicalPortSettings) GetSharedPortProduct() string {
+	if o == nil || IsNil(o.SharedPortProduct) {
+		var ret string
+		return ret
+	}
+	return *o.SharedPortProduct
+}
+
+// GetSharedPortProductOk returns a tuple with the SharedPortProduct field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *PhysicalPortSettings) GetSharedPortProductOk() (*string, bool) {
+	if o == nil || IsNil(o.SharedPortProduct) {
+		return nil, false
+	}
+	return o.SharedPortProduct, true
+}
+
+// HasSharedPortProduct returns a boolean if a field has been set.
+func (o *PhysicalPortSettings) HasSharedPortProduct() bool {
+	if o != nil && !IsNil(o.SharedPortProduct) {
+		return true
+	}
+
+	return false
+}
+
+// SetSharedPortProduct gets a reference to the given string and assigns it to the SharedPortProduct field.
+func (o *PhysicalPortSettings) SetSharedPortProduct(v string) {
+	o.SharedPortProduct = &v
+}
+
 // GetPackageType returns the PackageType field value if set, zero value otherwise.
 // Deprecated
 func (o *PhysicalPortSettings) GetPackageType() string {
@@ -121,6 +187,12 @@ func (o PhysicalPortSettings) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.ErrorMessage) {
 		toSerialize["errorMessage"] = o.ErrorMessage
 	}
+	if !IsNil(o.SharedPortType) {
+		toSerialize["sharedPortType"] = o.SharedPortType
+	}
+	if !IsNil(o.SharedPortProduct) {
+		toSerialize["sharedPortProduct"] = o.SharedPortProduct
+	}
 	if !IsNil(o.PackageType) {
 		toSerialize["packageType"] = o.PackageType
 	}
@@ -147,6 +219,8 @@ func (o *PhysicalPortSettings) UnmarshalJSON(data []byte) (err error) {
 
 	if err = json.Unmarshal(data, &additionalProperties); err == nil {
 		delete(additionalProperties, "errorMessage")
+		delete(additionalProperties, "sharedPortType")
+		delete(additionalProperties, "sharedPortProduct")
 		delete(additionalProperties, "packageType")
 		o.AdditionalProperties = additionalProperties
 	}

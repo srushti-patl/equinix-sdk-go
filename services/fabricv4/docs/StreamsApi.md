@@ -18,7 +18,7 @@ Method | HTTP request | Description
 
 ## CreateStreams
 
-> Stream CreateStreams(ctx).StreamPostRequest(streamPostRequest).Execute()
+> Stream CreateStreams(ctx).StreamPostRequest(streamPostRequest).XCORRELATIONID(xCORRELATIONID).XAUTHUSERNAME(xAUTHUSERNAME).XSOURCE(xSOURCE).Execute()
 
 Create Stream
 
@@ -38,10 +38,13 @@ import (
 
 func main() {
 	streamPostRequest := *openapiclient.NewStreamPostRequest() // StreamPostRequest | 
+	xCORRELATIONID := "12345-6789-10123" // string | Correlation identifier (optional)
+	xAUTHUSERNAME := "alice" // string | User name (optional)
+	xSOURCE := "xSOURCE_example" // string | source (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.StreamsApi.CreateStreams(context.Background()).StreamPostRequest(streamPostRequest).Execute()
+	resp, r, err := apiClient.StreamsApi.CreateStreams(context.Background()).StreamPostRequest(streamPostRequest).XCORRELATIONID(xCORRELATIONID).XAUTHUSERNAME(xAUTHUSERNAME).XSOURCE(xSOURCE).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `StreamsApi.CreateStreams``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -63,6 +66,9 @@ Other parameters are passed through a pointer to a apiCreateStreamsRequest struc
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **streamPostRequest** | [**StreamPostRequest**](StreamPostRequest.md) |  | 
+ **xCORRELATIONID** | **string** | Correlation identifier | 
+ **xAUTHUSERNAME** | **string** | User name | 
+ **xSOURCE** | **string** | source | 
 
 ### Return type
 
@@ -84,7 +90,7 @@ Name | Type | Description  | Notes
 
 ## DeleteStreamAssetByUuid
 
-> StreamAsset DeleteStreamAssetByUuid(ctx, assetId, asset, streamId).Execute()
+> StreamAsset DeleteStreamAssetByUuid(ctx, assetId, asset, streamId).XCORRELATIONID(xCORRELATIONID).XAUTHUSERNAME(xAUTHUSERNAME).Execute()
 
 Detach Asset
 
@@ -106,10 +112,12 @@ func main() {
 	assetId := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | asset UUID
 	asset := openapiclient.Asset("ports") // Asset | asset
 	streamId := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | Stream UUID
+	xCORRELATIONID := "12345-6789-10123" // string | Correlation identifier (optional)
+	xAUTHUSERNAME := "alice" // string | User name (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.StreamsApi.DeleteStreamAssetByUuid(context.Background(), assetId, asset, streamId).Execute()
+	resp, r, err := apiClient.StreamsApi.DeleteStreamAssetByUuid(context.Background(), assetId, asset, streamId).XCORRELATIONID(xCORRELATIONID).XAUTHUSERNAME(xAUTHUSERNAME).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `StreamsApi.DeleteStreamAssetByUuid``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -139,6 +147,8 @@ Name | Type | Description  | Notes
 
 
 
+ **xCORRELATIONID** | **string** | Correlation identifier | 
+ **xAUTHUSERNAME** | **string** | User name | 
 
 ### Return type
 
@@ -160,7 +170,7 @@ Name | Type | Description  | Notes
 
 ## DeleteStreamByUuid
 
-> Stream DeleteStreamByUuid(ctx, streamId).Execute()
+> Stream DeleteStreamByUuid(ctx, streamId).XCORRELATIONID(xCORRELATIONID).XAUTHUSERNAME(xAUTHUSERNAME).Execute()
 
 Delete Stream
 
@@ -180,10 +190,12 @@ import (
 
 func main() {
 	streamId := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | Stream UUID
+	xCORRELATIONID := "12345-6789-10123" // string | Correlation identifier (optional)
+	xAUTHUSERNAME := "alice" // string | User name (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.StreamsApi.DeleteStreamByUuid(context.Background(), streamId).Execute()
+	resp, r, err := apiClient.StreamsApi.DeleteStreamByUuid(context.Background(), streamId).XCORRELATIONID(xCORRELATIONID).XAUTHUSERNAME(xAUTHUSERNAME).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `StreamsApi.DeleteStreamByUuid``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -209,6 +221,8 @@ Other parameters are passed through a pointer to a apiDeleteStreamByUuidRequest 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
+ **xCORRELATIONID** | **string** | Correlation identifier | 
+ **xAUTHUSERNAME** | **string** | User name | 
 
 ### Return type
 
@@ -230,7 +244,7 @@ Name | Type | Description  | Notes
 
 ## GetStreamAssetByUuid
 
-> StreamAsset GetStreamAssetByUuid(ctx, assetId, asset, streamId).Execute()
+> StreamAsset GetStreamAssetByUuid(ctx, assetId, asset, streamId).XCORRELATIONID(xCORRELATIONID).XAUTHUSERNAME(xAUTHUSERNAME).Execute()
 
 Get Asset
 
@@ -252,10 +266,12 @@ func main() {
 	assetId := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | asset UUID
 	asset := openapiclient.Asset("ports") // Asset | asset
 	streamId := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | Stream UUID
+	xCORRELATIONID := "12345-6789-10123" // string | Correlation identifier (optional)
+	xAUTHUSERNAME := "alice" // string | User name (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.StreamsApi.GetStreamAssetByUuid(context.Background(), assetId, asset, streamId).Execute()
+	resp, r, err := apiClient.StreamsApi.GetStreamAssetByUuid(context.Background(), assetId, asset, streamId).XCORRELATIONID(xCORRELATIONID).XAUTHUSERNAME(xAUTHUSERNAME).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `StreamsApi.GetStreamAssetByUuid``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -285,6 +301,8 @@ Name | Type | Description  | Notes
 
 
 
+ **xCORRELATIONID** | **string** | Correlation identifier | 
+ **xAUTHUSERNAME** | **string** | User name | 
 
 ### Return type
 
@@ -306,7 +324,7 @@ Name | Type | Description  | Notes
 
 ## GetStreamByUuid
 
-> Stream GetStreamByUuid(ctx, streamId).Execute()
+> Stream GetStreamByUuid(ctx, streamId).XCORRELATIONID(xCORRELATIONID).XAUTHUSERNAME(xAUTHUSERNAME).Execute()
 
 Get Stream
 
@@ -326,10 +344,12 @@ import (
 
 func main() {
 	streamId := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | Stream UUID
+	xCORRELATIONID := "12345-6789-10123" // string | Correlation identifier (optional)
+	xAUTHUSERNAME := "alice" // string | User name (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.StreamsApi.GetStreamByUuid(context.Background(), streamId).Execute()
+	resp, r, err := apiClient.StreamsApi.GetStreamByUuid(context.Background(), streamId).XCORRELATIONID(xCORRELATIONID).XAUTHUSERNAME(xAUTHUSERNAME).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `StreamsApi.GetStreamByUuid``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -355,6 +375,8 @@ Other parameters are passed through a pointer to a apiGetStreamByUuidRequest str
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
+ **xCORRELATIONID** | **string** | Correlation identifier | 
+ **xAUTHUSERNAME** | **string** | User name | 
 
 ### Return type
 
@@ -376,7 +398,7 @@ Name | Type | Description  | Notes
 
 ## GetStreams
 
-> GetAllStreamResponse GetStreams(ctx).Offset(offset).Limit(limit).Execute()
+> GetAllStreamResponse GetStreams(ctx).XCORRELATIONID(xCORRELATIONID).XAUTHUSERNAME(xAUTHUSERNAME).Offset(offset).Limit(limit).Execute()
 
 Get Streams
 
@@ -395,12 +417,14 @@ import (
 )
 
 func main() {
+	xCORRELATIONID := "12345-6789-10123" // string | Correlation identifier (optional)
+	xAUTHUSERNAME := "alice" // string | User name (optional)
 	offset := int32(1) // int32 | offset (optional)
 	limit := int32(10) // int32 | number of records to fetch (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.StreamsApi.GetStreams(context.Background()).Offset(offset).Limit(limit).Execute()
+	resp, r, err := apiClient.StreamsApi.GetStreams(context.Background()).XCORRELATIONID(xCORRELATIONID).XAUTHUSERNAME(xAUTHUSERNAME).Offset(offset).Limit(limit).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `StreamsApi.GetStreams``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -421,6 +445,8 @@ Other parameters are passed through a pointer to a apiGetStreamsRequest struct v
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
+ **xCORRELATIONID** | **string** | Correlation identifier | 
+ **xAUTHUSERNAME** | **string** | User name | 
  **offset** | **int32** | offset | 
  **limit** | **int32** | number of records to fetch | 
 
@@ -444,7 +470,7 @@ Name | Type | Description  | Notes
 
 ## GetStreamsAssets
 
-> GetAllStreamAssetResponse GetStreamsAssets(ctx).StreamAssetSearchRequest(streamAssetSearchRequest).Offset(offset).Limit(limit).Execute()
+> GetAllStreamAssetResponse GetStreamsAssets(ctx).StreamAssetSearchRequest(streamAssetSearchRequest).XCORRELATIONID(xCORRELATIONID).XAUTHUSERNAME(xAUTHUSERNAME).Offset(offset).Limit(limit).Execute()
 
 Get Assets
 
@@ -464,12 +490,14 @@ import (
 
 func main() {
 	streamAssetSearchRequest := *openapiclient.NewStreamAssetSearchRequest() // StreamAssetSearchRequest | 
+	xCORRELATIONID := "12345-6789-10123" // string | Correlation identifier (optional)
+	xAUTHUSERNAME := "alice" // string | User name (optional)
 	offset := int32(1) // int32 | offset (optional)
 	limit := int32(10) // int32 | number of records to fetch (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.StreamsApi.GetStreamsAssets(context.Background()).StreamAssetSearchRequest(streamAssetSearchRequest).Offset(offset).Limit(limit).Execute()
+	resp, r, err := apiClient.StreamsApi.GetStreamsAssets(context.Background()).StreamAssetSearchRequest(streamAssetSearchRequest).XCORRELATIONID(xCORRELATIONID).XAUTHUSERNAME(xAUTHUSERNAME).Offset(offset).Limit(limit).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `StreamsApi.GetStreamsAssets``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -491,6 +519,8 @@ Other parameters are passed through a pointer to a apiGetStreamsAssetsRequest st
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **streamAssetSearchRequest** | [**StreamAssetSearchRequest**](StreamAssetSearchRequest.md) |  | 
+ **xCORRELATIONID** | **string** | Correlation identifier | 
+ **xAUTHUSERNAME** | **string** | User name | 
  **offset** | **int32** | offset | 
  **limit** | **int32** | number of records to fetch | 
 
@@ -514,7 +544,7 @@ Name | Type | Description  | Notes
 
 ## UpdateStreamAssetByUuid
 
-> StreamAsset UpdateStreamAssetByUuid(ctx, assetId, asset, streamId).StreamAssetPutRequest(streamAssetPutRequest).Execute()
+> StreamAsset UpdateStreamAssetByUuid(ctx, assetId, asset, streamId).StreamAssetPutRequest(streamAssetPutRequest).XCORRELATIONID(xCORRELATIONID).XAUTHUSERNAME(xAUTHUSERNAME).Execute()
 
 Attach Asset
 
@@ -537,10 +567,12 @@ func main() {
 	asset := openapiclient.Asset("ports") // Asset | asset
 	streamId := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | Stream UUID
 	streamAssetPutRequest := *openapiclient.NewStreamAssetPutRequest() // StreamAssetPutRequest | 
+	xCORRELATIONID := "12345-6789-10123" // string | Correlation identifier (optional)
+	xAUTHUSERNAME := "alice" // string | User name (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.StreamsApi.UpdateStreamAssetByUuid(context.Background(), assetId, asset, streamId).StreamAssetPutRequest(streamAssetPutRequest).Execute()
+	resp, r, err := apiClient.StreamsApi.UpdateStreamAssetByUuid(context.Background(), assetId, asset, streamId).StreamAssetPutRequest(streamAssetPutRequest).XCORRELATIONID(xCORRELATIONID).XAUTHUSERNAME(xAUTHUSERNAME).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `StreamsApi.UpdateStreamAssetByUuid``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -571,6 +603,8 @@ Name | Type | Description  | Notes
 
 
  **streamAssetPutRequest** | [**StreamAssetPutRequest**](StreamAssetPutRequest.md) |  | 
+ **xCORRELATIONID** | **string** | Correlation identifier | 
+ **xAUTHUSERNAME** | **string** | User name | 
 
 ### Return type
 
@@ -592,7 +626,7 @@ Name | Type | Description  | Notes
 
 ## UpdateStreamByUuid
 
-> Stream UpdateStreamByUuid(ctx, streamId).StreamPutRequest(streamPutRequest).Execute()
+> Stream UpdateStreamByUuid(ctx, streamId).StreamPutRequest(streamPutRequest).XCORRELATIONID(xCORRELATIONID).XAUTHUSERNAME(xAUTHUSERNAME).Execute()
 
 Update Stream
 
@@ -613,10 +647,12 @@ import (
 func main() {
 	streamId := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | Stream UUID
 	streamPutRequest := *openapiclient.NewStreamPutRequest() // StreamPutRequest | 
+	xCORRELATIONID := "12345-6789-10123" // string | Correlation identifier (optional)
+	xAUTHUSERNAME := "alice" // string | User name (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.StreamsApi.UpdateStreamByUuid(context.Background(), streamId).StreamPutRequest(streamPutRequest).Execute()
+	resp, r, err := apiClient.StreamsApi.UpdateStreamByUuid(context.Background(), streamId).StreamPutRequest(streamPutRequest).XCORRELATIONID(xCORRELATIONID).XAUTHUSERNAME(xAUTHUSERNAME).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `StreamsApi.UpdateStreamByUuid``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -643,6 +679,8 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
  **streamPutRequest** | [**StreamPutRequest**](StreamPutRequest.md) |  | 
+ **xCORRELATIONID** | **string** | Correlation identifier | 
+ **xAUTHUSERNAME** | **string** | User name | 
 
 ### Return type
 

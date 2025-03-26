@@ -6,12 +6,17 @@ Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**CreateCloudRouter**](CloudRoutersApi.md#CreateCloudRouter) | **Post** /fabric/v4/routers | Create Routers
 [**CreateCloudRouterAction**](CloudRoutersApi.md#CreateCloudRouterAction) | **Post** /fabric/v4/routers/{routerId}/actions | Create Route Table Action
+[**CreateCloudRouterCommand**](CloudRoutersApi.md#CreateCloudRouterCommand) | **Post** /fabric/v4/routers/{routerId}/commands | Initiate Command
 [**DeleteCloudRouterByUuid**](CloudRoutersApi.md#DeleteCloudRouterByUuid) | **Delete** /fabric/v4/routers/{routerId} | Delete Routers
+[**DeleteCloudRouterCommandByUuid**](CloudRoutersApi.md#DeleteCloudRouterCommandByUuid) | **Delete** /fabric/v4/routers/{routerId}/commands/{commandId} | Delete Command
+[**GetAllCloudRouterCommands**](CloudRoutersApi.md#GetAllCloudRouterCommands) | **Get** /fabric/v4/routers/{routerId}/commands | Get Commands
 [**GetCloudRouterActions**](CloudRoutersApi.md#GetCloudRouterActions) | **Get** /fabric/v4/routers/{routerId}/actions | Get Route Table Actions
 [**GetCloudRouterActionsByUuid**](CloudRoutersApi.md#GetCloudRouterActionsByUuid) | **Get** /fabric/v4/routers/{routerId}/actions/{actionId} | Get Route Table Action by ID
 [**GetCloudRouterByUuid**](CloudRoutersApi.md#GetCloudRouterByUuid) | **Get** /fabric/v4/routers/{routerId} | Get Routers
+[**GetCloudRouterCommand**](CloudRoutersApi.md#GetCloudRouterCommand) | **Get** /fabric/v4/routers/{routerId}/commands/{commandId} | Get Command
 [**GetCloudRouterPackageByCode**](CloudRoutersApi.md#GetCloudRouterPackageByCode) | **Get** /fabric/v4/routerPackages/{routerPackageCode} | Get Package Details
 [**GetCloudRouterPackages**](CloudRoutersApi.md#GetCloudRouterPackages) | **Get** /fabric/v4/routerPackages | List Packages
+[**SearchCloudRouterCommands**](CloudRoutersApi.md#SearchCloudRouterCommands) | **Post** /fabric/v4/routers/{routerId}/commands/search | Search Commands
 [**SearchCloudRouterRoutes**](CloudRoutersApi.md#SearchCloudRouterRoutes) | **Post** /fabric/v4/routers/{routerId}/routes/search | Search Route Table
 [**SearchCloudRouters**](CloudRoutersApi.md#SearchCloudRouters) | **Post** /fabric/v4/routers/search | Search Routers
 [**SearchConnectionAdvertisedRoutes**](CloudRoutersApi.md#SearchConnectionAdvertisedRoutes) | **Post** /fabric/v4/connections/{connectionId}/advertisedRoutes/search | Search Advertised Routes
@@ -23,7 +28,7 @@ Method | HTTP request | Description
 
 ## CreateCloudRouter
 
-> CloudRouter CreateCloudRouter(ctx).CloudRouterPostRequest(cloudRouterPostRequest).DryRun(dryRun).Execute()
+> CloudRouter CreateCloudRouter(ctx).CloudRouterPostRequest(cloudRouterPostRequest).XCORRELATIONID(xCORRELATIONID).XAUTHUSERNAME(xAUTHUSERNAME).DryRun(dryRun).XSOURCE(xSOURCE).Execute()
 
 Create Routers
 
@@ -42,12 +47,15 @@ import (
 )
 
 func main() {
-	cloudRouterPostRequest := *openapiclient.NewCloudRouterPostRequest() // CloudRouterPostRequest | 
+	cloudRouterPostRequest := *openapiclient.NewCloudRouterPostRequest(openapiclient.CloudRouterPostRequest_type("XF_ROUTER"), "Name_example", *openapiclient.NewSimplifiedLocationWithoutIBX("AM"), *openapiclient.NewCloudRouterPostRequestPackage(openapiclient.CloudRouterPostRequestPackage_code("LAB"))) // CloudRouterPostRequest | 
+	xCORRELATIONID := "12345-6789-10123" // string | Correlation identifier (optional)
+	xAUTHUSERNAME := "alice" // string | User name (optional)
 	dryRun := true // bool | option to verify that API calls will succeed (optional) (default to false)
+	xSOURCE := "xSOURCE_example" // string | source (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.CloudRoutersApi.CreateCloudRouter(context.Background()).CloudRouterPostRequest(cloudRouterPostRequest).DryRun(dryRun).Execute()
+	resp, r, err := apiClient.CloudRoutersApi.CreateCloudRouter(context.Background()).CloudRouterPostRequest(cloudRouterPostRequest).XCORRELATIONID(xCORRELATIONID).XAUTHUSERNAME(xAUTHUSERNAME).DryRun(dryRun).XSOURCE(xSOURCE).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `CloudRoutersApi.CreateCloudRouter``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -69,7 +77,10 @@ Other parameters are passed through a pointer to a apiCreateCloudRouterRequest s
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **cloudRouterPostRequest** | [**CloudRouterPostRequest**](CloudRouterPostRequest.md) |  | 
+ **xCORRELATIONID** | **string** | Correlation identifier | 
+ **xAUTHUSERNAME** | **string** | User name | 
  **dryRun** | **bool** | option to verify that API calls will succeed | [default to false]
+ **xSOURCE** | **string** | source | 
 
 ### Return type
 
@@ -91,7 +102,7 @@ Name | Type | Description  | Notes
 
 ## CreateCloudRouterAction
 
-> CloudRouterActionResponse CreateCloudRouterAction(ctx, routerId).CloudRouterActionRequest(cloudRouterActionRequest).Execute()
+> CloudRouterActionResponse CreateCloudRouterAction(ctx, routerId).CloudRouterActionRequest(cloudRouterActionRequest).XCORRELATIONID(xCORRELATIONID).XAUTHUSERNAME(xAUTHUSERNAME).XSOURCE(xSOURCE).Execute()
 
 Create Route Table Action
 
@@ -112,10 +123,13 @@ import (
 func main() {
 	routerId := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | Router UUID
 	cloudRouterActionRequest := *openapiclient.NewCloudRouterActionRequest(openapiclient.CloudRouterActionType("BGP_SESSION_STATUS_UPDATE")) // CloudRouterActionRequest | 
+	xCORRELATIONID := "12345-6789-10123" // string | Correlation identifier (optional)
+	xAUTHUSERNAME := "alice" // string | User name (optional)
+	xSOURCE := "xSOURCE_example" // string | source (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.CloudRoutersApi.CreateCloudRouterAction(context.Background(), routerId).CloudRouterActionRequest(cloudRouterActionRequest).Execute()
+	resp, r, err := apiClient.CloudRoutersApi.CreateCloudRouterAction(context.Background(), routerId).CloudRouterActionRequest(cloudRouterActionRequest).XCORRELATIONID(xCORRELATIONID).XAUTHUSERNAME(xAUTHUSERNAME).XSOURCE(xSOURCE).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `CloudRoutersApi.CreateCloudRouterAction``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -142,6 +156,9 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
  **cloudRouterActionRequest** | [**CloudRouterActionRequest**](CloudRouterActionRequest.md) |  | 
+ **xCORRELATIONID** | **string** | Correlation identifier | 
+ **xAUTHUSERNAME** | **string** | User name | 
+ **xSOURCE** | **string** | source | 
 
 ### Return type
 
@@ -161,9 +178,87 @@ Name | Type | Description  | Notes
 [[Back to README]](../README.md)
 
 
+## CreateCloudRouterCommand
+
+> CloudRouterCommand CreateCloudRouterCommand(ctx, routerId).CloudRouterCommandPostRequest(cloudRouterCommandPostRequest).XCORRELATIONID(xCORRELATIONID).XAUTHUSERNAME(xAUTHUSERNAME).XSOURCE(xSOURCE).Execute()
+
+Initiate Command
+
+
+
+### Example
+
+```go
+package main
+
+import (
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/equinix/equinix-sdk-go/services/fabricv4"
+)
+
+func main() {
+	routerId := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | Router UUID
+	cloudRouterCommandPostRequest := *openapiclient.NewCloudRouterCommandPostRequest(openapiclient.CloudRouterCommandType("PING_COMMAND"), *openapiclient.NewProject("44f4c4f8-2f39-494e-838c-d8e640591be5"), *openapiclient.NewCloudRouterCommandRequest("8.8.8.8")) // CloudRouterCommandPostRequest | 
+	xCORRELATIONID := "12345-6789-10123" // string | Correlation identifier (optional)
+	xAUTHUSERNAME := "alice" // string | User name (optional)
+	xSOURCE := "xSOURCE_example" // string | source (optional)
+
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.CloudRoutersApi.CreateCloudRouterCommand(context.Background(), routerId).CloudRouterCommandPostRequest(cloudRouterCommandPostRequest).XCORRELATIONID(xCORRELATIONID).XAUTHUSERNAME(xAUTHUSERNAME).XSOURCE(xSOURCE).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `CloudRoutersApi.CreateCloudRouterCommand``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `CreateCloudRouterCommand`: CloudRouterCommand
+	fmt.Fprintf(os.Stdout, "Response from `CloudRoutersApi.CreateCloudRouterCommand`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**routerId** | **string** | Router UUID | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiCreateCloudRouterCommandRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+ **cloudRouterCommandPostRequest** | [**CloudRouterCommandPostRequest**](CloudRouterCommandPostRequest.md) |  | 
+ **xCORRELATIONID** | **string** | Correlation identifier | 
+ **xAUTHUSERNAME** | **string** | User name | 
+ **xSOURCE** | **string** | source | 
+
+### Return type
+
+[**CloudRouterCommand**](CloudRouterCommand.md)
+
+### Authorization
+
+[BearerAuth](../README.md#BearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
 ## DeleteCloudRouterByUuid
 
-> DeleteCloudRouterByUuid(ctx, routerId).Execute()
+> DeleteCloudRouterByUuid(ctx, routerId).XCORRELATIONID(xCORRELATIONID).XAUTHUSERNAME(xAUTHUSERNAME).Execute()
 
 Delete Routers
 
@@ -183,10 +278,12 @@ import (
 
 func main() {
 	routerId := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | Cloud Router UUID
+	xCORRELATIONID := "12345-6789-10123" // string | Correlation identifier (optional)
+	xAUTHUSERNAME := "alice" // string | User name (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	r, err := apiClient.CloudRoutersApi.DeleteCloudRouterByUuid(context.Background(), routerId).Execute()
+	r, err := apiClient.CloudRoutersApi.DeleteCloudRouterByUuid(context.Background(), routerId).XCORRELATIONID(xCORRELATIONID).XAUTHUSERNAME(xAUTHUSERNAME).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `CloudRoutersApi.DeleteCloudRouterByUuid``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -210,6 +307,8 @@ Other parameters are passed through a pointer to a apiDeleteCloudRouterByUuidReq
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
+ **xCORRELATIONID** | **string** | Correlation identifier | 
+ **xAUTHUSERNAME** | **string** | User name | 
 
 ### Return type
 
@@ -229,9 +328,162 @@ Name | Type | Description  | Notes
 [[Back to README]](../README.md)
 
 
+## DeleteCloudRouterCommandByUuid
+
+> DeleteCloudRouterCommandByUuid(ctx, routerId, commandId).XCORRELATIONID(xCORRELATIONID).XAUTHUSERNAME(xAUTHUSERNAME).XSOURCE(xSOURCE).Execute()
+
+Delete Command
+
+
+
+### Example
+
+```go
+package main
+
+import (
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/equinix/equinix-sdk-go/services/fabricv4"
+)
+
+func main() {
+	routerId := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | Router UUID
+	commandId := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | Command UUID
+	xCORRELATIONID := "12345-6789-10123" // string | Correlation identifier (optional)
+	xAUTHUSERNAME := "alice" // string | User name (optional)
+	xSOURCE := "xSOURCE_example" // string | source (optional)
+
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	r, err := apiClient.CloudRoutersApi.DeleteCloudRouterCommandByUuid(context.Background(), routerId, commandId).XCORRELATIONID(xCORRELATIONID).XAUTHUSERNAME(xAUTHUSERNAME).XSOURCE(xSOURCE).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `CloudRoutersApi.DeleteCloudRouterCommandByUuid``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**routerId** | **string** | Router UUID | 
+**commandId** | **string** | Command UUID | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiDeleteCloudRouterCommandByUuidRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+
+ **xCORRELATIONID** | **string** | Correlation identifier | 
+ **xAUTHUSERNAME** | **string** | User name | 
+ **xSOURCE** | **string** | source | 
+
+### Return type
+
+ (empty response body)
+
+### Authorization
+
+[BearerAuth](../README.md#BearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## GetAllCloudRouterCommands
+
+> GetAllCloudRouterCommands GetAllCloudRouterCommands(ctx, routerId).XCORRELATIONID(xCORRELATIONID).XAUTHUSERNAME(xAUTHUSERNAME).XSOURCE(xSOURCE).Execute()
+
+Get Commands
+
+
+
+### Example
+
+```go
+package main
+
+import (
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/equinix/equinix-sdk-go/services/fabricv4"
+)
+
+func main() {
+	routerId := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | Router UUID
+	xCORRELATIONID := "12345-6789-10123" // string | Correlation identifier (optional)
+	xAUTHUSERNAME := "alice" // string | User name (optional)
+	xSOURCE := "xSOURCE_example" // string | source (optional)
+
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.CloudRoutersApi.GetAllCloudRouterCommands(context.Background(), routerId).XCORRELATIONID(xCORRELATIONID).XAUTHUSERNAME(xAUTHUSERNAME).XSOURCE(xSOURCE).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `CloudRoutersApi.GetAllCloudRouterCommands``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `GetAllCloudRouterCommands`: GetAllCloudRouterCommands
+	fmt.Fprintf(os.Stdout, "Response from `CloudRoutersApi.GetAllCloudRouterCommands`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**routerId** | **string** | Router UUID | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiGetAllCloudRouterCommandsRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+ **xCORRELATIONID** | **string** | Correlation identifier | 
+ **xAUTHUSERNAME** | **string** | User name | 
+ **xSOURCE** | **string** | source | 
+
+### Return type
+
+[**GetAllCloudRouterCommands**](GetAllCloudRouterCommands.md)
+
+### Authorization
+
+[BearerAuth](../README.md#BearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
 ## GetCloudRouterActions
 
-> CloudRouterActionResponse GetCloudRouterActions(ctx, routerId).State(state).Execute()
+> CloudRouterActionResponse GetCloudRouterActions(ctx, routerId).State(state).XCORRELATIONID(xCORRELATIONID).XAUTHUSERNAME(xAUTHUSERNAME).XSOURCE(xSOURCE).Execute()
 
 Get Route Table Actions
 
@@ -252,10 +504,13 @@ import (
 func main() {
 	routerId := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | Router UUID
 	state := openapiclient.CloudRouterActionState("SUCCEEDED") // CloudRouterActionState | Action state (optional)
+	xCORRELATIONID := "12345-6789-10123" // string | Correlation identifier (optional)
+	xAUTHUSERNAME := "alice" // string | User name (optional)
+	xSOURCE := "xSOURCE_example" // string | source (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.CloudRoutersApi.GetCloudRouterActions(context.Background(), routerId).State(state).Execute()
+	resp, r, err := apiClient.CloudRoutersApi.GetCloudRouterActions(context.Background(), routerId).State(state).XCORRELATIONID(xCORRELATIONID).XAUTHUSERNAME(xAUTHUSERNAME).XSOURCE(xSOURCE).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `CloudRoutersApi.GetCloudRouterActions``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -282,6 +537,9 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
  **state** | [**CloudRouterActionState**](CloudRouterActionState.md) | Action state | 
+ **xCORRELATIONID** | **string** | Correlation identifier | 
+ **xAUTHUSERNAME** | **string** | User name | 
+ **xSOURCE** | **string** | source | 
 
 ### Return type
 
@@ -303,7 +561,7 @@ Name | Type | Description  | Notes
 
 ## GetCloudRouterActionsByUuid
 
-> CloudRouterActionResponse GetCloudRouterActionsByUuid(ctx, routerId, actionId).State(state).Execute()
+> CloudRouterActionResponse GetCloudRouterActionsByUuid(ctx, routerId, actionId).State(state).XCORRELATIONID(xCORRELATIONID).XAUTHUSERNAME(xAUTHUSERNAME).XSOURCE(xSOURCE).Execute()
 
 Get Route Table Action by ID
 
@@ -325,10 +583,13 @@ func main() {
 	routerId := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | Router UUID
 	actionId := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | Action UUID
 	state := openapiclient.CloudRouterActionState("SUCCEEDED") // CloudRouterActionState | Action state (optional)
+	xCORRELATIONID := "12345-6789-10123" // string | Correlation identifier (optional)
+	xAUTHUSERNAME := "alice" // string | User name (optional)
+	xSOURCE := "xSOURCE_example" // string | source (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.CloudRoutersApi.GetCloudRouterActionsByUuid(context.Background(), routerId, actionId).State(state).Execute()
+	resp, r, err := apiClient.CloudRoutersApi.GetCloudRouterActionsByUuid(context.Background(), routerId, actionId).State(state).XCORRELATIONID(xCORRELATIONID).XAUTHUSERNAME(xAUTHUSERNAME).XSOURCE(xSOURCE).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `CloudRoutersApi.GetCloudRouterActionsByUuid``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -357,6 +618,9 @@ Name | Type | Description  | Notes
 
 
  **state** | [**CloudRouterActionState**](CloudRouterActionState.md) | Action state | 
+ **xCORRELATIONID** | **string** | Correlation identifier | 
+ **xAUTHUSERNAME** | **string** | User name | 
+ **xSOURCE** | **string** | source | 
 
 ### Return type
 
@@ -378,7 +642,7 @@ Name | Type | Description  | Notes
 
 ## GetCloudRouterByUuid
 
-> CloudRouter GetCloudRouterByUuid(ctx, routerId).Execute()
+> CloudRouter GetCloudRouterByUuid(ctx, routerId).XCORRELATIONID(xCORRELATIONID).XAUTHUSERNAME(xAUTHUSERNAME).Execute()
 
 Get Routers
 
@@ -398,10 +662,12 @@ import (
 
 func main() {
 	routerId := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | Cloud Router UUID
+	xCORRELATIONID := "12345-6789-10123" // string | Correlation identifier (optional)
+	xAUTHUSERNAME := "alice" // string | User name (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.CloudRoutersApi.GetCloudRouterByUuid(context.Background(), routerId).Execute()
+	resp, r, err := apiClient.CloudRoutersApi.GetCloudRouterByUuid(context.Background(), routerId).XCORRELATIONID(xCORRELATIONID).XAUTHUSERNAME(xAUTHUSERNAME).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `CloudRoutersApi.GetCloudRouterByUuid``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -427,6 +693,8 @@ Other parameters are passed through a pointer to a apiGetCloudRouterByUuidReques
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
+ **xCORRELATIONID** | **string** | Correlation identifier | 
+ **xAUTHUSERNAME** | **string** | User name | 
 
 ### Return type
 
@@ -446,9 +714,88 @@ Name | Type | Description  | Notes
 [[Back to README]](../README.md)
 
 
+## GetCloudRouterCommand
+
+> CloudRouterCommand GetCloudRouterCommand(ctx, routerId, commandId).XCORRELATIONID(xCORRELATIONID).XAUTHUSERNAME(xAUTHUSERNAME).XSOURCE(xSOURCE).Execute()
+
+Get Command
+
+
+
+### Example
+
+```go
+package main
+
+import (
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/equinix/equinix-sdk-go/services/fabricv4"
+)
+
+func main() {
+	routerId := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | Router UUID
+	commandId := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | Command UUID
+	xCORRELATIONID := "12345-6789-10123" // string | Correlation identifier (optional)
+	xAUTHUSERNAME := "alice" // string | User name (optional)
+	xSOURCE := "xSOURCE_example" // string | source (optional)
+
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.CloudRoutersApi.GetCloudRouterCommand(context.Background(), routerId, commandId).XCORRELATIONID(xCORRELATIONID).XAUTHUSERNAME(xAUTHUSERNAME).XSOURCE(xSOURCE).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `CloudRoutersApi.GetCloudRouterCommand``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `GetCloudRouterCommand`: CloudRouterCommand
+	fmt.Fprintf(os.Stdout, "Response from `CloudRoutersApi.GetCloudRouterCommand`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**routerId** | **string** | Router UUID | 
+**commandId** | **string** | Command UUID | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiGetCloudRouterCommandRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+
+ **xCORRELATIONID** | **string** | Correlation identifier | 
+ **xAUTHUSERNAME** | **string** | User name | 
+ **xSOURCE** | **string** | source | 
+
+### Return type
+
+[**CloudRouterCommand**](CloudRouterCommand.md)
+
+### Authorization
+
+[BearerAuth](../README.md#BearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
 ## GetCloudRouterPackageByCode
 
-> CloudRouterPackage GetCloudRouterPackageByCode(ctx, routerPackageCode).Execute()
+> CloudRouterPackage GetCloudRouterPackageByCode(ctx, routerPackageCode).XCORRELATIONID(xCORRELATIONID).XAUTHUSERNAME(xAUTHUSERNAME).Execute()
 
 Get Package Details
 
@@ -468,10 +815,12 @@ import (
 
 func main() {
 	routerPackageCode := openapiclient.RouterPackageCode("LAB") // RouterPackageCode | Equinix-assigned Cloud Router package identifier
+	xCORRELATIONID := "12345-6789-10123" // string | Correlation identifier (optional)
+	xAUTHUSERNAME := "alice" // string | User name (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.CloudRoutersApi.GetCloudRouterPackageByCode(context.Background(), routerPackageCode).Execute()
+	resp, r, err := apiClient.CloudRoutersApi.GetCloudRouterPackageByCode(context.Background(), routerPackageCode).XCORRELATIONID(xCORRELATIONID).XAUTHUSERNAME(xAUTHUSERNAME).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `CloudRoutersApi.GetCloudRouterPackageByCode``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -497,6 +846,8 @@ Other parameters are passed through a pointer to a apiGetCloudRouterPackageByCod
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
+ **xCORRELATIONID** | **string** | Correlation identifier | 
+ **xAUTHUSERNAME** | **string** | User name | 
 
 ### Return type
 
@@ -518,7 +869,7 @@ Name | Type | Description  | Notes
 
 ## GetCloudRouterPackages
 
-> PackageResponse GetCloudRouterPackages(ctx).Offset(offset).Limit(limit).Execute()
+> PackageResponse GetCloudRouterPackages(ctx).XCORRELATIONID(xCORRELATIONID).XAUTHUSERNAME(xAUTHUSERNAME).Offset(offset).Limit(limit).Execute()
 
 List Packages
 
@@ -537,12 +888,14 @@ import (
 )
 
 func main() {
+	xCORRELATIONID := "12345-6789-10123" // string | Correlation identifier (optional)
+	xAUTHUSERNAME := "alice" // string | User name (optional)
 	offset := int32(1) // int32 | offset (optional)
 	limit := int32(10) // int32 | number of records to fetch (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.CloudRoutersApi.GetCloudRouterPackages(context.Background()).Offset(offset).Limit(limit).Execute()
+	resp, r, err := apiClient.CloudRoutersApi.GetCloudRouterPackages(context.Background()).XCORRELATIONID(xCORRELATIONID).XAUTHUSERNAME(xAUTHUSERNAME).Offset(offset).Limit(limit).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `CloudRoutersApi.GetCloudRouterPackages``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -563,6 +916,8 @@ Other parameters are passed through a pointer to a apiGetCloudRouterPackagesRequ
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
+ **xCORRELATIONID** | **string** | Correlation identifier | 
+ **xAUTHUSERNAME** | **string** | User name | 
  **offset** | **int32** | offset | 
  **limit** | **int32** | number of records to fetch | 
 
@@ -584,9 +939,87 @@ Name | Type | Description  | Notes
 [[Back to README]](../README.md)
 
 
+## SearchCloudRouterCommands
+
+> CloudRouterCommandSearchResponse SearchCloudRouterCommands(ctx, routerId).CloudRouterCommandSearchRequest(cloudRouterCommandSearchRequest).XCORRELATIONID(xCORRELATIONID).XAUTHUSERNAME(xAUTHUSERNAME).XSOURCE(xSOURCE).Execute()
+
+Search Commands
+
+
+
+### Example
+
+```go
+package main
+
+import (
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/equinix/equinix-sdk-go/services/fabricv4"
+)
+
+func main() {
+	routerId := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | Router UUID
+	cloudRouterCommandSearchRequest := *openapiclient.NewCloudRouterCommandSearchRequest() // CloudRouterCommandSearchRequest | 
+	xCORRELATIONID := "12345-6789-10123" // string | Correlation identifier (optional)
+	xAUTHUSERNAME := "alice" // string | User name (optional)
+	xSOURCE := "xSOURCE_example" // string | source (optional)
+
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.CloudRoutersApi.SearchCloudRouterCommands(context.Background(), routerId).CloudRouterCommandSearchRequest(cloudRouterCommandSearchRequest).XCORRELATIONID(xCORRELATIONID).XAUTHUSERNAME(xAUTHUSERNAME).XSOURCE(xSOURCE).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `CloudRoutersApi.SearchCloudRouterCommands``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `SearchCloudRouterCommands`: CloudRouterCommandSearchResponse
+	fmt.Fprintf(os.Stdout, "Response from `CloudRoutersApi.SearchCloudRouterCommands`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**routerId** | **string** | Router UUID | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiSearchCloudRouterCommandsRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+ **cloudRouterCommandSearchRequest** | [**CloudRouterCommandSearchRequest**](CloudRouterCommandSearchRequest.md) |  | 
+ **xCORRELATIONID** | **string** | Correlation identifier | 
+ **xAUTHUSERNAME** | **string** | User name | 
+ **xSOURCE** | **string** | source | 
+
+### Return type
+
+[**CloudRouterCommandSearchResponse**](CloudRouterCommandSearchResponse.md)
+
+### Authorization
+
+[BearerAuth](../README.md#BearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
 ## SearchCloudRouterRoutes
 
-> RouteTableEntrySearchResponse SearchCloudRouterRoutes(ctx, routerId).RouteTableEntrySearchRequest(routeTableEntrySearchRequest).Execute()
+> RouteTableEntrySearchResponse SearchCloudRouterRoutes(ctx, routerId).RouteTableEntrySearchRequest(routeTableEntrySearchRequest).XCORRELATIONID(xCORRELATIONID).XAUTHUSERNAME(xAUTHUSERNAME).XSOURCE(xSOURCE).Execute()
 
 Search Route Table
 
@@ -607,10 +1040,13 @@ import (
 func main() {
 	routerId := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | Router UUID
 	routeTableEntrySearchRequest := *openapiclient.NewRouteTableEntrySearchRequest() // RouteTableEntrySearchRequest | 
+	xCORRELATIONID := "12345-6789-10123" // string | Correlation identifier (optional)
+	xAUTHUSERNAME := "alice" // string | User name (optional)
+	xSOURCE := "xSOURCE_example" // string | source (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.CloudRoutersApi.SearchCloudRouterRoutes(context.Background(), routerId).RouteTableEntrySearchRequest(routeTableEntrySearchRequest).Execute()
+	resp, r, err := apiClient.CloudRoutersApi.SearchCloudRouterRoutes(context.Background(), routerId).RouteTableEntrySearchRequest(routeTableEntrySearchRequest).XCORRELATIONID(xCORRELATIONID).XAUTHUSERNAME(xAUTHUSERNAME).XSOURCE(xSOURCE).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `CloudRoutersApi.SearchCloudRouterRoutes``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -637,6 +1073,9 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
  **routeTableEntrySearchRequest** | [**RouteTableEntrySearchRequest**](RouteTableEntrySearchRequest.md) |  | 
+ **xCORRELATIONID** | **string** | Correlation identifier | 
+ **xAUTHUSERNAME** | **string** | User name | 
+ **xSOURCE** | **string** | source | 
 
 ### Return type
 
@@ -658,7 +1097,7 @@ Name | Type | Description  | Notes
 
 ## SearchCloudRouters
 
-> SearchResponse SearchCloudRouters(ctx).CloudRouterSearchRequest(cloudRouterSearchRequest).Execute()
+> SearchResponse SearchCloudRouters(ctx).CloudRouterSearchRequest(cloudRouterSearchRequest).XCORRELATIONID(xCORRELATIONID).XAUTHUSERNAME(xAUTHUSERNAME).Execute()
 
 Search Routers
 
@@ -678,10 +1117,12 @@ import (
 
 func main() {
 	cloudRouterSearchRequest := *openapiclient.NewCloudRouterSearchRequest() // CloudRouterSearchRequest | 
+	xCORRELATIONID := "12345-6789-10123" // string | Correlation identifier (optional)
+	xAUTHUSERNAME := "alice" // string | User name (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.CloudRoutersApi.SearchCloudRouters(context.Background()).CloudRouterSearchRequest(cloudRouterSearchRequest).Execute()
+	resp, r, err := apiClient.CloudRoutersApi.SearchCloudRouters(context.Background()).CloudRouterSearchRequest(cloudRouterSearchRequest).XCORRELATIONID(xCORRELATIONID).XAUTHUSERNAME(xAUTHUSERNAME).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `CloudRoutersApi.SearchCloudRouters``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -703,6 +1144,8 @@ Other parameters are passed through a pointer to a apiSearchCloudRoutersRequest 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **cloudRouterSearchRequest** | [**CloudRouterSearchRequest**](CloudRouterSearchRequest.md) |  | 
+ **xCORRELATIONID** | **string** | Correlation identifier | 
+ **xAUTHUSERNAME** | **string** | User name | 
 
 ### Return type
 
@@ -724,7 +1167,7 @@ Name | Type | Description  | Notes
 
 ## SearchConnectionAdvertisedRoutes
 
-> ConnectionRouteTableEntrySearchResponse SearchConnectionAdvertisedRoutes(ctx, connectionId).ConnectionRouteSearchRequest(connectionRouteSearchRequest).Execute()
+> ConnectionRouteTableEntrySearchResponse SearchConnectionAdvertisedRoutes(ctx, connectionId).ConnectionRouteSearchRequest(connectionRouteSearchRequest).XCORRELATIONID(xCORRELATIONID).XAUTHUSERNAME(xAUTHUSERNAME).Execute()
 
 Search Advertised Routes
 
@@ -745,10 +1188,12 @@ import (
 func main() {
 	connectionId := "connectionId_example" // string | Connection Id
 	connectionRouteSearchRequest := *openapiclient.NewConnectionRouteSearchRequest() // ConnectionRouteSearchRequest | 
+	xCORRELATIONID := "xCORRELATIONID_example" // string | Correlation identifier (optional)
+	xAUTHUSERNAME := "xAUTHUSERNAME_example" // string | User name (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.CloudRoutersApi.SearchConnectionAdvertisedRoutes(context.Background(), connectionId).ConnectionRouteSearchRequest(connectionRouteSearchRequest).Execute()
+	resp, r, err := apiClient.CloudRoutersApi.SearchConnectionAdvertisedRoutes(context.Background(), connectionId).ConnectionRouteSearchRequest(connectionRouteSearchRequest).XCORRELATIONID(xCORRELATIONID).XAUTHUSERNAME(xAUTHUSERNAME).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `CloudRoutersApi.SearchConnectionAdvertisedRoutes``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -775,6 +1220,8 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
  **connectionRouteSearchRequest** | [**ConnectionRouteSearchRequest**](ConnectionRouteSearchRequest.md) |  | 
+ **xCORRELATIONID** | **string** | Correlation identifier | 
+ **xAUTHUSERNAME** | **string** | User name | 
 
 ### Return type
 
@@ -796,7 +1243,7 @@ Name | Type | Description  | Notes
 
 ## SearchConnectionReceivedRoutes
 
-> ConnectionRouteTableEntrySearchResponse SearchConnectionReceivedRoutes(ctx, connectionId).ConnectionRouteSearchRequest(connectionRouteSearchRequest).Execute()
+> ConnectionRouteTableEntrySearchResponse SearchConnectionReceivedRoutes(ctx, connectionId).ConnectionRouteSearchRequest(connectionRouteSearchRequest).XCORRELATIONID(xCORRELATIONID).XAUTHUSERNAME(xAUTHUSERNAME).Execute()
 
 Search Received Routes
 
@@ -817,10 +1264,12 @@ import (
 func main() {
 	connectionId := "connectionId_example" // string | Connection Id
 	connectionRouteSearchRequest := *openapiclient.NewConnectionRouteSearchRequest() // ConnectionRouteSearchRequest | 
+	xCORRELATIONID := "xCORRELATIONID_example" // string | Correlation identifier (optional)
+	xAUTHUSERNAME := "xAUTHUSERNAME_example" // string | User name (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.CloudRoutersApi.SearchConnectionReceivedRoutes(context.Background(), connectionId).ConnectionRouteSearchRequest(connectionRouteSearchRequest).Execute()
+	resp, r, err := apiClient.CloudRoutersApi.SearchConnectionReceivedRoutes(context.Background(), connectionId).ConnectionRouteSearchRequest(connectionRouteSearchRequest).XCORRELATIONID(xCORRELATIONID).XAUTHUSERNAME(xAUTHUSERNAME).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `CloudRoutersApi.SearchConnectionReceivedRoutes``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -847,6 +1296,8 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
  **connectionRouteSearchRequest** | [**ConnectionRouteSearchRequest**](ConnectionRouteSearchRequest.md) |  | 
+ **xCORRELATIONID** | **string** | Correlation identifier | 
+ **xAUTHUSERNAME** | **string** | User name | 
 
 ### Return type
 
@@ -868,7 +1319,7 @@ Name | Type | Description  | Notes
 
 ## SearchRouterActions
 
-> CloudRouterActionsSearchResponse SearchRouterActions(ctx, routerId).CloudRouterActionsSearchRequest(cloudRouterActionsSearchRequest).Execute()
+> CloudRouterActionsSearchResponse SearchRouterActions(ctx, routerId).CloudRouterActionsSearchRequest(cloudRouterActionsSearchRequest).XCORRELATIONID(xCORRELATIONID).XAUTHUSERNAME(xAUTHUSERNAME).XSOURCE(xSOURCE).Execute()
 
 Search Route Table Actions
 
@@ -889,10 +1340,13 @@ import (
 func main() {
 	routerId := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | Router UUID
 	cloudRouterActionsSearchRequest := *openapiclient.NewCloudRouterActionsSearchRequest() // CloudRouterActionsSearchRequest | 
+	xCORRELATIONID := "12345-6789-10123" // string | Correlation identifier (optional)
+	xAUTHUSERNAME := "alice" // string | User name (optional)
+	xSOURCE := "xSOURCE_example" // string | source (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.CloudRoutersApi.SearchRouterActions(context.Background(), routerId).CloudRouterActionsSearchRequest(cloudRouterActionsSearchRequest).Execute()
+	resp, r, err := apiClient.CloudRoutersApi.SearchRouterActions(context.Background(), routerId).CloudRouterActionsSearchRequest(cloudRouterActionsSearchRequest).XCORRELATIONID(xCORRELATIONID).XAUTHUSERNAME(xAUTHUSERNAME).XSOURCE(xSOURCE).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `CloudRoutersApi.SearchRouterActions``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -919,6 +1373,9 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
  **cloudRouterActionsSearchRequest** | [**CloudRouterActionsSearchRequest**](CloudRouterActionsSearchRequest.md) |  | 
+ **xCORRELATIONID** | **string** | Correlation identifier | 
+ **xAUTHUSERNAME** | **string** | User name | 
+ **xSOURCE** | **string** | source | 
 
 ### Return type
 
@@ -940,7 +1397,7 @@ Name | Type | Description  | Notes
 
 ## UpdateCloudRouterByUuid
 
-> CloudRouter UpdateCloudRouterByUuid(ctx, routerId).CloudRouterChangeOperation(cloudRouterChangeOperation).Execute()
+> CloudRouter UpdateCloudRouterByUuid(ctx, routerId).CloudRouterChangeOperation(cloudRouterChangeOperation).XCORRELATIONID(xCORRELATIONID).XAUTHUSERNAME(xAUTHUSERNAME).Execute()
 
 Update Routers
 
@@ -961,10 +1418,12 @@ import (
 func main() {
 	routerId := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | Cloud Router UUID
 	cloudRouterChangeOperation := []openapiclient.CloudRouterChangeOperation{*openapiclient.NewCloudRouterChangeOperation(openapiclient.precisionTimeChangeOperation_op("replace"), "Path_example", interface{}(123))} // []CloudRouterChangeOperation | 
+	xCORRELATIONID := "12345-6789-10123" // string | Correlation identifier (optional)
+	xAUTHUSERNAME := "alice" // string | User name (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.CloudRoutersApi.UpdateCloudRouterByUuid(context.Background(), routerId).CloudRouterChangeOperation(cloudRouterChangeOperation).Execute()
+	resp, r, err := apiClient.CloudRoutersApi.UpdateCloudRouterByUuid(context.Background(), routerId).CloudRouterChangeOperation(cloudRouterChangeOperation).XCORRELATIONID(xCORRELATIONID).XAUTHUSERNAME(xAUTHUSERNAME).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `CloudRoutersApi.UpdateCloudRouterByUuid``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -991,6 +1450,8 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
  **cloudRouterChangeOperation** | [**[]CloudRouterChangeOperation**](CloudRouterChangeOperation.md) |  | 
+ **xCORRELATIONID** | **string** | Correlation identifier | 
+ **xAUTHUSERNAME** | **string** | User name | 
 
 ### Return type
 

@@ -23,6 +23,27 @@ type ApiGetSubscriptionByIdRequest struct {
 	ctx            context.Context
 	ApiService     *MarketplaceSubscriptionsApiService
 	subscriptionId string
+	xCORRELATIONID *string
+	xPROJECTID     *string
+	xAUTHUSERNAME  *string
+}
+
+// Correlation identifier
+func (r ApiGetSubscriptionByIdRequest) XCORRELATIONID(xCORRELATIONID string) ApiGetSubscriptionByIdRequest {
+	r.xCORRELATIONID = &xCORRELATIONID
+	return r
+}
+
+// Project identifier
+func (r ApiGetSubscriptionByIdRequest) XPROJECTID(xPROJECTID string) ApiGetSubscriptionByIdRequest {
+	r.xPROJECTID = &xPROJECTID
+	return r
+}
+
+// User name
+func (r ApiGetSubscriptionByIdRequest) XAUTHUSERNAME(xAUTHUSERNAME string) ApiGetSubscriptionByIdRequest {
+	r.xAUTHUSERNAME = &xAUTHUSERNAME
+	return r
 }
 
 func (r ApiGetSubscriptionByIdRequest) Execute() (*SubscriptionResponse, *http.Response, error) {
@@ -85,6 +106,15 @@ func (a *MarketplaceSubscriptionsApiService) GetSubscriptionByIdExecute(r ApiGet
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	if r.xCORRELATIONID != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-CORRELATION-ID", r.xCORRELATIONID, "simple", "")
+	}
+	if r.xPROJECTID != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-PROJECT-ID", r.xPROJECTID, "simple", "")
+	}
+	if r.xAUTHUSERNAME != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-AUTH-USER-NAME", r.xAUTHUSERNAME, "simple", "")
 	}
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {

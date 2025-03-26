@@ -7,6 +7,7 @@ Name | Type | Description | Notes
 **Href** | Pointer to **string** | Network URI | [optional] [readonly] 
 **Uuid** | **string** | Equinix-assigned network identifier | 
 **Name** | Pointer to **string** | Customer-assigned network name | [optional] 
+**PlatformUuid** | Pointer to **string** | Equinix-assigned platform connection identifier | [optional] 
 **State** | Pointer to [**NetworkState**](NetworkState.md) |  | [optional] 
 **Account** | Pointer to [**SimplifiedAccount**](SimplifiedAccount.md) |  | [optional] 
 **Change** | Pointer to [**SimplifiedNetworkChange**](SimplifiedNetworkChange.md) |  | [optional] 
@@ -105,6 +106,31 @@ SetName sets Name field to given value.
 `func (o *SimplifiedNetwork) HasName() bool`
 
 HasName returns a boolean if a field has been set.
+
+### GetPlatformUuid
+
+`func (o *SimplifiedNetwork) GetPlatformUuid() string`
+
+GetPlatformUuid returns the PlatformUuid field if non-nil, zero value otherwise.
+
+### GetPlatformUuidOk
+
+`func (o *SimplifiedNetwork) GetPlatformUuidOk() (*string, bool)`
+
+GetPlatformUuidOk returns a tuple with the PlatformUuid field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetPlatformUuid
+
+`func (o *SimplifiedNetwork) SetPlatformUuid(v string)`
+
+SetPlatformUuid sets PlatformUuid field to given value.
+
+### HasPlatformUuid
+
+`func (o *SimplifiedNetwork) HasPlatformUuid() bool`
+
+HasPlatformUuid returns a boolean if a field has been set.
 
 ### GetState
 

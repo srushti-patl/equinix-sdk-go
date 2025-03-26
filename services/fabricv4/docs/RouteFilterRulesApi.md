@@ -18,7 +18,7 @@ Method | HTTP request | Description
 
 ## CreateRouteFilterRule
 
-> RouteFilterRulesData CreateRouteFilterRule(ctx, routeFilterId).RouteFilterRulesBase(routeFilterRulesBase).Execute()
+> RouteFilterRulesData CreateRouteFilterRule(ctx, routeFilterId).RouteFilterRulesBase(routeFilterRulesBase).XCORRELATIONID(xCORRELATIONID).XAUTHUSERNAME(xAUTHUSERNAME).XSOURCE(xSOURCE).Execute()
 
 Create Route Filter Rule
 
@@ -39,10 +39,13 @@ import (
 func main() {
 	routeFilterId := "routeFilterId_example" // string | Route Filters Id
 	routeFilterRulesBase := *openapiclient.NewRouteFilterRulesBase("192.168.0.0/24") // RouteFilterRulesBase | 
+	xCORRELATIONID := "xCORRELATIONID_example" // string | Correlation identifier (optional)
+	xAUTHUSERNAME := "xAUTHUSERNAME_example" // string | User name (optional)
+	xSOURCE := "xSOURCE_example" // string | source (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.RouteFilterRulesApi.CreateRouteFilterRule(context.Background(), routeFilterId).RouteFilterRulesBase(routeFilterRulesBase).Execute()
+	resp, r, err := apiClient.RouteFilterRulesApi.CreateRouteFilterRule(context.Background(), routeFilterId).RouteFilterRulesBase(routeFilterRulesBase).XCORRELATIONID(xCORRELATIONID).XAUTHUSERNAME(xAUTHUSERNAME).XSOURCE(xSOURCE).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `RouteFilterRulesApi.CreateRouteFilterRule``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -69,6 +72,9 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
  **routeFilterRulesBase** | [**RouteFilterRulesBase**](RouteFilterRulesBase.md) |  | 
+ **xCORRELATIONID** | **string** | Correlation identifier | 
+ **xAUTHUSERNAME** | **string** | User name | 
+ **xSOURCE** | **string** | source | 
 
 ### Return type
 
@@ -90,7 +96,7 @@ Name | Type | Description  | Notes
 
 ## CreateRouteFilterRulesInBulk
 
-> GetRouteFilterRulesResponse CreateRouteFilterRulesInBulk(ctx, routeFilterId).RouteFilterRulesPostRequest(routeFilterRulesPostRequest).Execute()
+> GetRouteFilterRulesResponse CreateRouteFilterRulesInBulk(ctx, routeFilterId).RouteFilterRulesPostRequest(routeFilterRulesPostRequest).XCORRELATIONID(xCORRELATIONID).XAUTHUSERNAME(xAUTHUSERNAME).XSOURCE(xSOURCE).Execute()
 
 Bulk Create Route Filter Rules
 
@@ -111,10 +117,13 @@ import (
 func main() {
 	routeFilterId := "routeFilterId_example" // string | Route Filters Id
 	routeFilterRulesPostRequest := *openapiclient.NewRouteFilterRulesPostRequest() // RouteFilterRulesPostRequest | 
+	xCORRELATIONID := "xCORRELATIONID_example" // string | Correlation identifier (optional)
+	xAUTHUSERNAME := "xAUTHUSERNAME_example" // string | User name (optional)
+	xSOURCE := "xSOURCE_example" // string | source (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.RouteFilterRulesApi.CreateRouteFilterRulesInBulk(context.Background(), routeFilterId).RouteFilterRulesPostRequest(routeFilterRulesPostRequest).Execute()
+	resp, r, err := apiClient.RouteFilterRulesApi.CreateRouteFilterRulesInBulk(context.Background(), routeFilterId).RouteFilterRulesPostRequest(routeFilterRulesPostRequest).XCORRELATIONID(xCORRELATIONID).XAUTHUSERNAME(xAUTHUSERNAME).XSOURCE(xSOURCE).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `RouteFilterRulesApi.CreateRouteFilterRulesInBulk``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -141,6 +150,9 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
  **routeFilterRulesPostRequest** | [**RouteFilterRulesPostRequest**](RouteFilterRulesPostRequest.md) |  | 
+ **xCORRELATIONID** | **string** | Correlation identifier | 
+ **xAUTHUSERNAME** | **string** | User name | 
+ **xSOURCE** | **string** | source | 
 
 ### Return type
 
@@ -162,7 +174,7 @@ Name | Type | Description  | Notes
 
 ## DeleteRouteFilterRuleByUuid
 
-> RouteFilterRulesData DeleteRouteFilterRuleByUuid(ctx, routeFilterId, routeFilterRuleId).Execute()
+> RouteFilterRulesData DeleteRouteFilterRuleByUuid(ctx, routeFilterId, routeFilterRuleId).XCORRELATIONID(xCORRELATIONID).XAUTHUSERNAME(xAUTHUSERNAME).XSOURCE(xSOURCE).Execute()
 
 Delete Route Filter Rule
 
@@ -183,10 +195,13 @@ import (
 func main() {
 	routeFilterId := "routeFilterId_example" // string | Route Filters Id
 	routeFilterRuleId := "routeFilterRuleId_example" // string | Route  Filter  Rules Id
+	xCORRELATIONID := "xCORRELATIONID_example" // string | Correlation identifier (optional)
+	xAUTHUSERNAME := "xAUTHUSERNAME_example" // string | User name (optional)
+	xSOURCE := "xSOURCE_example" // string | source (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.RouteFilterRulesApi.DeleteRouteFilterRuleByUuid(context.Background(), routeFilterId, routeFilterRuleId).Execute()
+	resp, r, err := apiClient.RouteFilterRulesApi.DeleteRouteFilterRuleByUuid(context.Background(), routeFilterId, routeFilterRuleId).XCORRELATIONID(xCORRELATIONID).XAUTHUSERNAME(xAUTHUSERNAME).XSOURCE(xSOURCE).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `RouteFilterRulesApi.DeleteRouteFilterRuleByUuid``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -214,6 +229,9 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
 
+ **xCORRELATIONID** | **string** | Correlation identifier | 
+ **xAUTHUSERNAME** | **string** | User name | 
+ **xSOURCE** | **string** | source | 
 
 ### Return type
 
@@ -235,7 +253,7 @@ Name | Type | Description  | Notes
 
 ## GetRouteFilterRuleByUuid
 
-> RouteFilterRulesData GetRouteFilterRuleByUuid(ctx, routeFilterId, routeFilterRuleId).Execute()
+> RouteFilterRulesData GetRouteFilterRuleByUuid(ctx, routeFilterId, routeFilterRuleId).XCORRELATIONID(xCORRELATIONID).XAUTHUSERNAME(xAUTHUSERNAME).XSOURCE(xSOURCE).Execute()
 
 Get Route Filter Rule By UUID
 
@@ -256,10 +274,13 @@ import (
 func main() {
 	routeFilterId := "routeFilterId_example" // string | Route Filters Id
 	routeFilterRuleId := "routeFilterRuleId_example" // string | Route  Filter  Rules Id
+	xCORRELATIONID := "xCORRELATIONID_example" // string | Correlation identifier (optional)
+	xAUTHUSERNAME := "xAUTHUSERNAME_example" // string | User name (optional)
+	xSOURCE := "xSOURCE_example" // string | source (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.RouteFilterRulesApi.GetRouteFilterRuleByUuid(context.Background(), routeFilterId, routeFilterRuleId).Execute()
+	resp, r, err := apiClient.RouteFilterRulesApi.GetRouteFilterRuleByUuid(context.Background(), routeFilterId, routeFilterRuleId).XCORRELATIONID(xCORRELATIONID).XAUTHUSERNAME(xAUTHUSERNAME).XSOURCE(xSOURCE).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `RouteFilterRulesApi.GetRouteFilterRuleByUuid``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -287,6 +308,9 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
 
+ **xCORRELATIONID** | **string** | Correlation identifier | 
+ **xAUTHUSERNAME** | **string** | User name | 
+ **xSOURCE** | **string** | source | 
 
 ### Return type
 
@@ -308,7 +332,7 @@ Name | Type | Description  | Notes
 
 ## GetRouteFilterRuleChangeByUuid
 
-> RouteFilterRulesChangeData GetRouteFilterRuleChangeByUuid(ctx, routeFilterId, routeFilterRuleId, changeId).Execute()
+> RouteFilterRulesChangeData GetRouteFilterRuleChangeByUuid(ctx, routeFilterId, routeFilterRuleId, changeId).XCORRELATIONID(xCORRELATIONID).XAUTHUSERNAME(xAUTHUSERNAME).Execute()
 
 Get Change By ID
 
@@ -330,10 +354,12 @@ func main() {
 	routeFilterId := "routeFilterId_example" // string | Route Filters Id
 	routeFilterRuleId := "routeFilterRuleId_example" // string | Route  Filter  Rules Id
 	changeId := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | Route Filter Rule Change UUID
+	xCORRELATIONID := "12345-6789-10123" // string | Correlation identifier (optional)
+	xAUTHUSERNAME := "alice" // string | User name (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.RouteFilterRulesApi.GetRouteFilterRuleChangeByUuid(context.Background(), routeFilterId, routeFilterRuleId, changeId).Execute()
+	resp, r, err := apiClient.RouteFilterRulesApi.GetRouteFilterRuleChangeByUuid(context.Background(), routeFilterId, routeFilterRuleId, changeId).XCORRELATIONID(xCORRELATIONID).XAUTHUSERNAME(xAUTHUSERNAME).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `RouteFilterRulesApi.GetRouteFilterRuleChangeByUuid``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -363,6 +389,8 @@ Name | Type | Description  | Notes
 
 
 
+ **xCORRELATIONID** | **string** | Correlation identifier | 
+ **xAUTHUSERNAME** | **string** | User name | 
 
 ### Return type
 
@@ -384,7 +412,7 @@ Name | Type | Description  | Notes
 
 ## GetRouteFilterRuleChanges
 
-> RouteFilterRulesChangeDataResponse GetRouteFilterRuleChanges(ctx, routeFilterId, routeFilterRuleId).Offset(offset).Limit(limit).Execute()
+> RouteFilterRulesChangeDataResponse GetRouteFilterRuleChanges(ctx, routeFilterId, routeFilterRuleId).XCORRELATIONID(xCORRELATIONID).XAUTHUSERNAME(xAUTHUSERNAME).Offset(offset).Limit(limit).Execute()
 
 Get All Changes
 
@@ -405,12 +433,14 @@ import (
 func main() {
 	routeFilterId := "routeFilterId_example" // string | Route Filters Id
 	routeFilterRuleId := "routeFilterRuleId_example" // string | Route  Filter  Rules Id
+	xCORRELATIONID := "12345-6789-10123" // string | Correlation identifier (optional)
+	xAUTHUSERNAME := "alice" // string | User name (optional)
 	offset := int32(1) // int32 | offset (optional)
 	limit := int32(10) // int32 | number of records to fetch (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.RouteFilterRulesApi.GetRouteFilterRuleChanges(context.Background(), routeFilterId, routeFilterRuleId).Offset(offset).Limit(limit).Execute()
+	resp, r, err := apiClient.RouteFilterRulesApi.GetRouteFilterRuleChanges(context.Background(), routeFilterId, routeFilterRuleId).XCORRELATIONID(xCORRELATIONID).XAUTHUSERNAME(xAUTHUSERNAME).Offset(offset).Limit(limit).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `RouteFilterRulesApi.GetRouteFilterRuleChanges``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -438,6 +468,8 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
 
+ **xCORRELATIONID** | **string** | Correlation identifier | 
+ **xAUTHUSERNAME** | **string** | User name | 
  **offset** | **int32** | offset | 
  **limit** | **int32** | number of records to fetch | 
 
@@ -461,7 +493,7 @@ Name | Type | Description  | Notes
 
 ## GetRouteFilterRules
 
-> GetRouteFilterRulesResponse GetRouteFilterRules(ctx, routeFilterId).Offset(offset).Limit(limit).Execute()
+> GetRouteFilterRulesResponse GetRouteFilterRules(ctx, routeFilterId).XCORRELATIONID(xCORRELATIONID).XAUTHUSERNAME(xAUTHUSERNAME).XSOURCE(xSOURCE).Offset(offset).Limit(limit).Execute()
 
 Get Route Filter Rules
 
@@ -481,12 +513,15 @@ import (
 
 func main() {
 	routeFilterId := "routeFilterId_example" // string | Route Filters Id
+	xCORRELATIONID := "xCORRELATIONID_example" // string | Correlation identifier (optional)
+	xAUTHUSERNAME := "xAUTHUSERNAME_example" // string | User name (optional)
+	xSOURCE := "xSOURCE_example" // string | source (optional)
 	offset := int32(1) // int32 | offset (optional)
 	limit := int32(10) // int32 | number of records to fetch (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.RouteFilterRulesApi.GetRouteFilterRules(context.Background(), routeFilterId).Offset(offset).Limit(limit).Execute()
+	resp, r, err := apiClient.RouteFilterRulesApi.GetRouteFilterRules(context.Background(), routeFilterId).XCORRELATIONID(xCORRELATIONID).XAUTHUSERNAME(xAUTHUSERNAME).XSOURCE(xSOURCE).Offset(offset).Limit(limit).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `RouteFilterRulesApi.GetRouteFilterRules``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -512,6 +547,9 @@ Other parameters are passed through a pointer to a apiGetRouteFilterRulesRequest
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
+ **xCORRELATIONID** | **string** | Correlation identifier | 
+ **xAUTHUSERNAME** | **string** | User name | 
+ **xSOURCE** | **string** | source | 
  **offset** | **int32** | offset | 
  **limit** | **int32** | number of records to fetch | 
 
@@ -535,7 +573,7 @@ Name | Type | Description  | Notes
 
 ## PatchRouteFilterRuleByUuid
 
-> RouteFilterRulesData PatchRouteFilterRuleByUuid(ctx, routeFilterId, routeFilterRuleId).RouteFilterRulesPatchRequestItem(routeFilterRulesPatchRequestItem).Execute()
+> RouteFilterRulesData PatchRouteFilterRuleByUuid(ctx, routeFilterId, routeFilterRuleId).RouteFilterRulesPatchRequestItem(routeFilterRulesPatchRequestItem).XCORRELATIONID(xCORRELATIONID).XAUTHUSERNAME(xAUTHUSERNAME).XSOURCE(xSOURCE).Execute()
 
 Patch Route Filter Rule
 
@@ -557,10 +595,13 @@ func main() {
 	routeFilterId := "routeFilterId_example" // string | Route Filters Id
 	routeFilterRuleId := "routeFilterRuleId_example" // string | Route  Filter  Rules Id
 	routeFilterRulesPatchRequestItem := []openapiclient.RouteFilterRulesPatchRequestItem{*openapiclient.NewRouteFilterRulesPatchRequestItem("replace", "/prefixMatch", interface{}(123))} // []RouteFilterRulesPatchRequestItem | 
+	xCORRELATIONID := "xCORRELATIONID_example" // string | Correlation identifier (optional)
+	xAUTHUSERNAME := "xAUTHUSERNAME_example" // string | User name (optional)
+	xSOURCE := "xSOURCE_example" // string | source (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.RouteFilterRulesApi.PatchRouteFilterRuleByUuid(context.Background(), routeFilterId, routeFilterRuleId).RouteFilterRulesPatchRequestItem(routeFilterRulesPatchRequestItem).Execute()
+	resp, r, err := apiClient.RouteFilterRulesApi.PatchRouteFilterRuleByUuid(context.Background(), routeFilterId, routeFilterRuleId).RouteFilterRulesPatchRequestItem(routeFilterRulesPatchRequestItem).XCORRELATIONID(xCORRELATIONID).XAUTHUSERNAME(xAUTHUSERNAME).XSOURCE(xSOURCE).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `RouteFilterRulesApi.PatchRouteFilterRuleByUuid``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -589,6 +630,9 @@ Name | Type | Description  | Notes
 
 
  **routeFilterRulesPatchRequestItem** | [**[]RouteFilterRulesPatchRequestItem**](RouteFilterRulesPatchRequestItem.md) |  | 
+ **xCORRELATIONID** | **string** | Correlation identifier | 
+ **xAUTHUSERNAME** | **string** | User name | 
+ **xSOURCE** | **string** | source | 
 
 ### Return type
 
@@ -610,7 +654,7 @@ Name | Type | Description  | Notes
 
 ## ReplaceRouteFilterRuleByUuid
 
-> RouteFilterRulesData ReplaceRouteFilterRuleByUuid(ctx, routeFilterId, routeFilterRuleId).RouteFilterRulesBase(routeFilterRulesBase).Execute()
+> RouteFilterRulesData ReplaceRouteFilterRuleByUuid(ctx, routeFilterId, routeFilterRuleId).RouteFilterRulesBase(routeFilterRulesBase).XCORRELATIONID(xCORRELATIONID).XAUTHUSERNAME(xAUTHUSERNAME).XSOURCE(xSOURCE).Execute()
 
 Replace Route Filter Rule
 
@@ -632,10 +676,13 @@ func main() {
 	routeFilterId := "routeFilterId_example" // string | Route Filters Id
 	routeFilterRuleId := "routeFilterRuleId_example" // string | Route  Filter  Rules Id
 	routeFilterRulesBase := *openapiclient.NewRouteFilterRulesBase("192.168.0.0/24") // RouteFilterRulesBase | 
+	xCORRELATIONID := "xCORRELATIONID_example" // string | Correlation identifier (optional)
+	xAUTHUSERNAME := "xAUTHUSERNAME_example" // string | User name (optional)
+	xSOURCE := "xSOURCE_example" // string | source (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.RouteFilterRulesApi.ReplaceRouteFilterRuleByUuid(context.Background(), routeFilterId, routeFilterRuleId).RouteFilterRulesBase(routeFilterRulesBase).Execute()
+	resp, r, err := apiClient.RouteFilterRulesApi.ReplaceRouteFilterRuleByUuid(context.Background(), routeFilterId, routeFilterRuleId).RouteFilterRulesBase(routeFilterRulesBase).XCORRELATIONID(xCORRELATIONID).XAUTHUSERNAME(xAUTHUSERNAME).XSOURCE(xSOURCE).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `RouteFilterRulesApi.ReplaceRouteFilterRuleByUuid``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -664,6 +711,9 @@ Name | Type | Description  | Notes
 
 
  **routeFilterRulesBase** | [**RouteFilterRulesBase**](RouteFilterRulesBase.md) |  | 
+ **xCORRELATIONID** | **string** | Correlation identifier | 
+ **xAUTHUSERNAME** | **string** | User name | 
+ **xSOURCE** | **string** | source | 
 
 ### Return type
 

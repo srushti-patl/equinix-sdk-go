@@ -23,10 +23,31 @@ type ApiCreateStreamsRequest struct {
 	ctx               context.Context
 	ApiService        *StreamsApiService
 	streamPostRequest *StreamPostRequest
+	xCORRELATIONID    *string
+	xAUTHUSERNAME     *string
+	xSOURCE           *string
 }
 
 func (r ApiCreateStreamsRequest) StreamPostRequest(streamPostRequest StreamPostRequest) ApiCreateStreamsRequest {
 	r.streamPostRequest = &streamPostRequest
+	return r
+}
+
+// Correlation identifier
+func (r ApiCreateStreamsRequest) XCORRELATIONID(xCORRELATIONID string) ApiCreateStreamsRequest {
+	r.xCORRELATIONID = &xCORRELATIONID
+	return r
+}
+
+// User name
+func (r ApiCreateStreamsRequest) XAUTHUSERNAME(xAUTHUSERNAME string) ApiCreateStreamsRequest {
+	r.xAUTHUSERNAME = &xAUTHUSERNAME
+	return r
+}
+
+// source
+func (r ApiCreateStreamsRequest) XSOURCE(xSOURCE string) ApiCreateStreamsRequest {
+	r.xSOURCE = &xSOURCE
 	return r
 }
 
@@ -90,6 +111,15 @@ func (a *StreamsApiService) CreateStreamsExecute(r ApiCreateStreamsRequest) (*St
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	if r.xCORRELATIONID != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-CORRELATION-ID", r.xCORRELATIONID, "simple", "")
+	}
+	if r.xAUTHUSERNAME != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-AUTH-USER-NAME", r.xAUTHUSERNAME, "simple", "")
+	}
+	if r.xSOURCE != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-SOURCE", r.xSOURCE, "simple", "")
 	}
 	// body params
 	localVarPostBody = r.streamPostRequest
@@ -185,11 +215,25 @@ func (a *StreamsApiService) CreateStreamsExecute(r ApiCreateStreamsRequest) (*St
 }
 
 type ApiDeleteStreamAssetByUuidRequest struct {
-	ctx        context.Context
-	ApiService *StreamsApiService
-	assetId    string
-	asset      Asset
-	streamId   string
+	ctx            context.Context
+	ApiService     *StreamsApiService
+	assetId        string
+	asset          Asset
+	streamId       string
+	xCORRELATIONID *string
+	xAUTHUSERNAME  *string
+}
+
+// Correlation identifier
+func (r ApiDeleteStreamAssetByUuidRequest) XCORRELATIONID(xCORRELATIONID string) ApiDeleteStreamAssetByUuidRequest {
+	r.xCORRELATIONID = &xCORRELATIONID
+	return r
+}
+
+// User name
+func (r ApiDeleteStreamAssetByUuidRequest) XAUTHUSERNAME(xAUTHUSERNAME string) ApiDeleteStreamAssetByUuidRequest {
+	r.xAUTHUSERNAME = &xAUTHUSERNAME
+	return r
 }
 
 func (r ApiDeleteStreamAssetByUuidRequest) Execute() (*StreamAsset, *http.Response, error) {
@@ -258,6 +302,12 @@ func (a *StreamsApiService) DeleteStreamAssetByUuidExecute(r ApiDeleteStreamAsse
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	if r.xCORRELATIONID != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-CORRELATION-ID", r.xCORRELATIONID, "simple", "")
+	}
+	if r.xAUTHUSERNAME != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-AUTH-USER-NAME", r.xAUTHUSERNAME, "simple", "")
 	}
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
@@ -351,9 +401,23 @@ func (a *StreamsApiService) DeleteStreamAssetByUuidExecute(r ApiDeleteStreamAsse
 }
 
 type ApiDeleteStreamByUuidRequest struct {
-	ctx        context.Context
-	ApiService *StreamsApiService
-	streamId   string
+	ctx            context.Context
+	ApiService     *StreamsApiService
+	streamId       string
+	xCORRELATIONID *string
+	xAUTHUSERNAME  *string
+}
+
+// Correlation identifier
+func (r ApiDeleteStreamByUuidRequest) XCORRELATIONID(xCORRELATIONID string) ApiDeleteStreamByUuidRequest {
+	r.xCORRELATIONID = &xCORRELATIONID
+	return r
+}
+
+// User name
+func (r ApiDeleteStreamByUuidRequest) XAUTHUSERNAME(xAUTHUSERNAME string) ApiDeleteStreamByUuidRequest {
+	r.xAUTHUSERNAME = &xAUTHUSERNAME
+	return r
 }
 
 func (r ApiDeleteStreamByUuidRequest) Execute() (*Stream, *http.Response, error) {
@@ -416,6 +480,12 @@ func (a *StreamsApiService) DeleteStreamByUuidExecute(r ApiDeleteStreamByUuidReq
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	if r.xCORRELATIONID != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-CORRELATION-ID", r.xCORRELATIONID, "simple", "")
+	}
+	if r.xAUTHUSERNAME != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-AUTH-USER-NAME", r.xAUTHUSERNAME, "simple", "")
 	}
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
@@ -509,11 +579,25 @@ func (a *StreamsApiService) DeleteStreamByUuidExecute(r ApiDeleteStreamByUuidReq
 }
 
 type ApiGetStreamAssetByUuidRequest struct {
-	ctx        context.Context
-	ApiService *StreamsApiService
-	assetId    string
-	asset      Asset
-	streamId   string
+	ctx            context.Context
+	ApiService     *StreamsApiService
+	assetId        string
+	asset          Asset
+	streamId       string
+	xCORRELATIONID *string
+	xAUTHUSERNAME  *string
+}
+
+// Correlation identifier
+func (r ApiGetStreamAssetByUuidRequest) XCORRELATIONID(xCORRELATIONID string) ApiGetStreamAssetByUuidRequest {
+	r.xCORRELATIONID = &xCORRELATIONID
+	return r
+}
+
+// User name
+func (r ApiGetStreamAssetByUuidRequest) XAUTHUSERNAME(xAUTHUSERNAME string) ApiGetStreamAssetByUuidRequest {
+	r.xAUTHUSERNAME = &xAUTHUSERNAME
+	return r
 }
 
 func (r ApiGetStreamAssetByUuidRequest) Execute() (*StreamAsset, *http.Response, error) {
@@ -582,6 +666,12 @@ func (a *StreamsApiService) GetStreamAssetByUuidExecute(r ApiGetStreamAssetByUui
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	if r.xCORRELATIONID != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-CORRELATION-ID", r.xCORRELATIONID, "simple", "")
+	}
+	if r.xAUTHUSERNAME != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-AUTH-USER-NAME", r.xAUTHUSERNAME, "simple", "")
 	}
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
@@ -675,9 +765,23 @@ func (a *StreamsApiService) GetStreamAssetByUuidExecute(r ApiGetStreamAssetByUui
 }
 
 type ApiGetStreamByUuidRequest struct {
-	ctx        context.Context
-	ApiService *StreamsApiService
-	streamId   string
+	ctx            context.Context
+	ApiService     *StreamsApiService
+	streamId       string
+	xCORRELATIONID *string
+	xAUTHUSERNAME  *string
+}
+
+// Correlation identifier
+func (r ApiGetStreamByUuidRequest) XCORRELATIONID(xCORRELATIONID string) ApiGetStreamByUuidRequest {
+	r.xCORRELATIONID = &xCORRELATIONID
+	return r
+}
+
+// User name
+func (r ApiGetStreamByUuidRequest) XAUTHUSERNAME(xAUTHUSERNAME string) ApiGetStreamByUuidRequest {
+	r.xAUTHUSERNAME = &xAUTHUSERNAME
+	return r
 }
 
 func (r ApiGetStreamByUuidRequest) Execute() (*Stream, *http.Response, error) {
@@ -740,6 +844,12 @@ func (a *StreamsApiService) GetStreamByUuidExecute(r ApiGetStreamByUuidRequest) 
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	if r.xCORRELATIONID != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-CORRELATION-ID", r.xCORRELATIONID, "simple", "")
+	}
+	if r.xAUTHUSERNAME != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-AUTH-USER-NAME", r.xAUTHUSERNAME, "simple", "")
 	}
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
@@ -833,10 +943,24 @@ func (a *StreamsApiService) GetStreamByUuidExecute(r ApiGetStreamByUuidRequest) 
 }
 
 type ApiGetStreamsRequest struct {
-	ctx        context.Context
-	ApiService *StreamsApiService
-	offset     *int32
-	limit      *int32
+	ctx            context.Context
+	ApiService     *StreamsApiService
+	xCORRELATIONID *string
+	xAUTHUSERNAME  *string
+	offset         *int32
+	limit          *int32
+}
+
+// Correlation identifier
+func (r ApiGetStreamsRequest) XCORRELATIONID(xCORRELATIONID string) ApiGetStreamsRequest {
+	r.xCORRELATIONID = &xCORRELATIONID
+	return r
+}
+
+// User name
+func (r ApiGetStreamsRequest) XAUTHUSERNAME(xAUTHUSERNAME string) ApiGetStreamsRequest {
+	r.xAUTHUSERNAME = &xAUTHUSERNAME
+	return r
 }
 
 // offset
@@ -914,6 +1038,12 @@ func (a *StreamsApiService) GetStreamsExecute(r ApiGetStreamsRequest) (*GetAllSt
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	if r.xCORRELATIONID != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-CORRELATION-ID", r.xCORRELATIONID, "simple", "")
+	}
+	if r.xAUTHUSERNAME != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-AUTH-USER-NAME", r.xAUTHUSERNAME, "simple", "")
 	}
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
@@ -999,12 +1129,26 @@ type ApiGetStreamsAssetsRequest struct {
 	ctx                      context.Context
 	ApiService               *StreamsApiService
 	streamAssetSearchRequest *StreamAssetSearchRequest
+	xCORRELATIONID           *string
+	xAUTHUSERNAME            *string
 	offset                   *int32
 	limit                    *int32
 }
 
 func (r ApiGetStreamsAssetsRequest) StreamAssetSearchRequest(streamAssetSearchRequest StreamAssetSearchRequest) ApiGetStreamsAssetsRequest {
 	r.streamAssetSearchRequest = &streamAssetSearchRequest
+	return r
+}
+
+// Correlation identifier
+func (r ApiGetStreamsAssetsRequest) XCORRELATIONID(xCORRELATIONID string) ApiGetStreamsAssetsRequest {
+	r.xCORRELATIONID = &xCORRELATIONID
+	return r
+}
+
+// User name
+func (r ApiGetStreamsAssetsRequest) XAUTHUSERNAME(xAUTHUSERNAME string) ApiGetStreamsAssetsRequest {
+	r.xAUTHUSERNAME = &xAUTHUSERNAME
 	return r
 }
 
@@ -1086,6 +1230,12 @@ func (a *StreamsApiService) GetStreamsAssetsExecute(r ApiGetStreamsAssetsRequest
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	if r.xCORRELATIONID != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-CORRELATION-ID", r.xCORRELATIONID, "simple", "")
+	}
+	if r.xAUTHUSERNAME != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-AUTH-USER-NAME", r.xAUTHUSERNAME, "simple", "")
 	}
 	// body params
 	localVarPostBody = r.streamAssetSearchRequest
@@ -1176,10 +1326,24 @@ type ApiUpdateStreamAssetByUuidRequest struct {
 	asset                 Asset
 	streamId              string
 	streamAssetPutRequest *StreamAssetPutRequest
+	xCORRELATIONID        *string
+	xAUTHUSERNAME         *string
 }
 
 func (r ApiUpdateStreamAssetByUuidRequest) StreamAssetPutRequest(streamAssetPutRequest StreamAssetPutRequest) ApiUpdateStreamAssetByUuidRequest {
 	r.streamAssetPutRequest = &streamAssetPutRequest
+	return r
+}
+
+// Correlation identifier
+func (r ApiUpdateStreamAssetByUuidRequest) XCORRELATIONID(xCORRELATIONID string) ApiUpdateStreamAssetByUuidRequest {
+	r.xCORRELATIONID = &xCORRELATIONID
+	return r
+}
+
+// User name
+func (r ApiUpdateStreamAssetByUuidRequest) XAUTHUSERNAME(xAUTHUSERNAME string) ApiUpdateStreamAssetByUuidRequest {
+	r.xAUTHUSERNAME = &xAUTHUSERNAME
 	return r
 }
 
@@ -1252,6 +1416,12 @@ func (a *StreamsApiService) UpdateStreamAssetByUuidExecute(r ApiUpdateStreamAsse
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	if r.xCORRELATIONID != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-CORRELATION-ID", r.xCORRELATIONID, "simple", "")
+	}
+	if r.xAUTHUSERNAME != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-AUTH-USER-NAME", r.xAUTHUSERNAME, "simple", "")
 	}
 	// body params
 	localVarPostBody = r.streamAssetPutRequest
@@ -1362,10 +1532,24 @@ type ApiUpdateStreamByUuidRequest struct {
 	ApiService       *StreamsApiService
 	streamId         string
 	streamPutRequest *StreamPutRequest
+	xCORRELATIONID   *string
+	xAUTHUSERNAME    *string
 }
 
 func (r ApiUpdateStreamByUuidRequest) StreamPutRequest(streamPutRequest StreamPutRequest) ApiUpdateStreamByUuidRequest {
 	r.streamPutRequest = &streamPutRequest
+	return r
+}
+
+// Correlation identifier
+func (r ApiUpdateStreamByUuidRequest) XCORRELATIONID(xCORRELATIONID string) ApiUpdateStreamByUuidRequest {
+	r.xCORRELATIONID = &xCORRELATIONID
+	return r
+}
+
+// User name
+func (r ApiUpdateStreamByUuidRequest) XAUTHUSERNAME(xAUTHUSERNAME string) ApiUpdateStreamByUuidRequest {
+	r.xAUTHUSERNAME = &xAUTHUSERNAME
 	return r
 }
 
@@ -1432,6 +1616,12 @@ func (a *StreamsApiService) UpdateStreamByUuidExecute(r ApiUpdateStreamByUuidReq
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	if r.xCORRELATIONID != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-CORRELATION-ID", r.xCORRELATIONID, "simple", "")
+	}
+	if r.xAUTHUSERNAME != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-AUTH-USER-NAME", r.xAUTHUSERNAME, "simple", "")
 	}
 	// body params
 	localVarPostBody = r.streamPutRequest

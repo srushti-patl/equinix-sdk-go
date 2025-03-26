@@ -17,7 +17,7 @@ Method | HTTP request | Description
 
 ## CreateNetwork
 
-> Network CreateNetwork(ctx).NetworkPostRequest(networkPostRequest).DryRun(dryRun).Execute()
+> Network CreateNetwork(ctx).NetworkPostRequest(networkPostRequest).XCORRELATIONID(xCORRELATIONID).XAUTHUSERNAME(xAUTHUSERNAME).DryRun(dryRun).Execute()
 
 Create Network
 
@@ -37,11 +37,13 @@ import (
 
 func main() {
 	networkPostRequest := *openapiclient.NewNetworkPostRequest(openapiclient.NetworkType("EVPLAN"), "Name_example", openapiclient.NetworkScope("REGIONAL"), []openapiclient.SimplifiedNotification{*openapiclient.NewSimplifiedNotification(openapiclient.SimplifiedNotification_type("NOTIFICATION"), []string{"Emails_example"})}) // NetworkPostRequest | 
+	xCORRELATIONID := "12345-6789-10123" // string | Correlation identifier (optional)
+	xAUTHUSERNAME := "alice" // string | User name (optional)
 	dryRun := true // bool | option to verify that API calls will succeed (optional) (default to false)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.NetworksApi.CreateNetwork(context.Background()).NetworkPostRequest(networkPostRequest).DryRun(dryRun).Execute()
+	resp, r, err := apiClient.NetworksApi.CreateNetwork(context.Background()).NetworkPostRequest(networkPostRequest).XCORRELATIONID(xCORRELATIONID).XAUTHUSERNAME(xAUTHUSERNAME).DryRun(dryRun).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `NetworksApi.CreateNetwork``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -63,6 +65,8 @@ Other parameters are passed through a pointer to a apiCreateNetworkRequest struc
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **networkPostRequest** | [**NetworkPostRequest**](NetworkPostRequest.md) |  | 
+ **xCORRELATIONID** | **string** | Correlation identifier | 
+ **xAUTHUSERNAME** | **string** | User name | 
  **dryRun** | **bool** | option to verify that API calls will succeed | [default to false]
 
 ### Return type
@@ -85,7 +89,7 @@ Name | Type | Description  | Notes
 
 ## DeleteNetworkByUuid
 
-> Network DeleteNetworkByUuid(ctx, networkId).Execute()
+> Network DeleteNetworkByUuid(ctx, networkId).XCORRELATIONID(xCORRELATIONID).XAUTHUSERNAME(xAUTHUSERNAME).Execute()
 
 Delete Network By ID
 
@@ -105,10 +109,12 @@ import (
 
 func main() {
 	networkId := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | Network UUID
+	xCORRELATIONID := "12345-6789-10123" // string | Correlation identifier (optional)
+	xAUTHUSERNAME := "alice" // string | User name (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.NetworksApi.DeleteNetworkByUuid(context.Background(), networkId).Execute()
+	resp, r, err := apiClient.NetworksApi.DeleteNetworkByUuid(context.Background(), networkId).XCORRELATIONID(xCORRELATIONID).XAUTHUSERNAME(xAUTHUSERNAME).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `NetworksApi.DeleteNetworkByUuid``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -134,6 +140,8 @@ Other parameters are passed through a pointer to a apiDeleteNetworkByUuidRequest
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
+ **xCORRELATIONID** | **string** | Correlation identifier | 
+ **xAUTHUSERNAME** | **string** | User name | 
 
 ### Return type
 
@@ -155,7 +163,7 @@ Name | Type | Description  | Notes
 
 ## GetConnectionsByNetworkUuid
 
-> NetworkConnections GetConnectionsByNetworkUuid(ctx, networkId).Execute()
+> NetworkConnections GetConnectionsByNetworkUuid(ctx, networkId).XCORRELATIONID(xCORRELATIONID).XAUTHUSERNAME(xAUTHUSERNAME).Execute()
 
 Get Connections
 
@@ -175,10 +183,12 @@ import (
 
 func main() {
 	networkId := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | Network UUID
+	xCORRELATIONID := "12345-6789-10123" // string | Correlation identifier (optional)
+	xAUTHUSERNAME := "alice" // string | User name (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.NetworksApi.GetConnectionsByNetworkUuid(context.Background(), networkId).Execute()
+	resp, r, err := apiClient.NetworksApi.GetConnectionsByNetworkUuid(context.Background(), networkId).XCORRELATIONID(xCORRELATIONID).XAUTHUSERNAME(xAUTHUSERNAME).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `NetworksApi.GetConnectionsByNetworkUuid``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -204,6 +214,8 @@ Other parameters are passed through a pointer to a apiGetConnectionsByNetworkUui
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
+ **xCORRELATIONID** | **string** | Correlation identifier | 
+ **xAUTHUSERNAME** | **string** | User name | 
 
 ### Return type
 
@@ -225,7 +237,7 @@ Name | Type | Description  | Notes
 
 ## GetNetworkByUuid
 
-> Network GetNetworkByUuid(ctx, networkId).Execute()
+> Network GetNetworkByUuid(ctx, networkId).XCORRELATIONID(xCORRELATIONID).XAUTHUSERNAME(xAUTHUSERNAME).Execute()
 
 Get Network By ID
 
@@ -245,10 +257,12 @@ import (
 
 func main() {
 	networkId := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | Network UUID
+	xCORRELATIONID := "12345-6789-10123" // string | Correlation identifier (optional)
+	xAUTHUSERNAME := "alice" // string | User name (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.NetworksApi.GetNetworkByUuid(context.Background(), networkId).Execute()
+	resp, r, err := apiClient.NetworksApi.GetNetworkByUuid(context.Background(), networkId).XCORRELATIONID(xCORRELATIONID).XAUTHUSERNAME(xAUTHUSERNAME).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `NetworksApi.GetNetworkByUuid``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -274,6 +288,8 @@ Other parameters are passed through a pointer to a apiGetNetworkByUuidRequest st
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
+ **xCORRELATIONID** | **string** | Correlation identifier | 
+ **xAUTHUSERNAME** | **string** | User name | 
 
 ### Return type
 
@@ -295,7 +311,7 @@ Name | Type | Description  | Notes
 
 ## GetNetworkChangeByUuid
 
-> NetworkChange GetNetworkChangeByUuid(ctx, networkId, changeId).Execute()
+> NetworkChange GetNetworkChangeByUuid(ctx, networkId, changeId).XCORRELATIONID(xCORRELATIONID).XAUTHUSERNAME(xAUTHUSERNAME).Execute()
 
 Get Change By ID
 
@@ -316,10 +332,12 @@ import (
 func main() {
 	networkId := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | Network UUID
 	changeId := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | Network Change UUID
+	xCORRELATIONID := "12345-6789-10123" // string | Correlation identifier (optional)
+	xAUTHUSERNAME := "alice" // string | User name (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.NetworksApi.GetNetworkChangeByUuid(context.Background(), networkId, changeId).Execute()
+	resp, r, err := apiClient.NetworksApi.GetNetworkChangeByUuid(context.Background(), networkId, changeId).XCORRELATIONID(xCORRELATIONID).XAUTHUSERNAME(xAUTHUSERNAME).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `NetworksApi.GetNetworkChangeByUuid``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -347,6 +365,8 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
 
+ **xCORRELATIONID** | **string** | Correlation identifier | 
+ **xAUTHUSERNAME** | **string** | User name | 
 
 ### Return type
 
@@ -368,7 +388,7 @@ Name | Type | Description  | Notes
 
 ## GetNetworkChanges
 
-> NetworkChangeResponse GetNetworkChanges(ctx, networkId).Execute()
+> NetworkChangeResponse GetNetworkChanges(ctx, networkId).XCORRELATIONID(xCORRELATIONID).XAUTHUSERNAME(xAUTHUSERNAME).Execute()
 
 Get Network Changes
 
@@ -388,10 +408,12 @@ import (
 
 func main() {
 	networkId := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | Network UUID
+	xCORRELATIONID := "12345-6789-10123" // string | Correlation identifier (optional)
+	xAUTHUSERNAME := "alice" // string | User name (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.NetworksApi.GetNetworkChanges(context.Background(), networkId).Execute()
+	resp, r, err := apiClient.NetworksApi.GetNetworkChanges(context.Background(), networkId).XCORRELATIONID(xCORRELATIONID).XAUTHUSERNAME(xAUTHUSERNAME).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `NetworksApi.GetNetworkChanges``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -417,6 +439,8 @@ Other parameters are passed through a pointer to a apiGetNetworkChangesRequest s
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
+ **xCORRELATIONID** | **string** | Correlation identifier | 
+ **xAUTHUSERNAME** | **string** | User name | 
 
 ### Return type
 
@@ -438,7 +462,7 @@ Name | Type | Description  | Notes
 
 ## SearchNetworks
 
-> NetworkSearchResponse SearchNetworks(ctx).NetworkSearchRequest(networkSearchRequest).Execute()
+> NetworkSearchResponse SearchNetworks(ctx).NetworkSearchRequest(networkSearchRequest).XCORRELATIONID(xCORRELATIONID).XAUTHUSERNAME(xAUTHUSERNAME).Execute()
 
 Search Network
 
@@ -458,10 +482,12 @@ import (
 
 func main() {
 	networkSearchRequest := *openapiclient.NewNetworkSearchRequest() // NetworkSearchRequest | 
+	xCORRELATIONID := "12345-6789-10123" // string | Correlation identifier (optional)
+	xAUTHUSERNAME := "alice" // string | User name (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.NetworksApi.SearchNetworks(context.Background()).NetworkSearchRequest(networkSearchRequest).Execute()
+	resp, r, err := apiClient.NetworksApi.SearchNetworks(context.Background()).NetworkSearchRequest(networkSearchRequest).XCORRELATIONID(xCORRELATIONID).XAUTHUSERNAME(xAUTHUSERNAME).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `NetworksApi.SearchNetworks``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -483,6 +509,8 @@ Other parameters are passed through a pointer to a apiSearchNetworksRequest stru
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **networkSearchRequest** | [**NetworkSearchRequest**](NetworkSearchRequest.md) |  | 
+ **xCORRELATIONID** | **string** | Correlation identifier | 
+ **xAUTHUSERNAME** | **string** | User name | 
 
 ### Return type
 
@@ -504,7 +532,7 @@ Name | Type | Description  | Notes
 
 ## UpdateNetworkByUuid
 
-> Network UpdateNetworkByUuid(ctx, networkId).NetworkChangeOperation(networkChangeOperation).Execute()
+> Network UpdateNetworkByUuid(ctx, networkId).NetworkChangeOperation(networkChangeOperation).XCORRELATIONID(xCORRELATIONID).XAUTHUSERNAME(xAUTHUSERNAME).Execute()
 
 Update Network By ID
 
@@ -525,10 +553,12 @@ import (
 func main() {
 	networkId := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | Network UUID
 	networkChangeOperation := []openapiclient.NetworkChangeOperation{*openapiclient.NewNetworkChangeOperation(openapiclient.precisionTimeChangeOperation_op("replace"), "/name", interface{}(123))} // []NetworkChangeOperation | 
+	xCORRELATIONID := "12345-6789-10123" // string | Correlation identifier (optional)
+	xAUTHUSERNAME := "alice" // string | User name (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.NetworksApi.UpdateNetworkByUuid(context.Background(), networkId).NetworkChangeOperation(networkChangeOperation).Execute()
+	resp, r, err := apiClient.NetworksApi.UpdateNetworkByUuid(context.Background(), networkId).NetworkChangeOperation(networkChangeOperation).XCORRELATIONID(xCORRELATIONID).XAUTHUSERNAME(xAUTHUSERNAME).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `NetworksApi.UpdateNetworkByUuid``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -555,6 +585,8 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
  **networkChangeOperation** | [**[]NetworkChangeOperation**](NetworkChangeOperation.md) |  | 
+ **xCORRELATIONID** | **string** | Correlation identifier | 
+ **xAUTHUSERNAME** | **string** | User name | 
 
 ### Return type
 

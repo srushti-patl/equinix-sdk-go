@@ -24,10 +24,31 @@ type ApiCreateStreamAlertRulesRequest struct {
 	ApiService           *StreamAlertRulesApiService
 	streamId             string
 	alertRulePostRequest *AlertRulePostRequest
+	xCORRELATIONID       *string
+	xAUTHUSERNAME        *string
+	xSOURCE              *string
 }
 
 func (r ApiCreateStreamAlertRulesRequest) AlertRulePostRequest(alertRulePostRequest AlertRulePostRequest) ApiCreateStreamAlertRulesRequest {
 	r.alertRulePostRequest = &alertRulePostRequest
+	return r
+}
+
+// Correlation identifier
+func (r ApiCreateStreamAlertRulesRequest) XCORRELATIONID(xCORRELATIONID string) ApiCreateStreamAlertRulesRequest {
+	r.xCORRELATIONID = &xCORRELATIONID
+	return r
+}
+
+// User name
+func (r ApiCreateStreamAlertRulesRequest) XAUTHUSERNAME(xAUTHUSERNAME string) ApiCreateStreamAlertRulesRequest {
+	r.xAUTHUSERNAME = &xAUTHUSERNAME
+	return r
+}
+
+// source
+func (r ApiCreateStreamAlertRulesRequest) XSOURCE(xSOURCE string) ApiCreateStreamAlertRulesRequest {
+	r.xSOURCE = &xSOURCE
 	return r
 }
 
@@ -94,6 +115,15 @@ func (a *StreamAlertRulesApiService) CreateStreamAlertRulesExecute(r ApiCreateSt
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	if r.xCORRELATIONID != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-CORRELATION-ID", r.xCORRELATIONID, "simple", "")
+	}
+	if r.xAUTHUSERNAME != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-AUTH-USER-NAME", r.xAUTHUSERNAME, "simple", "")
+	}
+	if r.xSOURCE != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-SOURCE", r.xSOURCE, "simple", "")
 	}
 	// body params
 	localVarPostBody = r.alertRulePostRequest
@@ -189,10 +219,24 @@ func (a *StreamAlertRulesApiService) CreateStreamAlertRulesExecute(r ApiCreateSt
 }
 
 type ApiDeleteStreamAlertRuleByUuidRequest struct {
-	ctx         context.Context
-	ApiService  *StreamAlertRulesApiService
-	streamId    string
-	alertRuleId string
+	ctx            context.Context
+	ApiService     *StreamAlertRulesApiService
+	streamId       string
+	alertRuleId    string
+	xCORRELATIONID *string
+	xAUTHUSERNAME  *string
+}
+
+// Correlation identifier
+func (r ApiDeleteStreamAlertRuleByUuidRequest) XCORRELATIONID(xCORRELATIONID string) ApiDeleteStreamAlertRuleByUuidRequest {
+	r.xCORRELATIONID = &xCORRELATIONID
+	return r
+}
+
+// User name
+func (r ApiDeleteStreamAlertRuleByUuidRequest) XAUTHUSERNAME(xAUTHUSERNAME string) ApiDeleteStreamAlertRuleByUuidRequest {
+	r.xAUTHUSERNAME = &xAUTHUSERNAME
+	return r
 }
 
 func (r ApiDeleteStreamAlertRuleByUuidRequest) Execute() (*StreamAlertRule, *http.Response, error) {
@@ -258,6 +302,12 @@ func (a *StreamAlertRulesApiService) DeleteStreamAlertRuleByUuidExecute(r ApiDel
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	if r.xCORRELATIONID != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-CORRELATION-ID", r.xCORRELATIONID, "simple", "")
+	}
+	if r.xAUTHUSERNAME != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-AUTH-USER-NAME", r.xAUTHUSERNAME, "simple", "")
 	}
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
@@ -351,10 +401,24 @@ func (a *StreamAlertRulesApiService) DeleteStreamAlertRuleByUuidExecute(r ApiDel
 }
 
 type ApiGetStreamAlertRuleByUuidRequest struct {
-	ctx         context.Context
-	ApiService  *StreamAlertRulesApiService
-	streamId    string
-	alertRuleId string
+	ctx            context.Context
+	ApiService     *StreamAlertRulesApiService
+	streamId       string
+	alertRuleId    string
+	xCORRELATIONID *string
+	xAUTHUSERNAME  *string
+}
+
+// Correlation identifier
+func (r ApiGetStreamAlertRuleByUuidRequest) XCORRELATIONID(xCORRELATIONID string) ApiGetStreamAlertRuleByUuidRequest {
+	r.xCORRELATIONID = &xCORRELATIONID
+	return r
+}
+
+// User name
+func (r ApiGetStreamAlertRuleByUuidRequest) XAUTHUSERNAME(xAUTHUSERNAME string) ApiGetStreamAlertRuleByUuidRequest {
+	r.xAUTHUSERNAME = &xAUTHUSERNAME
+	return r
 }
 
 func (r ApiGetStreamAlertRuleByUuidRequest) Execute() (*StreamAlertRule, *http.Response, error) {
@@ -420,6 +484,12 @@ func (a *StreamAlertRulesApiService) GetStreamAlertRuleByUuidExecute(r ApiGetStr
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	if r.xCORRELATIONID != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-CORRELATION-ID", r.xCORRELATIONID, "simple", "")
+	}
+	if r.xAUTHUSERNAME != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-AUTH-USER-NAME", r.xAUTHUSERNAME, "simple", "")
 	}
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
@@ -513,11 +583,25 @@ func (a *StreamAlertRulesApiService) GetStreamAlertRuleByUuidExecute(r ApiGetStr
 }
 
 type ApiGetStreamAlertRulesRequest struct {
-	ctx        context.Context
-	ApiService *StreamAlertRulesApiService
-	streamId   string
-	offset     *int32
-	limit      *int32
+	ctx            context.Context
+	ApiService     *StreamAlertRulesApiService
+	streamId       string
+	xCORRELATIONID *string
+	xAUTHUSERNAME  *string
+	offset         *int32
+	limit          *int32
+}
+
+// Correlation identifier
+func (r ApiGetStreamAlertRulesRequest) XCORRELATIONID(xCORRELATIONID string) ApiGetStreamAlertRulesRequest {
+	r.xCORRELATIONID = &xCORRELATIONID
+	return r
+}
+
+// User name
+func (r ApiGetStreamAlertRulesRequest) XAUTHUSERNAME(xAUTHUSERNAME string) ApiGetStreamAlertRulesRequest {
+	r.xAUTHUSERNAME = &xAUTHUSERNAME
+	return r
 }
 
 // offset
@@ -598,6 +682,12 @@ func (a *StreamAlertRulesApiService) GetStreamAlertRulesExecute(r ApiGetStreamAl
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	if r.xCORRELATIONID != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-CORRELATION-ID", r.xCORRELATIONID, "simple", "")
+	}
+	if r.xAUTHUSERNAME != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-AUTH-USER-NAME", r.xAUTHUSERNAME, "simple", "")
 	}
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
@@ -685,10 +775,24 @@ type ApiUpdateStreamAlertRuleByUuidRequest struct {
 	streamId            string
 	alertRuleId         string
 	alertRulePutRequest *AlertRulePutRequest
+	xCORRELATIONID      *string
+	xAUTHUSERNAME       *string
 }
 
 func (r ApiUpdateStreamAlertRuleByUuidRequest) AlertRulePutRequest(alertRulePutRequest AlertRulePutRequest) ApiUpdateStreamAlertRuleByUuidRequest {
 	r.alertRulePutRequest = &alertRulePutRequest
+	return r
+}
+
+// Correlation identifier
+func (r ApiUpdateStreamAlertRuleByUuidRequest) XCORRELATIONID(xCORRELATIONID string) ApiUpdateStreamAlertRuleByUuidRequest {
+	r.xCORRELATIONID = &xCORRELATIONID
+	return r
+}
+
+// User name
+func (r ApiUpdateStreamAlertRuleByUuidRequest) XAUTHUSERNAME(xAUTHUSERNAME string) ApiUpdateStreamAlertRuleByUuidRequest {
+	r.xAUTHUSERNAME = &xAUTHUSERNAME
 	return r
 }
 
@@ -758,6 +862,12 @@ func (a *StreamAlertRulesApiService) UpdateStreamAlertRuleByUuidExecute(r ApiUpd
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	if r.xCORRELATIONID != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-CORRELATION-ID", r.xCORRELATIONID, "simple", "")
+	}
+	if r.xAUTHUSERNAME != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-AUTH-USER-NAME", r.xAUTHUSERNAME, "simple", "")
 	}
 	// body params
 	localVarPostBody = r.alertRulePutRequest

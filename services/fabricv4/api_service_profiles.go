@@ -22,11 +22,32 @@ type ServiceProfilesApiService service
 type ApiCreateServiceProfileRequest struct {
 	ctx                   context.Context
 	ApiService            *ServiceProfilesApiService
+	icVersion             *string
 	serviceProfileRequest *ServiceProfileRequest
+	xCORRELATIONID        *string
+	xAUTHUSERNAME         *string
+}
+
+// api version
+func (r ApiCreateServiceProfileRequest) IcVersion(icVersion string) ApiCreateServiceProfileRequest {
+	r.icVersion = &icVersion
+	return r
 }
 
 func (r ApiCreateServiceProfileRequest) ServiceProfileRequest(serviceProfileRequest ServiceProfileRequest) ApiCreateServiceProfileRequest {
 	r.serviceProfileRequest = &serviceProfileRequest
+	return r
+}
+
+// Correlation identifier
+func (r ApiCreateServiceProfileRequest) XCORRELATIONID(xCORRELATIONID string) ApiCreateServiceProfileRequest {
+	r.xCORRELATIONID = &xCORRELATIONID
+	return r
+}
+
+// User name
+func (r ApiCreateServiceProfileRequest) XAUTHUSERNAME(xAUTHUSERNAME string) ApiCreateServiceProfileRequest {
+	r.xAUTHUSERNAME = &xAUTHUSERNAME
 	return r
 }
 
@@ -37,7 +58,7 @@ func (r ApiCreateServiceProfileRequest) Execute() (*ServiceProfile, *http.Respon
 /*
 CreateServiceProfile Create Profile
 
-Create Service Profile creates Equinix Fabric? Service Profile.
+Create Service Profile creates Equinix Fabric™ Service Profile.
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@return ApiCreateServiceProfileRequest
@@ -70,6 +91,9 @@ func (a *ServiceProfilesApiService) CreateServiceProfileExecute(r ApiCreateServi
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
+	if r.icVersion == nil {
+		return localVarReturnValue, nil, reportError("icVersion is required and must be specified")
+	}
 	if r.serviceProfileRequest == nil {
 		return localVarReturnValue, nil, reportError("serviceProfileRequest is required and must be specified")
 	}
@@ -90,6 +114,13 @@ func (a *ServiceProfilesApiService) CreateServiceProfileExecute(r ApiCreateServi
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	if r.xCORRELATIONID != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-CORRELATION-ID", r.xCORRELATIONID, "simple", "")
+	}
+	parameterAddToHeaderOrQuery(localVarHeaderParams, "Ic-Version", r.icVersion, "simple", "")
+	if r.xAUTHUSERNAME != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-AUTH-USER-NAME", r.xAUTHUSERNAME, "simple", "")
 	}
 	// body params
 	localVarPostBody = r.serviceProfileRequest
@@ -177,6 +208,27 @@ type ApiDeleteServiceProfileByUuidRequest struct {
 	ctx              context.Context
 	ApiService       *ServiceProfilesApiService
 	serviceProfileId string
+	icVersion        *string
+	xCORRELATIONID   *string
+	xAUTHUSERNAME    *string
+}
+
+// api version
+func (r ApiDeleteServiceProfileByUuidRequest) IcVersion(icVersion string) ApiDeleteServiceProfileByUuidRequest {
+	r.icVersion = &icVersion
+	return r
+}
+
+// Correlation identifier
+func (r ApiDeleteServiceProfileByUuidRequest) XCORRELATIONID(xCORRELATIONID string) ApiDeleteServiceProfileByUuidRequest {
+	r.xCORRELATIONID = &xCORRELATIONID
+	return r
+}
+
+// User name
+func (r ApiDeleteServiceProfileByUuidRequest) XAUTHUSERNAME(xAUTHUSERNAME string) ApiDeleteServiceProfileByUuidRequest {
+	r.xAUTHUSERNAME = &xAUTHUSERNAME
+	return r
 }
 
 func (r ApiDeleteServiceProfileByUuidRequest) Execute() (*ServiceProfile, *http.Response, error) {
@@ -222,6 +274,9 @@ func (a *ServiceProfilesApiService) DeleteServiceProfileByUuidExecute(r ApiDelet
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
+	if r.icVersion == nil {
+		return localVarReturnValue, nil, reportError("icVersion is required and must be specified")
+	}
 
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -239,6 +294,13 @@ func (a *ServiceProfilesApiService) DeleteServiceProfileByUuidExecute(r ApiDelet
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	parameterAddToHeaderOrQuery(localVarHeaderParams, "Ic-Version", r.icVersion, "simple", "")
+	if r.xCORRELATIONID != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-CORRELATION-ID", r.xCORRELATIONID, "simple", "")
+	}
+	if r.xAUTHUSERNAME != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-AUTH-USER-NAME", r.xAUTHUSERNAME, "simple", "")
 	}
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
@@ -335,12 +397,40 @@ type ApiGetServiceProfileByUuidRequest struct {
 	ctx              context.Context
 	ApiService       *ServiceProfilesApiService
 	serviceProfileId string
+	icVersion        *string
+	xCORRELATIONID   *string
 	viewPoint        *GetServiceProfilesViewPointParameter
+	style            *GetServiceProfilesStyleParameter
+	xAUTHUSERNAME    *string
+}
+
+// api version
+func (r ApiGetServiceProfileByUuidRequest) IcVersion(icVersion string) ApiGetServiceProfileByUuidRequest {
+	r.icVersion = &icVersion
+	return r
+}
+
+// Correlation identifier
+func (r ApiGetServiceProfileByUuidRequest) XCORRELATIONID(xCORRELATIONID string) ApiGetServiceProfileByUuidRequest {
+	r.xCORRELATIONID = &xCORRELATIONID
+	return r
 }
 
 // flips view between buyer and seller representation
 func (r ApiGetServiceProfileByUuidRequest) ViewPoint(viewPoint GetServiceProfilesViewPointParameter) ApiGetServiceProfileByUuidRequest {
 	r.viewPoint = &viewPoint
+	return r
+}
+
+// style
+func (r ApiGetServiceProfileByUuidRequest) Style(style GetServiceProfilesStyleParameter) ApiGetServiceProfileByUuidRequest {
+	r.style = &style
+	return r
+}
+
+// User name
+func (r ApiGetServiceProfileByUuidRequest) XAUTHUSERNAME(xAUTHUSERNAME string) ApiGetServiceProfileByUuidRequest {
+	r.xAUTHUSERNAME = &xAUTHUSERNAME
 	return r
 }
 
@@ -387,12 +477,21 @@ func (a *ServiceProfilesApiService) GetServiceProfileByUuidExecute(r ApiGetServi
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
+	if r.icVersion == nil {
+		return localVarReturnValue, nil, reportError("icVersion is required and must be specified")
+	}
 
 	if r.viewPoint != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "viewPoint", r.viewPoint, "form", "")
 	} else {
 		var defaultValue GetServiceProfilesViewPointParameter = "aSide"
 		r.viewPoint = &defaultValue
+	}
+	if r.style != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "style", r.style, "form", "")
+	} else {
+		var defaultValue GetServiceProfilesStyleParameter = "MAX"
+		r.style = &defaultValue
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -410,6 +509,13 @@ func (a *ServiceProfilesApiService) GetServiceProfileByUuidExecute(r ApiGetServi
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	if r.xCORRELATIONID != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-CORRELATION-ID", r.xCORRELATIONID, "simple", "")
+	}
+	parameterAddToHeaderOrQuery(localVarHeaderParams, "Ic-Version", r.icVersion, "simple", "")
+	if r.xAUTHUSERNAME != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-AUTH-USER-NAME", r.xAUTHUSERNAME, "simple", "")
 	}
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
@@ -495,8 +601,24 @@ type ApiGetServiceProfileMetrosByUuidRequest struct {
 	ctx              context.Context
 	ApiService       *ServiceProfilesApiService
 	serviceProfileId string
+	icVersion        *string
+	xCORRELATIONID   *string
 	offset           *int32
 	limit            *int32
+	style            *GetServiceProfilesStyleParameter
+	xAUTHUSERNAME    *string
+}
+
+// api version
+func (r ApiGetServiceProfileMetrosByUuidRequest) IcVersion(icVersion string) ApiGetServiceProfileMetrosByUuidRequest {
+	r.icVersion = &icVersion
+	return r
+}
+
+// Correlation identifier
+func (r ApiGetServiceProfileMetrosByUuidRequest) XCORRELATIONID(xCORRELATIONID string) ApiGetServiceProfileMetrosByUuidRequest {
+	r.xCORRELATIONID = &xCORRELATIONID
+	return r
 }
 
 // offset
@@ -508,6 +630,18 @@ func (r ApiGetServiceProfileMetrosByUuidRequest) Offset(offset int32) ApiGetServ
 // number of records to fetch
 func (r ApiGetServiceProfileMetrosByUuidRequest) Limit(limit int32) ApiGetServiceProfileMetrosByUuidRequest {
 	r.limit = &limit
+	return r
+}
+
+// style
+func (r ApiGetServiceProfileMetrosByUuidRequest) Style(style GetServiceProfilesStyleParameter) ApiGetServiceProfileMetrosByUuidRequest {
+	r.style = &style
+	return r
+}
+
+// User name
+func (r ApiGetServiceProfileMetrosByUuidRequest) XAUTHUSERNAME(xAUTHUSERNAME string) ApiGetServiceProfileMetrosByUuidRequest {
+	r.xAUTHUSERNAME = &xAUTHUSERNAME
 	return r
 }
 
@@ -554,12 +688,21 @@ func (a *ServiceProfilesApiService) GetServiceProfileMetrosByUuidExecute(r ApiGe
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
+	if r.icVersion == nil {
+		return localVarReturnValue, nil, reportError("icVersion is required and must be specified")
+	}
 
 	if r.offset != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "offset", r.offset, "form", "")
 	}
 	if r.limit != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "limit", r.limit, "form", "")
+	}
+	if r.style != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "style", r.style, "form", "")
+	} else {
+		var defaultValue GetServiceProfilesStyleParameter = "MAX"
+		r.style = &defaultValue
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -577,6 +720,13 @@ func (a *ServiceProfilesApiService) GetServiceProfileMetrosByUuidExecute(r ApiGe
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	if r.xCORRELATIONID != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-CORRELATION-ID", r.xCORRELATIONID, "simple", "")
+	}
+	parameterAddToHeaderOrQuery(localVarHeaderParams, "Ic-Version", r.icVersion, "simple", "")
+	if r.xAUTHUSERNAME != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-AUTH-USER-NAME", r.xAUTHUSERNAME, "simple", "")
 	}
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
@@ -659,11 +809,27 @@ func (a *ServiceProfilesApiService) GetServiceProfileMetrosByUuidExecute(r ApiGe
 }
 
 type ApiGetServiceProfilesRequest struct {
-	ctx        context.Context
-	ApiService *ServiceProfilesApiService
-	offset     *int32
-	limit      *int32
-	viewPoint  *GetServiceProfilesViewPointParameter
+	ctx            context.Context
+	ApiService     *ServiceProfilesApiService
+	icVersion      *string
+	xCORRELATIONID *string
+	offset         *int32
+	limit          *int32
+	viewPoint      *GetServiceProfilesViewPointParameter
+	style          *GetServiceProfilesStyleParameter
+	xAUTHUSERNAME  *string
+}
+
+// api version
+func (r ApiGetServiceProfilesRequest) IcVersion(icVersion string) ApiGetServiceProfilesRequest {
+	r.icVersion = &icVersion
+	return r
+}
+
+// Correlation identifier
+func (r ApiGetServiceProfilesRequest) XCORRELATIONID(xCORRELATIONID string) ApiGetServiceProfilesRequest {
+	r.xCORRELATIONID = &xCORRELATIONID
+	return r
 }
 
 // offset
@@ -681,6 +847,18 @@ func (r ApiGetServiceProfilesRequest) Limit(limit int32) ApiGetServiceProfilesRe
 // flips view between buyer and seller representation
 func (r ApiGetServiceProfilesRequest) ViewPoint(viewPoint GetServiceProfilesViewPointParameter) ApiGetServiceProfilesRequest {
 	r.viewPoint = &viewPoint
+	return r
+}
+
+// style
+func (r ApiGetServiceProfilesRequest) Style(style GetServiceProfilesStyleParameter) ApiGetServiceProfilesRequest {
+	r.style = &style
+	return r
+}
+
+// User name
+func (r ApiGetServiceProfilesRequest) XAUTHUSERNAME(xAUTHUSERNAME string) ApiGetServiceProfilesRequest {
+	r.xAUTHUSERNAME = &xAUTHUSERNAME
 	return r
 }
 
@@ -724,6 +902,9 @@ func (a *ServiceProfilesApiService) GetServiceProfilesExecute(r ApiGetServicePro
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
+	if r.icVersion == nil {
+		return localVarReturnValue, nil, reportError("icVersion is required and must be specified")
+	}
 
 	if r.offset != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "offset", r.offset, "form", "")
@@ -736,6 +917,12 @@ func (a *ServiceProfilesApiService) GetServiceProfilesExecute(r ApiGetServicePro
 	} else {
 		var defaultValue GetServiceProfilesViewPointParameter = "aSide"
 		r.viewPoint = &defaultValue
+	}
+	if r.style != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "style", r.style, "form", "")
+	} else {
+		var defaultValue GetServiceProfilesStyleParameter = "MAX"
+		r.style = &defaultValue
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -753,6 +940,13 @@ func (a *ServiceProfilesApiService) GetServiceProfilesExecute(r ApiGetServicePro
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	if r.xCORRELATIONID != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-CORRELATION-ID", r.xCORRELATIONID, "simple", "")
+	}
+	parameterAddToHeaderOrQuery(localVarHeaderParams, "Ic-Version", r.icVersion, "simple", "")
+	if r.xAUTHUSERNAME != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-AUTH-USER-NAME", r.xAUTHUSERNAME, "simple", "")
 	}
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
@@ -839,7 +1033,10 @@ type ApiPutServiceProfileByUuidRequest struct {
 	ApiService            *ServiceProfilesApiService
 	serviceProfileId      string
 	ifMatch               *string
+	icVersion             *string
 	serviceProfileRequest *ServiceProfileRequest
+	xCORRELATIONID        *string
+	xAUTHUSERNAME         *string
 }
 
 // conditional request
@@ -848,8 +1045,26 @@ func (r ApiPutServiceProfileByUuidRequest) IfMatch(ifMatch string) ApiPutService
 	return r
 }
 
+// api version
+func (r ApiPutServiceProfileByUuidRequest) IcVersion(icVersion string) ApiPutServiceProfileByUuidRequest {
+	r.icVersion = &icVersion
+	return r
+}
+
 func (r ApiPutServiceProfileByUuidRequest) ServiceProfileRequest(serviceProfileRequest ServiceProfileRequest) ApiPutServiceProfileByUuidRequest {
 	r.serviceProfileRequest = &serviceProfileRequest
+	return r
+}
+
+// Correlation identifier
+func (r ApiPutServiceProfileByUuidRequest) XCORRELATIONID(xCORRELATIONID string) ApiPutServiceProfileByUuidRequest {
+	r.xCORRELATIONID = &xCORRELATIONID
+	return r
+}
+
+// User name
+func (r ApiPutServiceProfileByUuidRequest) XAUTHUSERNAME(xAUTHUSERNAME string) ApiPutServiceProfileByUuidRequest {
+	r.xAUTHUSERNAME = &xAUTHUSERNAME
 	return r
 }
 
@@ -899,6 +1114,9 @@ func (a *ServiceProfilesApiService) PutServiceProfileByUuidExecute(r ApiPutServi
 	if r.ifMatch == nil {
 		return localVarReturnValue, nil, reportError("ifMatch is required and must be specified")
 	}
+	if r.icVersion == nil {
+		return localVarReturnValue, nil, reportError("icVersion is required and must be specified")
+	}
 	if r.serviceProfileRequest == nil {
 		return localVarReturnValue, nil, reportError("serviceProfileRequest is required and must be specified")
 	}
@@ -921,6 +1139,13 @@ func (a *ServiceProfilesApiService) PutServiceProfileByUuidExecute(r ApiPutServi
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	parameterAddToHeaderOrQuery(localVarHeaderParams, "If-Match", r.ifMatch, "simple", "")
+	parameterAddToHeaderOrQuery(localVarHeaderParams, "Ic-Version", r.icVersion, "simple", "")
+	if r.xCORRELATIONID != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-CORRELATION-ID", r.xCORRELATIONID, "simple", "")
+	}
+	if r.xAUTHUSERNAME != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-AUTH-USER-NAME", r.xAUTHUSERNAME, "simple", "")
+	}
 	// body params
 	localVarPostBody = r.serviceProfileRequest
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
@@ -1017,12 +1242,33 @@ func (a *ServiceProfilesApiService) PutServiceProfileByUuidExecute(r ApiPutServi
 type ApiSearchServiceProfilesRequest struct {
 	ctx                         context.Context
 	ApiService                  *ServiceProfilesApiService
+	icVersion                   *string
 	serviceProfileSearchRequest *ServiceProfileSearchRequest
+	xCORRELATIONID              *string
+	xAUTHUSERNAME               *string
 	viewPoint                   *GetServiceProfilesViewPointParameter
+}
+
+// api version
+func (r ApiSearchServiceProfilesRequest) IcVersion(icVersion string) ApiSearchServiceProfilesRequest {
+	r.icVersion = &icVersion
+	return r
 }
 
 func (r ApiSearchServiceProfilesRequest) ServiceProfileSearchRequest(serviceProfileSearchRequest ServiceProfileSearchRequest) ApiSearchServiceProfilesRequest {
 	r.serviceProfileSearchRequest = &serviceProfileSearchRequest
+	return r
+}
+
+// Correlation identifier
+func (r ApiSearchServiceProfilesRequest) XCORRELATIONID(xCORRELATIONID string) ApiSearchServiceProfilesRequest {
+	r.xCORRELATIONID = &xCORRELATIONID
+	return r
+}
+
+// User name
+func (r ApiSearchServiceProfilesRequest) XAUTHUSERNAME(xAUTHUSERNAME string) ApiSearchServiceProfilesRequest {
+	r.xAUTHUSERNAME = &xAUTHUSERNAME
 	return r
 }
 
@@ -1072,6 +1318,9 @@ func (a *ServiceProfilesApiService) SearchServiceProfilesExecute(r ApiSearchServ
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
+	if r.icVersion == nil {
+		return localVarReturnValue, nil, reportError("icVersion is required and must be specified")
+	}
 	if r.serviceProfileSearchRequest == nil {
 		return localVarReturnValue, nil, reportError("serviceProfileSearchRequest is required and must be specified")
 	}
@@ -1098,6 +1347,13 @@ func (a *ServiceProfilesApiService) SearchServiceProfilesExecute(r ApiSearchServ
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	if r.xCORRELATIONID != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-CORRELATION-ID", r.xCORRELATIONID, "simple", "")
+	}
+	parameterAddToHeaderOrQuery(localVarHeaderParams, "Ic-Version", r.icVersion, "simple", "")
+	if r.xAUTHUSERNAME != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-AUTH-USER-NAME", r.xAUTHUSERNAME, "simple", "")
 	}
 	// body params
 	localVarPostBody = r.serviceProfileSearchRequest
@@ -1175,7 +1431,10 @@ type ApiUpdateServiceProfileByUuidRequest struct {
 	ApiService         *ServiceProfilesApiService
 	serviceProfileId   string
 	ifMatch            *string
+	icVersion          *string
 	jsonPatchOperation *[]JsonPatchOperation
+	xCORRELATIONID     *string
+	xAUTHUSERNAME      *string
 }
 
 // conditional request
@@ -1184,8 +1443,26 @@ func (r ApiUpdateServiceProfileByUuidRequest) IfMatch(ifMatch string) ApiUpdateS
 	return r
 }
 
+// api version
+func (r ApiUpdateServiceProfileByUuidRequest) IcVersion(icVersion string) ApiUpdateServiceProfileByUuidRequest {
+	r.icVersion = &icVersion
+	return r
+}
+
 func (r ApiUpdateServiceProfileByUuidRequest) JsonPatchOperation(jsonPatchOperation []JsonPatchOperation) ApiUpdateServiceProfileByUuidRequest {
 	r.jsonPatchOperation = &jsonPatchOperation
+	return r
+}
+
+// Correlation identifier
+func (r ApiUpdateServiceProfileByUuidRequest) XCORRELATIONID(xCORRELATIONID string) ApiUpdateServiceProfileByUuidRequest {
+	r.xCORRELATIONID = &xCORRELATIONID
+	return r
+}
+
+// User name
+func (r ApiUpdateServiceProfileByUuidRequest) XAUTHUSERNAME(xAUTHUSERNAME string) ApiUpdateServiceProfileByUuidRequest {
+	r.xAUTHUSERNAME = &xAUTHUSERNAME
 	return r
 }
 
@@ -1235,6 +1512,9 @@ func (a *ServiceProfilesApiService) UpdateServiceProfileByUuidExecute(r ApiUpdat
 	if r.ifMatch == nil {
 		return localVarReturnValue, nil, reportError("ifMatch is required and must be specified")
 	}
+	if r.icVersion == nil {
+		return localVarReturnValue, nil, reportError("icVersion is required and must be specified")
+	}
 	if r.jsonPatchOperation == nil {
 		return localVarReturnValue, nil, reportError("jsonPatchOperation is required and must be specified")
 	}
@@ -1257,6 +1537,13 @@ func (a *ServiceProfilesApiService) UpdateServiceProfileByUuidExecute(r ApiUpdat
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	parameterAddToHeaderOrQuery(localVarHeaderParams, "If-Match", r.ifMatch, "simple", "")
+	parameterAddToHeaderOrQuery(localVarHeaderParams, "Ic-Version", r.icVersion, "simple", "")
+	if r.xCORRELATIONID != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-CORRELATION-ID", r.xCORRELATIONID, "simple", "")
+	}
+	if r.xAUTHUSERNAME != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-AUTH-USER-NAME", r.xAUTHUSERNAME, "simple", "")
+	}
 	// body params
 	localVarPostBody = r.jsonPatchOperation
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)

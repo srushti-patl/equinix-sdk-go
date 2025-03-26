@@ -23,6 +23,7 @@ type ConnectionSide struct {
 	Invitation     *ConnectionInvitation     `json:"invitation,omitempty"`
 	// Any additional information, which is not part of connection metadata or configuration
 	AdditionalInfo       []ConnectionSideAdditionalInfo `json:"additionalInfo,omitempty"`
+	DataPlane            *ConnectionSideDataPlane       `json:"dataPlane,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -237,6 +238,38 @@ func (o *ConnectionSide) SetAdditionalInfo(v []ConnectionSideAdditionalInfo) {
 	o.AdditionalInfo = v
 }
 
+// GetDataPlane returns the DataPlane field value if set, zero value otherwise.
+func (o *ConnectionSide) GetDataPlane() ConnectionSideDataPlane {
+	if o == nil || IsNil(o.DataPlane) {
+		var ret ConnectionSideDataPlane
+		return ret
+	}
+	return *o.DataPlane
+}
+
+// GetDataPlaneOk returns a tuple with the DataPlane field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *ConnectionSide) GetDataPlaneOk() (*ConnectionSideDataPlane, bool) {
+	if o == nil || IsNil(o.DataPlane) {
+		return nil, false
+	}
+	return o.DataPlane, true
+}
+
+// HasDataPlane returns a boolean if a field has been set.
+func (o *ConnectionSide) HasDataPlane() bool {
+	if o != nil && !IsNil(o.DataPlane) {
+		return true
+	}
+
+	return false
+}
+
+// SetDataPlane gets a reference to the given ConnectionSideDataPlane and assigns it to the DataPlane field.
+func (o *ConnectionSide) SetDataPlane(v ConnectionSideDataPlane) {
+	o.DataPlane = &v
+}
+
 func (o ConnectionSide) MarshalJSON() ([]byte, error) {
 	toSerialize, err := o.ToMap()
 	if err != nil {
@@ -264,6 +297,9 @@ func (o ConnectionSide) ToMap() (map[string]interface{}, error) {
 	}
 	if !IsNil(o.AdditionalInfo) {
 		toSerialize["additionalInfo"] = o.AdditionalInfo
+	}
+	if !IsNil(o.DataPlane) {
+		toSerialize["dataPlane"] = o.DataPlane
 	}
 
 	for key, value := range o.AdditionalProperties {
@@ -293,6 +329,7 @@ func (o *ConnectionSide) UnmarshalJSON(data []byte) (err error) {
 		delete(additionalProperties, "companyProfile")
 		delete(additionalProperties, "invitation")
 		delete(additionalProperties, "additionalInfo")
+		delete(additionalProperties, "dataPlane")
 		o.AdditionalProperties = additionalProperties
 	}
 

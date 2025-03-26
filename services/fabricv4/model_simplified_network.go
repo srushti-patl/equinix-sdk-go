@@ -22,12 +22,14 @@ type SimplifiedNetwork struct {
 	// Equinix-assigned network identifier
 	Uuid string `json:"uuid"`
 	// Customer-assigned network name
-	Name      *string                  `json:"name,omitempty"`
-	State     *NetworkState            `json:"state,omitempty"`
-	Account   *SimplifiedAccount       `json:"account,omitempty"`
-	Change    *SimplifiedNetworkChange `json:"change,omitempty"`
-	Operation *NetworkOperation        `json:"operation,omitempty"`
-	ChangeLog *Changelog               `json:"changeLog,omitempty"`
+	Name *string `json:"name,omitempty"`
+	// Equinix-assigned platform connection identifier
+	PlatformUuid *string                  `json:"platformUuid,omitempty"`
+	State        *NetworkState            `json:"state,omitempty"`
+	Account      *SimplifiedAccount       `json:"account,omitempty"`
+	Change       *SimplifiedNetworkChange `json:"change,omitempty"`
+	Operation    *NetworkOperation        `json:"operation,omitempty"`
+	ChangeLog    *Changelog               `json:"changeLog,omitempty"`
 	// Network sub-resources links
 	Links                []Link              `json:"links,omitempty"`
 	Type                 *NetworkType        `json:"type,omitempty"`
@@ -142,6 +144,38 @@ func (o *SimplifiedNetwork) HasName() bool {
 // SetName gets a reference to the given string and assigns it to the Name field.
 func (o *SimplifiedNetwork) SetName(v string) {
 	o.Name = &v
+}
+
+// GetPlatformUuid returns the PlatformUuid field value if set, zero value otherwise.
+func (o *SimplifiedNetwork) GetPlatformUuid() string {
+	if o == nil || IsNil(o.PlatformUuid) {
+		var ret string
+		return ret
+	}
+	return *o.PlatformUuid
+}
+
+// GetPlatformUuidOk returns a tuple with the PlatformUuid field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *SimplifiedNetwork) GetPlatformUuidOk() (*string, bool) {
+	if o == nil || IsNil(o.PlatformUuid) {
+		return nil, false
+	}
+	return o.PlatformUuid, true
+}
+
+// HasPlatformUuid returns a boolean if a field has been set.
+func (o *SimplifiedNetwork) HasPlatformUuid() bool {
+	if o != nil && !IsNil(o.PlatformUuid) {
+		return true
+	}
+
+	return false
+}
+
+// SetPlatformUuid gets a reference to the given string and assigns it to the PlatformUuid field.
+func (o *SimplifiedNetwork) SetPlatformUuid(v string) {
+	o.PlatformUuid = &v
 }
 
 // GetState returns the State field value if set, zero value otherwise.
@@ -449,6 +483,9 @@ func (o SimplifiedNetwork) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.Name) {
 		toSerialize["name"] = o.Name
 	}
+	if !IsNil(o.PlatformUuid) {
+		toSerialize["platformUuid"] = o.PlatformUuid
+	}
 	if !IsNil(o.State) {
 		toSerialize["state"] = o.State
 	}
@@ -522,6 +559,7 @@ func (o *SimplifiedNetwork) UnmarshalJSON(data []byte) (err error) {
 		delete(additionalProperties, "href")
 		delete(additionalProperties, "uuid")
 		delete(additionalProperties, "name")
+		delete(additionalProperties, "platformUuid")
 		delete(additionalProperties, "state")
 		delete(additionalProperties, "account")
 		delete(additionalProperties, "change")

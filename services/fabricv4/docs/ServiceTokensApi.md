@@ -10,13 +10,14 @@ Method | HTTP request | Description
 [**GetServiceTokenByUuid**](ServiceTokensApi.md#GetServiceTokenByUuid) | **Get** /fabric/v4/serviceTokens/{serviceTokenId} | Get Token by uuid
 [**GetServiceTokens**](ServiceTokensApi.md#GetServiceTokens) | **Get** /fabric/v4/serviceTokens | Get All Tokens
 [**SearchServiceTokens**](ServiceTokensApi.md#SearchServiceTokens) | **Post** /fabric/v4/serviceTokens/search | Search servicetokens
+[**ServiceTokenServices**](ServiceTokensApi.md#ServiceTokenServices) | **Get** /fabric/v4/serviceTokens/services/{serviceTokenId} | Token service API
 [**UpdateServiceTokenByUuid**](ServiceTokensApi.md#UpdateServiceTokenByUuid) | **Patch** /fabric/v4/serviceTokens/{serviceTokenId} | Update Token By ID
 
 
 
 ## CreateServiceToken
 
-> ServiceToken CreateServiceToken(ctx).ServiceToken(serviceToken).DryRun(dryRun).Execute()
+> ServiceToken CreateServiceToken(ctx).ServiceToken(serviceToken).XCORRELATIONID(xCORRELATIONID).XAUTHUSERNAME(xAUTHUSERNAME).XSOURCE(xSOURCE).DryRun(dryRun).Execute()
 
 Create Service Token
 
@@ -36,11 +37,14 @@ import (
 
 func main() {
 	serviceToken := *openapiclient.NewServiceToken() // ServiceToken | 
+	xCORRELATIONID := "xCORRELATIONID_example" // string | Correlation identifier (optional)
+	xAUTHUSERNAME := "xAUTHUSERNAME_example" // string | User name (optional)
+	xSOURCE := "xSOURCE_example" // string | source (optional)
 	dryRun := true // bool | option to verify that API calls will succeed (optional) (default to false)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.ServiceTokensApi.CreateServiceToken(context.Background()).ServiceToken(serviceToken).DryRun(dryRun).Execute()
+	resp, r, err := apiClient.ServiceTokensApi.CreateServiceToken(context.Background()).ServiceToken(serviceToken).XCORRELATIONID(xCORRELATIONID).XAUTHUSERNAME(xAUTHUSERNAME).XSOURCE(xSOURCE).DryRun(dryRun).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `ServiceTokensApi.CreateServiceToken``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -62,6 +66,9 @@ Other parameters are passed through a pointer to a apiCreateServiceTokenRequest 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **serviceToken** | [**ServiceToken**](ServiceToken.md) |  | 
+ **xCORRELATIONID** | **string** | Correlation identifier | 
+ **xAUTHUSERNAME** | **string** | User name | 
+ **xSOURCE** | **string** | source | 
  **dryRun** | **bool** | option to verify that API calls will succeed | [default to false]
 
 ### Return type
@@ -84,7 +91,7 @@ Name | Type | Description  | Notes
 
 ## CreateServiceTokenAction
 
-> ServiceToken CreateServiceTokenAction(ctx, serviceTokenId).ServiceTokenActionRequest(serviceTokenActionRequest).Execute()
+> ServiceToken CreateServiceTokenAction(ctx, serviceTokenId).ServiceTokenActionRequest(serviceTokenActionRequest).XCORRELATIONID(xCORRELATIONID).XAUTHUSERNAME(xAUTHUSERNAME).XSOURCE(xSOURCE).Execute()
 
 ServiceToken Actions
 
@@ -105,10 +112,13 @@ import (
 func main() {
 	serviceTokenId := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | Service Token UUID
 	serviceTokenActionRequest := *openapiclient.NewServiceTokenActionRequest(openapiclient.ServiceTokenActions("RESEND_EMAIL_NOTIFICATION")) // ServiceTokenActionRequest | 
+	xCORRELATIONID := "xCORRELATIONID_example" // string | Correlation identifier (optional)
+	xAUTHUSERNAME := "xAUTHUSERNAME_example" // string | User name (optional)
+	xSOURCE := "xSOURCE_example" // string | source (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.ServiceTokensApi.CreateServiceTokenAction(context.Background(), serviceTokenId).ServiceTokenActionRequest(serviceTokenActionRequest).Execute()
+	resp, r, err := apiClient.ServiceTokensApi.CreateServiceTokenAction(context.Background(), serviceTokenId).ServiceTokenActionRequest(serviceTokenActionRequest).XCORRELATIONID(xCORRELATIONID).XAUTHUSERNAME(xAUTHUSERNAME).XSOURCE(xSOURCE).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `ServiceTokensApi.CreateServiceTokenAction``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -135,6 +145,9 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
  **serviceTokenActionRequest** | [**ServiceTokenActionRequest**](ServiceTokenActionRequest.md) |  | 
+ **xCORRELATIONID** | **string** | Correlation identifier | 
+ **xAUTHUSERNAME** | **string** | User name | 
+ **xSOURCE** | **string** | source | 
 
 ### Return type
 
@@ -156,7 +169,7 @@ Name | Type | Description  | Notes
 
 ## DeleteServiceTokenByUuid
 
-> ServiceToken DeleteServiceTokenByUuid(ctx, serviceTokenId).Execute()
+> ServiceToken DeleteServiceTokenByUuid(ctx, serviceTokenId).XCORRELATIONID(xCORRELATIONID).XAUTHUSERNAME(xAUTHUSERNAME).XSOURCE(xSOURCE).Execute()
 
 Delete Token by uuid
 
@@ -176,10 +189,13 @@ import (
 
 func main() {
 	serviceTokenId := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | Service Token UUID
+	xCORRELATIONID := "xCORRELATIONID_example" // string | Correlation identifier (optional)
+	xAUTHUSERNAME := "xAUTHUSERNAME_example" // string | User name (optional)
+	xSOURCE := "xSOURCE_example" // string | source (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.ServiceTokensApi.DeleteServiceTokenByUuid(context.Background(), serviceTokenId).Execute()
+	resp, r, err := apiClient.ServiceTokensApi.DeleteServiceTokenByUuid(context.Background(), serviceTokenId).XCORRELATIONID(xCORRELATIONID).XAUTHUSERNAME(xAUTHUSERNAME).XSOURCE(xSOURCE).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `ServiceTokensApi.DeleteServiceTokenByUuid``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -205,6 +221,9 @@ Other parameters are passed through a pointer to a apiDeleteServiceTokenByUuidRe
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
+ **xCORRELATIONID** | **string** | Correlation identifier | 
+ **xAUTHUSERNAME** | **string** | User name | 
+ **xSOURCE** | **string** | source | 
 
 ### Return type
 
@@ -226,7 +245,7 @@ Name | Type | Description  | Notes
 
 ## GetServiceTokenByUuid
 
-> ServiceToken GetServiceTokenByUuid(ctx, serviceTokenId).Execute()
+> ServiceToken GetServiceTokenByUuid(ctx, serviceTokenId).XCORRELATIONID(xCORRELATIONID).XAUTHUSERNAME(xAUTHUSERNAME).XSOURCE(xSOURCE).Execute()
 
 Get Token by uuid
 
@@ -246,10 +265,13 @@ import (
 
 func main() {
 	serviceTokenId := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | Service Token UUID
+	xCORRELATIONID := "xCORRELATIONID_example" // string | Correlation identifier (optional)
+	xAUTHUSERNAME := "xAUTHUSERNAME_example" // string | User name (optional)
+	xSOURCE := "xSOURCE_example" // string | source (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.ServiceTokensApi.GetServiceTokenByUuid(context.Background(), serviceTokenId).Execute()
+	resp, r, err := apiClient.ServiceTokensApi.GetServiceTokenByUuid(context.Background(), serviceTokenId).XCORRELATIONID(xCORRELATIONID).XAUTHUSERNAME(xAUTHUSERNAME).XSOURCE(xSOURCE).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `ServiceTokensApi.GetServiceTokenByUuid``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -275,6 +297,9 @@ Other parameters are passed through a pointer to a apiGetServiceTokenByUuidReque
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
+ **xCORRELATIONID** | **string** | Correlation identifier | 
+ **xAUTHUSERNAME** | **string** | User name | 
+ **xSOURCE** | **string** | source | 
 
 ### Return type
 
@@ -296,7 +321,7 @@ Name | Type | Description  | Notes
 
 ## GetServiceTokens
 
-> ServiceTokens GetServiceTokens(ctx).Offset(offset).Limit(limit).Execute()
+> ServiceTokens GetServiceTokens(ctx).Offset(offset).Limit(limit).XCORRELATIONID(xCORRELATIONID).XAUTHUSERNAME(xAUTHUSERNAME).ProjectProjectId(projectProjectId).Execute()
 
 Get All Tokens
 
@@ -317,10 +342,13 @@ import (
 func main() {
 	offset := float32(8.14) // float32 | offset (optional)
 	limit := float32(8.14) // float32 | number of records to fetch (optional)
+	xCORRELATIONID := "xCORRELATIONID_example" // string | Correlation identifier (optional)
+	xAUTHUSERNAME := "xAUTHUSERNAME_example" // string | User name (optional)
+	projectProjectId := "projectProjectId_example" // string | projectId (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.ServiceTokensApi.GetServiceTokens(context.Background()).Offset(offset).Limit(limit).Execute()
+	resp, r, err := apiClient.ServiceTokensApi.GetServiceTokens(context.Background()).Offset(offset).Limit(limit).XCORRELATIONID(xCORRELATIONID).XAUTHUSERNAME(xAUTHUSERNAME).ProjectProjectId(projectProjectId).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `ServiceTokensApi.GetServiceTokens``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -343,6 +371,9 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **offset** | **float32** | offset | 
  **limit** | **float32** | number of records to fetch | 
+ **xCORRELATIONID** | **string** | Correlation identifier | 
+ **xAUTHUSERNAME** | **string** | User name | 
+ **projectProjectId** | **string** | projectId | 
 
 ### Return type
 
@@ -364,7 +395,7 @@ Name | Type | Description  | Notes
 
 ## SearchServiceTokens
 
-> ServiceTokens SearchServiceTokens(ctx).ServiceTokenSearchRequest(serviceTokenSearchRequest).Offset(offset).Limit(limit).Execute()
+> ServiceTokens SearchServiceTokens(ctx).ServiceTokenSearchRequest(serviceTokenSearchRequest).Offset(offset).Limit(limit).XCORRELATIONID(xCORRELATIONID).XAUTHUSERNAME(xAUTHUSERNAME).XSOURCE(xSOURCE).Execute()
 
 Search servicetokens
 
@@ -386,10 +417,13 @@ func main() {
 	serviceTokenSearchRequest := *openapiclient.NewServiceTokenSearchRequest() // ServiceTokenSearchRequest | 
 	offset := float32(8.14) // float32 | offset (optional)
 	limit := float32(8.14) // float32 | number of records to fetch (optional)
+	xCORRELATIONID := "xCORRELATIONID_example" // string | Correlation identifier (optional)
+	xAUTHUSERNAME := "xAUTHUSERNAME_example" // string | User name (optional)
+	xSOURCE := "xSOURCE_example" // string | source (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.ServiceTokensApi.SearchServiceTokens(context.Background()).ServiceTokenSearchRequest(serviceTokenSearchRequest).Offset(offset).Limit(limit).Execute()
+	resp, r, err := apiClient.ServiceTokensApi.SearchServiceTokens(context.Background()).ServiceTokenSearchRequest(serviceTokenSearchRequest).Offset(offset).Limit(limit).XCORRELATIONID(xCORRELATIONID).XAUTHUSERNAME(xAUTHUSERNAME).XSOURCE(xSOURCE).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `ServiceTokensApi.SearchServiceTokens``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -413,6 +447,9 @@ Name | Type | Description  | Notes
  **serviceTokenSearchRequest** | [**ServiceTokenSearchRequest**](ServiceTokenSearchRequest.md) |  | 
  **offset** | **float32** | offset | 
  **limit** | **float32** | number of records to fetch | 
+ **xCORRELATIONID** | **string** | Correlation identifier | 
+ **xAUTHUSERNAME** | **string** | User name | 
+ **xSOURCE** | **string** | source | 
 
 ### Return type
 
@@ -432,9 +469,83 @@ Name | Type | Description  | Notes
 [[Back to README]](../README.md)
 
 
+## ServiceTokenServices
+
+> ServiceToken ServiceTokenServices(ctx, serviceTokenId).XCORRELATIONID(xCORRELATIONID).XAUTHUSERNAME(xAUTHUSERNAME).Execute()
+
+Token service API
+
+
+
+### Example
+
+```go
+package main
+
+import (
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/equinix/equinix-sdk-go/services/fabricv4"
+)
+
+func main() {
+	serviceTokenId := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | Service Token UUID
+	xCORRELATIONID := "xCORRELATIONID_example" // string | Correlation identifier (optional)
+	xAUTHUSERNAME := "xAUTHUSERNAME_example" // string | User name (optional)
+
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.ServiceTokensApi.ServiceTokenServices(context.Background(), serviceTokenId).XCORRELATIONID(xCORRELATIONID).XAUTHUSERNAME(xAUTHUSERNAME).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `ServiceTokensApi.ServiceTokenServices``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `ServiceTokenServices`: ServiceToken
+	fmt.Fprintf(os.Stdout, "Response from `ServiceTokensApi.ServiceTokenServices`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**serviceTokenId** | **string** | Service Token UUID | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiServiceTokenServicesRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+ **xCORRELATIONID** | **string** | Correlation identifier | 
+ **xAUTHUSERNAME** | **string** | User name | 
+
+### Return type
+
+[**ServiceToken**](ServiceToken.md)
+
+### Authorization
+
+[BearerAuth](../README.md#BearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
 ## UpdateServiceTokenByUuid
 
-> ServiceToken UpdateServiceTokenByUuid(ctx, serviceTokenId).ServiceTokenChangeOperation(serviceTokenChangeOperation).Execute()
+> ServiceToken UpdateServiceTokenByUuid(ctx, serviceTokenId).ServiceTokenChangeOperation(serviceTokenChangeOperation).XCORRELATIONID(xCORRELATIONID).XAUTHUSERNAME(xAUTHUSERNAME).XSOURCE(xSOURCE).DryRun(dryRun).Execute()
 
 Update Token By ID
 
@@ -455,10 +566,14 @@ import (
 func main() {
 	serviceTokenId := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | Service Token UUID
 	serviceTokenChangeOperation := []openapiclient.ServiceTokenChangeOperation{*openapiclient.NewServiceTokenChangeOperation(openapiclient.precisionTimeChangeOperation_op("replace"), "/expirationDateTime", interface{}(123))} // []ServiceTokenChangeOperation | 
+	xCORRELATIONID := "xCORRELATIONID_example" // string | Correlation identifier (optional)
+	xAUTHUSERNAME := "xAUTHUSERNAME_example" // string | User name (optional)
+	xSOURCE := "xSOURCE_example" // string | source (optional)
+	dryRun := true // bool | option to verify that API calls will succeed (optional) (default to false)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.ServiceTokensApi.UpdateServiceTokenByUuid(context.Background(), serviceTokenId).ServiceTokenChangeOperation(serviceTokenChangeOperation).Execute()
+	resp, r, err := apiClient.ServiceTokensApi.UpdateServiceTokenByUuid(context.Background(), serviceTokenId).ServiceTokenChangeOperation(serviceTokenChangeOperation).XCORRELATIONID(xCORRELATIONID).XAUTHUSERNAME(xAUTHUSERNAME).XSOURCE(xSOURCE).DryRun(dryRun).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `ServiceTokensApi.UpdateServiceTokenByUuid``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -485,6 +600,10 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
  **serviceTokenChangeOperation** | [**[]ServiceTokenChangeOperation**](ServiceTokenChangeOperation.md) |  | 
+ **xCORRELATIONID** | **string** | Correlation identifier | 
+ **xAUTHUSERNAME** | **string** | User name | 
+ **xSOURCE** | **string** | source | 
+ **dryRun** | **bool** | option to verify that API calls will succeed | [default to false]
 
 ### Return type
 

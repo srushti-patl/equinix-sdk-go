@@ -38,9 +38,12 @@ type Port struct {
 	Project                *Project                    `json:"project,omitempty"`
 	State                  *PortState                  `json:"state,omitempty"`
 	Order                  *PortOrder                  `json:"order,omitempty"`
-	Operation              *PortOperation              `json:"operation,omitempty"`
-	Account                *SimplifiedAccount          `json:"account,omitempty"`
-	ChangeLog              *Changelog                  `json:"changeLog,omitempty"`
+	// Equinix assigned response attribute for Unique ID for a virtual port.
+	CvpId     *string            `json:"cvpId,omitempty"`
+	Operation *PortOperation     `json:"operation,omitempty"`
+	Account   *SimplifiedAccount `json:"account,omitempty"`
+	Change    *PortChange        `json:"change,omitempty"`
+	ChangeLog *Changelog         `json:"changeLog,omitempty"`
 	// Deprecated
 	ServiceType *PortServiceType `json:"serviceType,omitempty"`
 	// Equinix assigned response attribute for Port bandwidth in Mbps
@@ -580,6 +583,38 @@ func (o *Port) SetOrder(v PortOrder) {
 	o.Order = &v
 }
 
+// GetCvpId returns the CvpId field value if set, zero value otherwise.
+func (o *Port) GetCvpId() string {
+	if o == nil || IsNil(o.CvpId) {
+		var ret string
+		return ret
+	}
+	return *o.CvpId
+}
+
+// GetCvpIdOk returns a tuple with the CvpId field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *Port) GetCvpIdOk() (*string, bool) {
+	if o == nil || IsNil(o.CvpId) {
+		return nil, false
+	}
+	return o.CvpId, true
+}
+
+// HasCvpId returns a boolean if a field has been set.
+func (o *Port) HasCvpId() bool {
+	if o != nil && !IsNil(o.CvpId) {
+		return true
+	}
+
+	return false
+}
+
+// SetCvpId gets a reference to the given string and assigns it to the CvpId field.
+func (o *Port) SetCvpId(v string) {
+	o.CvpId = &v
+}
+
 // GetOperation returns the Operation field value if set, zero value otherwise.
 func (o *Port) GetOperation() PortOperation {
 	if o == nil || IsNil(o.Operation) {
@@ -642,6 +677,38 @@ func (o *Port) HasAccount() bool {
 // SetAccount gets a reference to the given SimplifiedAccount and assigns it to the Account field.
 func (o *Port) SetAccount(v SimplifiedAccount) {
 	o.Account = &v
+}
+
+// GetChange returns the Change field value if set, zero value otherwise.
+func (o *Port) GetChange() PortChange {
+	if o == nil || IsNil(o.Change) {
+		var ret PortChange
+		return ret
+	}
+	return *o.Change
+}
+
+// GetChangeOk returns a tuple with the Change field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *Port) GetChangeOk() (*PortChange, bool) {
+	if o == nil || IsNil(o.Change) {
+		return nil, false
+	}
+	return o.Change, true
+}
+
+// HasChange returns a boolean if a field has been set.
+func (o *Port) HasChange() bool {
+	if o != nil && !IsNil(o.Change) {
+		return true
+	}
+
+	return false
+}
+
+// SetChange gets a reference to the given PortChange and assigns it to the Change field.
+func (o *Port) SetChange(v PortChange) {
+	o.Change = &v
 }
 
 // GetChangeLog returns the ChangeLog field value if set, zero value otherwise.
@@ -1473,11 +1540,17 @@ func (o Port) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.Order) {
 		toSerialize["order"] = o.Order
 	}
+	if !IsNil(o.CvpId) {
+		toSerialize["cvpId"] = o.CvpId
+	}
 	if !IsNil(o.Operation) {
 		toSerialize["operation"] = o.Operation
 	}
 	if !IsNil(o.Account) {
 		toSerialize["account"] = o.Account
+	}
+	if !IsNil(o.Change) {
+		toSerialize["change"] = o.Change
 	}
 	if !IsNil(o.ChangeLog) {
 		toSerialize["changeLog"] = o.ChangeLog
@@ -1588,8 +1661,10 @@ func (o *Port) UnmarshalJSON(data []byte) (err error) {
 		delete(additionalProperties, "project")
 		delete(additionalProperties, "state")
 		delete(additionalProperties, "order")
+		delete(additionalProperties, "cvpId")
 		delete(additionalProperties, "operation")
 		delete(additionalProperties, "account")
+		delete(additionalProperties, "change")
 		delete(additionalProperties, "changeLog")
 		delete(additionalProperties, "serviceType")
 		delete(additionalProperties, "bandwidth")

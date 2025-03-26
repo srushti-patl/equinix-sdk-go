@@ -18,7 +18,7 @@ Method | HTTP request | Description
 
 ## CreateTimeServices
 
-> PrecisionTimeServiceResponse CreateTimeServices(ctx).PrecisionTimeServiceRequest(precisionTimeServiceRequest).Execute()
+> PrecisionTimeServiceResponse CreateTimeServices(ctx).PrecisionTimeServiceRequest(precisionTimeServiceRequest).XCORRELATIONID(xCORRELATIONID).XAUTHUSERNAME(xAUTHUSERNAME).AccountSubCustomerUcmId(accountSubCustomerUcmId).XSOURCE(xSOURCE).Execute()
 
 Create Time Service
 
@@ -38,10 +38,14 @@ import (
 
 func main() {
 	precisionTimeServiceRequest := *openapiclient.NewPrecisionTimeServiceRequest(openapiclient.precisionTimeServiceRequest_type("NTP"), "Name_example", *openapiclient.NewPrecisionTimePackageRequest(openapiclient.precisionTimePackageRequest_code("NTP_STANDARD")), []openapiclient.VirtualConnectionUuid{*openapiclient.NewVirtualConnectionUuid("Uuid_example")}, *openapiclient.NewIpv4("Primary_example", "Secondary_example", "NetworkMask_example")) // PrecisionTimeServiceRequest | 
+	xCORRELATIONID := "xCORRELATIONID_example" // string | Correlation identifier (optional)
+	xAUTHUSERNAME := "xAUTHUSERNAME_example" // string | User name (optional)
+	accountSubCustomerUcmId := "accountSubCustomerUcmId_example" // string | subCustomerUcmId (optional)
+	xSOURCE := "xSOURCE_example" // string | source (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.PrecisionTimeApi.CreateTimeServices(context.Background()).PrecisionTimeServiceRequest(precisionTimeServiceRequest).Execute()
+	resp, r, err := apiClient.PrecisionTimeApi.CreateTimeServices(context.Background()).PrecisionTimeServiceRequest(precisionTimeServiceRequest).XCORRELATIONID(xCORRELATIONID).XAUTHUSERNAME(xAUTHUSERNAME).AccountSubCustomerUcmId(accountSubCustomerUcmId).XSOURCE(xSOURCE).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `PrecisionTimeApi.CreateTimeServices``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -63,6 +67,10 @@ Other parameters are passed through a pointer to a apiCreateTimeServicesRequest 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **precisionTimeServiceRequest** | [**PrecisionTimeServiceRequest**](PrecisionTimeServiceRequest.md) |  | 
+ **xCORRELATIONID** | **string** | Correlation identifier | 
+ **xAUTHUSERNAME** | **string** | User name | 
+ **accountSubCustomerUcmId** | **string** | subCustomerUcmId | 
+ **xSOURCE** | **string** | source | 
 
 ### Return type
 
@@ -84,7 +92,7 @@ Name | Type | Description  | Notes
 
 ## DeleteTimeServiceById
 
-> PrecisionTimeServiceResponse DeleteTimeServiceById(ctx, serviceId).Execute()
+> PrecisionTimeServiceResponse DeleteTimeServiceById(ctx, serviceId).XCORRELATIONID(xCORRELATIONID).XAUTHUSERNAME(xAUTHUSERNAME).XSOURCE(xSOURCE).Execute()
 
 Delete by ID.
 
@@ -104,10 +112,13 @@ import (
 
 func main() {
 	serviceId := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | Service UUID
+	xCORRELATIONID := "xCORRELATIONID_example" // string | Correlation identifier (optional)
+	xAUTHUSERNAME := "xAUTHUSERNAME_example" // string | User name (optional)
+	xSOURCE := "xSOURCE_example" // string | source (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.PrecisionTimeApi.DeleteTimeServiceById(context.Background(), serviceId).Execute()
+	resp, r, err := apiClient.PrecisionTimeApi.DeleteTimeServiceById(context.Background(), serviceId).XCORRELATIONID(xCORRELATIONID).XAUTHUSERNAME(xAUTHUSERNAME).XSOURCE(xSOURCE).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `PrecisionTimeApi.DeleteTimeServiceById``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -133,6 +144,9 @@ Other parameters are passed through a pointer to a apiDeleteTimeServiceByIdReque
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
+ **xCORRELATIONID** | **string** | Correlation identifier | 
+ **xAUTHUSERNAME** | **string** | User name | 
+ **xSOURCE** | **string** | source | 
 
 ### Return type
 
@@ -154,7 +168,7 @@ Name | Type | Description  | Notes
 
 ## FulfillTimeServices
 
-> PrecisionTimeServiceResponse FulfillTimeServices(ctx, serviceId).PrecisionTimeServiceRequest(precisionTimeServiceRequest).Execute()
+> PrecisionTimeServiceResponse FulfillTimeServices(ctx, serviceId).PrecisionTimeServiceRequest(precisionTimeServiceRequest).XCORRELATIONID(xCORRELATIONID).XAUTHUSERNAME(xAUTHUSERNAME).XSOURCE(xSOURCE).Execute()
 
 Configure Service.
 
@@ -175,10 +189,13 @@ import (
 func main() {
 	serviceId := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | Service UUID
 	precisionTimeServiceRequest := *openapiclient.NewPrecisionTimeServiceRequest(openapiclient.precisionTimeServiceRequest_type("NTP"), "Name_example", *openapiclient.NewPrecisionTimePackageRequest(openapiclient.precisionTimePackageRequest_code("NTP_STANDARD")), []openapiclient.VirtualConnectionUuid{*openapiclient.NewVirtualConnectionUuid("Uuid_example")}, *openapiclient.NewIpv4("Primary_example", "Secondary_example", "NetworkMask_example")) // PrecisionTimeServiceRequest | 
+	xCORRELATIONID := "xCORRELATIONID_example" // string | Correlation identifier (optional)
+	xAUTHUSERNAME := "xAUTHUSERNAME_example" // string | User name (optional)
+	xSOURCE := "xSOURCE_example" // string | source (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.PrecisionTimeApi.FulfillTimeServices(context.Background(), serviceId).PrecisionTimeServiceRequest(precisionTimeServiceRequest).Execute()
+	resp, r, err := apiClient.PrecisionTimeApi.FulfillTimeServices(context.Background(), serviceId).PrecisionTimeServiceRequest(precisionTimeServiceRequest).XCORRELATIONID(xCORRELATIONID).XAUTHUSERNAME(xAUTHUSERNAME).XSOURCE(xSOURCE).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `PrecisionTimeApi.FulfillTimeServices``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -205,6 +222,9 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
  **precisionTimeServiceRequest** | [**PrecisionTimeServiceRequest**](PrecisionTimeServiceRequest.md) |  | 
+ **xCORRELATIONID** | **string** | Correlation identifier | 
+ **xAUTHUSERNAME** | **string** | User name | 
+ **xSOURCE** | **string** | source | 
 
 ### Return type
 
@@ -226,7 +246,7 @@ Name | Type | Description  | Notes
 
 ## GetTimeServicesById
 
-> PrecisionTimeServiceResponse GetTimeServicesById(ctx, serviceId).Execute()
+> PrecisionTimeServiceResponse GetTimeServicesById(ctx, serviceId).XCORRELATIONID(xCORRELATIONID).XAUTHUSERNAME(xAUTHUSERNAME).XSOURCE(xSOURCE).Execute()
 
 Get Service By ID.
 
@@ -246,10 +266,13 @@ import (
 
 func main() {
 	serviceId := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | Service UUID
+	xCORRELATIONID := "xCORRELATIONID_example" // string | Correlation identifier (optional)
+	xAUTHUSERNAME := "xAUTHUSERNAME_example" // string | User name (optional)
+	xSOURCE := "xSOURCE_example" // string | source (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.PrecisionTimeApi.GetTimeServicesById(context.Background(), serviceId).Execute()
+	resp, r, err := apiClient.PrecisionTimeApi.GetTimeServicesById(context.Background(), serviceId).XCORRELATIONID(xCORRELATIONID).XAUTHUSERNAME(xAUTHUSERNAME).XSOURCE(xSOURCE).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `PrecisionTimeApi.GetTimeServicesById``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -275,6 +298,9 @@ Other parameters are passed through a pointer to a apiGetTimeServicesByIdRequest
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
+ **xCORRELATIONID** | **string** | Correlation identifier | 
+ **xAUTHUSERNAME** | **string** | User name | 
+ **xSOURCE** | **string** | source | 
 
 ### Return type
 
@@ -296,7 +322,7 @@ Name | Type | Description  | Notes
 
 ## GetTimeServicesConnectionsByServiceId
 
-> PrecisionTimeServiceConnectionsResponse GetTimeServicesConnectionsByServiceId(ctx, serviceId).Execute()
+> PrecisionTimeServiceConnectionsResponse GetTimeServicesConnectionsByServiceId(ctx, serviceId).XCORRELATIONID(xCORRELATIONID).XAUTHUSERNAME(xAUTHUSERNAME).Execute()
 
 Get Connection Links
 
@@ -316,10 +342,12 @@ import (
 
 func main() {
 	serviceId := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | Service UUID
+	xCORRELATIONID := "xCORRELATIONID_example" // string | Correlation identifier (optional)
+	xAUTHUSERNAME := "xAUTHUSERNAME_example" // string | User name (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.PrecisionTimeApi.GetTimeServicesConnectionsByServiceId(context.Background(), serviceId).Execute()
+	resp, r, err := apiClient.PrecisionTimeApi.GetTimeServicesConnectionsByServiceId(context.Background(), serviceId).XCORRELATIONID(xCORRELATIONID).XAUTHUSERNAME(xAUTHUSERNAME).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `PrecisionTimeApi.GetTimeServicesConnectionsByServiceId``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -345,6 +373,8 @@ Other parameters are passed through a pointer to a apiGetTimeServicesConnections
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
+ **xCORRELATIONID** | **string** | Correlation identifier | 
+ **xAUTHUSERNAME** | **string** | User name | 
 
 ### Return type
 
@@ -366,7 +396,7 @@ Name | Type | Description  | Notes
 
 ## GetTimeServicesPackageByCode
 
-> PrecisionTimePackageResponse GetTimeServicesPackageByCode(ctx, packageCode).Execute()
+> PrecisionTimePackageResponse GetTimeServicesPackageByCode(ctx, packageCode).XCORRELATIONID(xCORRELATIONID).XAUTHUSERNAME(xAUTHUSERNAME).Execute()
 
 Get Package By Code
 
@@ -386,10 +416,12 @@ import (
 
 func main() {
 	packageCode := openapiclient.getTimeServicesPackageByCode_packageCode_parameter("NTP_STANDARD") // GetTimeServicesPackageByCodePackageCodeParameter | Package Code
+	xCORRELATIONID := "xCORRELATIONID_example" // string | Correlation identifier (optional)
+	xAUTHUSERNAME := "xAUTHUSERNAME_example" // string | User name (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.PrecisionTimeApi.GetTimeServicesPackageByCode(context.Background(), packageCode).Execute()
+	resp, r, err := apiClient.PrecisionTimeApi.GetTimeServicesPackageByCode(context.Background(), packageCode).XCORRELATIONID(xCORRELATIONID).XAUTHUSERNAME(xAUTHUSERNAME).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `PrecisionTimeApi.GetTimeServicesPackageByCode``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -415,6 +447,8 @@ Other parameters are passed through a pointer to a apiGetTimeServicesPackageByCo
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
+ **xCORRELATIONID** | **string** | Correlation identifier | 
+ **xAUTHUSERNAME** | **string** | User name | 
 
 ### Return type
 
@@ -436,7 +470,7 @@ Name | Type | Description  | Notes
 
 ## GetTimeServicesPackages
 
-> PrecisionTimeServicePackagesResponse GetTimeServicesPackages(ctx).Execute()
+> PrecisionTimeServicePackagesResponse GetTimeServicesPackages(ctx).XCORRELATIONID(xCORRELATIONID).XAUTHUSERNAME(xAUTHUSERNAME).Execute()
 
 Get Packages
 
@@ -455,10 +489,12 @@ import (
 )
 
 func main() {
+	xCORRELATIONID := "xCORRELATIONID_example" // string | Correlation identifier (optional)
+	xAUTHUSERNAME := "xAUTHUSERNAME_example" // string | User name (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.PrecisionTimeApi.GetTimeServicesPackages(context.Background()).Execute()
+	resp, r, err := apiClient.PrecisionTimeApi.GetTimeServicesPackages(context.Background()).XCORRELATIONID(xCORRELATIONID).XAUTHUSERNAME(xAUTHUSERNAME).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `PrecisionTimeApi.GetTimeServicesPackages``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -470,12 +506,17 @@ func main() {
 
 ### Path Parameters
 
-This endpoint does not need any parameter.
+
 
 ### Other Parameters
 
 Other parameters are passed through a pointer to a apiGetTimeServicesPackagesRequest struct via the builder pattern
 
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **xCORRELATIONID** | **string** | Correlation identifier | 
+ **xAUTHUSERNAME** | **string** | User name | 
 
 ### Return type
 
@@ -497,7 +538,7 @@ Other parameters are passed through a pointer to a apiGetTimeServicesPackagesReq
 
 ## SearchTimeServices
 
-> ServiceSearchResponse SearchTimeServices(ctx).TimeServicesSearchRequest(timeServicesSearchRequest).Execute()
+> ServiceSearchResponse SearchTimeServices(ctx).TimeServicesSearchRequest(timeServicesSearchRequest).XCORRELATIONID(xCORRELATIONID).XAUTHUSERNAME(xAUTHUSERNAME).Execute()
 
 Search Time Services
 
@@ -517,10 +558,12 @@ import (
 
 func main() {
 	timeServicesSearchRequest := *openapiclient.NewTimeServicesSearchRequest() // TimeServicesSearchRequest | 
+	xCORRELATIONID := "12345-6789-10123" // string | Correlation identifier (optional)
+	xAUTHUSERNAME := "alice" // string | User name (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.PrecisionTimeApi.SearchTimeServices(context.Background()).TimeServicesSearchRequest(timeServicesSearchRequest).Execute()
+	resp, r, err := apiClient.PrecisionTimeApi.SearchTimeServices(context.Background()).TimeServicesSearchRequest(timeServicesSearchRequest).XCORRELATIONID(xCORRELATIONID).XAUTHUSERNAME(xAUTHUSERNAME).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `PrecisionTimeApi.SearchTimeServices``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -542,6 +585,8 @@ Other parameters are passed through a pointer to a apiSearchTimeServicesRequest 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **timeServicesSearchRequest** | [**TimeServicesSearchRequest**](TimeServicesSearchRequest.md) |  | 
+ **xCORRELATIONID** | **string** | Correlation identifier | 
+ **xAUTHUSERNAME** | **string** | User name | 
 
 ### Return type
 
@@ -563,7 +608,7 @@ Name | Type | Description  | Notes
 
 ## UpdateTimeServicesById
 
-> PrecisionTimeServiceResponse UpdateTimeServicesById(ctx, serviceId).PrecisionTimeChangeOperation(precisionTimeChangeOperation).Execute()
+> PrecisionTimeServiceResponse UpdateTimeServicesById(ctx, serviceId).PrecisionTimeChangeOperation(precisionTimeChangeOperation).XCORRELATIONID(xCORRELATIONID).XAUTHUSERNAME(xAUTHUSERNAME).XSOURCE(xSOURCE).Execute()
 
 Update By ID.
 
@@ -584,10 +629,13 @@ import (
 func main() {
 	serviceId := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | Service UUID
 	precisionTimeChangeOperation := []openapiclient.PrecisionTimeChangeOperation{*openapiclient.NewPrecisionTimeChangeOperation(openapiclient.precisionTimeChangeOperation_op("replace"), openapiclient.precisionTimeChangeOperation_path("/name"), interface{}(123))} // []PrecisionTimeChangeOperation | 
+	xCORRELATIONID := "xCORRELATIONID_example" // string | Correlation identifier (optional)
+	xAUTHUSERNAME := "xAUTHUSERNAME_example" // string | User name (optional)
+	xSOURCE := "xSOURCE_example" // string | source (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.PrecisionTimeApi.UpdateTimeServicesById(context.Background(), serviceId).PrecisionTimeChangeOperation(precisionTimeChangeOperation).Execute()
+	resp, r, err := apiClient.PrecisionTimeApi.UpdateTimeServicesById(context.Background(), serviceId).PrecisionTimeChangeOperation(precisionTimeChangeOperation).XCORRELATIONID(xCORRELATIONID).XAUTHUSERNAME(xAUTHUSERNAME).XSOURCE(xSOURCE).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `PrecisionTimeApi.UpdateTimeServicesById``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -614,6 +662,9 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
  **precisionTimeChangeOperation** | [**[]PrecisionTimeChangeOperation**](PrecisionTimeChangeOperation.md) |  | 
+ **xCORRELATIONID** | **string** | Correlation identifier | 
+ **xAUTHUSERNAME** | **string** | User name | 
+ **xSOURCE** | **string** | source | 
 
 ### Return type
 

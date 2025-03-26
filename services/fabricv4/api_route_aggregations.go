@@ -24,6 +24,27 @@ type ApiAttachConnectionRouteAggregationRequest struct {
 	ApiService         *RouteAggregationsApiService
 	routeAggregationId string
 	connectionId       string
+	xCORRELATIONID     *string
+	xAUTHUSERNAME      *string
+	xSOURCE            *string
+}
+
+// Correlation identifier
+func (r ApiAttachConnectionRouteAggregationRequest) XCORRELATIONID(xCORRELATIONID string) ApiAttachConnectionRouteAggregationRequest {
+	r.xCORRELATIONID = &xCORRELATIONID
+	return r
+}
+
+// User name
+func (r ApiAttachConnectionRouteAggregationRequest) XAUTHUSERNAME(xAUTHUSERNAME string) ApiAttachConnectionRouteAggregationRequest {
+	r.xAUTHUSERNAME = &xAUTHUSERNAME
+	return r
+}
+
+// source
+func (r ApiAttachConnectionRouteAggregationRequest) XSOURCE(xSOURCE string) ApiAttachConnectionRouteAggregationRequest {
+	r.xSOURCE = &xSOURCE
+	return r
 }
 
 func (r ApiAttachConnectionRouteAggregationRequest) Execute() (*ConnectionRouteAggregationData, *http.Response, error) {
@@ -89,6 +110,15 @@ func (a *RouteAggregationsApiService) AttachConnectionRouteAggregationExecute(r 
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	if r.xCORRELATIONID != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-CORRELATION-ID", r.xCORRELATIONID, "simple", "")
+	}
+	if r.xAUTHUSERNAME != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-AUTH-USER-NAME", r.xAUTHUSERNAME, "simple", "")
+	}
+	if r.xSOURCE != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-SOURCE", r.xSOURCE, "simple", "")
 	}
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
@@ -196,10 +226,31 @@ type ApiCreateRouteAggregationRequest struct {
 	ctx                   context.Context
 	ApiService            *RouteAggregationsApiService
 	routeAggregationsBase *RouteAggregationsBase
+	xCORRELATIONID        *string
+	xAUTHUSERNAME         *string
+	xSOURCE               *string
 }
 
 func (r ApiCreateRouteAggregationRequest) RouteAggregationsBase(routeAggregationsBase RouteAggregationsBase) ApiCreateRouteAggregationRequest {
 	r.routeAggregationsBase = &routeAggregationsBase
+	return r
+}
+
+// Correlation identifier
+func (r ApiCreateRouteAggregationRequest) XCORRELATIONID(xCORRELATIONID string) ApiCreateRouteAggregationRequest {
+	r.xCORRELATIONID = &xCORRELATIONID
+	return r
+}
+
+// User name
+func (r ApiCreateRouteAggregationRequest) XAUTHUSERNAME(xAUTHUSERNAME string) ApiCreateRouteAggregationRequest {
+	r.xAUTHUSERNAME = &xAUTHUSERNAME
+	return r
+}
+
+// source
+func (r ApiCreateRouteAggregationRequest) XSOURCE(xSOURCE string) ApiCreateRouteAggregationRequest {
+	r.xSOURCE = &xSOURCE
 	return r
 }
 
@@ -263,6 +314,15 @@ func (a *RouteAggregationsApiService) CreateRouteAggregationExecute(r ApiCreateR
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	if r.xCORRELATIONID != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-CORRELATION-ID", r.xCORRELATIONID, "simple", "")
+	}
+	if r.xAUTHUSERNAME != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-AUTH-USER-NAME", r.xAUTHUSERNAME, "simple", "")
+	}
+	if r.xSOURCE != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-SOURCE", r.xSOURCE, "simple", "")
 	}
 	// body params
 	localVarPostBody = r.routeAggregationsBase
@@ -372,6 +432,27 @@ type ApiDeleteRouteAggregationByUuidRequest struct {
 	ctx                context.Context
 	ApiService         *RouteAggregationsApiService
 	routeAggregationId string
+	xCORRELATIONID     *string
+	xAUTHUSERNAME      *string
+	xSOURCE            *string
+}
+
+// Correlation identifier
+func (r ApiDeleteRouteAggregationByUuidRequest) XCORRELATIONID(xCORRELATIONID string) ApiDeleteRouteAggregationByUuidRequest {
+	r.xCORRELATIONID = &xCORRELATIONID
+	return r
+}
+
+// User name
+func (r ApiDeleteRouteAggregationByUuidRequest) XAUTHUSERNAME(xAUTHUSERNAME string) ApiDeleteRouteAggregationByUuidRequest {
+	r.xAUTHUSERNAME = &xAUTHUSERNAME
+	return r
+}
+
+// source
+func (r ApiDeleteRouteAggregationByUuidRequest) XSOURCE(xSOURCE string) ApiDeleteRouteAggregationByUuidRequest {
+	r.xSOURCE = &xSOURCE
+	return r
 }
 
 func (r ApiDeleteRouteAggregationByUuidRequest) Execute() (*RouteAggregationsData, *http.Response, error) {
@@ -434,6 +515,15 @@ func (a *RouteAggregationsApiService) DeleteRouteAggregationByUuidExecute(r ApiD
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	if r.xCORRELATIONID != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-CORRELATION-ID", r.xCORRELATIONID, "simple", "")
+	}
+	if r.xAUTHUSERNAME != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-AUTH-USER-NAME", r.xAUTHUSERNAME, "simple", "")
+	}
+	if r.xSOURCE != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-SOURCE", r.xSOURCE, "simple", "")
 	}
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
@@ -542,6 +632,27 @@ type ApiDetachConnectionRouteAggregationRequest struct {
 	ApiService         *RouteAggregationsApiService
 	routeAggregationId string
 	connectionId       string
+	xCORRELATIONID     *string
+	xAUTHUSERNAME      *string
+	xSOURCE            *string
+}
+
+// Correlation identifier
+func (r ApiDetachConnectionRouteAggregationRequest) XCORRELATIONID(xCORRELATIONID string) ApiDetachConnectionRouteAggregationRequest {
+	r.xCORRELATIONID = &xCORRELATIONID
+	return r
+}
+
+// User name
+func (r ApiDetachConnectionRouteAggregationRequest) XAUTHUSERNAME(xAUTHUSERNAME string) ApiDetachConnectionRouteAggregationRequest {
+	r.xAUTHUSERNAME = &xAUTHUSERNAME
+	return r
+}
+
+// source
+func (r ApiDetachConnectionRouteAggregationRequest) XSOURCE(xSOURCE string) ApiDetachConnectionRouteAggregationRequest {
+	r.xSOURCE = &xSOURCE
+	return r
 }
 
 func (r ApiDetachConnectionRouteAggregationRequest) Execute() (*ConnectionRouteAggregationData, *http.Response, error) {
@@ -607,6 +718,15 @@ func (a *RouteAggregationsApiService) DetachConnectionRouteAggregationExecute(r 
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	if r.xCORRELATIONID != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-CORRELATION-ID", r.xCORRELATIONID, "simple", "")
+	}
+	if r.xAUTHUSERNAME != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-AUTH-USER-NAME", r.xAUTHUSERNAME, "simple", "")
+	}
+	if r.xSOURCE != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-SOURCE", r.xSOURCE, "simple", "")
 	}
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
@@ -715,6 +835,27 @@ type ApiGetConnectionRouteAggregationByUuidRequest struct {
 	ApiService         *RouteAggregationsApiService
 	routeAggregationId string
 	connectionId       string
+	xCORRELATIONID     *string
+	xAUTHUSERNAME      *string
+	xSOURCE            *string
+}
+
+// Correlation identifier
+func (r ApiGetConnectionRouteAggregationByUuidRequest) XCORRELATIONID(xCORRELATIONID string) ApiGetConnectionRouteAggregationByUuidRequest {
+	r.xCORRELATIONID = &xCORRELATIONID
+	return r
+}
+
+// User name
+func (r ApiGetConnectionRouteAggregationByUuidRequest) XAUTHUSERNAME(xAUTHUSERNAME string) ApiGetConnectionRouteAggregationByUuidRequest {
+	r.xAUTHUSERNAME = &xAUTHUSERNAME
+	return r
+}
+
+// source
+func (r ApiGetConnectionRouteAggregationByUuidRequest) XSOURCE(xSOURCE string) ApiGetConnectionRouteAggregationByUuidRequest {
+	r.xSOURCE = &xSOURCE
+	return r
 }
 
 func (r ApiGetConnectionRouteAggregationByUuidRequest) Execute() (*ConnectionRouteAggregationData, *http.Response, error) {
@@ -780,6 +921,15 @@ func (a *RouteAggregationsApiService) GetConnectionRouteAggregationByUuidExecute
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	if r.xCORRELATIONID != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-CORRELATION-ID", r.xCORRELATIONID, "simple", "")
+	}
+	if r.xAUTHUSERNAME != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-AUTH-USER-NAME", r.xAUTHUSERNAME, "simple", "")
+	}
+	if r.xSOURCE != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-SOURCE", r.xSOURCE, "simple", "")
 	}
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
@@ -884,9 +1034,30 @@ func (a *RouteAggregationsApiService) GetConnectionRouteAggregationByUuidExecute
 }
 
 type ApiGetConnectionRouteAggregationsRequest struct {
-	ctx          context.Context
-	ApiService   *RouteAggregationsApiService
-	connectionId string
+	ctx            context.Context
+	ApiService     *RouteAggregationsApiService
+	connectionId   string
+	xCORRELATIONID *string
+	xAUTHUSERNAME  *string
+	xSOURCE        *string
+}
+
+// Correlation identifier
+func (r ApiGetConnectionRouteAggregationsRequest) XCORRELATIONID(xCORRELATIONID string) ApiGetConnectionRouteAggregationsRequest {
+	r.xCORRELATIONID = &xCORRELATIONID
+	return r
+}
+
+// User name
+func (r ApiGetConnectionRouteAggregationsRequest) XAUTHUSERNAME(xAUTHUSERNAME string) ApiGetConnectionRouteAggregationsRequest {
+	r.xAUTHUSERNAME = &xAUTHUSERNAME
+	return r
+}
+
+// source
+func (r ApiGetConnectionRouteAggregationsRequest) XSOURCE(xSOURCE string) ApiGetConnectionRouteAggregationsRequest {
+	r.xSOURCE = &xSOURCE
+	return r
 }
 
 func (r ApiGetConnectionRouteAggregationsRequest) Execute() (*GetAllConnectionRouteAggregationsResponse, *http.Response, error) {
@@ -949,6 +1120,15 @@ func (a *RouteAggregationsApiService) GetConnectionRouteAggregationsExecute(r Ap
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	if r.xCORRELATIONID != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-CORRELATION-ID", r.xCORRELATIONID, "simple", "")
+	}
+	if r.xAUTHUSERNAME != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-AUTH-USER-NAME", r.xAUTHUSERNAME, "simple", "")
+	}
+	if r.xSOURCE != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-SOURCE", r.xSOURCE, "simple", "")
 	}
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
@@ -1056,6 +1236,27 @@ type ApiGetRouteAggregationByUuidRequest struct {
 	ctx                context.Context
 	ApiService         *RouteAggregationsApiService
 	routeAggregationId string
+	xCORRELATIONID     *string
+	xAUTHUSERNAME      *string
+	xSOURCE            *string
+}
+
+// Correlation identifier
+func (r ApiGetRouteAggregationByUuidRequest) XCORRELATIONID(xCORRELATIONID string) ApiGetRouteAggregationByUuidRequest {
+	r.xCORRELATIONID = &xCORRELATIONID
+	return r
+}
+
+// User name
+func (r ApiGetRouteAggregationByUuidRequest) XAUTHUSERNAME(xAUTHUSERNAME string) ApiGetRouteAggregationByUuidRequest {
+	r.xAUTHUSERNAME = &xAUTHUSERNAME
+	return r
+}
+
+// source
+func (r ApiGetRouteAggregationByUuidRequest) XSOURCE(xSOURCE string) ApiGetRouteAggregationByUuidRequest {
+	r.xSOURCE = &xSOURCE
+	return r
 }
 
 func (r ApiGetRouteAggregationByUuidRequest) Execute() (*RouteAggregationsData, *http.Response, error) {
@@ -1118,6 +1319,15 @@ func (a *RouteAggregationsApiService) GetRouteAggregationByUuidExecute(r ApiGetR
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	if r.xCORRELATIONID != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-CORRELATION-ID", r.xCORRELATIONID, "simple", "")
+	}
+	if r.xAUTHUSERNAME != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-AUTH-USER-NAME", r.xAUTHUSERNAME, "simple", "")
+	}
+	if r.xSOURCE != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-SOURCE", r.xSOURCE, "simple", "")
 	}
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
@@ -1226,6 +1436,20 @@ type ApiGetRouteAggregationChangeByUuidRequest struct {
 	ApiService         *RouteAggregationsApiService
 	routeAggregationId string
 	changeId           string
+	xCORRELATIONID     *string
+	xAUTHUSERNAME      *string
+}
+
+// Correlation identifier
+func (r ApiGetRouteAggregationChangeByUuidRequest) XCORRELATIONID(xCORRELATIONID string) ApiGetRouteAggregationChangeByUuidRequest {
+	r.xCORRELATIONID = &xCORRELATIONID
+	return r
+}
+
+// User name
+func (r ApiGetRouteAggregationChangeByUuidRequest) XAUTHUSERNAME(xAUTHUSERNAME string) ApiGetRouteAggregationChangeByUuidRequest {
+	r.xAUTHUSERNAME = &xAUTHUSERNAME
+	return r
 }
 
 func (r ApiGetRouteAggregationChangeByUuidRequest) Execute() (*RouteAggregationChangeData, *http.Response, error) {
@@ -1291,6 +1515,12 @@ func (a *RouteAggregationsApiService) GetRouteAggregationChangeByUuidExecute(r A
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	if r.xCORRELATIONID != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-CORRELATION-ID", r.xCORRELATIONID, "simple", "")
+	}
+	if r.xAUTHUSERNAME != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-AUTH-USER-NAME", r.xAUTHUSERNAME, "simple", "")
 	}
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
@@ -1387,8 +1617,22 @@ type ApiGetRouteAggregationChangesRequest struct {
 	ctx                context.Context
 	ApiService         *RouteAggregationsApiService
 	routeAggregationId string
+	xCORRELATIONID     *string
+	xAUTHUSERNAME      *string
 	offset             *int32
 	limit              *int32
+}
+
+// Correlation identifier
+func (r ApiGetRouteAggregationChangesRequest) XCORRELATIONID(xCORRELATIONID string) ApiGetRouteAggregationChangesRequest {
+	r.xCORRELATIONID = &xCORRELATIONID
+	return r
+}
+
+// User name
+func (r ApiGetRouteAggregationChangesRequest) XAUTHUSERNAME(xAUTHUSERNAME string) ApiGetRouteAggregationChangesRequest {
+	r.xAUTHUSERNAME = &xAUTHUSERNAME
+	return r
 }
 
 // offset
@@ -1469,6 +1713,12 @@ func (a *RouteAggregationsApiService) GetRouteAggregationChangesExecute(r ApiGet
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	if r.xCORRELATIONID != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-CORRELATION-ID", r.xCORRELATIONID, "simple", "")
+	}
+	if r.xAUTHUSERNAME != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-AUTH-USER-NAME", r.xAUTHUSERNAME, "simple", "")
 	}
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
@@ -1565,6 +1815,27 @@ type ApiGetRouteAggregationConnectionsRequest struct {
 	ctx                context.Context
 	ApiService         *RouteAggregationsApiService
 	routeAggregationId string
+	xCORRELATIONID     *string
+	xAUTHUSERNAME      *string
+	xSOURCE            *string
+}
+
+// Correlation identifier
+func (r ApiGetRouteAggregationConnectionsRequest) XCORRELATIONID(xCORRELATIONID string) ApiGetRouteAggregationConnectionsRequest {
+	r.xCORRELATIONID = &xCORRELATIONID
+	return r
+}
+
+// User name
+func (r ApiGetRouteAggregationConnectionsRequest) XAUTHUSERNAME(xAUTHUSERNAME string) ApiGetRouteAggregationConnectionsRequest {
+	r.xAUTHUSERNAME = &xAUTHUSERNAME
+	return r
+}
+
+// source
+func (r ApiGetRouteAggregationConnectionsRequest) XSOURCE(xSOURCE string) ApiGetRouteAggregationConnectionsRequest {
+	r.xSOURCE = &xSOURCE
+	return r
 }
 
 func (r ApiGetRouteAggregationConnectionsRequest) Execute() (*GetRouteAggregationGetConnectionsResponse, *http.Response, error) {
@@ -1627,6 +1898,15 @@ func (a *RouteAggregationsApiService) GetRouteAggregationConnectionsExecute(r Ap
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	if r.xCORRELATIONID != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-CORRELATION-ID", r.xCORRELATIONID, "simple", "")
+	}
+	if r.xAUTHUSERNAME != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-AUTH-USER-NAME", r.xAUTHUSERNAME, "simple", "")
+	}
+	if r.xSOURCE != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-SOURCE", r.xSOURCE, "simple", "")
 	}
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
@@ -1735,10 +2015,31 @@ type ApiPatchRouteAggregationByUuidRequest struct {
 	ApiService                        *RouteAggregationsApiService
 	routeAggregationId                string
 	routeAggregationsPatchRequestItem *[]RouteAggregationsPatchRequestItem
+	xCORRELATIONID                    *string
+	xAUTHUSERNAME                     *string
+	xSOURCE                           *string
 }
 
 func (r ApiPatchRouteAggregationByUuidRequest) RouteAggregationsPatchRequestItem(routeAggregationsPatchRequestItem []RouteAggregationsPatchRequestItem) ApiPatchRouteAggregationByUuidRequest {
 	r.routeAggregationsPatchRequestItem = &routeAggregationsPatchRequestItem
+	return r
+}
+
+// Correlation identifier
+func (r ApiPatchRouteAggregationByUuidRequest) XCORRELATIONID(xCORRELATIONID string) ApiPatchRouteAggregationByUuidRequest {
+	r.xCORRELATIONID = &xCORRELATIONID
+	return r
+}
+
+// User name
+func (r ApiPatchRouteAggregationByUuidRequest) XAUTHUSERNAME(xAUTHUSERNAME string) ApiPatchRouteAggregationByUuidRequest {
+	r.xAUTHUSERNAME = &xAUTHUSERNAME
+	return r
+}
+
+// source
+func (r ApiPatchRouteAggregationByUuidRequest) XSOURCE(xSOURCE string) ApiPatchRouteAggregationByUuidRequest {
+	r.xSOURCE = &xSOURCE
 	return r
 }
 
@@ -1808,6 +2109,15 @@ func (a *RouteAggregationsApiService) PatchRouteAggregationByUuidExecute(r ApiPa
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	if r.xCORRELATIONID != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-CORRELATION-ID", r.xCORRELATIONID, "simple", "")
+	}
+	if r.xAUTHUSERNAME != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-AUTH-USER-NAME", r.xAUTHUSERNAME, "simple", "")
+	}
+	if r.xSOURCE != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-SOURCE", r.xSOURCE, "simple", "")
 	}
 	// body params
 	localVarPostBody = r.routeAggregationsPatchRequestItem
@@ -1917,10 +2227,31 @@ type ApiSearchRouteAggregationsRequest struct {
 	ctx                         context.Context
 	ApiService                  *RouteAggregationsApiService
 	routeAggregationsSearchBase *RouteAggregationsSearchBase
+	xCORRELATIONID              *string
+	xAUTHUSERNAME               *string
+	xSOURCE                     *string
 }
 
 func (r ApiSearchRouteAggregationsRequest) RouteAggregationsSearchBase(routeAggregationsSearchBase RouteAggregationsSearchBase) ApiSearchRouteAggregationsRequest {
 	r.routeAggregationsSearchBase = &routeAggregationsSearchBase
+	return r
+}
+
+// Correlation identifier
+func (r ApiSearchRouteAggregationsRequest) XCORRELATIONID(xCORRELATIONID string) ApiSearchRouteAggregationsRequest {
+	r.xCORRELATIONID = &xCORRELATIONID
+	return r
+}
+
+// User name
+func (r ApiSearchRouteAggregationsRequest) XAUTHUSERNAME(xAUTHUSERNAME string) ApiSearchRouteAggregationsRequest {
+	r.xAUTHUSERNAME = &xAUTHUSERNAME
+	return r
+}
+
+// source
+func (r ApiSearchRouteAggregationsRequest) XSOURCE(xSOURCE string) ApiSearchRouteAggregationsRequest {
+	r.xSOURCE = &xSOURCE
 	return r
 }
 
@@ -1984,6 +2315,15 @@ func (a *RouteAggregationsApiService) SearchRouteAggregationsExecute(r ApiSearch
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	if r.xCORRELATIONID != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-CORRELATION-ID", r.xCORRELATIONID, "simple", "")
+	}
+	if r.xAUTHUSERNAME != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-AUTH-USER-NAME", r.xAUTHUSERNAME, "simple", "")
+	}
+	if r.xSOURCE != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-SOURCE", r.xSOURCE, "simple", "")
 	}
 	// body params
 	localVarPostBody = r.routeAggregationsSearchBase

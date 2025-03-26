@@ -7,12 +7,14 @@ Name | Type | Description | Notes
 **Href** | Pointer to **string** | Connection URI | [optional] [readonly] 
 **Type** | [**ConnectionType**](ConnectionType.md) |  | 
 **Uuid** | Pointer to **string** | Equinix-assigned connection identifier | [optional] 
+**PlatformUuid** | Pointer to **string** | Equinix-assigned platform connection identifier | [optional] 
 **Name** | **string** | Customer-provided connection name | 
 **Description** | Pointer to **string** | Customer-provided connection description | [optional] 
 **State** | Pointer to [**ConnectionState**](ConnectionState.md) |  | [optional] 
 **Change** | Pointer to [**Change**](Change.md) |  | [optional] 
 **Operation** | Pointer to [**ConnectionOperation**](ConnectionOperation.md) |  | [optional] 
 **Order** | Pointer to [**Order**](Order.md) |  | [optional] 
+**Tags** | Pointer to **[]string** | User-provided tags | [optional] 
 **Notifications** | Pointer to [**[]SimplifiedNotification**](SimplifiedNotification.md) | Preferences for notifications on connection configuration or status changes | [optional] 
 **Account** | Pointer to [**SimplifiedAccount**](SimplifiedAccount.md) |  | [optional] 
 **ChangeLog** | Pointer to [**Changelog**](Changelog.md) |  | [optional] 
@@ -115,6 +117,31 @@ SetUuid sets Uuid field to given value.
 `func (o *Connection) HasUuid() bool`
 
 HasUuid returns a boolean if a field has been set.
+
+### GetPlatformUuid
+
+`func (o *Connection) GetPlatformUuid() string`
+
+GetPlatformUuid returns the PlatformUuid field if non-nil, zero value otherwise.
+
+### GetPlatformUuidOk
+
+`func (o *Connection) GetPlatformUuidOk() (*string, bool)`
+
+GetPlatformUuidOk returns a tuple with the PlatformUuid field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetPlatformUuid
+
+`func (o *Connection) SetPlatformUuid(v string)`
+
+SetPlatformUuid sets PlatformUuid field to given value.
+
+### HasPlatformUuid
+
+`func (o *Connection) HasPlatformUuid() bool`
+
+HasPlatformUuid returns a boolean if a field has been set.
 
 ### GetName
 
@@ -260,6 +287,31 @@ SetOrder sets Order field to given value.
 `func (o *Connection) HasOrder() bool`
 
 HasOrder returns a boolean if a field has been set.
+
+### GetTags
+
+`func (o *Connection) GetTags() []string`
+
+GetTags returns the Tags field if non-nil, zero value otherwise.
+
+### GetTagsOk
+
+`func (o *Connection) GetTagsOk() (*[]string, bool)`
+
+GetTagsOk returns a tuple with the Tags field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetTags
+
+`func (o *Connection) SetTags(v []string)`
+
+SetTags sets Tags field to given value.
+
+### HasTags
+
+`func (o *Connection) HasTags() bool`
+
+HasTags returns a boolean if a field has been set.
 
 ### GetNotifications
 

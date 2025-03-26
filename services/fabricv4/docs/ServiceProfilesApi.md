@@ -17,7 +17,7 @@ Method | HTTP request | Description
 
 ## CreateServiceProfile
 
-> ServiceProfile CreateServiceProfile(ctx).ServiceProfileRequest(serviceProfileRequest).Execute()
+> ServiceProfile CreateServiceProfile(ctx).IcVersion(icVersion).ServiceProfileRequest(serviceProfileRequest).XCORRELATIONID(xCORRELATIONID).XAUTHUSERNAME(xAUTHUSERNAME).Execute()
 
 Create Profile
 
@@ -36,11 +36,14 @@ import (
 )
 
 func main() {
+	icVersion := "v4.2" // string | api version
 	serviceProfileRequest := *openapiclient.NewServiceProfileRequest(openapiclient.ServiceProfileTypeEnum("L2_PROFILE"), "Sample Service Profile", "offering connectivity to my-network") // ServiceProfileRequest | 
+	xCORRELATIONID := "12345-6789-10123" // string | Correlation identifier (optional)
+	xAUTHUSERNAME := "alice" // string | User name (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.ServiceProfilesApi.CreateServiceProfile(context.Background()).ServiceProfileRequest(serviceProfileRequest).Execute()
+	resp, r, err := apiClient.ServiceProfilesApi.CreateServiceProfile(context.Background()).IcVersion(icVersion).ServiceProfileRequest(serviceProfileRequest).XCORRELATIONID(xCORRELATIONID).XAUTHUSERNAME(xAUTHUSERNAME).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `ServiceProfilesApi.CreateServiceProfile``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -61,7 +64,10 @@ Other parameters are passed through a pointer to a apiCreateServiceProfileReques
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
+ **icVersion** | **string** | api version | 
  **serviceProfileRequest** | [**ServiceProfileRequest**](ServiceProfileRequest.md) |  | 
+ **xCORRELATIONID** | **string** | Correlation identifier | 
+ **xAUTHUSERNAME** | **string** | User name | 
 
 ### Return type
 
@@ -83,7 +89,7 @@ Name | Type | Description  | Notes
 
 ## DeleteServiceProfileByUuid
 
-> ServiceProfile DeleteServiceProfileByUuid(ctx, serviceProfileId).Execute()
+> ServiceProfile DeleteServiceProfileByUuid(ctx, serviceProfileId).IcVersion(icVersion).XCORRELATIONID(xCORRELATIONID).XAUTHUSERNAME(xAUTHUSERNAME).Execute()
 
 Delete Profile
 
@@ -103,10 +109,13 @@ import (
 
 func main() {
 	serviceProfileId := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | Service Profile UUID
+	icVersion := "v4.2" // string | api version
+	xCORRELATIONID := "12345-6789-10123" // string | Correlation identifier (optional)
+	xAUTHUSERNAME := "alice" // string | User name (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.ServiceProfilesApi.DeleteServiceProfileByUuid(context.Background(), serviceProfileId).Execute()
+	resp, r, err := apiClient.ServiceProfilesApi.DeleteServiceProfileByUuid(context.Background(), serviceProfileId).IcVersion(icVersion).XCORRELATIONID(xCORRELATIONID).XAUTHUSERNAME(xAUTHUSERNAME).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `ServiceProfilesApi.DeleteServiceProfileByUuid``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -132,6 +141,9 @@ Other parameters are passed through a pointer to a apiDeleteServiceProfileByUuid
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
+ **icVersion** | **string** | api version | 
+ **xCORRELATIONID** | **string** | Correlation identifier | 
+ **xAUTHUSERNAME** | **string** | User name | 
 
 ### Return type
 
@@ -153,7 +165,7 @@ Name | Type | Description  | Notes
 
 ## GetServiceProfileByUuid
 
-> ServiceProfile GetServiceProfileByUuid(ctx, serviceProfileId).ViewPoint(viewPoint).Execute()
+> ServiceProfile GetServiceProfileByUuid(ctx, serviceProfileId).IcVersion(icVersion).XCORRELATIONID(xCORRELATIONID).ViewPoint(viewPoint).Style(style).XAUTHUSERNAME(xAUTHUSERNAME).Execute()
 
 Get Profile
 
@@ -173,11 +185,15 @@ import (
 
 func main() {
 	serviceProfileId := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | Service Profile UUID
+	icVersion := "v4.2" // string | api version
+	xCORRELATIONID := "12345-6789-10123" // string | Correlation identifier (optional)
 	viewPoint := openapiclient.getServiceProfiles_viewPoint_parameter("aSide") // GetServiceProfilesViewPointParameter | flips view between buyer and seller representation (optional) (default to "aSide")
+	style := openapiclient.getServiceProfiles_style_parameter("MAX") // GetServiceProfilesStyleParameter | style (optional) (default to "MAX")
+	xAUTHUSERNAME := "alice" // string | User name (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.ServiceProfilesApi.GetServiceProfileByUuid(context.Background(), serviceProfileId).ViewPoint(viewPoint).Execute()
+	resp, r, err := apiClient.ServiceProfilesApi.GetServiceProfileByUuid(context.Background(), serviceProfileId).IcVersion(icVersion).XCORRELATIONID(xCORRELATIONID).ViewPoint(viewPoint).Style(style).XAUTHUSERNAME(xAUTHUSERNAME).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `ServiceProfilesApi.GetServiceProfileByUuid``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -203,7 +219,11 @@ Other parameters are passed through a pointer to a apiGetServiceProfileByUuidReq
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
+ **icVersion** | **string** | api version | 
+ **xCORRELATIONID** | **string** | Correlation identifier | 
  **viewPoint** | [**GetServiceProfilesViewPointParameter**](GetServiceProfilesViewPointParameter.md) | flips view between buyer and seller representation | [default to &quot;aSide&quot;]
+ **style** | [**GetServiceProfilesStyleParameter**](GetServiceProfilesStyleParameter.md) | style | [default to &quot;MAX&quot;]
+ **xAUTHUSERNAME** | **string** | User name | 
 
 ### Return type
 
@@ -225,7 +245,7 @@ Name | Type | Description  | Notes
 
 ## GetServiceProfileMetrosByUuid
 
-> ServiceMetros GetServiceProfileMetrosByUuid(ctx, serviceProfileId).Offset(offset).Limit(limit).Execute()
+> ServiceMetros GetServiceProfileMetrosByUuid(ctx, serviceProfileId).IcVersion(icVersion).XCORRELATIONID(xCORRELATIONID).Offset(offset).Limit(limit).Style(style).XAUTHUSERNAME(xAUTHUSERNAME).Execute()
 
 Get Profile Metros
 
@@ -245,12 +265,16 @@ import (
 
 func main() {
 	serviceProfileId := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | Service Profile UUID
+	icVersion := "v4.2" // string | api version
+	xCORRELATIONID := "12345-6789-10123" // string | Correlation identifier (optional)
 	offset := int32(1) // int32 | offset (optional)
 	limit := int32(10) // int32 | number of records to fetch (optional)
+	style := openapiclient.getServiceProfiles_style_parameter("MAX") // GetServiceProfilesStyleParameter | style (optional) (default to "MAX")
+	xAUTHUSERNAME := "alice" // string | User name (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.ServiceProfilesApi.GetServiceProfileMetrosByUuid(context.Background(), serviceProfileId).Offset(offset).Limit(limit).Execute()
+	resp, r, err := apiClient.ServiceProfilesApi.GetServiceProfileMetrosByUuid(context.Background(), serviceProfileId).IcVersion(icVersion).XCORRELATIONID(xCORRELATIONID).Offset(offset).Limit(limit).Style(style).XAUTHUSERNAME(xAUTHUSERNAME).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `ServiceProfilesApi.GetServiceProfileMetrosByUuid``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -276,8 +300,12 @@ Other parameters are passed through a pointer to a apiGetServiceProfileMetrosByU
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
+ **icVersion** | **string** | api version | 
+ **xCORRELATIONID** | **string** | Correlation identifier | 
  **offset** | **int32** | offset | 
  **limit** | **int32** | number of records to fetch | 
+ **style** | [**GetServiceProfilesStyleParameter**](GetServiceProfilesStyleParameter.md) | style | [default to &quot;MAX&quot;]
+ **xAUTHUSERNAME** | **string** | User name | 
 
 ### Return type
 
@@ -299,7 +327,7 @@ Name | Type | Description  | Notes
 
 ## GetServiceProfiles
 
-> ServiceProfiles GetServiceProfiles(ctx).Offset(offset).Limit(limit).ViewPoint(viewPoint).Execute()
+> ServiceProfiles GetServiceProfiles(ctx).IcVersion(icVersion).XCORRELATIONID(xCORRELATIONID).Offset(offset).Limit(limit).ViewPoint(viewPoint).Style(style).XAUTHUSERNAME(xAUTHUSERNAME).Execute()
 
 Get all Profiles
 
@@ -318,13 +346,17 @@ import (
 )
 
 func main() {
+	icVersion := "v4.2" // string | api version
+	xCORRELATIONID := "12345-6789-10123" // string | Correlation identifier (optional)
 	offset := int32(1) // int32 | offset (optional)
 	limit := int32(10) // int32 | number of records to fetch (optional)
 	viewPoint := openapiclient.getServiceProfiles_viewPoint_parameter("aSide") // GetServiceProfilesViewPointParameter | flips view between buyer and seller representation (optional) (default to "aSide")
+	style := openapiclient.getServiceProfiles_style_parameter("MAX") // GetServiceProfilesStyleParameter | style (optional) (default to "MAX")
+	xAUTHUSERNAME := "alice" // string | User name (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.ServiceProfilesApi.GetServiceProfiles(context.Background()).Offset(offset).Limit(limit).ViewPoint(viewPoint).Execute()
+	resp, r, err := apiClient.ServiceProfilesApi.GetServiceProfiles(context.Background()).IcVersion(icVersion).XCORRELATIONID(xCORRELATIONID).Offset(offset).Limit(limit).ViewPoint(viewPoint).Style(style).XAUTHUSERNAME(xAUTHUSERNAME).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `ServiceProfilesApi.GetServiceProfiles``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -345,9 +377,13 @@ Other parameters are passed through a pointer to a apiGetServiceProfilesRequest 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
+ **icVersion** | **string** | api version | 
+ **xCORRELATIONID** | **string** | Correlation identifier | 
  **offset** | **int32** | offset | 
  **limit** | **int32** | number of records to fetch | 
  **viewPoint** | [**GetServiceProfilesViewPointParameter**](GetServiceProfilesViewPointParameter.md) | flips view between buyer and seller representation | [default to &quot;aSide&quot;]
+ **style** | [**GetServiceProfilesStyleParameter**](GetServiceProfilesStyleParameter.md) | style | [default to &quot;MAX&quot;]
+ **xAUTHUSERNAME** | **string** | User name | 
 
 ### Return type
 
@@ -369,7 +405,7 @@ Name | Type | Description  | Notes
 
 ## PutServiceProfileByUuid
 
-> ServiceProfile PutServiceProfileByUuid(ctx, serviceProfileId).IfMatch(ifMatch).ServiceProfileRequest(serviceProfileRequest).Execute()
+> ServiceProfile PutServiceProfileByUuid(ctx, serviceProfileId).IfMatch(ifMatch).IcVersion(icVersion).ServiceProfileRequest(serviceProfileRequest).XCORRELATIONID(xCORRELATIONID).XAUTHUSERNAME(xAUTHUSERNAME).Execute()
 
 Replace Profile
 
@@ -390,11 +426,14 @@ import (
 func main() {
 	serviceProfileId := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | Service Profile UUID
 	ifMatch := "ifMatch_example" // string | conditional request
+	icVersion := "v4.2" // string | api version
 	serviceProfileRequest := *openapiclient.NewServiceProfileRequest(openapiclient.ServiceProfileTypeEnum("L2_PROFILE"), "Sample Service Profile", "offering connectivity to my-network") // ServiceProfileRequest | 
+	xCORRELATIONID := "12345-6789-10123" // string | Correlation identifier (optional)
+	xAUTHUSERNAME := "alice" // string | User name (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.ServiceProfilesApi.PutServiceProfileByUuid(context.Background(), serviceProfileId).IfMatch(ifMatch).ServiceProfileRequest(serviceProfileRequest).Execute()
+	resp, r, err := apiClient.ServiceProfilesApi.PutServiceProfileByUuid(context.Background(), serviceProfileId).IfMatch(ifMatch).IcVersion(icVersion).ServiceProfileRequest(serviceProfileRequest).XCORRELATIONID(xCORRELATIONID).XAUTHUSERNAME(xAUTHUSERNAME).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `ServiceProfilesApi.PutServiceProfileByUuid``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -421,7 +460,10 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
  **ifMatch** | **string** | conditional request | 
+ **icVersion** | **string** | api version | 
  **serviceProfileRequest** | [**ServiceProfileRequest**](ServiceProfileRequest.md) |  | 
+ **xCORRELATIONID** | **string** | Correlation identifier | 
+ **xAUTHUSERNAME** | **string** | User name | 
 
 ### Return type
 
@@ -443,7 +485,7 @@ Name | Type | Description  | Notes
 
 ## SearchServiceProfiles
 
-> ServiceProfiles SearchServiceProfiles(ctx).ServiceProfileSearchRequest(serviceProfileSearchRequest).ViewPoint(viewPoint).Execute()
+> ServiceProfiles SearchServiceProfiles(ctx).IcVersion(icVersion).ServiceProfileSearchRequest(serviceProfileSearchRequest).XCORRELATIONID(xCORRELATIONID).XAUTHUSERNAME(xAUTHUSERNAME).ViewPoint(viewPoint).Execute()
 
 Profile Search
 
@@ -462,12 +504,15 @@ import (
 )
 
 func main() {
+	icVersion := "v4.2" // string | api version
 	serviceProfileSearchRequest := *openapiclient.NewServiceProfileSearchRequest() // ServiceProfileSearchRequest | 
+	xCORRELATIONID := "12345-6789-10123" // string | Correlation identifier (optional)
+	xAUTHUSERNAME := "alice" // string | User name (optional)
 	viewPoint := openapiclient.getServiceProfiles_viewPoint_parameter("aSide") // GetServiceProfilesViewPointParameter | flips view between buyer and seller representation (optional) (default to "aSide")
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.ServiceProfilesApi.SearchServiceProfiles(context.Background()).ServiceProfileSearchRequest(serviceProfileSearchRequest).ViewPoint(viewPoint).Execute()
+	resp, r, err := apiClient.ServiceProfilesApi.SearchServiceProfiles(context.Background()).IcVersion(icVersion).ServiceProfileSearchRequest(serviceProfileSearchRequest).XCORRELATIONID(xCORRELATIONID).XAUTHUSERNAME(xAUTHUSERNAME).ViewPoint(viewPoint).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `ServiceProfilesApi.SearchServiceProfiles``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -488,7 +533,10 @@ Other parameters are passed through a pointer to a apiSearchServiceProfilesReque
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
+ **icVersion** | **string** | api version | 
  **serviceProfileSearchRequest** | [**ServiceProfileSearchRequest**](ServiceProfileSearchRequest.md) |  | 
+ **xCORRELATIONID** | **string** | Correlation identifier | 
+ **xAUTHUSERNAME** | **string** | User name | 
  **viewPoint** | [**GetServiceProfilesViewPointParameter**](GetServiceProfilesViewPointParameter.md) | flips view between buyer and seller representation | [default to &quot;aSide&quot;]
 
 ### Return type
@@ -511,7 +559,7 @@ Name | Type | Description  | Notes
 
 ## UpdateServiceProfileByUuid
 
-> ServiceProfile UpdateServiceProfileByUuid(ctx, serviceProfileId).IfMatch(ifMatch).JsonPatchOperation(jsonPatchOperation).Execute()
+> ServiceProfile UpdateServiceProfileByUuid(ctx, serviceProfileId).IfMatch(ifMatch).IcVersion(icVersion).JsonPatchOperation(jsonPatchOperation).XCORRELATIONID(xCORRELATIONID).XAUTHUSERNAME(xAUTHUSERNAME).Execute()
 
 Update Profile
 
@@ -532,11 +580,14 @@ import (
 func main() {
 	serviceProfileId := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | Service Profile UUID
 	ifMatch := "ifMatch_example" // string | conditional request
+	icVersion := "v4.2" // string | api version
 	jsonPatchOperation := []openapiclient.JsonPatchOperation{openapiclient.JsonPatchOperation{AddOperation: openapiclient.NewAddOperation(openapiclient.OpEnum("add"), "Path_example", map[string]interface{}(123))}} // []JsonPatchOperation | 
+	xCORRELATIONID := "12345-6789-10123" // string | Correlation identifier (optional)
+	xAUTHUSERNAME := "alice" // string | User name (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.ServiceProfilesApi.UpdateServiceProfileByUuid(context.Background(), serviceProfileId).IfMatch(ifMatch).JsonPatchOperation(jsonPatchOperation).Execute()
+	resp, r, err := apiClient.ServiceProfilesApi.UpdateServiceProfileByUuid(context.Background(), serviceProfileId).IfMatch(ifMatch).IcVersion(icVersion).JsonPatchOperation(jsonPatchOperation).XCORRELATIONID(xCORRELATIONID).XAUTHUSERNAME(xAUTHUSERNAME).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `ServiceProfilesApi.UpdateServiceProfileByUuid``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -563,7 +614,10 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
  **ifMatch** | **string** | conditional request | 
+ **icVersion** | **string** | api version | 
  **jsonPatchOperation** | [**[]JsonPatchOperation**](JsonPatchOperation.md) |  | 
+ **xCORRELATIONID** | **string** | Correlation identifier | 
+ **xAUTHUSERNAME** | **string** | User name | 
 
 ### Return type
 

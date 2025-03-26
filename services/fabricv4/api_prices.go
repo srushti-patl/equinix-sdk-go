@@ -19,13 +19,20 @@ import (
 type PricesApiService service
 
 type ApiSearchPricesRequest struct {
-	ctx        context.Context
-	ApiService *PricesApiService
-	filterBody *FilterBody
+	ctx           context.Context
+	ApiService    *PricesApiService
+	filterBody    *FilterBody
+	correlationId *string
 }
 
 func (r ApiSearchPricesRequest) FilterBody(filterBody FilterBody) ApiSearchPricesRequest {
 	r.filterBody = &filterBody
+	return r
+}
+
+// Correlation identifier
+func (r ApiSearchPricesRequest) CorrelationId(correlationId string) ApiSearchPricesRequest {
+	r.correlationId = &correlationId
 	return r
 }
 
@@ -89,6 +96,9 @@ func (a *PricesApiService) SearchPricesExecute(r ApiSearchPricesRequest) (*Price
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	if r.correlationId != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "Correlation-Id", r.correlationId, "simple", "")
 	}
 	// body params
 	localVarPostBody = r.filterBody

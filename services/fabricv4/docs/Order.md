@@ -10,6 +10,8 @@ Name | Type | Description | Notes
 **OrderId** | Pointer to **string** | Order Identification | [optional] 
 **OrderNumber** | Pointer to **string** | Order Reference Number | [optional] 
 **TermLength** | Pointer to **int32** | Term length in months, valid values are 1, 12, 24, 36 where 1 is the default value (for on-demand case). | [optional] [default to 1]
+**TermAction** | Pointer to [**OrderTermAction**](OrderTermAction.md) |  | [optional] 
+**TermRollInterval** | Pointer to **int32** | Future use, renewal term duration in months | [optional] 
 
 ## Methods
 
@@ -179,6 +181,56 @@ SetTermLength sets TermLength field to given value.
 `func (o *Order) HasTermLength() bool`
 
 HasTermLength returns a boolean if a field has been set.
+
+### GetTermAction
+
+`func (o *Order) GetTermAction() OrderTermAction`
+
+GetTermAction returns the TermAction field if non-nil, zero value otherwise.
+
+### GetTermActionOk
+
+`func (o *Order) GetTermActionOk() (*OrderTermAction, bool)`
+
+GetTermActionOk returns a tuple with the TermAction field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetTermAction
+
+`func (o *Order) SetTermAction(v OrderTermAction)`
+
+SetTermAction sets TermAction field to given value.
+
+### HasTermAction
+
+`func (o *Order) HasTermAction() bool`
+
+HasTermAction returns a boolean if a field has been set.
+
+### GetTermRollInterval
+
+`func (o *Order) GetTermRollInterval() int32`
+
+GetTermRollInterval returns the TermRollInterval field if non-nil, zero value otherwise.
+
+### GetTermRollIntervalOk
+
+`func (o *Order) GetTermRollIntervalOk() (*int32, bool)`
+
+GetTermRollIntervalOk returns a tuple with the TermRollInterval field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetTermRollInterval
+
+`func (o *Order) SetTermRollInterval(v int32)`
+
+SetTermRollInterval sets TermRollInterval field to given value.
+
+### HasTermRollInterval
+
+`func (o *Order) HasTermRollInterval() bool`
+
+HasTermRollInterval returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

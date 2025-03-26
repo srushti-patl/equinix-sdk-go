@@ -23,11 +23,25 @@ type ApiCreateNetworkRequest struct {
 	ctx                context.Context
 	ApiService         *NetworksApiService
 	networkPostRequest *NetworkPostRequest
+	xCORRELATIONID     *string
+	xAUTHUSERNAME      *string
 	dryRun             *bool
 }
 
 func (r ApiCreateNetworkRequest) NetworkPostRequest(networkPostRequest NetworkPostRequest) ApiCreateNetworkRequest {
 	r.networkPostRequest = &networkPostRequest
+	return r
+}
+
+// Correlation identifier
+func (r ApiCreateNetworkRequest) XCORRELATIONID(xCORRELATIONID string) ApiCreateNetworkRequest {
+	r.xCORRELATIONID = &xCORRELATIONID
+	return r
+}
+
+// User name
+func (r ApiCreateNetworkRequest) XAUTHUSERNAME(xAUTHUSERNAME string) ApiCreateNetworkRequest {
+	r.xAUTHUSERNAME = &xAUTHUSERNAME
 	return r
 }
 
@@ -103,6 +117,12 @@ func (a *NetworksApiService) CreateNetworkExecute(r ApiCreateNetworkRequest) (*N
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	if r.xCORRELATIONID != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-CORRELATION-ID", r.xCORRELATIONID, "simple", "")
+	}
+	if r.xAUTHUSERNAME != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-AUTH-USER-NAME", r.xAUTHUSERNAME, "simple", "")
 	}
 	// body params
 	localVarPostBody = r.networkPostRequest
@@ -198,9 +218,23 @@ func (a *NetworksApiService) CreateNetworkExecute(r ApiCreateNetworkRequest) (*N
 }
 
 type ApiDeleteNetworkByUuidRequest struct {
-	ctx        context.Context
-	ApiService *NetworksApiService
-	networkId  string
+	ctx            context.Context
+	ApiService     *NetworksApiService
+	networkId      string
+	xCORRELATIONID *string
+	xAUTHUSERNAME  *string
+}
+
+// Correlation identifier
+func (r ApiDeleteNetworkByUuidRequest) XCORRELATIONID(xCORRELATIONID string) ApiDeleteNetworkByUuidRequest {
+	r.xCORRELATIONID = &xCORRELATIONID
+	return r
+}
+
+// User name
+func (r ApiDeleteNetworkByUuidRequest) XAUTHUSERNAME(xAUTHUSERNAME string) ApiDeleteNetworkByUuidRequest {
+	r.xAUTHUSERNAME = &xAUTHUSERNAME
+	return r
 }
 
 func (r ApiDeleteNetworkByUuidRequest) Execute() (*Network, *http.Response, error) {
@@ -263,6 +297,12 @@ func (a *NetworksApiService) DeleteNetworkByUuidExecute(r ApiDeleteNetworkByUuid
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	if r.xCORRELATIONID != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-CORRELATION-ID", r.xCORRELATIONID, "simple", "")
+	}
+	if r.xAUTHUSERNAME != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-AUTH-USER-NAME", r.xAUTHUSERNAME, "simple", "")
 	}
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
@@ -345,9 +385,23 @@ func (a *NetworksApiService) DeleteNetworkByUuidExecute(r ApiDeleteNetworkByUuid
 }
 
 type ApiGetConnectionsByNetworkUuidRequest struct {
-	ctx        context.Context
-	ApiService *NetworksApiService
-	networkId  string
+	ctx            context.Context
+	ApiService     *NetworksApiService
+	networkId      string
+	xCORRELATIONID *string
+	xAUTHUSERNAME  *string
+}
+
+// Correlation identifier
+func (r ApiGetConnectionsByNetworkUuidRequest) XCORRELATIONID(xCORRELATIONID string) ApiGetConnectionsByNetworkUuidRequest {
+	r.xCORRELATIONID = &xCORRELATIONID
+	return r
+}
+
+// User name
+func (r ApiGetConnectionsByNetworkUuidRequest) XAUTHUSERNAME(xAUTHUSERNAME string) ApiGetConnectionsByNetworkUuidRequest {
+	r.xAUTHUSERNAME = &xAUTHUSERNAME
+	return r
 }
 
 func (r ApiGetConnectionsByNetworkUuidRequest) Execute() (*NetworkConnections, *http.Response, error) {
@@ -410,6 +464,12 @@ func (a *NetworksApiService) GetConnectionsByNetworkUuidExecute(r ApiGetConnecti
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	if r.xCORRELATIONID != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-CORRELATION-ID", r.xCORRELATIONID, "simple", "")
+	}
+	if r.xAUTHUSERNAME != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-AUTH-USER-NAME", r.xAUTHUSERNAME, "simple", "")
 	}
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
@@ -492,9 +552,23 @@ func (a *NetworksApiService) GetConnectionsByNetworkUuidExecute(r ApiGetConnecti
 }
 
 type ApiGetNetworkByUuidRequest struct {
-	ctx        context.Context
-	ApiService *NetworksApiService
-	networkId  string
+	ctx            context.Context
+	ApiService     *NetworksApiService
+	networkId      string
+	xCORRELATIONID *string
+	xAUTHUSERNAME  *string
+}
+
+// Correlation identifier
+func (r ApiGetNetworkByUuidRequest) XCORRELATIONID(xCORRELATIONID string) ApiGetNetworkByUuidRequest {
+	r.xCORRELATIONID = &xCORRELATIONID
+	return r
+}
+
+// User name
+func (r ApiGetNetworkByUuidRequest) XAUTHUSERNAME(xAUTHUSERNAME string) ApiGetNetworkByUuidRequest {
+	r.xAUTHUSERNAME = &xAUTHUSERNAME
+	return r
 }
 
 func (r ApiGetNetworkByUuidRequest) Execute() (*Network, *http.Response, error) {
@@ -557,6 +631,12 @@ func (a *NetworksApiService) GetNetworkByUuidExecute(r ApiGetNetworkByUuidReques
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	if r.xCORRELATIONID != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-CORRELATION-ID", r.xCORRELATIONID, "simple", "")
+	}
+	if r.xAUTHUSERNAME != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-AUTH-USER-NAME", r.xAUTHUSERNAME, "simple", "")
 	}
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
@@ -628,10 +708,24 @@ func (a *NetworksApiService) GetNetworkByUuidExecute(r ApiGetNetworkByUuidReques
 }
 
 type ApiGetNetworkChangeByUuidRequest struct {
-	ctx        context.Context
-	ApiService *NetworksApiService
-	networkId  string
-	changeId   string
+	ctx            context.Context
+	ApiService     *NetworksApiService
+	networkId      string
+	changeId       string
+	xCORRELATIONID *string
+	xAUTHUSERNAME  *string
+}
+
+// Correlation identifier
+func (r ApiGetNetworkChangeByUuidRequest) XCORRELATIONID(xCORRELATIONID string) ApiGetNetworkChangeByUuidRequest {
+	r.xCORRELATIONID = &xCORRELATIONID
+	return r
+}
+
+// User name
+func (r ApiGetNetworkChangeByUuidRequest) XAUTHUSERNAME(xAUTHUSERNAME string) ApiGetNetworkChangeByUuidRequest {
+	r.xAUTHUSERNAME = &xAUTHUSERNAME
+	return r
 }
 
 func (r ApiGetNetworkChangeByUuidRequest) Execute() (*NetworkChange, *http.Response, error) {
@@ -697,6 +791,12 @@ func (a *NetworksApiService) GetNetworkChangeByUuidExecute(r ApiGetNetworkChange
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	if r.xCORRELATIONID != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-CORRELATION-ID", r.xCORRELATIONID, "simple", "")
+	}
+	if r.xAUTHUSERNAME != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-AUTH-USER-NAME", r.xAUTHUSERNAME, "simple", "")
 	}
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
@@ -779,9 +879,23 @@ func (a *NetworksApiService) GetNetworkChangeByUuidExecute(r ApiGetNetworkChange
 }
 
 type ApiGetNetworkChangesRequest struct {
-	ctx        context.Context
-	ApiService *NetworksApiService
-	networkId  string
+	ctx            context.Context
+	ApiService     *NetworksApiService
+	networkId      string
+	xCORRELATIONID *string
+	xAUTHUSERNAME  *string
+}
+
+// Correlation identifier
+func (r ApiGetNetworkChangesRequest) XCORRELATIONID(xCORRELATIONID string) ApiGetNetworkChangesRequest {
+	r.xCORRELATIONID = &xCORRELATIONID
+	return r
+}
+
+// User name
+func (r ApiGetNetworkChangesRequest) XAUTHUSERNAME(xAUTHUSERNAME string) ApiGetNetworkChangesRequest {
+	r.xAUTHUSERNAME = &xAUTHUSERNAME
+	return r
 }
 
 func (r ApiGetNetworkChangesRequest) Execute() (*NetworkChangeResponse, *http.Response, error) {
@@ -844,6 +958,12 @@ func (a *NetworksApiService) GetNetworkChangesExecute(r ApiGetNetworkChangesRequ
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	if r.xCORRELATIONID != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-CORRELATION-ID", r.xCORRELATIONID, "simple", "")
+	}
+	if r.xAUTHUSERNAME != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-AUTH-USER-NAME", r.xAUTHUSERNAME, "simple", "")
 	}
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
@@ -929,10 +1049,24 @@ type ApiSearchNetworksRequest struct {
 	ctx                  context.Context
 	ApiService           *NetworksApiService
 	networkSearchRequest *NetworkSearchRequest
+	xCORRELATIONID       *string
+	xAUTHUSERNAME        *string
 }
 
 func (r ApiSearchNetworksRequest) NetworkSearchRequest(networkSearchRequest NetworkSearchRequest) ApiSearchNetworksRequest {
 	r.networkSearchRequest = &networkSearchRequest
+	return r
+}
+
+// Correlation identifier
+func (r ApiSearchNetworksRequest) XCORRELATIONID(xCORRELATIONID string) ApiSearchNetworksRequest {
+	r.xCORRELATIONID = &xCORRELATIONID
+	return r
+}
+
+// User name
+func (r ApiSearchNetworksRequest) XAUTHUSERNAME(xAUTHUSERNAME string) ApiSearchNetworksRequest {
+	r.xAUTHUSERNAME = &xAUTHUSERNAME
 	return r
 }
 
@@ -996,6 +1130,12 @@ func (a *NetworksApiService) SearchNetworksExecute(r ApiSearchNetworksRequest) (
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	if r.xCORRELATIONID != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-CORRELATION-ID", r.xCORRELATIONID, "simple", "")
+	}
+	if r.xAUTHUSERNAME != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-AUTH-USER-NAME", r.xAUTHUSERNAME, "simple", "")
 	}
 	// body params
 	localVarPostBody = r.networkSearchRequest
@@ -1084,10 +1224,24 @@ type ApiUpdateNetworkByUuidRequest struct {
 	ApiService             *NetworksApiService
 	networkId              string
 	networkChangeOperation *[]NetworkChangeOperation
+	xCORRELATIONID         *string
+	xAUTHUSERNAME          *string
 }
 
 func (r ApiUpdateNetworkByUuidRequest) NetworkChangeOperation(networkChangeOperation []NetworkChangeOperation) ApiUpdateNetworkByUuidRequest {
 	r.networkChangeOperation = &networkChangeOperation
+	return r
+}
+
+// Correlation identifier
+func (r ApiUpdateNetworkByUuidRequest) XCORRELATIONID(xCORRELATIONID string) ApiUpdateNetworkByUuidRequest {
+	r.xCORRELATIONID = &xCORRELATIONID
+	return r
+}
+
+// User name
+func (r ApiUpdateNetworkByUuidRequest) XAUTHUSERNAME(xAUTHUSERNAME string) ApiUpdateNetworkByUuidRequest {
+	r.xAUTHUSERNAME = &xAUTHUSERNAME
 	return r
 }
 
@@ -1157,6 +1311,12 @@ func (a *NetworksApiService) UpdateNetworkByUuidExecute(r ApiUpdateNetworkByUuid
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	if r.xCORRELATIONID != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-CORRELATION-ID", r.xCORRELATIONID, "simple", "")
+	}
+	if r.xAUTHUSERNAME != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-AUTH-USER-NAME", r.xAUTHUSERNAME, "simple", "")
 	}
 	// body params
 	localVarPostBody = r.networkChangeOperation

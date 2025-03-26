@@ -5,6 +5,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **AccountNumber** | Pointer to **int64** | Account number | [optional] 
+**AccountReferenceId** | Pointer to **string** | Account ReferenceId | [optional] 
 **AccountName** | Pointer to **string** | Account name | [optional] 
 **OrgId** | Pointer to **int64** | Customer organization identifier | [optional] 
 **OrganizationName** | Pointer to **string** | Customer organization name | [optional] 
@@ -60,6 +61,31 @@ SetAccountNumber sets AccountNumber field to given value.
 `func (o *SimplifiedAccount) HasAccountNumber() bool`
 
 HasAccountNumber returns a boolean if a field has been set.
+
+### GetAccountReferenceId
+
+`func (o *SimplifiedAccount) GetAccountReferenceId() string`
+
+GetAccountReferenceId returns the AccountReferenceId field if non-nil, zero value otherwise.
+
+### GetAccountReferenceIdOk
+
+`func (o *SimplifiedAccount) GetAccountReferenceIdOk() (*string, bool)`
+
+GetAccountReferenceIdOk returns a tuple with the AccountReferenceId field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetAccountReferenceId
+
+`func (o *SimplifiedAccount) SetAccountReferenceId(v string)`
+
+SetAccountReferenceId sets AccountReferenceId field to given value.
+
+### HasAccountReferenceId
+
+`func (o *SimplifiedAccount) HasAccountReferenceId() bool`
+
+HasAccountReferenceId returns a boolean if a field has been set.
 
 ### GetAccountName
 

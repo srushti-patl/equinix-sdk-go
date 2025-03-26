@@ -14,7 +14,7 @@ Method | HTTP request | Description
 
 ## CreateStreamSubscriptions
 
-> StreamSubscription CreateStreamSubscriptions(ctx, streamId).StreamSubscriptionPostRequest(streamSubscriptionPostRequest).Execute()
+> StreamSubscription CreateStreamSubscriptions(ctx, streamId).StreamSubscriptionPostRequest(streamSubscriptionPostRequest).XCORRELATIONID(xCORRELATIONID).XAUTHUSERNAME(xAUTHUSERNAME).XSOURCE(xSOURCE).Execute()
 
 Create Subscription
 
@@ -35,10 +35,13 @@ import (
 func main() {
 	streamId := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | Stream UUID
 	streamSubscriptionPostRequest := *openapiclient.NewStreamSubscriptionPostRequest() // StreamSubscriptionPostRequest | 
+	xCORRELATIONID := "12345-6789-10123" // string | Correlation identifier (optional)
+	xAUTHUSERNAME := "alice" // string | User name (optional)
+	xSOURCE := "xSOURCE_example" // string | source (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.StreamSubscriptionsApi.CreateStreamSubscriptions(context.Background(), streamId).StreamSubscriptionPostRequest(streamSubscriptionPostRequest).Execute()
+	resp, r, err := apiClient.StreamSubscriptionsApi.CreateStreamSubscriptions(context.Background(), streamId).StreamSubscriptionPostRequest(streamSubscriptionPostRequest).XCORRELATIONID(xCORRELATIONID).XAUTHUSERNAME(xAUTHUSERNAME).XSOURCE(xSOURCE).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `StreamSubscriptionsApi.CreateStreamSubscriptions``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -65,6 +68,9 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
  **streamSubscriptionPostRequest** | [**StreamSubscriptionPostRequest**](StreamSubscriptionPostRequest.md) |  | 
+ **xCORRELATIONID** | **string** | Correlation identifier | 
+ **xAUTHUSERNAME** | **string** | User name | 
+ **xSOURCE** | **string** | source | 
 
 ### Return type
 
@@ -86,7 +92,7 @@ Name | Type | Description  | Notes
 
 ## DeleteStreamSubscriptionByUuid
 
-> StreamSubscription DeleteStreamSubscriptionByUuid(ctx, streamId, subscriptionId).Execute()
+> StreamSubscription DeleteStreamSubscriptionByUuid(ctx, streamId, subscriptionId).XCORRELATIONID(xCORRELATIONID).XAUTHUSERNAME(xAUTHUSERNAME).Execute()
 
 Delete Subscription
 
@@ -107,10 +113,12 @@ import (
 func main() {
 	streamId := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | Stream UUID
 	subscriptionId := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | Stream Subscription UUID
+	xCORRELATIONID := "12345-6789-10123" // string | Correlation identifier (optional)
+	xAUTHUSERNAME := "alice" // string | User name (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.StreamSubscriptionsApi.DeleteStreamSubscriptionByUuid(context.Background(), streamId, subscriptionId).Execute()
+	resp, r, err := apiClient.StreamSubscriptionsApi.DeleteStreamSubscriptionByUuid(context.Background(), streamId, subscriptionId).XCORRELATIONID(xCORRELATIONID).XAUTHUSERNAME(xAUTHUSERNAME).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `StreamSubscriptionsApi.DeleteStreamSubscriptionByUuid``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -138,6 +146,8 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
 
+ **xCORRELATIONID** | **string** | Correlation identifier | 
+ **xAUTHUSERNAME** | **string** | User name | 
 
 ### Return type
 
@@ -159,7 +169,7 @@ Name | Type | Description  | Notes
 
 ## GetStreamSubscriptionByUuid
 
-> StreamSubscription GetStreamSubscriptionByUuid(ctx, streamId, subscriptionId).Execute()
+> StreamSubscription GetStreamSubscriptionByUuid(ctx, streamId, subscriptionId).XCORRELATIONID(xCORRELATIONID).XAUTHUSERNAME(xAUTHUSERNAME).Execute()
 
 Get Subscription
 
@@ -180,10 +190,12 @@ import (
 func main() {
 	streamId := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | Stream UUID
 	subscriptionId := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | Stream Subscription UUID
+	xCORRELATIONID := "12345-6789-10123" // string | Correlation identifier (optional)
+	xAUTHUSERNAME := "alice" // string | User name (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.StreamSubscriptionsApi.GetStreamSubscriptionByUuid(context.Background(), streamId, subscriptionId).Execute()
+	resp, r, err := apiClient.StreamSubscriptionsApi.GetStreamSubscriptionByUuid(context.Background(), streamId, subscriptionId).XCORRELATIONID(xCORRELATIONID).XAUTHUSERNAME(xAUTHUSERNAME).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `StreamSubscriptionsApi.GetStreamSubscriptionByUuid``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -211,6 +223,8 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
 
+ **xCORRELATIONID** | **string** | Correlation identifier | 
+ **xAUTHUSERNAME** | **string** | User name | 
 
 ### Return type
 
@@ -232,7 +246,7 @@ Name | Type | Description  | Notes
 
 ## GetStreamSubscriptions
 
-> GetAllStreamSubscriptionResponse GetStreamSubscriptions(ctx, streamId).Offset(offset).Limit(limit).Execute()
+> GetAllStreamSubscriptionResponse GetStreamSubscriptions(ctx, streamId).XCORRELATIONID(xCORRELATIONID).XAUTHUSERNAME(xAUTHUSERNAME).Offset(offset).Limit(limit).Execute()
 
 Get Subscriptions
 
@@ -252,12 +266,14 @@ import (
 
 func main() {
 	streamId := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | Stream UUID
+	xCORRELATIONID := "12345-6789-10123" // string | Correlation identifier (optional)
+	xAUTHUSERNAME := "alice" // string | User name (optional)
 	offset := int32(1) // int32 | offset (optional)
 	limit := int32(10) // int32 | number of records to fetch (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.StreamSubscriptionsApi.GetStreamSubscriptions(context.Background(), streamId).Offset(offset).Limit(limit).Execute()
+	resp, r, err := apiClient.StreamSubscriptionsApi.GetStreamSubscriptions(context.Background(), streamId).XCORRELATIONID(xCORRELATIONID).XAUTHUSERNAME(xAUTHUSERNAME).Offset(offset).Limit(limit).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `StreamSubscriptionsApi.GetStreamSubscriptions``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -283,6 +299,8 @@ Other parameters are passed through a pointer to a apiGetStreamSubscriptionsRequ
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
+ **xCORRELATIONID** | **string** | Correlation identifier | 
+ **xAUTHUSERNAME** | **string** | User name | 
  **offset** | **int32** | offset | 
  **limit** | **int32** | number of records to fetch | 
 
@@ -306,7 +324,7 @@ Name | Type | Description  | Notes
 
 ## UpdateStreamSubscriptionByUuid
 
-> StreamSubscription UpdateStreamSubscriptionByUuid(ctx, streamId, subscriptionId).StreamSubscriptionPutRequest(streamSubscriptionPutRequest).Execute()
+> StreamSubscription UpdateStreamSubscriptionByUuid(ctx, streamId, subscriptionId).StreamSubscriptionPutRequest(streamSubscriptionPutRequest).XCORRELATIONID(xCORRELATIONID).XAUTHUSERNAME(xAUTHUSERNAME).Execute()
 
 Update Subscription
 
@@ -328,10 +346,12 @@ func main() {
 	streamId := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | Stream UUID
 	subscriptionId := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | Stream Subscription UUID
 	streamSubscriptionPutRequest := *openapiclient.NewStreamSubscriptionPutRequest() // StreamSubscriptionPutRequest | 
+	xCORRELATIONID := "12345-6789-10123" // string | Correlation identifier (optional)
+	xAUTHUSERNAME := "alice" // string | User name (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.StreamSubscriptionsApi.UpdateStreamSubscriptionByUuid(context.Background(), streamId, subscriptionId).StreamSubscriptionPutRequest(streamSubscriptionPutRequest).Execute()
+	resp, r, err := apiClient.StreamSubscriptionsApi.UpdateStreamSubscriptionByUuid(context.Background(), streamId, subscriptionId).StreamSubscriptionPutRequest(streamSubscriptionPutRequest).XCORRELATIONID(xCORRELATIONID).XAUTHUSERNAME(xAUTHUSERNAME).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `StreamSubscriptionsApi.UpdateStreamSubscriptionByUuid``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -360,6 +380,8 @@ Name | Type | Description  | Notes
 
 
  **streamSubscriptionPutRequest** | [**StreamSubscriptionPutRequest**](StreamSubscriptionPutRequest.md) |  | 
+ **xCORRELATIONID** | **string** | Correlation identifier | 
+ **xAUTHUSERNAME** | **string** | User name | 
 
 ### Return type
 

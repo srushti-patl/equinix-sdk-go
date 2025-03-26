@@ -30,11 +30,13 @@ type SimplifiedPort struct {
 	// Physical Ports Speed in Mbps
 	PhysicalPortsSpeed *int32 `json:"physicalPortsSpeed,omitempty"`
 	// Equinix assigned response attribute for Connection count
-	ConnectionsCount *int32             `json:"connectionsCount,omitempty"`
-	Project          *Project           `json:"project,omitempty"`
-	State            *PortState         `json:"state,omitempty"`
-	Operation        *PortOperation     `json:"operation,omitempty"`
-	Account          *SimplifiedAccount `json:"account,omitempty"`
+	ConnectionsCount *int32     `json:"connectionsCount,omitempty"`
+	Project          *Project   `json:"project,omitempty"`
+	State            *PortState `json:"state,omitempty"`
+	// Equinix assigned response attribute for Unique ID for a virtual port.
+	CvpId     *string            `json:"cvpId,omitempty"`
+	Operation *PortOperation     `json:"operation,omitempty"`
+	Account   *SimplifiedAccount `json:"account,omitempty"`
 	// Deprecated
 	ServiceType *PortServiceType `json:"serviceType,omitempty"`
 	// Equinix assigned response attribute for Port bandwidth in Mbps
@@ -400,6 +402,38 @@ func (o *SimplifiedPort) HasState() bool {
 // SetState gets a reference to the given PortState and assigns it to the State field.
 func (o *SimplifiedPort) SetState(v PortState) {
 	o.State = &v
+}
+
+// GetCvpId returns the CvpId field value if set, zero value otherwise.
+func (o *SimplifiedPort) GetCvpId() string {
+	if o == nil || IsNil(o.CvpId) {
+		var ret string
+		return ret
+	}
+	return *o.CvpId
+}
+
+// GetCvpIdOk returns a tuple with the CvpId field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *SimplifiedPort) GetCvpIdOk() (*string, bool) {
+	if o == nil || IsNil(o.CvpId) {
+		return nil, false
+	}
+	return o.CvpId, true
+}
+
+// HasCvpId returns a boolean if a field has been set.
+func (o *SimplifiedPort) HasCvpId() bool {
+	if o != nil && !IsNil(o.CvpId) {
+		return true
+	}
+
+	return false
+}
+
+// SetCvpId gets a reference to the given string and assigns it to the CvpId field.
+func (o *SimplifiedPort) SetCvpId(v string) {
+	o.CvpId = &v
 }
 
 // GetOperation returns the Operation field value if set, zero value otherwise.
@@ -1053,6 +1087,9 @@ func (o SimplifiedPort) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.State) {
 		toSerialize["state"] = o.State
 	}
+	if !IsNil(o.CvpId) {
+		toSerialize["cvpId"] = o.CvpId
+	}
 	if !IsNil(o.Operation) {
 		toSerialize["operation"] = o.Operation
 	}
@@ -1142,6 +1179,7 @@ func (o *SimplifiedPort) UnmarshalJSON(data []byte) (err error) {
 		delete(additionalProperties, "connectionsCount")
 		delete(additionalProperties, "project")
 		delete(additionalProperties, "state")
+		delete(additionalProperties, "cvpId")
 		delete(additionalProperties, "operation")
 		delete(additionalProperties, "account")
 		delete(additionalProperties, "serviceType")

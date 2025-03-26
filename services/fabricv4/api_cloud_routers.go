@@ -23,7 +23,10 @@ type ApiCreateCloudRouterRequest struct {
 	ctx                    context.Context
 	ApiService             *CloudRoutersApiService
 	cloudRouterPostRequest *CloudRouterPostRequest
+	xCORRELATIONID         *string
+	xAUTHUSERNAME          *string
 	dryRun                 *bool
+	xSOURCE                *string
 }
 
 func (r ApiCreateCloudRouterRequest) CloudRouterPostRequest(cloudRouterPostRequest CloudRouterPostRequest) ApiCreateCloudRouterRequest {
@@ -31,9 +34,27 @@ func (r ApiCreateCloudRouterRequest) CloudRouterPostRequest(cloudRouterPostReque
 	return r
 }
 
+// Correlation identifier
+func (r ApiCreateCloudRouterRequest) XCORRELATIONID(xCORRELATIONID string) ApiCreateCloudRouterRequest {
+	r.xCORRELATIONID = &xCORRELATIONID
+	return r
+}
+
+// User name
+func (r ApiCreateCloudRouterRequest) XAUTHUSERNAME(xAUTHUSERNAME string) ApiCreateCloudRouterRequest {
+	r.xAUTHUSERNAME = &xAUTHUSERNAME
+	return r
+}
+
 // option to verify that API calls will succeed
 func (r ApiCreateCloudRouterRequest) DryRun(dryRun bool) ApiCreateCloudRouterRequest {
 	r.dryRun = &dryRun
+	return r
+}
+
+// source
+func (r ApiCreateCloudRouterRequest) XSOURCE(xSOURCE string) ApiCreateCloudRouterRequest {
+	r.xSOURCE = &xSOURCE
 	return r
 }
 
@@ -103,6 +124,15 @@ func (a *CloudRoutersApiService) CreateCloudRouterExecute(r ApiCreateCloudRouter
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	if r.xCORRELATIONID != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-CORRELATION-ID", r.xCORRELATIONID, "simple", "")
+	}
+	if r.xAUTHUSERNAME != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-AUTH-USER-NAME", r.xAUTHUSERNAME, "simple", "")
+	}
+	if r.xSOURCE != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-SOURCE", r.xSOURCE, "simple", "")
 	}
 	// body params
 	localVarPostBody = r.cloudRouterPostRequest
@@ -202,10 +232,31 @@ type ApiCreateCloudRouterActionRequest struct {
 	ApiService               *CloudRoutersApiService
 	routerId                 string
 	cloudRouterActionRequest *CloudRouterActionRequest
+	xCORRELATIONID           *string
+	xAUTHUSERNAME            *string
+	xSOURCE                  *string
 }
 
 func (r ApiCreateCloudRouterActionRequest) CloudRouterActionRequest(cloudRouterActionRequest CloudRouterActionRequest) ApiCreateCloudRouterActionRequest {
 	r.cloudRouterActionRequest = &cloudRouterActionRequest
+	return r
+}
+
+// Correlation identifier
+func (r ApiCreateCloudRouterActionRequest) XCORRELATIONID(xCORRELATIONID string) ApiCreateCloudRouterActionRequest {
+	r.xCORRELATIONID = &xCORRELATIONID
+	return r
+}
+
+// User name
+func (r ApiCreateCloudRouterActionRequest) XAUTHUSERNAME(xAUTHUSERNAME string) ApiCreateCloudRouterActionRequest {
+	r.xAUTHUSERNAME = &xAUTHUSERNAME
+	return r
+}
+
+// source
+func (r ApiCreateCloudRouterActionRequest) XSOURCE(xSOURCE string) ApiCreateCloudRouterActionRequest {
+	r.xSOURCE = &xSOURCE
 	return r
 }
 
@@ -272,6 +323,15 @@ func (a *CloudRoutersApiService) CreateCloudRouterActionExecute(r ApiCreateCloud
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	if r.xCORRELATIONID != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-CORRELATION-ID", r.xCORRELATIONID, "simple", "")
+	}
+	if r.xAUTHUSERNAME != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-AUTH-USER-NAME", r.xAUTHUSERNAME, "simple", "")
+	}
+	if r.xSOURCE != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-SOURCE", r.xSOURCE, "simple", "")
 	}
 	// body params
 	localVarPostBody = r.cloudRouterActionRequest
@@ -377,10 +437,234 @@ func (a *CloudRoutersApiService) CreateCloudRouterActionExecute(r ApiCreateCloud
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
+type ApiCreateCloudRouterCommandRequest struct {
+	ctx                           context.Context
+	ApiService                    *CloudRoutersApiService
+	routerId                      string
+	cloudRouterCommandPostRequest *CloudRouterCommandPostRequest
+	xCORRELATIONID                *string
+	xAUTHUSERNAME                 *string
+	xSOURCE                       *string
+}
+
+func (r ApiCreateCloudRouterCommandRequest) CloudRouterCommandPostRequest(cloudRouterCommandPostRequest CloudRouterCommandPostRequest) ApiCreateCloudRouterCommandRequest {
+	r.cloudRouterCommandPostRequest = &cloudRouterCommandPostRequest
+	return r
+}
+
+// Correlation identifier
+func (r ApiCreateCloudRouterCommandRequest) XCORRELATIONID(xCORRELATIONID string) ApiCreateCloudRouterCommandRequest {
+	r.xCORRELATIONID = &xCORRELATIONID
+	return r
+}
+
+// User name
+func (r ApiCreateCloudRouterCommandRequest) XAUTHUSERNAME(xAUTHUSERNAME string) ApiCreateCloudRouterCommandRequest {
+	r.xAUTHUSERNAME = &xAUTHUSERNAME
+	return r
+}
+
+// source
+func (r ApiCreateCloudRouterCommandRequest) XSOURCE(xSOURCE string) ApiCreateCloudRouterCommandRequest {
+	r.xSOURCE = &xSOURCE
+	return r
+}
+
+func (r ApiCreateCloudRouterCommandRequest) Execute() (*CloudRouterCommand, *http.Response, error) {
+	return r.ApiService.CreateCloudRouterCommandExecute(r)
+}
+
+/*
+CreateCloudRouterCommand Initiate Command
+
+This API provides capability to initiate Command
+
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param routerId Router UUID
+	@return ApiCreateCloudRouterCommandRequest
+*/
+func (a *CloudRoutersApiService) CreateCloudRouterCommand(ctx context.Context, routerId string) ApiCreateCloudRouterCommandRequest {
+	return ApiCreateCloudRouterCommandRequest{
+		ApiService: a,
+		ctx:        ctx,
+		routerId:   routerId,
+	}
+}
+
+// Execute executes the request
+//
+//	@return CloudRouterCommand
+func (a *CloudRoutersApiService) CreateCloudRouterCommandExecute(r ApiCreateCloudRouterCommandRequest) (*CloudRouterCommand, *http.Response, error) {
+	var (
+		localVarHTTPMethod  = http.MethodPost
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue *CloudRouterCommand
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "CloudRoutersApiService.CreateCloudRouterCommand")
+	if err != nil {
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/fabric/v4/routers/{routerId}/commands"
+	localVarPath = strings.Replace(localVarPath, "{"+"routerId"+"}", url.PathEscape(parameterValueToString(r.routerId, "routerId")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+	if r.cloudRouterCommandPostRequest == nil {
+		return localVarReturnValue, nil, reportError("cloudRouterCommandPostRequest is required and must be specified")
+	}
+
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{"application/json"}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	if r.xCORRELATIONID != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-CORRELATION-ID", r.xCORRELATIONID, "simple", "")
+	}
+	if r.xAUTHUSERNAME != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-AUTH-USER-NAME", r.xAUTHUSERNAME, "simple", "")
+	}
+	if r.xSOURCE != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-SOURCE", r.xSOURCE, "simple", "")
+	}
+	// body params
+	localVarPostBody = r.cloudRouterCommandPostRequest
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		if localVarHTTPResponse.StatusCode == 400 {
+			var v []Error
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 401 {
+			var v []Error
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 403 {
+			var v []Error
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 404 {
+			var v []Error
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 415 {
+			var v []Error
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 500 {
+			var v []Error
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
 type ApiDeleteCloudRouterByUuidRequest struct {
-	ctx        context.Context
-	ApiService *CloudRoutersApiService
-	routerId   string
+	ctx            context.Context
+	ApiService     *CloudRoutersApiService
+	routerId       string
+	xCORRELATIONID *string
+	xAUTHUSERNAME  *string
+}
+
+// Correlation identifier
+func (r ApiDeleteCloudRouterByUuidRequest) XCORRELATIONID(xCORRELATIONID string) ApiDeleteCloudRouterByUuidRequest {
+	r.xCORRELATIONID = &xCORRELATIONID
+	return r
+}
+
+// User name
+func (r ApiDeleteCloudRouterByUuidRequest) XAUTHUSERNAME(xAUTHUSERNAME string) ApiDeleteCloudRouterByUuidRequest {
+	r.xAUTHUSERNAME = &xAUTHUSERNAME
+	return r
 }
 
 func (r ApiDeleteCloudRouterByUuidRequest) Execute() (*http.Response, error) {
@@ -440,6 +724,12 @@ func (a *CloudRoutersApiService) DeleteCloudRouterByUuidExecute(r ApiDeleteCloud
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	if r.xCORRELATIONID != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-CORRELATION-ID", r.xCORRELATIONID, "simple", "")
+	}
+	if r.xAUTHUSERNAME != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-AUTH-USER-NAME", r.xAUTHUSERNAME, "simple", "")
 	}
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
@@ -523,16 +813,416 @@ func (a *CloudRoutersApiService) DeleteCloudRouterByUuidExecute(r ApiDeleteCloud
 	return localVarHTTPResponse, nil
 }
 
+type ApiDeleteCloudRouterCommandByUuidRequest struct {
+	ctx            context.Context
+	ApiService     *CloudRoutersApiService
+	routerId       string
+	commandId      string
+	xCORRELATIONID *string
+	xAUTHUSERNAME  *string
+	xSOURCE        *string
+}
+
+// Correlation identifier
+func (r ApiDeleteCloudRouterCommandByUuidRequest) XCORRELATIONID(xCORRELATIONID string) ApiDeleteCloudRouterCommandByUuidRequest {
+	r.xCORRELATIONID = &xCORRELATIONID
+	return r
+}
+
+// User name
+func (r ApiDeleteCloudRouterCommandByUuidRequest) XAUTHUSERNAME(xAUTHUSERNAME string) ApiDeleteCloudRouterCommandByUuidRequest {
+	r.xAUTHUSERNAME = &xAUTHUSERNAME
+	return r
+}
+
+// source
+func (r ApiDeleteCloudRouterCommandByUuidRequest) XSOURCE(xSOURCE string) ApiDeleteCloudRouterCommandByUuidRequest {
+	r.xSOURCE = &xSOURCE
+	return r
+}
+
+func (r ApiDeleteCloudRouterCommandByUuidRequest) Execute() (*http.Response, error) {
+	return r.ApiService.DeleteCloudRouterCommandByUuidExecute(r)
+}
+
+/*
+DeleteCloudRouterCommandByUuid Delete Command
+
+This API provides capability to delete command based on command Id
+
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param routerId Router UUID
+	@param commandId Command UUID
+	@return ApiDeleteCloudRouterCommandByUuidRequest
+*/
+func (a *CloudRoutersApiService) DeleteCloudRouterCommandByUuid(ctx context.Context, routerId string, commandId string) ApiDeleteCloudRouterCommandByUuidRequest {
+	return ApiDeleteCloudRouterCommandByUuidRequest{
+		ApiService: a,
+		ctx:        ctx,
+		routerId:   routerId,
+		commandId:  commandId,
+	}
+}
+
+// Execute executes the request
+func (a *CloudRoutersApiService) DeleteCloudRouterCommandByUuidExecute(r ApiDeleteCloudRouterCommandByUuidRequest) (*http.Response, error) {
+	var (
+		localVarHTTPMethod = http.MethodDelete
+		localVarPostBody   interface{}
+		formFiles          []formFile
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "CloudRoutersApiService.DeleteCloudRouterCommandByUuid")
+	if err != nil {
+		return nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/fabric/v4/routers/{routerId}/commands/{commandId}"
+	localVarPath = strings.Replace(localVarPath, "{"+"routerId"+"}", url.PathEscape(parameterValueToString(r.routerId, "routerId")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"commandId"+"}", url.PathEscape(parameterValueToString(r.commandId, "commandId")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	if r.xCORRELATIONID != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-CORRELATION-ID", r.xCORRELATIONID, "simple", "")
+	}
+	if r.xAUTHUSERNAME != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-AUTH-USER-NAME", r.xAUTHUSERNAME, "simple", "")
+	}
+	if r.xSOURCE != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-SOURCE", r.xSOURCE, "simple", "")
+	}
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarHTTPResponse, err
+	}
+
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		if localVarHTTPResponse.StatusCode == 400 {
+			var v []Error
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarHTTPResponse, newErr
+			}
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
+			return localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 401 {
+			var v []Error
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarHTTPResponse, newErr
+			}
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
+			return localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 403 {
+			var v []Error
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarHTTPResponse, newErr
+			}
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
+			return localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 404 {
+			var v []Error
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarHTTPResponse, newErr
+			}
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
+			return localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 500 {
+			var v []Error
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarHTTPResponse, newErr
+			}
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
+		}
+		return localVarHTTPResponse, newErr
+	}
+
+	return localVarHTTPResponse, nil
+}
+
+type ApiGetAllCloudRouterCommandsRequest struct {
+	ctx            context.Context
+	ApiService     *CloudRoutersApiService
+	routerId       string
+	xCORRELATIONID *string
+	xAUTHUSERNAME  *string
+	xSOURCE        *string
+}
+
+// Correlation identifier
+func (r ApiGetAllCloudRouterCommandsRequest) XCORRELATIONID(xCORRELATIONID string) ApiGetAllCloudRouterCommandsRequest {
+	r.xCORRELATIONID = &xCORRELATIONID
+	return r
+}
+
+// User name
+func (r ApiGetAllCloudRouterCommandsRequest) XAUTHUSERNAME(xAUTHUSERNAME string) ApiGetAllCloudRouterCommandsRequest {
+	r.xAUTHUSERNAME = &xAUTHUSERNAME
+	return r
+}
+
+// source
+func (r ApiGetAllCloudRouterCommandsRequest) XSOURCE(xSOURCE string) ApiGetAllCloudRouterCommandsRequest {
+	r.xSOURCE = &xSOURCE
+	return r
+}
+
+func (r ApiGetAllCloudRouterCommandsRequest) Execute() (*GetAllCloudRouterCommands, *http.Response, error) {
+	return r.ApiService.GetAllCloudRouterCommandsExecute(r)
+}
+
+/*
+GetAllCloudRouterCommands Get Commands
+
+This API provides capability to fetch all commands
+
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param routerId Router UUID
+	@return ApiGetAllCloudRouterCommandsRequest
+*/
+func (a *CloudRoutersApiService) GetAllCloudRouterCommands(ctx context.Context, routerId string) ApiGetAllCloudRouterCommandsRequest {
+	return ApiGetAllCloudRouterCommandsRequest{
+		ApiService: a,
+		ctx:        ctx,
+		routerId:   routerId,
+	}
+}
+
+// Execute executes the request
+//
+//	@return GetAllCloudRouterCommands
+func (a *CloudRoutersApiService) GetAllCloudRouterCommandsExecute(r ApiGetAllCloudRouterCommandsRequest) (*GetAllCloudRouterCommands, *http.Response, error) {
+	var (
+		localVarHTTPMethod  = http.MethodGet
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue *GetAllCloudRouterCommands
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "CloudRoutersApiService.GetAllCloudRouterCommands")
+	if err != nil {
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/fabric/v4/routers/{routerId}/commands"
+	localVarPath = strings.Replace(localVarPath, "{"+"routerId"+"}", url.PathEscape(parameterValueToString(r.routerId, "routerId")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	if r.xCORRELATIONID != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-CORRELATION-ID", r.xCORRELATIONID, "simple", "")
+	}
+	if r.xAUTHUSERNAME != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-AUTH-USER-NAME", r.xAUTHUSERNAME, "simple", "")
+	}
+	if r.xSOURCE != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-SOURCE", r.xSOURCE, "simple", "")
+	}
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		if localVarHTTPResponse.StatusCode == 400 {
+			var v []Error
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 401 {
+			var v []Error
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 403 {
+			var v []Error
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 404 {
+			var v []Error
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 415 {
+			var v []Error
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 500 {
+			var v []Error
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
 type ApiGetCloudRouterActionsRequest struct {
-	ctx        context.Context
-	ApiService *CloudRoutersApiService
-	routerId   string
-	state      *CloudRouterActionState
+	ctx            context.Context
+	ApiService     *CloudRoutersApiService
+	routerId       string
+	state          *CloudRouterActionState
+	xCORRELATIONID *string
+	xAUTHUSERNAME  *string
+	xSOURCE        *string
 }
 
 // Action state
 func (r ApiGetCloudRouterActionsRequest) State(state CloudRouterActionState) ApiGetCloudRouterActionsRequest {
 	r.state = &state
+	return r
+}
+
+// Correlation identifier
+func (r ApiGetCloudRouterActionsRequest) XCORRELATIONID(xCORRELATIONID string) ApiGetCloudRouterActionsRequest {
+	r.xCORRELATIONID = &xCORRELATIONID
+	return r
+}
+
+// User name
+func (r ApiGetCloudRouterActionsRequest) XAUTHUSERNAME(xAUTHUSERNAME string) ApiGetCloudRouterActionsRequest {
+	r.xAUTHUSERNAME = &xAUTHUSERNAME
+	return r
+}
+
+// source
+func (r ApiGetCloudRouterActionsRequest) XSOURCE(xSOURCE string) ApiGetCloudRouterActionsRequest {
+	r.xSOURCE = &xSOURCE
 	return r
 }
 
@@ -599,6 +1289,15 @@ func (a *CloudRoutersApiService) GetCloudRouterActionsExecute(r ApiGetCloudRoute
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	if r.xCORRELATIONID != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-CORRELATION-ID", r.xCORRELATIONID, "simple", "")
+	}
+	if r.xAUTHUSERNAME != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-AUTH-USER-NAME", r.xAUTHUSERNAME, "simple", "")
+	}
+	if r.xSOURCE != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-SOURCE", r.xSOURCE, "simple", "")
 	}
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
@@ -703,16 +1402,37 @@ func (a *CloudRoutersApiService) GetCloudRouterActionsExecute(r ApiGetCloudRoute
 }
 
 type ApiGetCloudRouterActionsByUuidRequest struct {
-	ctx        context.Context
-	ApiService *CloudRoutersApiService
-	routerId   string
-	actionId   string
-	state      *CloudRouterActionState
+	ctx            context.Context
+	ApiService     *CloudRoutersApiService
+	routerId       string
+	actionId       string
+	state          *CloudRouterActionState
+	xCORRELATIONID *string
+	xAUTHUSERNAME  *string
+	xSOURCE        *string
 }
 
 // Action state
 func (r ApiGetCloudRouterActionsByUuidRequest) State(state CloudRouterActionState) ApiGetCloudRouterActionsByUuidRequest {
 	r.state = &state
+	return r
+}
+
+// Correlation identifier
+func (r ApiGetCloudRouterActionsByUuidRequest) XCORRELATIONID(xCORRELATIONID string) ApiGetCloudRouterActionsByUuidRequest {
+	r.xCORRELATIONID = &xCORRELATIONID
+	return r
+}
+
+// User name
+func (r ApiGetCloudRouterActionsByUuidRequest) XAUTHUSERNAME(xAUTHUSERNAME string) ApiGetCloudRouterActionsByUuidRequest {
+	r.xAUTHUSERNAME = &xAUTHUSERNAME
+	return r
+}
+
+// source
+func (r ApiGetCloudRouterActionsByUuidRequest) XSOURCE(xSOURCE string) ApiGetCloudRouterActionsByUuidRequest {
+	r.xSOURCE = &xSOURCE
 	return r
 }
 
@@ -782,6 +1502,15 @@ func (a *CloudRoutersApiService) GetCloudRouterActionsByUuidExecute(r ApiGetClou
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	if r.xCORRELATIONID != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-CORRELATION-ID", r.xCORRELATIONID, "simple", "")
+	}
+	if r.xAUTHUSERNAME != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-AUTH-USER-NAME", r.xAUTHUSERNAME, "simple", "")
+	}
+	if r.xSOURCE != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-SOURCE", r.xSOURCE, "simple", "")
 	}
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
@@ -886,9 +1615,23 @@ func (a *CloudRoutersApiService) GetCloudRouterActionsByUuidExecute(r ApiGetClou
 }
 
 type ApiGetCloudRouterByUuidRequest struct {
-	ctx        context.Context
-	ApiService *CloudRoutersApiService
-	routerId   string
+	ctx            context.Context
+	ApiService     *CloudRoutersApiService
+	routerId       string
+	xCORRELATIONID *string
+	xAUTHUSERNAME  *string
+}
+
+// Correlation identifier
+func (r ApiGetCloudRouterByUuidRequest) XCORRELATIONID(xCORRELATIONID string) ApiGetCloudRouterByUuidRequest {
+	r.xCORRELATIONID = &xCORRELATIONID
+	return r
+}
+
+// User name
+func (r ApiGetCloudRouterByUuidRequest) XAUTHUSERNAME(xAUTHUSERNAME string) ApiGetCloudRouterByUuidRequest {
+	r.xAUTHUSERNAME = &xAUTHUSERNAME
+	return r
 }
 
 func (r ApiGetCloudRouterByUuidRequest) Execute() (*CloudRouter, *http.Response, error) {
@@ -951,6 +1694,12 @@ func (a *CloudRoutersApiService) GetCloudRouterByUuidExecute(r ApiGetCloudRouter
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	if r.xCORRELATIONID != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-CORRELATION-ID", r.xCORRELATIONID, "simple", "")
+	}
+	if r.xAUTHUSERNAME != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-AUTH-USER-NAME", r.xAUTHUSERNAME, "simple", "")
 	}
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
@@ -1032,10 +1781,227 @@ func (a *CloudRoutersApiService) GetCloudRouterByUuidExecute(r ApiGetCloudRouter
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
+type ApiGetCloudRouterCommandRequest struct {
+	ctx            context.Context
+	ApiService     *CloudRoutersApiService
+	routerId       string
+	commandId      string
+	xCORRELATIONID *string
+	xAUTHUSERNAME  *string
+	xSOURCE        *string
+}
+
+// Correlation identifier
+func (r ApiGetCloudRouterCommandRequest) XCORRELATIONID(xCORRELATIONID string) ApiGetCloudRouterCommandRequest {
+	r.xCORRELATIONID = &xCORRELATIONID
+	return r
+}
+
+// User name
+func (r ApiGetCloudRouterCommandRequest) XAUTHUSERNAME(xAUTHUSERNAME string) ApiGetCloudRouterCommandRequest {
+	r.xAUTHUSERNAME = &xAUTHUSERNAME
+	return r
+}
+
+// source
+func (r ApiGetCloudRouterCommandRequest) XSOURCE(xSOURCE string) ApiGetCloudRouterCommandRequest {
+	r.xSOURCE = &xSOURCE
+	return r
+}
+
+func (r ApiGetCloudRouterCommandRequest) Execute() (*CloudRouterCommand, *http.Response, error) {
+	return r.ApiService.GetCloudRouterCommandExecute(r)
+}
+
+/*
+GetCloudRouterCommand Get Command
+
+This API provides capability to fetch command using command Id
+
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param routerId Router UUID
+	@param commandId Command UUID
+	@return ApiGetCloudRouterCommandRequest
+*/
+func (a *CloudRoutersApiService) GetCloudRouterCommand(ctx context.Context, routerId string, commandId string) ApiGetCloudRouterCommandRequest {
+	return ApiGetCloudRouterCommandRequest{
+		ApiService: a,
+		ctx:        ctx,
+		routerId:   routerId,
+		commandId:  commandId,
+	}
+}
+
+// Execute executes the request
+//
+//	@return CloudRouterCommand
+func (a *CloudRoutersApiService) GetCloudRouterCommandExecute(r ApiGetCloudRouterCommandRequest) (*CloudRouterCommand, *http.Response, error) {
+	var (
+		localVarHTTPMethod  = http.MethodGet
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue *CloudRouterCommand
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "CloudRoutersApiService.GetCloudRouterCommand")
+	if err != nil {
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/fabric/v4/routers/{routerId}/commands/{commandId}"
+	localVarPath = strings.Replace(localVarPath, "{"+"routerId"+"}", url.PathEscape(parameterValueToString(r.routerId, "routerId")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"commandId"+"}", url.PathEscape(parameterValueToString(r.commandId, "commandId")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	if r.xCORRELATIONID != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-CORRELATION-ID", r.xCORRELATIONID, "simple", "")
+	}
+	if r.xAUTHUSERNAME != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-AUTH-USER-NAME", r.xAUTHUSERNAME, "simple", "")
+	}
+	if r.xSOURCE != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-SOURCE", r.xSOURCE, "simple", "")
+	}
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		if localVarHTTPResponse.StatusCode == 400 {
+			var v []Error
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 401 {
+			var v []Error
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 403 {
+			var v []Error
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 404 {
+			var v []Error
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 415 {
+			var v []Error
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 500 {
+			var v []Error
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
 type ApiGetCloudRouterPackageByCodeRequest struct {
 	ctx               context.Context
 	ApiService        *CloudRoutersApiService
 	routerPackageCode RouterPackageCode
+	xCORRELATIONID    *string
+	xAUTHUSERNAME     *string
+}
+
+// Correlation identifier
+func (r ApiGetCloudRouterPackageByCodeRequest) XCORRELATIONID(xCORRELATIONID string) ApiGetCloudRouterPackageByCodeRequest {
+	r.xCORRELATIONID = &xCORRELATIONID
+	return r
+}
+
+// User name
+func (r ApiGetCloudRouterPackageByCodeRequest) XAUTHUSERNAME(xAUTHUSERNAME string) ApiGetCloudRouterPackageByCodeRequest {
+	r.xAUTHUSERNAME = &xAUTHUSERNAME
+	return r
 }
 
 func (r ApiGetCloudRouterPackageByCodeRequest) Execute() (*CloudRouterPackage, *http.Response, error) {
@@ -1098,6 +2064,12 @@ func (a *CloudRoutersApiService) GetCloudRouterPackageByCodeExecute(r ApiGetClou
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	if r.xCORRELATIONID != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-CORRELATION-ID", r.xCORRELATIONID, "simple", "")
+	}
+	if r.xAUTHUSERNAME != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-AUTH-USER-NAME", r.xAUTHUSERNAME, "simple", "")
 	}
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
@@ -1191,10 +2163,24 @@ func (a *CloudRoutersApiService) GetCloudRouterPackageByCodeExecute(r ApiGetClou
 }
 
 type ApiGetCloudRouterPackagesRequest struct {
-	ctx        context.Context
-	ApiService *CloudRoutersApiService
-	offset     *int32
-	limit      *int32
+	ctx            context.Context
+	ApiService     *CloudRoutersApiService
+	xCORRELATIONID *string
+	xAUTHUSERNAME  *string
+	offset         *int32
+	limit          *int32
+}
+
+// Correlation identifier
+func (r ApiGetCloudRouterPackagesRequest) XCORRELATIONID(xCORRELATIONID string) ApiGetCloudRouterPackagesRequest {
+	r.xCORRELATIONID = &xCORRELATIONID
+	return r
+}
+
+// User name
+func (r ApiGetCloudRouterPackagesRequest) XAUTHUSERNAME(xAUTHUSERNAME string) ApiGetCloudRouterPackagesRequest {
+	r.xAUTHUSERNAME = &xAUTHUSERNAME
+	return r
 }
 
 // offset
@@ -1272,6 +2258,12 @@ func (a *CloudRoutersApiService) GetCloudRouterPackagesExecute(r ApiGetCloudRout
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	if r.xCORRELATIONID != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-CORRELATION-ID", r.xCORRELATIONID, "simple", "")
+	}
+	if r.xAUTHUSERNAME != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-AUTH-USER-NAME", r.xAUTHUSERNAME, "simple", "")
 	}
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
@@ -1353,15 +2345,246 @@ func (a *CloudRoutersApiService) GetCloudRouterPackagesExecute(r ApiGetCloudRout
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
+type ApiSearchCloudRouterCommandsRequest struct {
+	ctx                             context.Context
+	ApiService                      *CloudRoutersApiService
+	routerId                        string
+	cloudRouterCommandSearchRequest *CloudRouterCommandSearchRequest
+	xCORRELATIONID                  *string
+	xAUTHUSERNAME                   *string
+	xSOURCE                         *string
+}
+
+func (r ApiSearchCloudRouterCommandsRequest) CloudRouterCommandSearchRequest(cloudRouterCommandSearchRequest CloudRouterCommandSearchRequest) ApiSearchCloudRouterCommandsRequest {
+	r.cloudRouterCommandSearchRequest = &cloudRouterCommandSearchRequest
+	return r
+}
+
+// Correlation identifier
+func (r ApiSearchCloudRouterCommandsRequest) XCORRELATIONID(xCORRELATIONID string) ApiSearchCloudRouterCommandsRequest {
+	r.xCORRELATIONID = &xCORRELATIONID
+	return r
+}
+
+// User name
+func (r ApiSearchCloudRouterCommandsRequest) XAUTHUSERNAME(xAUTHUSERNAME string) ApiSearchCloudRouterCommandsRequest {
+	r.xAUTHUSERNAME = &xAUTHUSERNAME
+	return r
+}
+
+// source
+func (r ApiSearchCloudRouterCommandsRequest) XSOURCE(xSOURCE string) ApiSearchCloudRouterCommandsRequest {
+	r.xSOURCE = &xSOURCE
+	return r
+}
+
+func (r ApiSearchCloudRouterCommandsRequest) Execute() (*CloudRouterCommandSearchResponse, *http.Response, error) {
+	return r.ApiService.SearchCloudRouterCommandsExecute(r)
+}
+
+/*
+SearchCloudRouterCommands Search Commands
+
+This API provides capability to search commands
+
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param routerId Router UUID
+	@return ApiSearchCloudRouterCommandsRequest
+*/
+func (a *CloudRoutersApiService) SearchCloudRouterCommands(ctx context.Context, routerId string) ApiSearchCloudRouterCommandsRequest {
+	return ApiSearchCloudRouterCommandsRequest{
+		ApiService: a,
+		ctx:        ctx,
+		routerId:   routerId,
+	}
+}
+
+// Execute executes the request
+//
+//	@return CloudRouterCommandSearchResponse
+func (a *CloudRoutersApiService) SearchCloudRouterCommandsExecute(r ApiSearchCloudRouterCommandsRequest) (*CloudRouterCommandSearchResponse, *http.Response, error) {
+	var (
+		localVarHTTPMethod  = http.MethodPost
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue *CloudRouterCommandSearchResponse
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "CloudRoutersApiService.SearchCloudRouterCommands")
+	if err != nil {
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/fabric/v4/routers/{routerId}/commands/search"
+	localVarPath = strings.Replace(localVarPath, "{"+"routerId"+"}", url.PathEscape(parameterValueToString(r.routerId, "routerId")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+	if r.cloudRouterCommandSearchRequest == nil {
+		return localVarReturnValue, nil, reportError("cloudRouterCommandSearchRequest is required and must be specified")
+	}
+
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{"application/json"}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	if r.xCORRELATIONID != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-CORRELATION-ID", r.xCORRELATIONID, "simple", "")
+	}
+	if r.xAUTHUSERNAME != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-AUTH-USER-NAME", r.xAUTHUSERNAME, "simple", "")
+	}
+	if r.xSOURCE != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-SOURCE", r.xSOURCE, "simple", "")
+	}
+	// body params
+	localVarPostBody = r.cloudRouterCommandSearchRequest
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		if localVarHTTPResponse.StatusCode == 400 {
+			var v []Error
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 401 {
+			var v []Error
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 403 {
+			var v []Error
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 404 {
+			var v []Error
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 415 {
+			var v []Error
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 500 {
+			var v []Error
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
 type ApiSearchCloudRouterRoutesRequest struct {
 	ctx                          context.Context
 	ApiService                   *CloudRoutersApiService
 	routerId                     string
 	routeTableEntrySearchRequest *RouteTableEntrySearchRequest
+	xCORRELATIONID               *string
+	xAUTHUSERNAME                *string
+	xSOURCE                      *string
 }
 
 func (r ApiSearchCloudRouterRoutesRequest) RouteTableEntrySearchRequest(routeTableEntrySearchRequest RouteTableEntrySearchRequest) ApiSearchCloudRouterRoutesRequest {
 	r.routeTableEntrySearchRequest = &routeTableEntrySearchRequest
+	return r
+}
+
+// Correlation identifier
+func (r ApiSearchCloudRouterRoutesRequest) XCORRELATIONID(xCORRELATIONID string) ApiSearchCloudRouterRoutesRequest {
+	r.xCORRELATIONID = &xCORRELATIONID
+	return r
+}
+
+// User name
+func (r ApiSearchCloudRouterRoutesRequest) XAUTHUSERNAME(xAUTHUSERNAME string) ApiSearchCloudRouterRoutesRequest {
+	r.xAUTHUSERNAME = &xAUTHUSERNAME
+	return r
+}
+
+// source
+func (r ApiSearchCloudRouterRoutesRequest) XSOURCE(xSOURCE string) ApiSearchCloudRouterRoutesRequest {
+	r.xSOURCE = &xSOURCE
 	return r
 }
 
@@ -1428,6 +2651,15 @@ func (a *CloudRoutersApiService) SearchCloudRouterRoutesExecute(r ApiSearchCloud
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	if r.xCORRELATIONID != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-CORRELATION-ID", r.xCORRELATIONID, "simple", "")
+	}
+	if r.xAUTHUSERNAME != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-AUTH-USER-NAME", r.xAUTHUSERNAME, "simple", "")
+	}
+	if r.xSOURCE != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-SOURCE", r.xSOURCE, "simple", "")
 	}
 	// body params
 	localVarPostBody = r.routeTableEntrySearchRequest
@@ -1537,10 +2769,24 @@ type ApiSearchCloudRoutersRequest struct {
 	ctx                      context.Context
 	ApiService               *CloudRoutersApiService
 	cloudRouterSearchRequest *CloudRouterSearchRequest
+	xCORRELATIONID           *string
+	xAUTHUSERNAME            *string
 }
 
 func (r ApiSearchCloudRoutersRequest) CloudRouterSearchRequest(cloudRouterSearchRequest CloudRouterSearchRequest) ApiSearchCloudRoutersRequest {
 	r.cloudRouterSearchRequest = &cloudRouterSearchRequest
+	return r
+}
+
+// Correlation identifier
+func (r ApiSearchCloudRoutersRequest) XCORRELATIONID(xCORRELATIONID string) ApiSearchCloudRoutersRequest {
+	r.xCORRELATIONID = &xCORRELATIONID
+	return r
+}
+
+// User name
+func (r ApiSearchCloudRoutersRequest) XAUTHUSERNAME(xAUTHUSERNAME string) ApiSearchCloudRoutersRequest {
+	r.xAUTHUSERNAME = &xAUTHUSERNAME
 	return r
 }
 
@@ -1604,6 +2850,12 @@ func (a *CloudRoutersApiService) SearchCloudRoutersExecute(r ApiSearchCloudRoute
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	if r.xCORRELATIONID != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-CORRELATION-ID", r.xCORRELATIONID, "simple", "")
+	}
+	if r.xAUTHUSERNAME != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-AUTH-USER-NAME", r.xAUTHUSERNAME, "simple", "")
 	}
 	// body params
 	localVarPostBody = r.cloudRouterSearchRequest
@@ -1703,10 +2955,24 @@ type ApiSearchConnectionAdvertisedRoutesRequest struct {
 	ApiService                   *CloudRoutersApiService
 	connectionId                 string
 	connectionRouteSearchRequest *ConnectionRouteSearchRequest
+	xCORRELATIONID               *string
+	xAUTHUSERNAME                *string
 }
 
 func (r ApiSearchConnectionAdvertisedRoutesRequest) ConnectionRouteSearchRequest(connectionRouteSearchRequest ConnectionRouteSearchRequest) ApiSearchConnectionAdvertisedRoutesRequest {
 	r.connectionRouteSearchRequest = &connectionRouteSearchRequest
+	return r
+}
+
+// Correlation identifier
+func (r ApiSearchConnectionAdvertisedRoutesRequest) XCORRELATIONID(xCORRELATIONID string) ApiSearchConnectionAdvertisedRoutesRequest {
+	r.xCORRELATIONID = &xCORRELATIONID
+	return r
+}
+
+// User name
+func (r ApiSearchConnectionAdvertisedRoutesRequest) XAUTHUSERNAME(xAUTHUSERNAME string) ApiSearchConnectionAdvertisedRoutesRequest {
+	r.xAUTHUSERNAME = &xAUTHUSERNAME
 	return r
 }
 
@@ -1773,6 +3039,12 @@ func (a *CloudRoutersApiService) SearchConnectionAdvertisedRoutesExecute(r ApiSe
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	if r.xCORRELATIONID != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-CORRELATION-ID", r.xCORRELATIONID, "simple", "")
+	}
+	if r.xAUTHUSERNAME != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-AUTH-USER-NAME", r.xAUTHUSERNAME, "simple", "")
 	}
 	// body params
 	localVarPostBody = r.connectionRouteSearchRequest
@@ -1861,10 +3133,24 @@ type ApiSearchConnectionReceivedRoutesRequest struct {
 	ApiService                   *CloudRoutersApiService
 	connectionId                 string
 	connectionRouteSearchRequest *ConnectionRouteSearchRequest
+	xCORRELATIONID               *string
+	xAUTHUSERNAME                *string
 }
 
 func (r ApiSearchConnectionReceivedRoutesRequest) ConnectionRouteSearchRequest(connectionRouteSearchRequest ConnectionRouteSearchRequest) ApiSearchConnectionReceivedRoutesRequest {
 	r.connectionRouteSearchRequest = &connectionRouteSearchRequest
+	return r
+}
+
+// Correlation identifier
+func (r ApiSearchConnectionReceivedRoutesRequest) XCORRELATIONID(xCORRELATIONID string) ApiSearchConnectionReceivedRoutesRequest {
+	r.xCORRELATIONID = &xCORRELATIONID
+	return r
+}
+
+// User name
+func (r ApiSearchConnectionReceivedRoutesRequest) XAUTHUSERNAME(xAUTHUSERNAME string) ApiSearchConnectionReceivedRoutesRequest {
+	r.xAUTHUSERNAME = &xAUTHUSERNAME
 	return r
 }
 
@@ -1931,6 +3217,12 @@ func (a *CloudRoutersApiService) SearchConnectionReceivedRoutesExecute(r ApiSear
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	if r.xCORRELATIONID != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-CORRELATION-ID", r.xCORRELATIONID, "simple", "")
+	}
+	if r.xAUTHUSERNAME != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-AUTH-USER-NAME", r.xAUTHUSERNAME, "simple", "")
 	}
 	// body params
 	localVarPostBody = r.connectionRouteSearchRequest
@@ -2019,10 +3311,31 @@ type ApiSearchRouterActionsRequest struct {
 	ApiService                      *CloudRoutersApiService
 	routerId                        string
 	cloudRouterActionsSearchRequest *CloudRouterActionsSearchRequest
+	xCORRELATIONID                  *string
+	xAUTHUSERNAME                   *string
+	xSOURCE                         *string
 }
 
 func (r ApiSearchRouterActionsRequest) CloudRouterActionsSearchRequest(cloudRouterActionsSearchRequest CloudRouterActionsSearchRequest) ApiSearchRouterActionsRequest {
 	r.cloudRouterActionsSearchRequest = &cloudRouterActionsSearchRequest
+	return r
+}
+
+// Correlation identifier
+func (r ApiSearchRouterActionsRequest) XCORRELATIONID(xCORRELATIONID string) ApiSearchRouterActionsRequest {
+	r.xCORRELATIONID = &xCORRELATIONID
+	return r
+}
+
+// User name
+func (r ApiSearchRouterActionsRequest) XAUTHUSERNAME(xAUTHUSERNAME string) ApiSearchRouterActionsRequest {
+	r.xAUTHUSERNAME = &xAUTHUSERNAME
+	return r
+}
+
+// source
+func (r ApiSearchRouterActionsRequest) XSOURCE(xSOURCE string) ApiSearchRouterActionsRequest {
+	r.xSOURCE = &xSOURCE
 	return r
 }
 
@@ -2089,6 +3402,15 @@ func (a *CloudRoutersApiService) SearchRouterActionsExecute(r ApiSearchRouterAct
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	if r.xCORRELATIONID != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-CORRELATION-ID", r.xCORRELATIONID, "simple", "")
+	}
+	if r.xAUTHUSERNAME != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-AUTH-USER-NAME", r.xAUTHUSERNAME, "simple", "")
+	}
+	if r.xSOURCE != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-SOURCE", r.xSOURCE, "simple", "")
 	}
 	// body params
 	localVarPostBody = r.cloudRouterActionsSearchRequest
@@ -2199,10 +3521,24 @@ type ApiUpdateCloudRouterByUuidRequest struct {
 	ApiService                 *CloudRoutersApiService
 	routerId                   string
 	cloudRouterChangeOperation *[]CloudRouterChangeOperation
+	xCORRELATIONID             *string
+	xAUTHUSERNAME              *string
 }
 
 func (r ApiUpdateCloudRouterByUuidRequest) CloudRouterChangeOperation(cloudRouterChangeOperation []CloudRouterChangeOperation) ApiUpdateCloudRouterByUuidRequest {
 	r.cloudRouterChangeOperation = &cloudRouterChangeOperation
+	return r
+}
+
+// Correlation identifier
+func (r ApiUpdateCloudRouterByUuidRequest) XCORRELATIONID(xCORRELATIONID string) ApiUpdateCloudRouterByUuidRequest {
+	r.xCORRELATIONID = &xCORRELATIONID
+	return r
+}
+
+// User name
+func (r ApiUpdateCloudRouterByUuidRequest) XAUTHUSERNAME(xAUTHUSERNAME string) ApiUpdateCloudRouterByUuidRequest {
+	r.xAUTHUSERNAME = &xAUTHUSERNAME
 	return r
 }
 
@@ -2272,6 +3608,12 @@ func (a *CloudRoutersApiService) UpdateCloudRouterByUuidExecute(r ApiUpdateCloud
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	if r.xCORRELATIONID != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-CORRELATION-ID", r.xCORRELATIONID, "simple", "")
+	}
+	if r.xAUTHUSERNAME != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-AUTH-USER-NAME", r.xAUTHUSERNAME, "simple", "")
 	}
 	// body params
 	localVarPostBody = r.cloudRouterChangeOperation

@@ -23,6 +23,10 @@ type PortOrder struct {
 	CustomerReferenceId *string `json:"customerReferenceId,omitempty"`
 	// Order Reference Number
 	OrderNumber *string `json:"orderNumber,omitempty"`
+	// Order Reference Number for Sales Assisted Order
+	OrderLineItemNumber *string `json:"orderLineItemNumber,omitempty"`
+	// product domain Order Number for Sales Assisted Order
+	DomainOrderNumber *string `json:"domainOrderNumber,omitempty"`
 	// Equinix-assigned order identifier, this is a derived response atrribute
 	Uuid                 *string             `json:"uuid,omitempty"`
 	Signature            *PortOrderSignature `json:"signature,omitempty"`
@@ -176,6 +180,70 @@ func (o *PortOrder) SetOrderNumber(v string) {
 	o.OrderNumber = &v
 }
 
+// GetOrderLineItemNumber returns the OrderLineItemNumber field value if set, zero value otherwise.
+func (o *PortOrder) GetOrderLineItemNumber() string {
+	if o == nil || IsNil(o.OrderLineItemNumber) {
+		var ret string
+		return ret
+	}
+	return *o.OrderLineItemNumber
+}
+
+// GetOrderLineItemNumberOk returns a tuple with the OrderLineItemNumber field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *PortOrder) GetOrderLineItemNumberOk() (*string, bool) {
+	if o == nil || IsNil(o.OrderLineItemNumber) {
+		return nil, false
+	}
+	return o.OrderLineItemNumber, true
+}
+
+// HasOrderLineItemNumber returns a boolean if a field has been set.
+func (o *PortOrder) HasOrderLineItemNumber() bool {
+	if o != nil && !IsNil(o.OrderLineItemNumber) {
+		return true
+	}
+
+	return false
+}
+
+// SetOrderLineItemNumber gets a reference to the given string and assigns it to the OrderLineItemNumber field.
+func (o *PortOrder) SetOrderLineItemNumber(v string) {
+	o.OrderLineItemNumber = &v
+}
+
+// GetDomainOrderNumber returns the DomainOrderNumber field value if set, zero value otherwise.
+func (o *PortOrder) GetDomainOrderNumber() string {
+	if o == nil || IsNil(o.DomainOrderNumber) {
+		var ret string
+		return ret
+	}
+	return *o.DomainOrderNumber
+}
+
+// GetDomainOrderNumberOk returns a tuple with the DomainOrderNumber field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *PortOrder) GetDomainOrderNumberOk() (*string, bool) {
+	if o == nil || IsNil(o.DomainOrderNumber) {
+		return nil, false
+	}
+	return o.DomainOrderNumber, true
+}
+
+// HasDomainOrderNumber returns a boolean if a field has been set.
+func (o *PortOrder) HasDomainOrderNumber() bool {
+	if o != nil && !IsNil(o.DomainOrderNumber) {
+		return true
+	}
+
+	return false
+}
+
+// SetDomainOrderNumber gets a reference to the given string and assigns it to the DomainOrderNumber field.
+func (o *PortOrder) SetDomainOrderNumber(v string) {
+	o.DomainOrderNumber = &v
+}
+
 // GetUuid returns the Uuid field value if set, zero value otherwise.
 func (o *PortOrder) GetUuid() string {
 	if o == nil || IsNil(o.Uuid) {
@@ -262,6 +330,12 @@ func (o PortOrder) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.OrderNumber) {
 		toSerialize["orderNumber"] = o.OrderNumber
 	}
+	if !IsNil(o.OrderLineItemNumber) {
+		toSerialize["orderLineItemNumber"] = o.OrderLineItemNumber
+	}
+	if !IsNil(o.DomainOrderNumber) {
+		toSerialize["domainOrderNumber"] = o.DomainOrderNumber
+	}
 	if !IsNil(o.Uuid) {
 		toSerialize["uuid"] = o.Uuid
 	}
@@ -294,6 +368,8 @@ func (o *PortOrder) UnmarshalJSON(data []byte) (err error) {
 		delete(additionalProperties, "orderId")
 		delete(additionalProperties, "customerReferenceId")
 		delete(additionalProperties, "orderNumber")
+		delete(additionalProperties, "orderLineItemNumber")
+		delete(additionalProperties, "domainOrderNumber")
 		delete(additionalProperties, "uuid")
 		delete(additionalProperties, "signature")
 		o.AdditionalProperties = additionalProperties

@@ -12,6 +12,7 @@ Name | Type | Description | Notes
 **Notifications** | [**[]SimplifiedNotification**](SimplifiedNotification.md) | Preferences for notifications on network configuration or status changes | 
 **Href** | **string** | Network URI | [readonly] 
 **Uuid** | **string** | Equinix-assigned network identifier | 
+**PlatformUuid** | Pointer to **string** | Equinix-assigned platform connection identifier | [optional] 
 **State** | [**NetworkState**](NetworkState.md) |  | 
 **ConnectionsCount** | Pointer to **float32** | number of connections created on the network | [optional] 
 **Account** | Pointer to [**SimplifiedAccount**](SimplifiedAccount.md) |  | [optional] 
@@ -208,6 +209,31 @@ and a boolean to check if the value has been set.
 
 SetUuid sets Uuid field to given value.
 
+
+### GetPlatformUuid
+
+`func (o *Network) GetPlatformUuid() string`
+
+GetPlatformUuid returns the PlatformUuid field if non-nil, zero value otherwise.
+
+### GetPlatformUuidOk
+
+`func (o *Network) GetPlatformUuidOk() (*string, bool)`
+
+GetPlatformUuidOk returns a tuple with the PlatformUuid field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetPlatformUuid
+
+`func (o *Network) SetPlatformUuid(v string)`
+
+SetPlatformUuid sets PlatformUuid field to given value.
+
+### HasPlatformUuid
+
+`func (o *Network) HasPlatformUuid() bool`
+
+HasPlatformUuid returns a boolean if a field has been set.
 
 ### GetState
 

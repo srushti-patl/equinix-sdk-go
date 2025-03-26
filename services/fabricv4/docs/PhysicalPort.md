@@ -10,6 +10,7 @@ Name | Type | Description | Notes
 **State** | Pointer to [**PortState**](PortState.md) |  | [optional] 
 **Account** | Pointer to [**SimplifiedAccount**](SimplifiedAccount.md) |  | [optional] 
 **InterfaceSpeed** | Pointer to **int32** | Physical Port Speed in Mbps | [optional] 
+**Bandwidth** | Pointer to **int32** | Physical Port Speed in Mbps | [optional] 
 **InterfaceType** | Pointer to **string** | Physical Port Interface Type | [optional] 
 **Uuid** | Pointer to **string** | Equinix assigned response attribute for physical port identifier | [optional] 
 **Tether** | Pointer to [**PortTether**](PortTether.md) |  | [optional] 
@@ -190,6 +191,31 @@ SetInterfaceSpeed sets InterfaceSpeed field to given value.
 `func (o *PhysicalPort) HasInterfaceSpeed() bool`
 
 HasInterfaceSpeed returns a boolean if a field has been set.
+
+### GetBandwidth
+
+`func (o *PhysicalPort) GetBandwidth() int32`
+
+GetBandwidth returns the Bandwidth field if non-nil, zero value otherwise.
+
+### GetBandwidthOk
+
+`func (o *PhysicalPort) GetBandwidthOk() (*int32, bool)`
+
+GetBandwidthOk returns a tuple with the Bandwidth field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetBandwidth
+
+`func (o *PhysicalPort) SetBandwidth(v int32)`
+
+SetBandwidth sets Bandwidth field to given value.
+
+### HasBandwidth
+
+`func (o *PhysicalPort) HasBandwidth() bool`
+
+HasBandwidth returns a boolean if a field has been set.
 
 ### GetInterfaceType
 

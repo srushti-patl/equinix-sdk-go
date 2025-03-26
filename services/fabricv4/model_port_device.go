@@ -19,6 +19,7 @@ type PortDevice struct {
 	// Device name
 	Name                 *string               `json:"name,omitempty"`
 	Redundancy           *PortDeviceRedundancy `json:"redundancy,omitempty"`
+	ConfigModel          *string               `json:"configModel,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -105,6 +106,38 @@ func (o *PortDevice) SetRedundancy(v PortDeviceRedundancy) {
 	o.Redundancy = &v
 }
 
+// GetConfigModel returns the ConfigModel field value if set, zero value otherwise.
+func (o *PortDevice) GetConfigModel() string {
+	if o == nil || IsNil(o.ConfigModel) {
+		var ret string
+		return ret
+	}
+	return *o.ConfigModel
+}
+
+// GetConfigModelOk returns a tuple with the ConfigModel field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *PortDevice) GetConfigModelOk() (*string, bool) {
+	if o == nil || IsNil(o.ConfigModel) {
+		return nil, false
+	}
+	return o.ConfigModel, true
+}
+
+// HasConfigModel returns a boolean if a field has been set.
+func (o *PortDevice) HasConfigModel() bool {
+	if o != nil && !IsNil(o.ConfigModel) {
+		return true
+	}
+
+	return false
+}
+
+// SetConfigModel gets a reference to the given string and assigns it to the ConfigModel field.
+func (o *PortDevice) SetConfigModel(v string) {
+	o.ConfigModel = &v
+}
+
 func (o PortDevice) MarshalJSON() ([]byte, error) {
 	toSerialize, err := o.ToMap()
 	if err != nil {
@@ -120,6 +153,9 @@ func (o PortDevice) ToMap() (map[string]interface{}, error) {
 	}
 	if !IsNil(o.Redundancy) {
 		toSerialize["redundancy"] = o.Redundancy
+	}
+	if !IsNil(o.ConfigModel) {
+		toSerialize["configModel"] = o.ConfigModel
 	}
 
 	for key, value := range o.AdditionalProperties {
@@ -145,6 +181,7 @@ func (o *PortDevice) UnmarshalJSON(data []byte) (err error) {
 	if err = json.Unmarshal(data, &additionalProperties); err == nil {
 		delete(additionalProperties, "name")
 		delete(additionalProperties, "redundancy")
+		delete(additionalProperties, "configModel")
 		o.AdditionalProperties = additionalProperties
 	}
 

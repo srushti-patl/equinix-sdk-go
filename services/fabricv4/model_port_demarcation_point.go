@@ -32,7 +32,13 @@ type PortDemarcationPoint struct {
 	// Port connector type
 	ConnectorType *string `json:"connectorType,omitempty"`
 	// Port ibx identifier
-	Ibx                  *string `json:"ibx,omitempty"`
+	Ibx *string `json:"ibx,omitempty"`
+	// Port reservation identifier
+	PortReservationId *string `json:"portReservationId,omitempty"`
+	// Port group identifier
+	PortGroup *string `json:"portGroup,omitempty"`
+	// Port identifier
+	CorrelationId        *string `json:"correlationId,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -314,6 +320,102 @@ func (o *PortDemarcationPoint) SetIbx(v string) {
 	o.Ibx = &v
 }
 
+// GetPortReservationId returns the PortReservationId field value if set, zero value otherwise.
+func (o *PortDemarcationPoint) GetPortReservationId() string {
+	if o == nil || IsNil(o.PortReservationId) {
+		var ret string
+		return ret
+	}
+	return *o.PortReservationId
+}
+
+// GetPortReservationIdOk returns a tuple with the PortReservationId field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *PortDemarcationPoint) GetPortReservationIdOk() (*string, bool) {
+	if o == nil || IsNil(o.PortReservationId) {
+		return nil, false
+	}
+	return o.PortReservationId, true
+}
+
+// HasPortReservationId returns a boolean if a field has been set.
+func (o *PortDemarcationPoint) HasPortReservationId() bool {
+	if o != nil && !IsNil(o.PortReservationId) {
+		return true
+	}
+
+	return false
+}
+
+// SetPortReservationId gets a reference to the given string and assigns it to the PortReservationId field.
+func (o *PortDemarcationPoint) SetPortReservationId(v string) {
+	o.PortReservationId = &v
+}
+
+// GetPortGroup returns the PortGroup field value if set, zero value otherwise.
+func (o *PortDemarcationPoint) GetPortGroup() string {
+	if o == nil || IsNil(o.PortGroup) {
+		var ret string
+		return ret
+	}
+	return *o.PortGroup
+}
+
+// GetPortGroupOk returns a tuple with the PortGroup field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *PortDemarcationPoint) GetPortGroupOk() (*string, bool) {
+	if o == nil || IsNil(o.PortGroup) {
+		return nil, false
+	}
+	return o.PortGroup, true
+}
+
+// HasPortGroup returns a boolean if a field has been set.
+func (o *PortDemarcationPoint) HasPortGroup() bool {
+	if o != nil && !IsNil(o.PortGroup) {
+		return true
+	}
+
+	return false
+}
+
+// SetPortGroup gets a reference to the given string and assigns it to the PortGroup field.
+func (o *PortDemarcationPoint) SetPortGroup(v string) {
+	o.PortGroup = &v
+}
+
+// GetCorrelationId returns the CorrelationId field value if set, zero value otherwise.
+func (o *PortDemarcationPoint) GetCorrelationId() string {
+	if o == nil || IsNil(o.CorrelationId) {
+		var ret string
+		return ret
+	}
+	return *o.CorrelationId
+}
+
+// GetCorrelationIdOk returns a tuple with the CorrelationId field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *PortDemarcationPoint) GetCorrelationIdOk() (*string, bool) {
+	if o == nil || IsNil(o.CorrelationId) {
+		return nil, false
+	}
+	return o.CorrelationId, true
+}
+
+// HasCorrelationId returns a boolean if a field has been set.
+func (o *PortDemarcationPoint) HasCorrelationId() bool {
+	if o != nil && !IsNil(o.CorrelationId) {
+		return true
+	}
+
+	return false
+}
+
+// SetCorrelationId gets a reference to the given string and assigns it to the CorrelationId field.
+func (o *PortDemarcationPoint) SetCorrelationId(v string) {
+	o.CorrelationId = &v
+}
+
 func (o PortDemarcationPoint) MarshalJSON() ([]byte, error) {
 	toSerialize, err := o.ToMap()
 	if err != nil {
@@ -348,6 +450,15 @@ func (o PortDemarcationPoint) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.Ibx) {
 		toSerialize["ibx"] = o.Ibx
 	}
+	if !IsNil(o.PortReservationId) {
+		toSerialize["portReservationId"] = o.PortReservationId
+	}
+	if !IsNil(o.PortGroup) {
+		toSerialize["portGroup"] = o.PortGroup
+	}
+	if !IsNil(o.CorrelationId) {
+		toSerialize["correlationId"] = o.CorrelationId
+	}
 
 	for key, value := range o.AdditionalProperties {
 		toSerialize[key] = value
@@ -378,6 +489,9 @@ func (o *PortDemarcationPoint) UnmarshalJSON(data []byte) (err error) {
 		delete(additionalProperties, "patchPanelPortB")
 		delete(additionalProperties, "connectorType")
 		delete(additionalProperties, "ibx")
+		delete(additionalProperties, "portReservationId")
+		delete(additionalProperties, "portGroup")
+		delete(additionalProperties, "correlationId")
 		o.AdditionalProperties = additionalProperties
 	}
 

@@ -22,7 +22,7 @@ Method | HTTP request | Description
 
 ## CreateConnectionRoutingProtocol
 
-> RoutingProtocolData CreateConnectionRoutingProtocol(ctx, connectionId).RoutingProtocolBase(routingProtocolBase).Execute()
+> RoutingProtocolData CreateConnectionRoutingProtocol(ctx, connectionId).RoutingProtocolBase(routingProtocolBase).XCORRELATIONID(xCORRELATIONID).XAUTHUSERNAME(xAUTHUSERNAME).XSOURCE(xSOURCE).Execute()
 
 Create Protocol
 
@@ -43,10 +43,13 @@ import (
 func main() {
 	connectionId := "connectionId_example" // string | Connection Id
 	routingProtocolBase := openapiclient.RoutingProtocolBase{RoutingProtocolBGPType: openapiclient.NewRoutingProtocolBGPType(openapiclient.RoutingProtocolBGPType_type("BGP"))} // RoutingProtocolBase | 
+	xCORRELATIONID := "xCORRELATIONID_example" // string | Correlation identifier (optional)
+	xAUTHUSERNAME := "xAUTHUSERNAME_example" // string | User name (optional)
+	xSOURCE := "xSOURCE_example" // string | source (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.RoutingProtocolsApi.CreateConnectionRoutingProtocol(context.Background(), connectionId).RoutingProtocolBase(routingProtocolBase).Execute()
+	resp, r, err := apiClient.RoutingProtocolsApi.CreateConnectionRoutingProtocol(context.Background(), connectionId).RoutingProtocolBase(routingProtocolBase).XCORRELATIONID(xCORRELATIONID).XAUTHUSERNAME(xAUTHUSERNAME).XSOURCE(xSOURCE).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `RoutingProtocolsApi.CreateConnectionRoutingProtocol``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -73,6 +76,9 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
  **routingProtocolBase** | [**RoutingProtocolBase**](RoutingProtocolBase.md) |  | 
+ **xCORRELATIONID** | **string** | Correlation identifier | 
+ **xAUTHUSERNAME** | **string** | User name | 
+ **xSOURCE** | **string** | source | 
 
 ### Return type
 
@@ -94,7 +100,7 @@ Name | Type | Description  | Notes
 
 ## CreateConnectionRoutingProtocolsInBulk
 
-> GetResponse CreateConnectionRoutingProtocolsInBulk(ctx, connectionId).ConnectionRoutingProtocolPostRequest(connectionRoutingProtocolPostRequest).Execute()
+> GetResponse CreateConnectionRoutingProtocolsInBulk(ctx, connectionId).ConnectionRoutingProtocolPostRequest(connectionRoutingProtocolPostRequest).XCORRELATIONID(xCORRELATIONID).XAUTHUSERNAME(xAUTHUSERNAME).XSOURCE(xSOURCE).Execute()
 
 Bulk Create Protocol
 
@@ -115,10 +121,13 @@ import (
 func main() {
 	connectionId := "connectionId_example" // string | Connection Id
 	connectionRoutingProtocolPostRequest := *openapiclient.NewConnectionRoutingProtocolPostRequest() // ConnectionRoutingProtocolPostRequest | 
+	xCORRELATIONID := "xCORRELATIONID_example" // string | Correlation identifier (optional)
+	xAUTHUSERNAME := "xAUTHUSERNAME_example" // string | User name (optional)
+	xSOURCE := "xSOURCE_example" // string | source (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.RoutingProtocolsApi.CreateConnectionRoutingProtocolsInBulk(context.Background(), connectionId).ConnectionRoutingProtocolPostRequest(connectionRoutingProtocolPostRequest).Execute()
+	resp, r, err := apiClient.RoutingProtocolsApi.CreateConnectionRoutingProtocolsInBulk(context.Background(), connectionId).ConnectionRoutingProtocolPostRequest(connectionRoutingProtocolPostRequest).XCORRELATIONID(xCORRELATIONID).XAUTHUSERNAME(xAUTHUSERNAME).XSOURCE(xSOURCE).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `RoutingProtocolsApi.CreateConnectionRoutingProtocolsInBulk``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -145,6 +154,9 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
  **connectionRoutingProtocolPostRequest** | [**ConnectionRoutingProtocolPostRequest**](ConnectionRoutingProtocolPostRequest.md) |  | 
+ **xCORRELATIONID** | **string** | Correlation identifier | 
+ **xAUTHUSERNAME** | **string** | User name | 
+ **xSOURCE** | **string** | source | 
 
 ### Return type
 
@@ -166,7 +178,7 @@ Name | Type | Description  | Notes
 
 ## DeleteConnectionRoutingProtocolByUuid
 
-> RoutingProtocolData DeleteConnectionRoutingProtocolByUuid(ctx, routingProtocolId, connectionId).Execute()
+> RoutingProtocolData DeleteConnectionRoutingProtocolByUuid(ctx, routingProtocolId, connectionId).XCORRELATIONID(xCORRELATIONID).XAUTHUSERNAME(xAUTHUSERNAME).XSOURCE(xSOURCE).Execute()
 
 Delete Protocol
 
@@ -187,10 +199,13 @@ import (
 func main() {
 	routingProtocolId := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | Routing Protocol Id
 	connectionId := "connectionId_example" // string | Connection Id
+	xCORRELATIONID := "xCORRELATIONID_example" // string | Correlation identifier (optional)
+	xAUTHUSERNAME := "xAUTHUSERNAME_example" // string | User name (optional)
+	xSOURCE := "xSOURCE_example" // string | source (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.RoutingProtocolsApi.DeleteConnectionRoutingProtocolByUuid(context.Background(), routingProtocolId, connectionId).Execute()
+	resp, r, err := apiClient.RoutingProtocolsApi.DeleteConnectionRoutingProtocolByUuid(context.Background(), routingProtocolId, connectionId).XCORRELATIONID(xCORRELATIONID).XAUTHUSERNAME(xAUTHUSERNAME).XSOURCE(xSOURCE).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `RoutingProtocolsApi.DeleteConnectionRoutingProtocolByUuid``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -218,6 +233,9 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
 
+ **xCORRELATIONID** | **string** | Correlation identifier | 
+ **xAUTHUSERNAME** | **string** | User name | 
+ **xSOURCE** | **string** | source | 
 
 ### Return type
 
@@ -239,7 +257,7 @@ Name | Type | Description  | Notes
 
 ## GetConnectionRoutingProtocolAllBgpActions
 
-> BGPActionsBulkData GetConnectionRoutingProtocolAllBgpActions(ctx, routingProtocolId, connectionId).Offset(offset).Limit(limit).Execute()
+> BGPActionsBulkData GetConnectionRoutingProtocolAllBgpActions(ctx, routingProtocolId, connectionId).XCORRELATIONID(xCORRELATIONID).XAUTHUSERNAME(xAUTHUSERNAME).XSOURCE(xSOURCE).Offset(offset).Limit(limit).Execute()
 
 Get BGP Actions
 
@@ -260,12 +278,15 @@ import (
 func main() {
 	routingProtocolId := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | Routing Protocol Id
 	connectionId := "connectionId_example" // string | Connection Id
+	xCORRELATIONID := "xCORRELATIONID_example" // string | Correlation identifier (optional)
+	xAUTHUSERNAME := "xAUTHUSERNAME_example" // string | User name (optional)
+	xSOURCE := "xSOURCE_example" // string | source (optional)
 	offset := int32(1) // int32 | offset (optional)
 	limit := int32(10) // int32 | number of records to fetch (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.RoutingProtocolsApi.GetConnectionRoutingProtocolAllBgpActions(context.Background(), routingProtocolId, connectionId).Offset(offset).Limit(limit).Execute()
+	resp, r, err := apiClient.RoutingProtocolsApi.GetConnectionRoutingProtocolAllBgpActions(context.Background(), routingProtocolId, connectionId).XCORRELATIONID(xCORRELATIONID).XAUTHUSERNAME(xAUTHUSERNAME).XSOURCE(xSOURCE).Offset(offset).Limit(limit).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `RoutingProtocolsApi.GetConnectionRoutingProtocolAllBgpActions``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -293,6 +314,9 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
 
+ **xCORRELATIONID** | **string** | Correlation identifier | 
+ **xAUTHUSERNAME** | **string** | User name | 
+ **xSOURCE** | **string** | source | 
  **offset** | **int32** | offset | 
  **limit** | **int32** | number of records to fetch | 
 
@@ -316,7 +340,7 @@ Name | Type | Description  | Notes
 
 ## GetConnectionRoutingProtocolByUuid
 
-> RoutingProtocolData GetConnectionRoutingProtocolByUuid(ctx, routingProtocolId, connectionId).Execute()
+> RoutingProtocolData GetConnectionRoutingProtocolByUuid(ctx, routingProtocolId, connectionId).XCORRELATIONID(xCORRELATIONID).XAUTHUSERNAME(xAUTHUSERNAME).XSOURCE(xSOURCE).Execute()
 
 Get Protocol
 
@@ -337,10 +361,13 @@ import (
 func main() {
 	routingProtocolId := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | Routing Protocol Id
 	connectionId := "connectionId_example" // string | Connection Id
+	xCORRELATIONID := "xCORRELATIONID_example" // string | Correlation identifier (optional)
+	xAUTHUSERNAME := "xAUTHUSERNAME_example" // string | User name (optional)
+	xSOURCE := "xSOURCE_example" // string | source (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.RoutingProtocolsApi.GetConnectionRoutingProtocolByUuid(context.Background(), routingProtocolId, connectionId).Execute()
+	resp, r, err := apiClient.RoutingProtocolsApi.GetConnectionRoutingProtocolByUuid(context.Background(), routingProtocolId, connectionId).XCORRELATIONID(xCORRELATIONID).XAUTHUSERNAME(xAUTHUSERNAME).XSOURCE(xSOURCE).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `RoutingProtocolsApi.GetConnectionRoutingProtocolByUuid``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -368,6 +395,9 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
 
+ **xCORRELATIONID** | **string** | Correlation identifier | 
+ **xAUTHUSERNAME** | **string** | User name | 
+ **xSOURCE** | **string** | source | 
 
 ### Return type
 
@@ -389,7 +419,7 @@ Name | Type | Description  | Notes
 
 ## GetConnectionRoutingProtocols
 
-> GetResponse GetConnectionRoutingProtocols(ctx, connectionId).Offset(offset).Limit(limit).Execute()
+> GetResponse GetConnectionRoutingProtocols(ctx, connectionId).XCORRELATIONID(xCORRELATIONID).XAUTHUSERNAME(xAUTHUSERNAME).XSOURCE(xSOURCE).Offset(offset).Limit(limit).Execute()
 
 GetRoutingProtocols
 
@@ -409,12 +439,15 @@ import (
 
 func main() {
 	connectionId := "connectionId_example" // string | Connection Id
+	xCORRELATIONID := "xCORRELATIONID_example" // string | Correlation identifier (optional)
+	xAUTHUSERNAME := "xAUTHUSERNAME_example" // string | User name (optional)
+	xSOURCE := "xSOURCE_example" // string | source (optional)
 	offset := int32(1) // int32 | offset (optional)
 	limit := int32(10) // int32 | number of records to fetch (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.RoutingProtocolsApi.GetConnectionRoutingProtocols(context.Background(), connectionId).Offset(offset).Limit(limit).Execute()
+	resp, r, err := apiClient.RoutingProtocolsApi.GetConnectionRoutingProtocols(context.Background(), connectionId).XCORRELATIONID(xCORRELATIONID).XAUTHUSERNAME(xAUTHUSERNAME).XSOURCE(xSOURCE).Offset(offset).Limit(limit).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `RoutingProtocolsApi.GetConnectionRoutingProtocols``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -440,6 +473,9 @@ Other parameters are passed through a pointer to a apiGetConnectionRoutingProtoc
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
+ **xCORRELATIONID** | **string** | Correlation identifier | 
+ **xAUTHUSERNAME** | **string** | User name | 
+ **xSOURCE** | **string** | source | 
  **offset** | **int32** | offset | 
  **limit** | **int32** | number of records to fetch | 
 
@@ -463,7 +499,7 @@ Name | Type | Description  | Notes
 
 ## GetConnectionRoutingProtocolsBgpActionByUuid
 
-> BGPActionData GetConnectionRoutingProtocolsBgpActionByUuid(ctx, connectionId, routingProtocolId, actionId).Execute()
+> BGPActionData GetConnectionRoutingProtocolsBgpActionByUuid(ctx, connectionId, routingProtocolId, actionId).XCORRELATIONID(xCORRELATIONID).XAUTHUSERNAME(xAUTHUSERNAME).Execute()
 
 Get BGP Action
 
@@ -485,10 +521,12 @@ func main() {
 	connectionId := "connectionId_example" // string | Connection Id
 	routingProtocolId := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | Routing Protocol Id
 	actionId := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | BGP Action UUID
+	xCORRELATIONID := "12345-6789-10123" // string | Correlation identifier (optional)
+	xAUTHUSERNAME := "alice" // string | User name (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.RoutingProtocolsApi.GetConnectionRoutingProtocolsBgpActionByUuid(context.Background(), connectionId, routingProtocolId, actionId).Execute()
+	resp, r, err := apiClient.RoutingProtocolsApi.GetConnectionRoutingProtocolsBgpActionByUuid(context.Background(), connectionId, routingProtocolId, actionId).XCORRELATIONID(xCORRELATIONID).XAUTHUSERNAME(xAUTHUSERNAME).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `RoutingProtocolsApi.GetConnectionRoutingProtocolsBgpActionByUuid``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -518,6 +556,8 @@ Name | Type | Description  | Notes
 
 
 
+ **xCORRELATIONID** | **string** | Correlation identifier | 
+ **xAUTHUSERNAME** | **string** | User name | 
 
 ### Return type
 
@@ -539,7 +579,7 @@ Name | Type | Description  | Notes
 
 ## GetConnectionRoutingProtocolsChangeByUuid
 
-> RoutingProtocolChangeData GetConnectionRoutingProtocolsChangeByUuid(ctx, connectionId, routingProtocolId, changeId).Execute()
+> RoutingProtocolChangeData GetConnectionRoutingProtocolsChangeByUuid(ctx, connectionId, routingProtocolId, changeId).XCORRELATIONID(xCORRELATIONID).XAUTHUSERNAME(xAUTHUSERNAME).Execute()
 
 Get Change By ID
 
@@ -561,10 +601,12 @@ func main() {
 	connectionId := "connectionId_example" // string | Connection Id
 	routingProtocolId := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | Routing Protocol Id
 	changeId := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | Routing Protocol Change UUID
+	xCORRELATIONID := "12345-6789-10123" // string | Correlation identifier (optional)
+	xAUTHUSERNAME := "alice" // string | User name (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.RoutingProtocolsApi.GetConnectionRoutingProtocolsChangeByUuid(context.Background(), connectionId, routingProtocolId, changeId).Execute()
+	resp, r, err := apiClient.RoutingProtocolsApi.GetConnectionRoutingProtocolsChangeByUuid(context.Background(), connectionId, routingProtocolId, changeId).XCORRELATIONID(xCORRELATIONID).XAUTHUSERNAME(xAUTHUSERNAME).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `RoutingProtocolsApi.GetConnectionRoutingProtocolsChangeByUuid``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -594,6 +636,8 @@ Name | Type | Description  | Notes
 
 
 
+ **xCORRELATIONID** | **string** | Correlation identifier | 
+ **xAUTHUSERNAME** | **string** | User name | 
 
 ### Return type
 
@@ -615,7 +659,7 @@ Name | Type | Description  | Notes
 
 ## GetConnectionRoutingProtocolsChanges
 
-> RoutingProtocolChangeDataResponse GetConnectionRoutingProtocolsChanges(ctx, connectionId, routingProtocolId).Offset(offset).Limit(limit).Execute()
+> RoutingProtocolChangeDataResponse GetConnectionRoutingProtocolsChanges(ctx, connectionId, routingProtocolId).XCORRELATIONID(xCORRELATIONID).XAUTHUSERNAME(xAUTHUSERNAME).Offset(offset).Limit(limit).Execute()
 
 Get Changes
 
@@ -636,12 +680,14 @@ import (
 func main() {
 	connectionId := "connectionId_example" // string | Connection Id
 	routingProtocolId := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | Routing Protocol Id
+	xCORRELATIONID := "12345-6789-10123" // string | Correlation identifier (optional)
+	xAUTHUSERNAME := "alice" // string | User name (optional)
 	offset := int32(1) // int32 | offset (optional)
 	limit := int32(10) // int32 | number of records to fetch (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.RoutingProtocolsApi.GetConnectionRoutingProtocolsChanges(context.Background(), connectionId, routingProtocolId).Offset(offset).Limit(limit).Execute()
+	resp, r, err := apiClient.RoutingProtocolsApi.GetConnectionRoutingProtocolsChanges(context.Background(), connectionId, routingProtocolId).XCORRELATIONID(xCORRELATIONID).XAUTHUSERNAME(xAUTHUSERNAME).Offset(offset).Limit(limit).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `RoutingProtocolsApi.GetConnectionRoutingProtocolsChanges``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -669,6 +715,8 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
 
+ **xCORRELATIONID** | **string** | Correlation identifier | 
+ **xAUTHUSERNAME** | **string** | User name | 
  **offset** | **int32** | offset | 
  **limit** | **int32** | number of records to fetch | 
 
@@ -692,7 +740,7 @@ Name | Type | Description  | Notes
 
 ## PatchConnectionRoutingProtocolByUuid
 
-> RoutingProtocolData PatchConnectionRoutingProtocolByUuid(ctx, routingProtocolId, connectionId).ConnectionChangeOperation(connectionChangeOperation).Execute()
+> RoutingProtocolData PatchConnectionRoutingProtocolByUuid(ctx, routingProtocolId, connectionId).ConnectionChangeOperation(connectionChangeOperation).XCORRELATIONID(xCORRELATIONID).XAUTHUSERNAME(xAUTHUSERNAME).XSOURCE(xSOURCE).Execute()
 
 Patch Protocol
 
@@ -714,10 +762,13 @@ func main() {
 	routingProtocolId := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | Routing Protocol Id
 	connectionId := "connectionId_example" // string | Connection Id
 	connectionChangeOperation := []openapiclient.ConnectionChangeOperation{*openapiclient.NewConnectionChangeOperation("add", "/ipv6", interface{}(123))} // []ConnectionChangeOperation | 
+	xCORRELATIONID := "xCORRELATIONID_example" // string | Correlation identifier (optional)
+	xAUTHUSERNAME := "xAUTHUSERNAME_example" // string | User name (optional)
+	xSOURCE := "xSOURCE_example" // string | source (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.RoutingProtocolsApi.PatchConnectionRoutingProtocolByUuid(context.Background(), routingProtocolId, connectionId).ConnectionChangeOperation(connectionChangeOperation).Execute()
+	resp, r, err := apiClient.RoutingProtocolsApi.PatchConnectionRoutingProtocolByUuid(context.Background(), routingProtocolId, connectionId).ConnectionChangeOperation(connectionChangeOperation).XCORRELATIONID(xCORRELATIONID).XAUTHUSERNAME(xAUTHUSERNAME).XSOURCE(xSOURCE).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `RoutingProtocolsApi.PatchConnectionRoutingProtocolByUuid``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -746,6 +797,9 @@ Name | Type | Description  | Notes
 
 
  **connectionChangeOperation** | [**[]ConnectionChangeOperation**](ConnectionChangeOperation.md) |  | 
+ **xCORRELATIONID** | **string** | Correlation identifier | 
+ **xAUTHUSERNAME** | **string** | User name | 
+ **xSOURCE** | **string** | source | 
 
 ### Return type
 
@@ -767,7 +821,7 @@ Name | Type | Description  | Notes
 
 ## PostConnectionRoutingProtocolBgpActionByUuid
 
-> BGPActionData PostConnectionRoutingProtocolBgpActionByUuid(ctx, routingProtocolId, connectionId).BGPActionRequest(bGPActionRequest).Execute()
+> BGPActionData PostConnectionRoutingProtocolBgpActionByUuid(ctx, routingProtocolId, connectionId).BGPActionRequest(bGPActionRequest).XCORRELATIONID(xCORRELATIONID).XAUTHUSERNAME(xAUTHUSERNAME).XSOURCE(xSOURCE).Execute()
 
 Clear/Reset BGP
 
@@ -789,10 +843,13 @@ func main() {
 	routingProtocolId := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | Routing Protocol Id
 	connectionId := "connectionId_example" // string | Connection Id
 	bGPActionRequest := *openapiclient.NewBGPActionRequest(openapiclient.BGPActions("CLEAR_BGPIPV4")) // BGPActionRequest | 
+	xCORRELATIONID := "xCORRELATIONID_example" // string | Correlation identifier (optional)
+	xAUTHUSERNAME := "xAUTHUSERNAME_example" // string | User name (optional)
+	xSOURCE := "xSOURCE_example" // string | source (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.RoutingProtocolsApi.PostConnectionRoutingProtocolBgpActionByUuid(context.Background(), routingProtocolId, connectionId).BGPActionRequest(bGPActionRequest).Execute()
+	resp, r, err := apiClient.RoutingProtocolsApi.PostConnectionRoutingProtocolBgpActionByUuid(context.Background(), routingProtocolId, connectionId).BGPActionRequest(bGPActionRequest).XCORRELATIONID(xCORRELATIONID).XAUTHUSERNAME(xAUTHUSERNAME).XSOURCE(xSOURCE).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `RoutingProtocolsApi.PostConnectionRoutingProtocolBgpActionByUuid``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -821,6 +878,9 @@ Name | Type | Description  | Notes
 
 
  **bGPActionRequest** | [**BGPActionRequest**](BGPActionRequest.md) |  | 
+ **xCORRELATIONID** | **string** | Correlation identifier | 
+ **xAUTHUSERNAME** | **string** | User name | 
+ **xSOURCE** | **string** | source | 
 
 ### Return type
 
@@ -842,7 +902,7 @@ Name | Type | Description  | Notes
 
 ## ReplaceConnectionRoutingProtocolByUuid
 
-> RoutingProtocolData ReplaceConnectionRoutingProtocolByUuid(ctx, routingProtocolId, connectionId).RoutingProtocolBase(routingProtocolBase).Execute()
+> RoutingProtocolData ReplaceConnectionRoutingProtocolByUuid(ctx, routingProtocolId, connectionId).RoutingProtocolBase(routingProtocolBase).XCORRELATIONID(xCORRELATIONID).XAUTHUSERNAME(xAUTHUSERNAME).XSOURCE(xSOURCE).Execute()
 
 Replace Protocol
 
@@ -864,10 +924,13 @@ func main() {
 	routingProtocolId := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | Routing Protocol Id
 	connectionId := "connectionId_example" // string | Connection Id
 	routingProtocolBase := openapiclient.RoutingProtocolBase{RoutingProtocolBGPType: openapiclient.NewRoutingProtocolBGPType(openapiclient.RoutingProtocolBGPType_type("BGP"))} // RoutingProtocolBase | 
+	xCORRELATIONID := "xCORRELATIONID_example" // string | Correlation identifier (optional)
+	xAUTHUSERNAME := "xAUTHUSERNAME_example" // string | User name (optional)
+	xSOURCE := "xSOURCE_example" // string | source (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.RoutingProtocolsApi.ReplaceConnectionRoutingProtocolByUuid(context.Background(), routingProtocolId, connectionId).RoutingProtocolBase(routingProtocolBase).Execute()
+	resp, r, err := apiClient.RoutingProtocolsApi.ReplaceConnectionRoutingProtocolByUuid(context.Background(), routingProtocolId, connectionId).RoutingProtocolBase(routingProtocolBase).XCORRELATIONID(xCORRELATIONID).XAUTHUSERNAME(xAUTHUSERNAME).XSOURCE(xSOURCE).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `RoutingProtocolsApi.ReplaceConnectionRoutingProtocolByUuid``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -896,6 +959,9 @@ Name | Type | Description  | Notes
 
 
  **routingProtocolBase** | [**RoutingProtocolBase**](RoutingProtocolBase.md) |  | 
+ **xCORRELATIONID** | **string** | Correlation identifier | 
+ **xAUTHUSERNAME** | **string** | User name | 
+ **xSOURCE** | **string** | source | 
 
 ### Return type
 
@@ -917,7 +983,7 @@ Name | Type | Description  | Notes
 
 ## ValidateRoutingProtocol
 
-> ValidateSubnetResponse ValidateRoutingProtocol(ctx, routerId).ValidateRequest(validateRequest).Execute()
+> ValidateSubnetResponse ValidateRoutingProtocol(ctx, routerId).ValidateRequest(validateRequest).XCORRELATIONID(xCORRELATIONID).XAUTHUSERNAME(xAUTHUSERNAME).Execute()
 
 Validate Subnet
 
@@ -938,10 +1004,12 @@ import (
 func main() {
 	routerId := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | Cloud Router UUID
 	validateRequest := *openapiclient.NewValidateRequest() // ValidateRequest | 
+	xCORRELATIONID := "12345-6789-10123" // string | Correlation identifier (optional)
+	xAUTHUSERNAME := "alice" // string | User name (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.RoutingProtocolsApi.ValidateRoutingProtocol(context.Background(), routerId).ValidateRequest(validateRequest).Execute()
+	resp, r, err := apiClient.RoutingProtocolsApi.ValidateRoutingProtocol(context.Background(), routerId).ValidateRequest(validateRequest).XCORRELATIONID(xCORRELATIONID).XAUTHUSERNAME(xAUTHUSERNAME).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `RoutingProtocolsApi.ValidateRoutingProtocol``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -968,6 +1036,8 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
  **validateRequest** | [**ValidateRequest**](ValidateRequest.md) |  | 
+ **xCORRELATIONID** | **string** | Correlation identifier | 
+ **xAUTHUSERNAME** | **string** | User name | 
 
 ### Return type
 

@@ -18,6 +18,8 @@ var _ MappedNullable = &SimplifiedAccount{}
 type SimplifiedAccount struct {
 	// Account number
 	AccountNumber *int64 `json:"accountNumber,omitempty"`
+	// Account ReferenceId
+	AccountReferenceId *string `json:"accountReferenceId,omitempty"`
 	// Account name
 	AccountName *string `json:"accountName,omitempty"`
 	// Customer organization identifier
@@ -92,6 +94,38 @@ func (o *SimplifiedAccount) HasAccountNumber() bool {
 // SetAccountNumber gets a reference to the given int64 and assigns it to the AccountNumber field.
 func (o *SimplifiedAccount) SetAccountNumber(v int64) {
 	o.AccountNumber = &v
+}
+
+// GetAccountReferenceId returns the AccountReferenceId field value if set, zero value otherwise.
+func (o *SimplifiedAccount) GetAccountReferenceId() string {
+	if o == nil || IsNil(o.AccountReferenceId) {
+		var ret string
+		return ret
+	}
+	return *o.AccountReferenceId
+}
+
+// GetAccountReferenceIdOk returns a tuple with the AccountReferenceId field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *SimplifiedAccount) GetAccountReferenceIdOk() (*string, bool) {
+	if o == nil || IsNil(o.AccountReferenceId) {
+		return nil, false
+	}
+	return o.AccountReferenceId, true
+}
+
+// HasAccountReferenceId returns a boolean if a field has been set.
+func (o *SimplifiedAccount) HasAccountReferenceId() bool {
+	if o != nil && !IsNil(o.AccountReferenceId) {
+		return true
+	}
+
+	return false
+}
+
+// SetAccountReferenceId gets a reference to the given string and assigns it to the AccountReferenceId field.
+func (o *SimplifiedAccount) SetAccountReferenceId(v string) {
+	o.AccountReferenceId = &v
 }
 
 // GetAccountName returns the AccountName field value if set, zero value otherwise.
@@ -459,6 +493,9 @@ func (o SimplifiedAccount) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.AccountNumber) {
 		toSerialize["accountNumber"] = o.AccountNumber
 	}
+	if !IsNil(o.AccountReferenceId) {
+		toSerialize["accountReferenceId"] = o.AccountReferenceId
+	}
 	if !IsNil(o.AccountName) {
 		toSerialize["accountName"] = o.AccountName
 	}
@@ -515,6 +552,7 @@ func (o *SimplifiedAccount) UnmarshalJSON(data []byte) (err error) {
 
 	if err = json.Unmarshal(data, &additionalProperties); err == nil {
 		delete(additionalProperties, "accountNumber")
+		delete(additionalProperties, "accountReferenceId")
 		delete(additionalProperties, "accountName")
 		delete(additionalProperties, "orgId")
 		delete(additionalProperties, "organizationName")

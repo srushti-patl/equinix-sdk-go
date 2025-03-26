@@ -10,6 +10,7 @@ Name | Type | Description | Notes
 **CompanyProfile** | Pointer to [**ConnectionCompanyProfile**](ConnectionCompanyProfile.md) |  | [optional] 
 **Invitation** | Pointer to [**ConnectionInvitation**](ConnectionInvitation.md) |  | [optional] 
 **AdditionalInfo** | Pointer to [**[]ConnectionSideAdditionalInfo**](ConnectionSideAdditionalInfo.md) | Any additional information, which is not part of connection metadata or configuration | [optional] 
+**DataPlane** | Pointer to [**ConnectionSideDataPlane**](ConnectionSideDataPlane.md) |  | [optional] 
 
 ## Methods
 
@@ -179,6 +180,31 @@ SetAdditionalInfo sets AdditionalInfo field to given value.
 `func (o *ConnectionSide) HasAdditionalInfo() bool`
 
 HasAdditionalInfo returns a boolean if a field has been set.
+
+### GetDataPlane
+
+`func (o *ConnectionSide) GetDataPlane() ConnectionSideDataPlane`
+
+GetDataPlane returns the DataPlane field if non-nil, zero value otherwise.
+
+### GetDataPlaneOk
+
+`func (o *ConnectionSide) GetDataPlaneOk() (*ConnectionSideDataPlane, bool)`
+
+GetDataPlaneOk returns a tuple with the DataPlane field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetDataPlane
+
+`func (o *ConnectionSide) SetDataPlane(v ConnectionSideDataPlane)`
+
+SetDataPlane sets DataPlane field to given value.
+
+### HasDataPlane
+
+`func (o *ConnectionSide) HasDataPlane() bool`
+
+HasDataPlane returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

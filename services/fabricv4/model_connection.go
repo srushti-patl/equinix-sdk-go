@@ -22,6 +22,8 @@ type Connection struct {
 	Type ConnectionType `json:"type"`
 	// Equinix-assigned connection identifier
 	Uuid *string `json:"uuid,omitempty"`
+	// Equinix-assigned platform connection identifier
+	PlatformUuid *string `json:"platformUuid,omitempty"`
 	// Customer-provided connection name
 	Name string `json:"name"`
 	// Customer-provided connection description
@@ -30,6 +32,8 @@ type Connection struct {
 	Change      *Change              `json:"change,omitempty"`
 	Operation   *ConnectionOperation `json:"operation,omitempty"`
 	Order       *Order               `json:"order,omitempty"`
+	// User-provided tags
+	Tags []string `json:"tags,omitempty"`
 	// Preferences for notifications on connection configuration or status changes
 	Notifications []SimplifiedNotification `json:"notifications,omitempty"`
 	Account       *SimplifiedAccount       `json:"account,omitempty"`
@@ -160,6 +164,38 @@ func (o *Connection) HasUuid() bool {
 // SetUuid gets a reference to the given string and assigns it to the Uuid field.
 func (o *Connection) SetUuid(v string) {
 	o.Uuid = &v
+}
+
+// GetPlatformUuid returns the PlatformUuid field value if set, zero value otherwise.
+func (o *Connection) GetPlatformUuid() string {
+	if o == nil || IsNil(o.PlatformUuid) {
+		var ret string
+		return ret
+	}
+	return *o.PlatformUuid
+}
+
+// GetPlatformUuidOk returns a tuple with the PlatformUuid field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *Connection) GetPlatformUuidOk() (*string, bool) {
+	if o == nil || IsNil(o.PlatformUuid) {
+		return nil, false
+	}
+	return o.PlatformUuid, true
+}
+
+// HasPlatformUuid returns a boolean if a field has been set.
+func (o *Connection) HasPlatformUuid() bool {
+	if o != nil && !IsNil(o.PlatformUuid) {
+		return true
+	}
+
+	return false
+}
+
+// SetPlatformUuid gets a reference to the given string and assigns it to the PlatformUuid field.
+func (o *Connection) SetPlatformUuid(v string) {
+	o.PlatformUuid = &v
 }
 
 // GetName returns the Name field value
@@ -344,6 +380,38 @@ func (o *Connection) HasOrder() bool {
 // SetOrder gets a reference to the given Order and assigns it to the Order field.
 func (o *Connection) SetOrder(v Order) {
 	o.Order = &v
+}
+
+// GetTags returns the Tags field value if set, zero value otherwise.
+func (o *Connection) GetTags() []string {
+	if o == nil || IsNil(o.Tags) {
+		var ret []string
+		return ret
+	}
+	return o.Tags
+}
+
+// GetTagsOk returns a tuple with the Tags field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *Connection) GetTagsOk() ([]string, bool) {
+	if o == nil || IsNil(o.Tags) {
+		return nil, false
+	}
+	return o.Tags, true
+}
+
+// HasTags returns a boolean if a field has been set.
+func (o *Connection) HasTags() bool {
+	if o != nil && !IsNil(o.Tags) {
+		return true
+	}
+
+	return false
+}
+
+// SetTags gets a reference to the given []string and assigns it to the Tags field.
+func (o *Connection) SetTags(v []string) {
+	o.Tags = v
 }
 
 // GetNotifications returns the Notifications field value if set, zero value otherwise.
@@ -755,6 +823,9 @@ func (o Connection) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.Uuid) {
 		toSerialize["uuid"] = o.Uuid
 	}
+	if !IsNil(o.PlatformUuid) {
+		toSerialize["platformUuid"] = o.PlatformUuid
+	}
 	toSerialize["name"] = o.Name
 	if !IsNil(o.Description) {
 		toSerialize["description"] = o.Description
@@ -770,6 +841,9 @@ func (o Connection) ToMap() (map[string]interface{}, error) {
 	}
 	if !IsNil(o.Order) {
 		toSerialize["order"] = o.Order
+	}
+	if !IsNil(o.Tags) {
+		toSerialize["tags"] = o.Tags
 	}
 	if !IsNil(o.Notifications) {
 		toSerialize["notifications"] = o.Notifications
@@ -854,12 +928,14 @@ func (o *Connection) UnmarshalJSON(data []byte) (err error) {
 		delete(additionalProperties, "href")
 		delete(additionalProperties, "type")
 		delete(additionalProperties, "uuid")
+		delete(additionalProperties, "platformUuid")
 		delete(additionalProperties, "name")
 		delete(additionalProperties, "description")
 		delete(additionalProperties, "state")
 		delete(additionalProperties, "change")
 		delete(additionalProperties, "operation")
 		delete(additionalProperties, "order")
+		delete(additionalProperties, "tags")
 		delete(additionalProperties, "notifications")
 		delete(additionalProperties, "account")
 		delete(additionalProperties, "changeLog")

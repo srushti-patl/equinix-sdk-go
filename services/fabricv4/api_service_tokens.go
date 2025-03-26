@@ -20,14 +20,35 @@ import (
 type ServiceTokensApiService service
 
 type ApiCreateServiceTokenRequest struct {
-	ctx          context.Context
-	ApiService   *ServiceTokensApiService
-	serviceToken *ServiceToken
-	dryRun       *bool
+	ctx            context.Context
+	ApiService     *ServiceTokensApiService
+	serviceToken   *ServiceToken
+	xCORRELATIONID *string
+	xAUTHUSERNAME  *string
+	xSOURCE        *string
+	dryRun         *bool
 }
 
 func (r ApiCreateServiceTokenRequest) ServiceToken(serviceToken ServiceToken) ApiCreateServiceTokenRequest {
 	r.serviceToken = &serviceToken
+	return r
+}
+
+// Correlation identifier
+func (r ApiCreateServiceTokenRequest) XCORRELATIONID(xCORRELATIONID string) ApiCreateServiceTokenRequest {
+	r.xCORRELATIONID = &xCORRELATIONID
+	return r
+}
+
+// User name
+func (r ApiCreateServiceTokenRequest) XAUTHUSERNAME(xAUTHUSERNAME string) ApiCreateServiceTokenRequest {
+	r.xAUTHUSERNAME = &xAUTHUSERNAME
+	return r
+}
+
+// source
+func (r ApiCreateServiceTokenRequest) XSOURCE(xSOURCE string) ApiCreateServiceTokenRequest {
+	r.xSOURCE = &xSOURCE
 	return r
 }
 
@@ -44,7 +65,7 @@ func (r ApiCreateServiceTokenRequest) Execute() (*ServiceToken, *http.Response, 
 /*
 CreateServiceToken Create Service Token
 
-Create Service Tokens generates Equinix Fabric? service tokens. These tokens authorize users to access protected resources and services.
+Create Service Tokens generates Equinix Fabric™ service tokens. These tokens authorize users to access protected resources and services.
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@return ApiCreateServiceTokenRequest
@@ -103,6 +124,15 @@ func (a *ServiceTokensApiService) CreateServiceTokenExecute(r ApiCreateServiceTo
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	if r.xCORRELATIONID != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-CORRELATION-ID", r.xCORRELATIONID, "simple", "")
+	}
+	if r.xAUTHUSERNAME != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-AUTH-USER-NAME", r.xAUTHUSERNAME, "simple", "")
+	}
+	if r.xSOURCE != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-SOURCE", r.xSOURCE, "simple", "")
 	}
 	// body params
 	localVarPostBody = r.serviceToken
@@ -180,10 +210,31 @@ type ApiCreateServiceTokenActionRequest struct {
 	ApiService                *ServiceTokensApiService
 	serviceTokenId            string
 	serviceTokenActionRequest *ServiceTokenActionRequest
+	xCORRELATIONID            *string
+	xAUTHUSERNAME             *string
+	xSOURCE                   *string
 }
 
 func (r ApiCreateServiceTokenActionRequest) ServiceTokenActionRequest(serviceTokenActionRequest ServiceTokenActionRequest) ApiCreateServiceTokenActionRequest {
 	r.serviceTokenActionRequest = &serviceTokenActionRequest
+	return r
+}
+
+// Correlation identifier
+func (r ApiCreateServiceTokenActionRequest) XCORRELATIONID(xCORRELATIONID string) ApiCreateServiceTokenActionRequest {
+	r.xCORRELATIONID = &xCORRELATIONID
+	return r
+}
+
+// User name
+func (r ApiCreateServiceTokenActionRequest) XAUTHUSERNAME(xAUTHUSERNAME string) ApiCreateServiceTokenActionRequest {
+	r.xAUTHUSERNAME = &xAUTHUSERNAME
+	return r
+}
+
+// source
+func (r ApiCreateServiceTokenActionRequest) XSOURCE(xSOURCE string) ApiCreateServiceTokenActionRequest {
+	r.xSOURCE = &xSOURCE
 	return r
 }
 
@@ -250,6 +301,15 @@ func (a *ServiceTokensApiService) CreateServiceTokenActionExecute(r ApiCreateSer
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	if r.xCORRELATIONID != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-CORRELATION-ID", r.xCORRELATIONID, "simple", "")
+	}
+	if r.xAUTHUSERNAME != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-AUTH-USER-NAME", r.xAUTHUSERNAME, "simple", "")
+	}
+	if r.xSOURCE != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-SOURCE", r.xSOURCE, "simple", "")
 	}
 	// body params
 	localVarPostBody = r.serviceTokenActionRequest
@@ -337,6 +397,27 @@ type ApiDeleteServiceTokenByUuidRequest struct {
 	ctx            context.Context
 	ApiService     *ServiceTokensApiService
 	serviceTokenId string
+	xCORRELATIONID *string
+	xAUTHUSERNAME  *string
+	xSOURCE        *string
+}
+
+// Correlation identifier
+func (r ApiDeleteServiceTokenByUuidRequest) XCORRELATIONID(xCORRELATIONID string) ApiDeleteServiceTokenByUuidRequest {
+	r.xCORRELATIONID = &xCORRELATIONID
+	return r
+}
+
+// User name
+func (r ApiDeleteServiceTokenByUuidRequest) XAUTHUSERNAME(xAUTHUSERNAME string) ApiDeleteServiceTokenByUuidRequest {
+	r.xAUTHUSERNAME = &xAUTHUSERNAME
+	return r
+}
+
+// source
+func (r ApiDeleteServiceTokenByUuidRequest) XSOURCE(xSOURCE string) ApiDeleteServiceTokenByUuidRequest {
+	r.xSOURCE = &xSOURCE
+	return r
 }
 
 func (r ApiDeleteServiceTokenByUuidRequest) Execute() (*ServiceToken, *http.Response, error) {
@@ -399,6 +480,15 @@ func (a *ServiceTokensApiService) DeleteServiceTokenByUuidExecute(r ApiDeleteSer
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	if r.xCORRELATIONID != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-CORRELATION-ID", r.xCORRELATIONID, "simple", "")
+	}
+	if r.xAUTHUSERNAME != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-AUTH-USER-NAME", r.xAUTHUSERNAME, "simple", "")
+	}
+	if r.xSOURCE != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-SOURCE", r.xSOURCE, "simple", "")
 	}
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
@@ -473,6 +563,27 @@ type ApiGetServiceTokenByUuidRequest struct {
 	ctx            context.Context
 	ApiService     *ServiceTokensApiService
 	serviceTokenId string
+	xCORRELATIONID *string
+	xAUTHUSERNAME  *string
+	xSOURCE        *string
+}
+
+// Correlation identifier
+func (r ApiGetServiceTokenByUuidRequest) XCORRELATIONID(xCORRELATIONID string) ApiGetServiceTokenByUuidRequest {
+	r.xCORRELATIONID = &xCORRELATIONID
+	return r
+}
+
+// User name
+func (r ApiGetServiceTokenByUuidRequest) XAUTHUSERNAME(xAUTHUSERNAME string) ApiGetServiceTokenByUuidRequest {
+	r.xAUTHUSERNAME = &xAUTHUSERNAME
+	return r
+}
+
+// source
+func (r ApiGetServiceTokenByUuidRequest) XSOURCE(xSOURCE string) ApiGetServiceTokenByUuidRequest {
+	r.xSOURCE = &xSOURCE
+	return r
 }
 
 func (r ApiGetServiceTokenByUuidRequest) Execute() (*ServiceToken, *http.Response, error) {
@@ -535,6 +646,15 @@ func (a *ServiceTokensApiService) GetServiceTokenByUuidExecute(r ApiGetServiceTo
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	if r.xCORRELATIONID != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-CORRELATION-ID", r.xCORRELATIONID, "simple", "")
+	}
+	if r.xAUTHUSERNAME != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-AUTH-USER-NAME", r.xAUTHUSERNAME, "simple", "")
+	}
+	if r.xSOURCE != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-SOURCE", r.xSOURCE, "simple", "")
 	}
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
@@ -606,10 +726,13 @@ func (a *ServiceTokensApiService) GetServiceTokenByUuidExecute(r ApiGetServiceTo
 }
 
 type ApiGetServiceTokensRequest struct {
-	ctx        context.Context
-	ApiService *ServiceTokensApiService
-	offset     *float32
-	limit      *float32
+	ctx              context.Context
+	ApiService       *ServiceTokensApiService
+	offset           *float32
+	limit            *float32
+	xCORRELATIONID   *string
+	xAUTHUSERNAME    *string
+	projectProjectId *string
 }
 
 // offset
@@ -621,6 +744,24 @@ func (r ApiGetServiceTokensRequest) Offset(offset float32) ApiGetServiceTokensRe
 // number of records to fetch
 func (r ApiGetServiceTokensRequest) Limit(limit float32) ApiGetServiceTokensRequest {
 	r.limit = &limit
+	return r
+}
+
+// Correlation identifier
+func (r ApiGetServiceTokensRequest) XCORRELATIONID(xCORRELATIONID string) ApiGetServiceTokensRequest {
+	r.xCORRELATIONID = &xCORRELATIONID
+	return r
+}
+
+// User name
+func (r ApiGetServiceTokensRequest) XAUTHUSERNAME(xAUTHUSERNAME string) ApiGetServiceTokensRequest {
+	r.xAUTHUSERNAME = &xAUTHUSERNAME
+	return r
+}
+
+// projectId
+func (r ApiGetServiceTokensRequest) ProjectProjectId(projectProjectId string) ApiGetServiceTokensRequest {
+	r.projectProjectId = &projectProjectId
 	return r
 }
 
@@ -671,6 +812,9 @@ func (a *ServiceTokensApiService) GetServiceTokensExecute(r ApiGetServiceTokensR
 	if r.limit != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "limit", r.limit, "form", "")
 	}
+	if r.projectProjectId != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "project.projectId", r.projectProjectId, "form", "")
+	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
 
@@ -687,6 +831,12 @@ func (a *ServiceTokensApiService) GetServiceTokensExecute(r ApiGetServiceTokensR
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	if r.xCORRELATIONID != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-CORRELATION-ID", r.xCORRELATIONID, "simple", "")
+	}
+	if r.xAUTHUSERNAME != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-AUTH-USER-NAME", r.xAUTHUSERNAME, "simple", "")
 	}
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
@@ -741,6 +891,9 @@ type ApiSearchServiceTokensRequest struct {
 	serviceTokenSearchRequest *ServiceTokenSearchRequest
 	offset                    *float32
 	limit                     *float32
+	xCORRELATIONID            *string
+	xAUTHUSERNAME             *string
+	xSOURCE                   *string
 }
 
 func (r ApiSearchServiceTokensRequest) ServiceTokenSearchRequest(serviceTokenSearchRequest ServiceTokenSearchRequest) ApiSearchServiceTokensRequest {
@@ -757,6 +910,24 @@ func (r ApiSearchServiceTokensRequest) Offset(offset float32) ApiSearchServiceTo
 // number of records to fetch
 func (r ApiSearchServiceTokensRequest) Limit(limit float32) ApiSearchServiceTokensRequest {
 	r.limit = &limit
+	return r
+}
+
+// Correlation identifier
+func (r ApiSearchServiceTokensRequest) XCORRELATIONID(xCORRELATIONID string) ApiSearchServiceTokensRequest {
+	r.xCORRELATIONID = &xCORRELATIONID
+	return r
+}
+
+// User name
+func (r ApiSearchServiceTokensRequest) XAUTHUSERNAME(xAUTHUSERNAME string) ApiSearchServiceTokensRequest {
+	r.xAUTHUSERNAME = &xAUTHUSERNAME
+	return r
+}
+
+// source
+func (r ApiSearchServiceTokensRequest) XSOURCE(xSOURCE string) ApiSearchServiceTokensRequest {
+	r.xSOURCE = &xSOURCE
 	return r
 }
 
@@ -826,6 +997,15 @@ func (a *ServiceTokensApiService) SearchServiceTokensExecute(r ApiSearchServiceT
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	if r.xCORRELATIONID != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-CORRELATION-ID", r.xCORRELATIONID, "simple", "")
+	}
+	if r.xAUTHUSERNAME != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-AUTH-USER-NAME", r.xAUTHUSERNAME, "simple", "")
+	}
+	if r.xSOURCE != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-SOURCE", r.xSOURCE, "simple", "")
 	}
 	// body params
 	localVarPostBody = r.serviceTokenSearchRequest
@@ -909,15 +1089,199 @@ func (a *ServiceTokensApiService) SearchServiceTokensExecute(r ApiSearchServiceT
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
+type ApiServiceTokenServicesRequest struct {
+	ctx            context.Context
+	ApiService     *ServiceTokensApiService
+	serviceTokenId string
+	xCORRELATIONID *string
+	xAUTHUSERNAME  *string
+}
+
+// Correlation identifier
+func (r ApiServiceTokenServicesRequest) XCORRELATIONID(xCORRELATIONID string) ApiServiceTokenServicesRequest {
+	r.xCORRELATIONID = &xCORRELATIONID
+	return r
+}
+
+// User name
+func (r ApiServiceTokenServicesRequest) XAUTHUSERNAME(xAUTHUSERNAME string) ApiServiceTokenServicesRequest {
+	r.xAUTHUSERNAME = &xAUTHUSERNAME
+	return r
+}
+
+func (r ApiServiceTokenServicesRequest) Execute() (*ServiceToken, *http.Response, error) {
+	return r.ApiService.ServiceTokenServicesExecute(r)
+}
+
+/*
+ServiceTokenServices Token service API
+
+Get Specified Service Tokens uses the uuid of an Equinix Fabric service token to return details about the token's type, state, location, bandwidth, and other key properties.
+
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param serviceTokenId Service Token UUID
+	@return ApiServiceTokenServicesRequest
+*/
+func (a *ServiceTokensApiService) ServiceTokenServices(ctx context.Context, serviceTokenId string) ApiServiceTokenServicesRequest {
+	return ApiServiceTokenServicesRequest{
+		ApiService:     a,
+		ctx:            ctx,
+		serviceTokenId: serviceTokenId,
+	}
+}
+
+// Execute executes the request
+//
+//	@return ServiceToken
+func (a *ServiceTokensApiService) ServiceTokenServicesExecute(r ApiServiceTokenServicesRequest) (*ServiceToken, *http.Response, error) {
+	var (
+		localVarHTTPMethod  = http.MethodGet
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue *ServiceToken
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ServiceTokensApiService.ServiceTokenServices")
+	if err != nil {
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/fabric/v4/serviceTokens/services/{serviceTokenId}"
+	localVarPath = strings.Replace(localVarPath, "{"+"serviceTokenId"+"}", url.PathEscape(parameterValueToString(r.serviceTokenId, "serviceTokenId")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	if r.xCORRELATIONID != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-CORRELATION-ID", r.xCORRELATIONID, "simple", "")
+	}
+	if r.xAUTHUSERNAME != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-AUTH-USER-NAME", r.xAUTHUSERNAME, "simple", "")
+	}
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		if localVarHTTPResponse.StatusCode == 400 {
+			var v []Error
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 403 {
+			var v []Error
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 500 {
+			var v []Error
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
 type ApiUpdateServiceTokenByUuidRequest struct {
 	ctx                         context.Context
 	ApiService                  *ServiceTokensApiService
 	serviceTokenId              string
 	serviceTokenChangeOperation *[]ServiceTokenChangeOperation
+	xCORRELATIONID              *string
+	xAUTHUSERNAME               *string
+	xSOURCE                     *string
+	dryRun                      *bool
 }
 
 func (r ApiUpdateServiceTokenByUuidRequest) ServiceTokenChangeOperation(serviceTokenChangeOperation []ServiceTokenChangeOperation) ApiUpdateServiceTokenByUuidRequest {
 	r.serviceTokenChangeOperation = &serviceTokenChangeOperation
+	return r
+}
+
+// Correlation identifier
+func (r ApiUpdateServiceTokenByUuidRequest) XCORRELATIONID(xCORRELATIONID string) ApiUpdateServiceTokenByUuidRequest {
+	r.xCORRELATIONID = &xCORRELATIONID
+	return r
+}
+
+// User name
+func (r ApiUpdateServiceTokenByUuidRequest) XAUTHUSERNAME(xAUTHUSERNAME string) ApiUpdateServiceTokenByUuidRequest {
+	r.xAUTHUSERNAME = &xAUTHUSERNAME
+	return r
+}
+
+// source
+func (r ApiUpdateServiceTokenByUuidRequest) XSOURCE(xSOURCE string) ApiUpdateServiceTokenByUuidRequest {
+	r.xSOURCE = &xSOURCE
+	return r
+}
+
+// option to verify that API calls will succeed
+func (r ApiUpdateServiceTokenByUuidRequest) DryRun(dryRun bool) ApiUpdateServiceTokenByUuidRequest {
+	r.dryRun = &dryRun
 	return r
 }
 
@@ -971,6 +1335,12 @@ func (a *ServiceTokensApiService) UpdateServiceTokenByUuidExecute(r ApiUpdateSer
 		return localVarReturnValue, nil, reportError("serviceTokenChangeOperation must have at least 1 elements")
 	}
 
+	if r.dryRun != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "dryRun", r.dryRun, "form", "")
+	} else {
+		var defaultValue bool = false
+		r.dryRun = &defaultValue
+	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{"application/json-patch+json"}
 
@@ -987,6 +1357,15 @@ func (a *ServiceTokensApiService) UpdateServiceTokenByUuidExecute(r ApiUpdateSer
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	if r.xCORRELATIONID != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-CORRELATION-ID", r.xCORRELATIONID, "simple", "")
+	}
+	if r.xAUTHUSERNAME != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-AUTH-USER-NAME", r.xAUTHUSERNAME, "simple", "")
+	}
+	if r.xSOURCE != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-SOURCE", r.xSOURCE, "simple", "")
 	}
 	// body params
 	localVarPostBody = r.serviceTokenChangeOperation

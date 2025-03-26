@@ -10,7 +10,7 @@ Method | HTTP request | Description
 
 ## GetSubscriptionById
 
-> SubscriptionResponse GetSubscriptionById(ctx, subscriptionId).Execute()
+> SubscriptionResponse GetSubscriptionById(ctx, subscriptionId).XCORRELATIONID(xCORRELATIONID).XPROJECTID(xPROJECTID).XAUTHUSERNAME(xAUTHUSERNAME).Execute()
 
 Get Subscription
 
@@ -30,10 +30,13 @@ import (
 
 func main() {
 	subscriptionId := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | Subscription UUID
+	xCORRELATIONID := "xCORRELATIONID_example" // string | Correlation identifier (optional)
+	xPROJECTID := "xPROJECTID_example" // string | Project identifier (optional)
+	xAUTHUSERNAME := "alice" // string | User name (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.MarketplaceSubscriptionsApi.GetSubscriptionById(context.Background(), subscriptionId).Execute()
+	resp, r, err := apiClient.MarketplaceSubscriptionsApi.GetSubscriptionById(context.Background(), subscriptionId).XCORRELATIONID(xCORRELATIONID).XPROJECTID(xPROJECTID).XAUTHUSERNAME(xAUTHUSERNAME).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `MarketplaceSubscriptionsApi.GetSubscriptionById``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -59,6 +62,9 @@ Other parameters are passed through a pointer to a apiGetSubscriptionByIdRequest
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
+ **xCORRELATIONID** | **string** | Correlation identifier | 
+ **xPROJECTID** | **string** | Project identifier | 
+ **xAUTHUSERNAME** | **string** | User name | 
 
 ### Return type
 

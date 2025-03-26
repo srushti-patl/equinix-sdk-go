@@ -20,14 +20,42 @@ import (
 type ConnectionsApiService service
 
 type ApiCreateConnectionRequest struct {
-	ctx                   context.Context
-	ApiService            *ConnectionsApiService
-	connectionPostRequest *ConnectionPostRequest
-	dryRun                *bool
+	ctx                     context.Context
+	ApiService              *ConnectionsApiService
+	connectionPostRequest   *ConnectionPostRequest
+	xCORRELATIONID          *string
+	xAUTHUSERNAME           *string
+	xSOURCE                 *string
+	accountSubCustomerUcmId *string
+	dryRun                  *bool
 }
 
 func (r ApiCreateConnectionRequest) ConnectionPostRequest(connectionPostRequest ConnectionPostRequest) ApiCreateConnectionRequest {
 	r.connectionPostRequest = &connectionPostRequest
+	return r
+}
+
+// Correlation identifier
+func (r ApiCreateConnectionRequest) XCORRELATIONID(xCORRELATIONID string) ApiCreateConnectionRequest {
+	r.xCORRELATIONID = &xCORRELATIONID
+	return r
+}
+
+// User name
+func (r ApiCreateConnectionRequest) XAUTHUSERNAME(xAUTHUSERNAME string) ApiCreateConnectionRequest {
+	r.xAUTHUSERNAME = &xAUTHUSERNAME
+	return r
+}
+
+// source
+func (r ApiCreateConnectionRequest) XSOURCE(xSOURCE string) ApiCreateConnectionRequest {
+	r.xSOURCE = &xSOURCE
+	return r
+}
+
+// subCustomerUcmId
+func (r ApiCreateConnectionRequest) AccountSubCustomerUcmId(accountSubCustomerUcmId string) ApiCreateConnectionRequest {
+	r.accountSubCustomerUcmId = &accountSubCustomerUcmId
 	return r
 }
 
@@ -81,6 +109,9 @@ func (a *ConnectionsApiService) CreateConnectionExecute(r ApiCreateConnectionReq
 		return localVarReturnValue, nil, reportError("connectionPostRequest is required and must be specified")
 	}
 
+	if r.accountSubCustomerUcmId != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "account.subCustomerUcmId", r.accountSubCustomerUcmId, "form", "")
+	}
 	if r.dryRun != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "dryRun", r.dryRun, "form", "")
 	} else {
@@ -103,6 +134,15 @@ func (a *ConnectionsApiService) CreateConnectionExecute(r ApiCreateConnectionReq
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	if r.xCORRELATIONID != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-CORRELATION-ID", r.xCORRELATIONID, "simple", "")
+	}
+	if r.xAUTHUSERNAME != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-AUTH-USER-NAME", r.xAUTHUSERNAME, "simple", "")
+	}
+	if r.xSOURCE != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-SOURCE", r.xSOURCE, "simple", "")
 	}
 	// body params
 	localVarPostBody = r.connectionPostRequest
@@ -191,10 +231,31 @@ type ApiCreateConnectionActionRequest struct {
 	ApiService              *ConnectionsApiService
 	connectionId            string
 	connectionActionRequest *ConnectionActionRequest
+	xCORRELATIONID          *string
+	xAUTHUSERNAME           *string
+	xSOURCE                 *string
 }
 
 func (r ApiCreateConnectionActionRequest) ConnectionActionRequest(connectionActionRequest ConnectionActionRequest) ApiCreateConnectionActionRequest {
 	r.connectionActionRequest = &connectionActionRequest
+	return r
+}
+
+// Correlation identifier
+func (r ApiCreateConnectionActionRequest) XCORRELATIONID(xCORRELATIONID string) ApiCreateConnectionActionRequest {
+	r.xCORRELATIONID = &xCORRELATIONID
+	return r
+}
+
+// User name
+func (r ApiCreateConnectionActionRequest) XAUTHUSERNAME(xAUTHUSERNAME string) ApiCreateConnectionActionRequest {
+	r.xAUTHUSERNAME = &xAUTHUSERNAME
+	return r
+}
+
+// source
+func (r ApiCreateConnectionActionRequest) XSOURCE(xSOURCE string) ApiCreateConnectionActionRequest {
+	r.xSOURCE = &xSOURCE
 	return r
 }
 
@@ -261,6 +322,15 @@ func (a *ConnectionsApiService) CreateConnectionActionExecute(r ApiCreateConnect
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	if r.xCORRELATIONID != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-CORRELATION-ID", r.xCORRELATIONID, "simple", "")
+	}
+	if r.xAUTHUSERNAME != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-AUTH-USER-NAME", r.xAUTHUSERNAME, "simple", "")
+	}
+	if r.xSOURCE != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-SOURCE", r.xSOURCE, "simple", "")
 	}
 	// body params
 	localVarPostBody = r.connectionActionRequest
@@ -344,10 +414,243 @@ func (a *ConnectionsApiService) CreateConnectionActionExecute(r ApiCreateConnect
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
+type ApiCreateConnectionsInBulkRequest struct {
+	ctx                       context.Context
+	ApiService                *ConnectionsApiService
+	connectionBulkPostRequest *ConnectionBulkPostRequest
+	xCORRELATIONID            *string
+	xAUTHUSERNAME             *string
+	xSOURCE                   *string
+	accountSubCustomerUcmId   *string
+}
+
+func (r ApiCreateConnectionsInBulkRequest) ConnectionBulkPostRequest(connectionBulkPostRequest ConnectionBulkPostRequest) ApiCreateConnectionsInBulkRequest {
+	r.connectionBulkPostRequest = &connectionBulkPostRequest
+	return r
+}
+
+// Correlation identifier
+func (r ApiCreateConnectionsInBulkRequest) XCORRELATIONID(xCORRELATIONID string) ApiCreateConnectionsInBulkRequest {
+	r.xCORRELATIONID = &xCORRELATIONID
+	return r
+}
+
+// User name
+func (r ApiCreateConnectionsInBulkRequest) XAUTHUSERNAME(xAUTHUSERNAME string) ApiCreateConnectionsInBulkRequest {
+	r.xAUTHUSERNAME = &xAUTHUSERNAME
+	return r
+}
+
+// source
+func (r ApiCreateConnectionsInBulkRequest) XSOURCE(xSOURCE string) ApiCreateConnectionsInBulkRequest {
+	r.xSOURCE = &xSOURCE
+	return r
+}
+
+// subCustomerUcmId
+func (r ApiCreateConnectionsInBulkRequest) AccountSubCustomerUcmId(accountSubCustomerUcmId string) ApiCreateConnectionsInBulkRequest {
+	r.accountSubCustomerUcmId = &accountSubCustomerUcmId
+	return r
+}
+
+func (r ApiCreateConnectionsInBulkRequest) Execute() (*ConnectionBulk, *http.Response, error) {
+	return r.ApiService.CreateConnectionsInBulkExecute(r)
+}
+
+/*
+CreateConnectionsInBulk Bulk Connections
+
+This API provides capability to create bulk virtual connections
+
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@return ApiCreateConnectionsInBulkRequest
+*/
+func (a *ConnectionsApiService) CreateConnectionsInBulk(ctx context.Context) ApiCreateConnectionsInBulkRequest {
+	return ApiCreateConnectionsInBulkRequest{
+		ApiService: a,
+		ctx:        ctx,
+	}
+}
+
+// Execute executes the request
+//
+//	@return ConnectionBulk
+func (a *ConnectionsApiService) CreateConnectionsInBulkExecute(r ApiCreateConnectionsInBulkRequest) (*ConnectionBulk, *http.Response, error) {
+	var (
+		localVarHTTPMethod  = http.MethodPost
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue *ConnectionBulk
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ConnectionsApiService.CreateConnectionsInBulk")
+	if err != nil {
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/fabric/v4/connections/bulk"
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+	if r.connectionBulkPostRequest == nil {
+		return localVarReturnValue, nil, reportError("connectionBulkPostRequest is required and must be specified")
+	}
+
+	if r.accountSubCustomerUcmId != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "account.subCustomerUcmId", r.accountSubCustomerUcmId, "form", "")
+	}
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{"application/json"}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	if r.xCORRELATIONID != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-CORRELATION-ID", r.xCORRELATIONID, "simple", "")
+	}
+	if r.xAUTHUSERNAME != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-AUTH-USER-NAME", r.xAUTHUSERNAME, "simple", "")
+	}
+	if r.xSOURCE != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-SOURCE", r.xSOURCE, "simple", "")
+	}
+	// body params
+	localVarPostBody = r.connectionBulkPostRequest
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		if localVarHTTPResponse.StatusCode == 400 {
+			var v []Error
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 401 {
+			var v []Error
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 403 {
+			var v []Error
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 404 {
+			var v []Error
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 500 {
+			var v []Error
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
 type ApiDeleteConnectionByUuidRequest struct {
-	ctx          context.Context
-	ApiService   *ConnectionsApiService
-	connectionId string
+	ctx                     context.Context
+	ApiService              *ConnectionsApiService
+	connectionId            string
+	xCORRELATIONID          *string
+	xAUTHUSERNAME           *string
+	xSOURCE                 *string
+	accountSubCustomerUcmId *string
+}
+
+// Correlation identifier
+func (r ApiDeleteConnectionByUuidRequest) XCORRELATIONID(xCORRELATIONID string) ApiDeleteConnectionByUuidRequest {
+	r.xCORRELATIONID = &xCORRELATIONID
+	return r
+}
+
+// User name
+func (r ApiDeleteConnectionByUuidRequest) XAUTHUSERNAME(xAUTHUSERNAME string) ApiDeleteConnectionByUuidRequest {
+	r.xAUTHUSERNAME = &xAUTHUSERNAME
+	return r
+}
+
+// source
+func (r ApiDeleteConnectionByUuidRequest) XSOURCE(xSOURCE string) ApiDeleteConnectionByUuidRequest {
+	r.xSOURCE = &xSOURCE
+	return r
+}
+
+// subCustomerUcmId
+func (r ApiDeleteConnectionByUuidRequest) AccountSubCustomerUcmId(accountSubCustomerUcmId string) ApiDeleteConnectionByUuidRequest {
+	r.accountSubCustomerUcmId = &accountSubCustomerUcmId
+	return r
 }
 
 func (r ApiDeleteConnectionByUuidRequest) Execute() (*Connection, *http.Response, error) {
@@ -394,6 +697,9 @@ func (a *ConnectionsApiService) DeleteConnectionByUuidExecute(r ApiDeleteConnect
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
 
+	if r.accountSubCustomerUcmId != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "account.subCustomerUcmId", r.accountSubCustomerUcmId, "form", "")
+	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
 
@@ -410,6 +716,15 @@ func (a *ConnectionsApiService) DeleteConnectionByUuidExecute(r ApiDeleteConnect
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	if r.xCORRELATIONID != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-CORRELATION-ID", r.xCORRELATIONID, "simple", "")
+	}
+	if r.xAUTHUSERNAME != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-AUTH-USER-NAME", r.xAUTHUSERNAME, "simple", "")
+	}
+	if r.xSOURCE != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-SOURCE", r.xSOURCE, "simple", "")
 	}
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
@@ -503,10 +818,24 @@ func (a *ConnectionsApiService) DeleteConnectionByUuidExecute(r ApiDeleteConnect
 }
 
 type ApiGetConnectionByUuidRequest struct {
-	ctx          context.Context
-	ApiService   *ConnectionsApiService
-	connectionId string
-	direction    *ConnectionDirection
+	ctx            context.Context
+	ApiService     *ConnectionsApiService
+	connectionId   string
+	xCORRELATIONID *string
+	xAUTHUSERNAME  *string
+	direction      *ConnectionDirection
+}
+
+// Correlation identifier
+func (r ApiGetConnectionByUuidRequest) XCORRELATIONID(xCORRELATIONID string) ApiGetConnectionByUuidRequest {
+	r.xCORRELATIONID = &xCORRELATIONID
+	return r
+}
+
+// User name
+func (r ApiGetConnectionByUuidRequest) XAUTHUSERNAME(xAUTHUSERNAME string) ApiGetConnectionByUuidRequest {
+	r.xAUTHUSERNAME = &xAUTHUSERNAME
+	return r
 }
 
 // Connection Direction
@@ -579,6 +908,199 @@ func (a *ConnectionsApiService) GetConnectionByUuidExecute(r ApiGetConnectionByU
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
+	if r.xCORRELATIONID != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-CORRELATION-ID", r.xCORRELATIONID, "simple", "")
+	}
+	if r.xAUTHUSERNAME != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-AUTH-USER-NAME", r.xAUTHUSERNAME, "simple", "")
+	}
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		if localVarHTTPResponse.StatusCode == 400 {
+			var v []Error
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 403 {
+			var v []Error
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 404 {
+			var v []Error
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
+type ApiPutConnectionByUuidRequest struct {
+	ctx                     context.Context
+	ApiService              *ConnectionsApiService
+	connectionId            string
+	connectionPutRequest    *ConnectionPutRequest
+	xCORRELATIONID          *string
+	xAUTHUSERNAME           *string
+	accountSubCustomerUcmId *string
+	xSOURCE                 *string
+}
+
+func (r ApiPutConnectionByUuidRequest) ConnectionPutRequest(connectionPutRequest ConnectionPutRequest) ApiPutConnectionByUuidRequest {
+	r.connectionPutRequest = &connectionPutRequest
+	return r
+}
+
+// Correlation identifier
+func (r ApiPutConnectionByUuidRequest) XCORRELATIONID(xCORRELATIONID string) ApiPutConnectionByUuidRequest {
+	r.xCORRELATIONID = &xCORRELATIONID
+	return r
+}
+
+// User name
+func (r ApiPutConnectionByUuidRequest) XAUTHUSERNAME(xAUTHUSERNAME string) ApiPutConnectionByUuidRequest {
+	r.xAUTHUSERNAME = &xAUTHUSERNAME
+	return r
+}
+
+// subCustomerUcmId
+func (r ApiPutConnectionByUuidRequest) AccountSubCustomerUcmId(accountSubCustomerUcmId string) ApiPutConnectionByUuidRequest {
+	r.accountSubCustomerUcmId = &accountSubCustomerUcmId
+	return r
+}
+
+// source
+func (r ApiPutConnectionByUuidRequest) XSOURCE(xSOURCE string) ApiPutConnectionByUuidRequest {
+	r.xSOURCE = &xSOURCE
+	return r
+}
+
+func (r ApiPutConnectionByUuidRequest) Execute() (*Connection, *http.Response, error) {
+	return r.ApiService.PutConnectionByUuidExecute(r)
+}
+
+/*
+PutConnectionByUuid Replace by ID
+
+The API provides capability to replace virtual connection details
+
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param connectionId Connection UUID
+	@return ApiPutConnectionByUuidRequest
+*/
+func (a *ConnectionsApiService) PutConnectionByUuid(ctx context.Context, connectionId string) ApiPutConnectionByUuidRequest {
+	return ApiPutConnectionByUuidRequest{
+		ApiService:   a,
+		ctx:          ctx,
+		connectionId: connectionId,
+	}
+}
+
+// Execute executes the request
+//
+//	@return Connection
+func (a *ConnectionsApiService) PutConnectionByUuidExecute(r ApiPutConnectionByUuidRequest) (*Connection, *http.Response, error) {
+	var (
+		localVarHTTPMethod  = http.MethodPut
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue *Connection
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ConnectionsApiService.PutConnectionByUuid")
+	if err != nil {
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/fabric/v4/connections/{connectionId}"
+	localVarPath = strings.Replace(localVarPath, "{"+"connectionId"+"}", url.PathEscape(parameterValueToString(r.connectionId, "connectionId")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+	if r.connectionPutRequest == nil {
+		return localVarReturnValue, nil, reportError("connectionPutRequest is required and must be specified")
+	}
+
+	if r.accountSubCustomerUcmId != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "account.subCustomerUcmId", r.accountSubCustomerUcmId, "form", "")
+	}
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{"application/json"}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	if r.xCORRELATIONID != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-CORRELATION-ID", r.xCORRELATIONID, "simple", "")
+	}
+	if r.xAUTHUSERNAME != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-AUTH-USER-NAME", r.xAUTHUSERNAME, "simple", "")
+	}
+	if r.xSOURCE != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-SOURCE", r.xSOURCE, "simple", "")
+	}
+	// body params
+	localVarPostBody = r.connectionPutRequest
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, nil, err
@@ -649,13 +1171,27 @@ func (a *ConnectionsApiService) GetConnectionByUuidExecute(r ApiGetConnectionByU
 }
 
 type ApiSearchConnectionsRequest struct {
-	ctx           context.Context
-	ApiService    *ConnectionsApiService
-	searchRequest *SearchRequest
+	ctx            context.Context
+	ApiService     *ConnectionsApiService
+	searchRequest  *SearchRequest
+	xCORRELATIONID *string
+	xAUTHUSERNAME  *string
 }
 
 func (r ApiSearchConnectionsRequest) SearchRequest(searchRequest SearchRequest) ApiSearchConnectionsRequest {
 	r.searchRequest = &searchRequest
+	return r
+}
+
+// Correlation identifier
+func (r ApiSearchConnectionsRequest) XCORRELATIONID(xCORRELATIONID string) ApiSearchConnectionsRequest {
+	r.xCORRELATIONID = &xCORRELATIONID
+	return r
+}
+
+// User name
+func (r ApiSearchConnectionsRequest) XAUTHUSERNAME(xAUTHUSERNAME string) ApiSearchConnectionsRequest {
+	r.xAUTHUSERNAME = &xAUTHUSERNAME
 	return r
 }
 
@@ -719,6 +1255,12 @@ func (a *ConnectionsApiService) SearchConnectionsExecute(r ApiSearchConnectionsR
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	if r.xCORRELATIONID != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-CORRELATION-ID", r.xCORRELATIONID, "simple", "")
+	}
+	if r.xAUTHUSERNAME != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-AUTH-USER-NAME", r.xAUTHUSERNAME, "simple", "")
 	}
 	// body params
 	localVarPostBody = r.searchRequest
@@ -807,10 +1349,38 @@ type ApiUpdateConnectionByUuidRequest struct {
 	ApiService                *ConnectionsApiService
 	connectionId              string
 	connectionChangeOperation *[]ConnectionChangeOperation
+	xCORRELATIONID            *string
+	xAUTHUSERNAME             *string
+	xSOURCE                   *string
+	accountSubCustomerUcmId   *string
 }
 
 func (r ApiUpdateConnectionByUuidRequest) ConnectionChangeOperation(connectionChangeOperation []ConnectionChangeOperation) ApiUpdateConnectionByUuidRequest {
 	r.connectionChangeOperation = &connectionChangeOperation
+	return r
+}
+
+// Correlation identifier
+func (r ApiUpdateConnectionByUuidRequest) XCORRELATIONID(xCORRELATIONID string) ApiUpdateConnectionByUuidRequest {
+	r.xCORRELATIONID = &xCORRELATIONID
+	return r
+}
+
+// User name
+func (r ApiUpdateConnectionByUuidRequest) XAUTHUSERNAME(xAUTHUSERNAME string) ApiUpdateConnectionByUuidRequest {
+	r.xAUTHUSERNAME = &xAUTHUSERNAME
+	return r
+}
+
+// source
+func (r ApiUpdateConnectionByUuidRequest) XSOURCE(xSOURCE string) ApiUpdateConnectionByUuidRequest {
+	r.xSOURCE = &xSOURCE
+	return r
+}
+
+// subCustomerUcmId
+func (r ApiUpdateConnectionByUuidRequest) AccountSubCustomerUcmId(accountSubCustomerUcmId string) ApiUpdateConnectionByUuidRequest {
+	r.accountSubCustomerUcmId = &accountSubCustomerUcmId
 	return r
 }
 
@@ -864,6 +1434,9 @@ func (a *ConnectionsApiService) UpdateConnectionByUuidExecute(r ApiUpdateConnect
 		return localVarReturnValue, nil, reportError("connectionChangeOperation must have at least 1 elements")
 	}
 
+	if r.accountSubCustomerUcmId != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "account.subCustomerUcmId", r.accountSubCustomerUcmId, "form", "")
+	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{"application/json-patch+json"}
 
@@ -880,6 +1453,15 @@ func (a *ConnectionsApiService) UpdateConnectionByUuidExecute(r ApiUpdateConnect
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	if r.xCORRELATIONID != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-CORRELATION-ID", r.xCORRELATIONID, "simple", "")
+	}
+	if r.xAUTHUSERNAME != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-AUTH-USER-NAME", r.xAUTHUSERNAME, "simple", "")
+	}
+	if r.xSOURCE != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-SOURCE", r.xSOURCE, "simple", "")
 	}
 	// body params
 	localVarPostBody = r.connectionChangeOperation
@@ -952,14 +1534,237 @@ func (a *ConnectionsApiService) UpdateConnectionByUuidExecute(r ApiUpdateConnect
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
+type ApiUpdateConnectionsByUuidsRequest struct {
+	ctx                       context.Context
+	ApiService                *ConnectionsApiService
+	uuid                      *string
+	connectionChangeOperation *[]ConnectionChangeOperation
+	xCORRELATIONID            *string
+	xAUTHUSERNAME             *string
+	xSOURCE                   *string
+}
+
+// Connection UUID
+func (r ApiUpdateConnectionsByUuidsRequest) Uuid(uuid string) ApiUpdateConnectionsByUuidsRequest {
+	r.uuid = &uuid
+	return r
+}
+
+func (r ApiUpdateConnectionsByUuidsRequest) ConnectionChangeOperation(connectionChangeOperation []ConnectionChangeOperation) ApiUpdateConnectionsByUuidsRequest {
+	r.connectionChangeOperation = &connectionChangeOperation
+	return r
+}
+
+// Correlation identifier
+func (r ApiUpdateConnectionsByUuidsRequest) XCORRELATIONID(xCORRELATIONID string) ApiUpdateConnectionsByUuidsRequest {
+	r.xCORRELATIONID = &xCORRELATIONID
+	return r
+}
+
+// User name
+func (r ApiUpdateConnectionsByUuidsRequest) XAUTHUSERNAME(xAUTHUSERNAME string) ApiUpdateConnectionsByUuidsRequest {
+	r.xAUTHUSERNAME = &xAUTHUSERNAME
+	return r
+}
+
+// source
+func (r ApiUpdateConnectionsByUuidsRequest) XSOURCE(xSOURCE string) ApiUpdateConnectionsByUuidsRequest {
+	r.xSOURCE = &xSOURCE
+	return r
+}
+
+func (r ApiUpdateConnectionsByUuidsRequest) Execute() (*Connection, *http.Response, error) {
+	return r.ApiService.UpdateConnectionsByUuidsExecute(r)
+}
+
+/*
+UpdateConnectionsByUuids Update Connections
+
+The API provides bulk capability for Admin users to update virtual connection details (for e.g., Aside Access Points) by it's UUID
+
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@return ApiUpdateConnectionsByUuidsRequest
+*/
+func (a *ConnectionsApiService) UpdateConnectionsByUuids(ctx context.Context) ApiUpdateConnectionsByUuidsRequest {
+	return ApiUpdateConnectionsByUuidsRequest{
+		ApiService: a,
+		ctx:        ctx,
+	}
+}
+
+// Execute executes the request
+//
+//	@return Connection
+func (a *ConnectionsApiService) UpdateConnectionsByUuidsExecute(r ApiUpdateConnectionsByUuidsRequest) (*Connection, *http.Response, error) {
+	var (
+		localVarHTTPMethod  = http.MethodPatch
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue *Connection
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ConnectionsApiService.UpdateConnectionsByUuids")
+	if err != nil {
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/fabric/v4/connections/bulk"
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+	if r.uuid == nil {
+		return localVarReturnValue, nil, reportError("uuid is required and must be specified")
+	}
+	if r.connectionChangeOperation == nil {
+		return localVarReturnValue, nil, reportError("connectionChangeOperation is required and must be specified")
+	}
+	if len(*r.connectionChangeOperation) < 1 {
+		return localVarReturnValue, nil, reportError("connectionChangeOperation must have at least 1 elements")
+	}
+
+	parameterAddToHeaderOrQuery(localVarQueryParams, "uuid", r.uuid, "form", "")
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{"application/json-patch+json"}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	if r.xCORRELATIONID != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-CORRELATION-ID", r.xCORRELATIONID, "simple", "")
+	}
+	if r.xAUTHUSERNAME != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-AUTH-USER-NAME", r.xAUTHUSERNAME, "simple", "")
+	}
+	if r.xSOURCE != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-SOURCE", r.xSOURCE, "simple", "")
+	}
+	// body params
+	localVarPostBody = r.connectionChangeOperation
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		if localVarHTTPResponse.StatusCode == 400 {
+			var v []Error
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 401 {
+			var v []Error
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 403 {
+			var v []Error
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 404 {
+			var v []Error
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 500 {
+			var v []Error
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
 type ApiValidateConnectionsRequest struct {
 	ctx             context.Context
 	ApiService      *ConnectionsApiService
 	validateRequest *ValidateRequest
+	xCORRELATIONID  *string
+	xAUTHUSERNAME   *string
 }
 
 func (r ApiValidateConnectionsRequest) ValidateRequest(validateRequest ValidateRequest) ApiValidateConnectionsRequest {
 	r.validateRequest = &validateRequest
+	return r
+}
+
+// Correlation identifier
+func (r ApiValidateConnectionsRequest) XCORRELATIONID(xCORRELATIONID string) ApiValidateConnectionsRequest {
+	r.xCORRELATIONID = &xCORRELATIONID
+	return r
+}
+
+// User name
+func (r ApiValidateConnectionsRequest) XAUTHUSERNAME(xAUTHUSERNAME string) ApiValidateConnectionsRequest {
+	r.xAUTHUSERNAME = &xAUTHUSERNAME
 	return r
 }
 
@@ -1023,6 +1828,12 @@ func (a *ConnectionsApiService) ValidateConnectionsExecute(r ApiValidateConnecti
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	if r.xCORRELATIONID != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-CORRELATION-ID", r.xCORRELATIONID, "simple", "")
+	}
+	if r.xAUTHUSERNAME != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-AUTH-USER-NAME", r.xAUTHUSERNAME, "simple", "")
 	}
 	// body params
 	localVarPostBody = r.validateRequest

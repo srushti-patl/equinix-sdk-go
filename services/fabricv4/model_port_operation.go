@@ -15,7 +15,7 @@ import (
 // checks if the PortOperation type satisfies the MappedNullable interface at compile time
 var _ MappedNullable = &PortOperation{}
 
-// PortOperation Operational specifications for ports.
+// PortOperation struct for PortOperation
 type PortOperation struct {
 	OperationalStatus *PortOperationOperationalStatus `json:"operationalStatus,omitempty"`
 	// Total number of connections.

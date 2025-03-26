@@ -8,6 +8,8 @@ Name | Type | Description | Notes
 **OrderId** | Pointer to **string** | Order Identification | [optional] 
 **CustomerReferenceId** | Pointer to **string** | Customer order reference Id | [optional] 
 **OrderNumber** | Pointer to **string** | Order Reference Number | [optional] 
+**OrderLineItemNumber** | Pointer to **string** | Order Reference Number for Sales Assisted Order | [optional] 
+**DomainOrderNumber** | Pointer to **string** | product domain Order Number for Sales Assisted Order | [optional] 
 **Uuid** | Pointer to **string** | Equinix-assigned order identifier, this is a derived response atrribute | [optional] 
 **Signature** | Pointer to [**PortOrderSignature**](PortOrderSignature.md) |  | [optional] 
 
@@ -129,6 +131,56 @@ SetOrderNumber sets OrderNumber field to given value.
 `func (o *PortOrder) HasOrderNumber() bool`
 
 HasOrderNumber returns a boolean if a field has been set.
+
+### GetOrderLineItemNumber
+
+`func (o *PortOrder) GetOrderLineItemNumber() string`
+
+GetOrderLineItemNumber returns the OrderLineItemNumber field if non-nil, zero value otherwise.
+
+### GetOrderLineItemNumberOk
+
+`func (o *PortOrder) GetOrderLineItemNumberOk() (*string, bool)`
+
+GetOrderLineItemNumberOk returns a tuple with the OrderLineItemNumber field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetOrderLineItemNumber
+
+`func (o *PortOrder) SetOrderLineItemNumber(v string)`
+
+SetOrderLineItemNumber sets OrderLineItemNumber field to given value.
+
+### HasOrderLineItemNumber
+
+`func (o *PortOrder) HasOrderLineItemNumber() bool`
+
+HasOrderLineItemNumber returns a boolean if a field has been set.
+
+### GetDomainOrderNumber
+
+`func (o *PortOrder) GetDomainOrderNumber() string`
+
+GetDomainOrderNumber returns the DomainOrderNumber field if non-nil, zero value otherwise.
+
+### GetDomainOrderNumberOk
+
+`func (o *PortOrder) GetDomainOrderNumberOk() (*string, bool)`
+
+GetDomainOrderNumberOk returns a tuple with the DomainOrderNumber field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetDomainOrderNumber
+
+`func (o *PortOrder) SetDomainOrderNumber(v string)`
+
+SetDomainOrderNumber sets DomainOrderNumber field to given value.
+
+### HasDomainOrderNumber
+
+`func (o *PortOrder) HasDomainOrderNumber() bool`
+
+HasDomainOrderNumber returns a boolean if a field has been set.
 
 ### GetUuid
 

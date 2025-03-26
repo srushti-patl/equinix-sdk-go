@@ -23,10 +23,38 @@ type ApiCreateTimeServicesRequest struct {
 	ctx                         context.Context
 	ApiService                  *PrecisionTimeApiService
 	precisionTimeServiceRequest *PrecisionTimeServiceRequest
+	xCORRELATIONID              *string
+	xAUTHUSERNAME               *string
+	accountSubCustomerUcmId     *string
+	xSOURCE                     *string
 }
 
 func (r ApiCreateTimeServicesRequest) PrecisionTimeServiceRequest(precisionTimeServiceRequest PrecisionTimeServiceRequest) ApiCreateTimeServicesRequest {
 	r.precisionTimeServiceRequest = &precisionTimeServiceRequest
+	return r
+}
+
+// Correlation identifier
+func (r ApiCreateTimeServicesRequest) XCORRELATIONID(xCORRELATIONID string) ApiCreateTimeServicesRequest {
+	r.xCORRELATIONID = &xCORRELATIONID
+	return r
+}
+
+// User name
+func (r ApiCreateTimeServicesRequest) XAUTHUSERNAME(xAUTHUSERNAME string) ApiCreateTimeServicesRequest {
+	r.xAUTHUSERNAME = &xAUTHUSERNAME
+	return r
+}
+
+// subCustomerUcmId
+func (r ApiCreateTimeServicesRequest) AccountSubCustomerUcmId(accountSubCustomerUcmId string) ApiCreateTimeServicesRequest {
+	r.accountSubCustomerUcmId = &accountSubCustomerUcmId
+	return r
+}
+
+// source
+func (r ApiCreateTimeServicesRequest) XSOURCE(xSOURCE string) ApiCreateTimeServicesRequest {
+	r.xSOURCE = &xSOURCE
 	return r
 }
 
@@ -74,6 +102,9 @@ func (a *PrecisionTimeApiService) CreateTimeServicesExecute(r ApiCreateTimeServi
 		return localVarReturnValue, nil, reportError("precisionTimeServiceRequest is required and must be specified")
 	}
 
+	if r.accountSubCustomerUcmId != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "account.subCustomerUcmId", r.accountSubCustomerUcmId, "form", "")
+	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{"application/json"}
 
@@ -90,6 +121,15 @@ func (a *PrecisionTimeApiService) CreateTimeServicesExecute(r ApiCreateTimeServi
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	if r.xCORRELATIONID != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-CORRELATION-ID", r.xCORRELATIONID, "simple", "")
+	}
+	if r.xAUTHUSERNAME != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-AUTH-USER-NAME", r.xAUTHUSERNAME, "simple", "")
+	}
+	if r.xSOURCE != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-SOURCE", r.xSOURCE, "simple", "")
 	}
 	// body params
 	localVarPostBody = r.precisionTimeServiceRequest
@@ -185,9 +225,30 @@ func (a *PrecisionTimeApiService) CreateTimeServicesExecute(r ApiCreateTimeServi
 }
 
 type ApiDeleteTimeServiceByIdRequest struct {
-	ctx        context.Context
-	ApiService *PrecisionTimeApiService
-	serviceId  string
+	ctx            context.Context
+	ApiService     *PrecisionTimeApiService
+	serviceId      string
+	xCORRELATIONID *string
+	xAUTHUSERNAME  *string
+	xSOURCE        *string
+}
+
+// Correlation identifier
+func (r ApiDeleteTimeServiceByIdRequest) XCORRELATIONID(xCORRELATIONID string) ApiDeleteTimeServiceByIdRequest {
+	r.xCORRELATIONID = &xCORRELATIONID
+	return r
+}
+
+// User name
+func (r ApiDeleteTimeServiceByIdRequest) XAUTHUSERNAME(xAUTHUSERNAME string) ApiDeleteTimeServiceByIdRequest {
+	r.xAUTHUSERNAME = &xAUTHUSERNAME
+	return r
+}
+
+// source
+func (r ApiDeleteTimeServiceByIdRequest) XSOURCE(xSOURCE string) ApiDeleteTimeServiceByIdRequest {
+	r.xSOURCE = &xSOURCE
+	return r
 }
 
 func (r ApiDeleteTimeServiceByIdRequest) Execute() (*PrecisionTimeServiceResponse, *http.Response, error) {
@@ -250,6 +311,15 @@ func (a *PrecisionTimeApiService) DeleteTimeServiceByIdExecute(r ApiDeleteTimeSe
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	if r.xCORRELATIONID != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-CORRELATION-ID", r.xCORRELATIONID, "simple", "")
+	}
+	if r.xAUTHUSERNAME != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-AUTH-USER-NAME", r.xAUTHUSERNAME, "simple", "")
+	}
+	if r.xSOURCE != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-SOURCE", r.xSOURCE, "simple", "")
 	}
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
@@ -347,10 +417,31 @@ type ApiFulfillTimeServicesRequest struct {
 	ApiService                  *PrecisionTimeApiService
 	serviceId                   string
 	precisionTimeServiceRequest *PrecisionTimeServiceRequest
+	xCORRELATIONID              *string
+	xAUTHUSERNAME               *string
+	xSOURCE                     *string
 }
 
 func (r ApiFulfillTimeServicesRequest) PrecisionTimeServiceRequest(precisionTimeServiceRequest PrecisionTimeServiceRequest) ApiFulfillTimeServicesRequest {
 	r.precisionTimeServiceRequest = &precisionTimeServiceRequest
+	return r
+}
+
+// Correlation identifier
+func (r ApiFulfillTimeServicesRequest) XCORRELATIONID(xCORRELATIONID string) ApiFulfillTimeServicesRequest {
+	r.xCORRELATIONID = &xCORRELATIONID
+	return r
+}
+
+// User name
+func (r ApiFulfillTimeServicesRequest) XAUTHUSERNAME(xAUTHUSERNAME string) ApiFulfillTimeServicesRequest {
+	r.xAUTHUSERNAME = &xAUTHUSERNAME
+	return r
+}
+
+// source
+func (r ApiFulfillTimeServicesRequest) XSOURCE(xSOURCE string) ApiFulfillTimeServicesRequest {
+	r.xSOURCE = &xSOURCE
 	return r
 }
 
@@ -417,6 +508,15 @@ func (a *PrecisionTimeApiService) FulfillTimeServicesExecute(r ApiFulfillTimeSer
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	if r.xCORRELATIONID != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-CORRELATION-ID", r.xCORRELATIONID, "simple", "")
+	}
+	if r.xAUTHUSERNAME != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-AUTH-USER-NAME", r.xAUTHUSERNAME, "simple", "")
+	}
+	if r.xSOURCE != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-SOURCE", r.xSOURCE, "simple", "")
 	}
 	// body params
 	localVarPostBody = r.precisionTimeServiceRequest
@@ -523,9 +623,30 @@ func (a *PrecisionTimeApiService) FulfillTimeServicesExecute(r ApiFulfillTimeSer
 }
 
 type ApiGetTimeServicesByIdRequest struct {
-	ctx        context.Context
-	ApiService *PrecisionTimeApiService
-	serviceId  string
+	ctx            context.Context
+	ApiService     *PrecisionTimeApiService
+	serviceId      string
+	xCORRELATIONID *string
+	xAUTHUSERNAME  *string
+	xSOURCE        *string
+}
+
+// Correlation identifier
+func (r ApiGetTimeServicesByIdRequest) XCORRELATIONID(xCORRELATIONID string) ApiGetTimeServicesByIdRequest {
+	r.xCORRELATIONID = &xCORRELATIONID
+	return r
+}
+
+// User name
+func (r ApiGetTimeServicesByIdRequest) XAUTHUSERNAME(xAUTHUSERNAME string) ApiGetTimeServicesByIdRequest {
+	r.xAUTHUSERNAME = &xAUTHUSERNAME
+	return r
+}
+
+// source
+func (r ApiGetTimeServicesByIdRequest) XSOURCE(xSOURCE string) ApiGetTimeServicesByIdRequest {
+	r.xSOURCE = &xSOURCE
+	return r
 }
 
 func (r ApiGetTimeServicesByIdRequest) Execute() (*PrecisionTimeServiceResponse, *http.Response, error) {
@@ -588,6 +709,15 @@ func (a *PrecisionTimeApiService) GetTimeServicesByIdExecute(r ApiGetTimeService
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	if r.xCORRELATIONID != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-CORRELATION-ID", r.xCORRELATIONID, "simple", "")
+	}
+	if r.xAUTHUSERNAME != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-AUTH-USER-NAME", r.xAUTHUSERNAME, "simple", "")
+	}
+	if r.xSOURCE != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-SOURCE", r.xSOURCE, "simple", "")
 	}
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
@@ -692,9 +822,23 @@ func (a *PrecisionTimeApiService) GetTimeServicesByIdExecute(r ApiGetTimeService
 }
 
 type ApiGetTimeServicesConnectionsByServiceIdRequest struct {
-	ctx        context.Context
-	ApiService *PrecisionTimeApiService
-	serviceId  string
+	ctx            context.Context
+	ApiService     *PrecisionTimeApiService
+	serviceId      string
+	xCORRELATIONID *string
+	xAUTHUSERNAME  *string
+}
+
+// Correlation identifier
+func (r ApiGetTimeServicesConnectionsByServiceIdRequest) XCORRELATIONID(xCORRELATIONID string) ApiGetTimeServicesConnectionsByServiceIdRequest {
+	r.xCORRELATIONID = &xCORRELATIONID
+	return r
+}
+
+// User name
+func (r ApiGetTimeServicesConnectionsByServiceIdRequest) XAUTHUSERNAME(xAUTHUSERNAME string) ApiGetTimeServicesConnectionsByServiceIdRequest {
+	r.xAUTHUSERNAME = &xAUTHUSERNAME
+	return r
 }
 
 func (r ApiGetTimeServicesConnectionsByServiceIdRequest) Execute() (*PrecisionTimeServiceConnectionsResponse, *http.Response, error) {
@@ -757,6 +901,12 @@ func (a *PrecisionTimeApiService) GetTimeServicesConnectionsByServiceIdExecute(r
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	if r.xCORRELATIONID != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-CORRELATION-ID", r.xCORRELATIONID, "simple", "")
+	}
+	if r.xAUTHUSERNAME != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-AUTH-USER-NAME", r.xAUTHUSERNAME, "simple", "")
 	}
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
@@ -839,9 +989,23 @@ func (a *PrecisionTimeApiService) GetTimeServicesConnectionsByServiceIdExecute(r
 }
 
 type ApiGetTimeServicesPackageByCodeRequest struct {
-	ctx         context.Context
-	ApiService  *PrecisionTimeApiService
-	packageCode GetTimeServicesPackageByCodePackageCodeParameter
+	ctx            context.Context
+	ApiService     *PrecisionTimeApiService
+	packageCode    GetTimeServicesPackageByCodePackageCodeParameter
+	xCORRELATIONID *string
+	xAUTHUSERNAME  *string
+}
+
+// Correlation identifier
+func (r ApiGetTimeServicesPackageByCodeRequest) XCORRELATIONID(xCORRELATIONID string) ApiGetTimeServicesPackageByCodeRequest {
+	r.xCORRELATIONID = &xCORRELATIONID
+	return r
+}
+
+// User name
+func (r ApiGetTimeServicesPackageByCodeRequest) XAUTHUSERNAME(xAUTHUSERNAME string) ApiGetTimeServicesPackageByCodeRequest {
+	r.xAUTHUSERNAME = &xAUTHUSERNAME
+	return r
 }
 
 func (r ApiGetTimeServicesPackageByCodeRequest) Execute() (*PrecisionTimePackageResponse, *http.Response, error) {
@@ -905,6 +1069,12 @@ func (a *PrecisionTimeApiService) GetTimeServicesPackageByCodeExecute(r ApiGetTi
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
+	if r.xCORRELATIONID != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-CORRELATION-ID", r.xCORRELATIONID, "simple", "")
+	}
+	if r.xAUTHUSERNAME != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-AUTH-USER-NAME", r.xAUTHUSERNAME, "simple", "")
+	}
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, nil, err
@@ -964,8 +1134,22 @@ func (a *PrecisionTimeApiService) GetTimeServicesPackageByCodeExecute(r ApiGetTi
 }
 
 type ApiGetTimeServicesPackagesRequest struct {
-	ctx        context.Context
-	ApiService *PrecisionTimeApiService
+	ctx            context.Context
+	ApiService     *PrecisionTimeApiService
+	xCORRELATIONID *string
+	xAUTHUSERNAME  *string
+}
+
+// Correlation identifier
+func (r ApiGetTimeServicesPackagesRequest) XCORRELATIONID(xCORRELATIONID string) ApiGetTimeServicesPackagesRequest {
+	r.xCORRELATIONID = &xCORRELATIONID
+	return r
+}
+
+// User name
+func (r ApiGetTimeServicesPackagesRequest) XAUTHUSERNAME(xAUTHUSERNAME string) ApiGetTimeServicesPackagesRequest {
+	r.xAUTHUSERNAME = &xAUTHUSERNAME
+	return r
 }
 
 func (r ApiGetTimeServicesPackagesRequest) Execute() (*PrecisionTimeServicePackagesResponse, *http.Response, error) {
@@ -1025,6 +1209,12 @@ func (a *PrecisionTimeApiService) GetTimeServicesPackagesExecute(r ApiGetTimeSer
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	if r.xCORRELATIONID != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-CORRELATION-ID", r.xCORRELATIONID, "simple", "")
+	}
+	if r.xAUTHUSERNAME != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-AUTH-USER-NAME", r.xAUTHUSERNAME, "simple", "")
 	}
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
@@ -1088,10 +1278,24 @@ type ApiSearchTimeServicesRequest struct {
 	ctx                       context.Context
 	ApiService                *PrecisionTimeApiService
 	timeServicesSearchRequest *TimeServicesSearchRequest
+	xCORRELATIONID            *string
+	xAUTHUSERNAME             *string
 }
 
 func (r ApiSearchTimeServicesRequest) TimeServicesSearchRequest(timeServicesSearchRequest TimeServicesSearchRequest) ApiSearchTimeServicesRequest {
 	r.timeServicesSearchRequest = &timeServicesSearchRequest
+	return r
+}
+
+// Correlation identifier
+func (r ApiSearchTimeServicesRequest) XCORRELATIONID(xCORRELATIONID string) ApiSearchTimeServicesRequest {
+	r.xCORRELATIONID = &xCORRELATIONID
+	return r
+}
+
+// User name
+func (r ApiSearchTimeServicesRequest) XAUTHUSERNAME(xAUTHUSERNAME string) ApiSearchTimeServicesRequest {
+	r.xAUTHUSERNAME = &xAUTHUSERNAME
 	return r
 }
 
@@ -1155,6 +1359,12 @@ func (a *PrecisionTimeApiService) SearchTimeServicesExecute(r ApiSearchTimeServi
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	if r.xCORRELATIONID != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-CORRELATION-ID", r.xCORRELATIONID, "simple", "")
+	}
+	if r.xAUTHUSERNAME != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-AUTH-USER-NAME", r.xAUTHUSERNAME, "simple", "")
 	}
 	// body params
 	localVarPostBody = r.timeServicesSearchRequest
@@ -1254,10 +1464,31 @@ type ApiUpdateTimeServicesByIdRequest struct {
 	ApiService                   *PrecisionTimeApiService
 	serviceId                    string
 	precisionTimeChangeOperation *[]PrecisionTimeChangeOperation
+	xCORRELATIONID               *string
+	xAUTHUSERNAME                *string
+	xSOURCE                      *string
 }
 
 func (r ApiUpdateTimeServicesByIdRequest) PrecisionTimeChangeOperation(precisionTimeChangeOperation []PrecisionTimeChangeOperation) ApiUpdateTimeServicesByIdRequest {
 	r.precisionTimeChangeOperation = &precisionTimeChangeOperation
+	return r
+}
+
+// Correlation identifier
+func (r ApiUpdateTimeServicesByIdRequest) XCORRELATIONID(xCORRELATIONID string) ApiUpdateTimeServicesByIdRequest {
+	r.xCORRELATIONID = &xCORRELATIONID
+	return r
+}
+
+// User name
+func (r ApiUpdateTimeServicesByIdRequest) XAUTHUSERNAME(xAUTHUSERNAME string) ApiUpdateTimeServicesByIdRequest {
+	r.xAUTHUSERNAME = &xAUTHUSERNAME
+	return r
+}
+
+// source
+func (r ApiUpdateTimeServicesByIdRequest) XSOURCE(xSOURCE string) ApiUpdateTimeServicesByIdRequest {
+	r.xSOURCE = &xSOURCE
 	return r
 }
 
@@ -1330,6 +1561,15 @@ func (a *PrecisionTimeApiService) UpdateTimeServicesByIdExecute(r ApiUpdateTimeS
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	if r.xCORRELATIONID != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-CORRELATION-ID", r.xCORRELATIONID, "simple", "")
+	}
+	if r.xAUTHUSERNAME != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-AUTH-USER-NAME", r.xAUTHUSERNAME, "simple", "")
+	}
+	if r.xSOURCE != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-SOURCE", r.xSOURCE, "simple", "")
 	}
 	// body params
 	localVarPostBody = r.precisionTimeChangeOperation

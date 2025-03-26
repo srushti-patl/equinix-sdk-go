@@ -28,8 +28,10 @@ type Network struct {
 	// Network URI
 	Href string `json:"href"`
 	// Equinix-assigned network identifier
-	Uuid  string       `json:"uuid"`
-	State NetworkState `json:"state"`
+	Uuid string `json:"uuid"`
+	// Equinix-assigned platform connection identifier
+	PlatformUuid *string      `json:"platformUuid,omitempty"`
+	State        NetworkState `json:"state"`
 	// number of connections created on the network
 	ConnectionsCount *float32                 `json:"connectionsCount,omitempty"`
 	Account          *SimplifiedAccount       `json:"account,omitempty"`
@@ -276,6 +278,38 @@ func (o *Network) SetUuid(v string) {
 	o.Uuid = v
 }
 
+// GetPlatformUuid returns the PlatformUuid field value if set, zero value otherwise.
+func (o *Network) GetPlatformUuid() string {
+	if o == nil || IsNil(o.PlatformUuid) {
+		var ret string
+		return ret
+	}
+	return *o.PlatformUuid
+}
+
+// GetPlatformUuidOk returns a tuple with the PlatformUuid field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *Network) GetPlatformUuidOk() (*string, bool) {
+	if o == nil || IsNil(o.PlatformUuid) {
+		return nil, false
+	}
+	return o.PlatformUuid, true
+}
+
+// HasPlatformUuid returns a boolean if a field has been set.
+func (o *Network) HasPlatformUuid() bool {
+	if o != nil && !IsNil(o.PlatformUuid) {
+		return true
+	}
+
+	return false
+}
+
+// SetPlatformUuid gets a reference to the given string and assigns it to the PlatformUuid field.
+func (o *Network) SetPlatformUuid(v string) {
+	o.PlatformUuid = &v
+}
+
 // GetState returns the State field value
 func (o *Network) GetState() NetworkState {
 	if o == nil {
@@ -506,6 +540,9 @@ func (o Network) ToMap() (map[string]interface{}, error) {
 	toSerialize["notifications"] = o.Notifications
 	toSerialize["href"] = o.Href
 	toSerialize["uuid"] = o.Uuid
+	if !IsNil(o.PlatformUuid) {
+		toSerialize["platformUuid"] = o.PlatformUuid
+	}
 	toSerialize["state"] = o.State
 	if !IsNil(o.ConnectionsCount) {
 		toSerialize["connectionsCount"] = o.ConnectionsCount
@@ -581,6 +618,7 @@ func (o *Network) UnmarshalJSON(data []byte) (err error) {
 		delete(additionalProperties, "notifications")
 		delete(additionalProperties, "href")
 		delete(additionalProperties, "uuid")
+		delete(additionalProperties, "platformUuid")
 		delete(additionalProperties, "state")
 		delete(additionalProperties, "connectionsCount")
 		delete(additionalProperties, "account")

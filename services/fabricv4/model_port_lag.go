@@ -14,7 +14,7 @@ import (
 // checks if the PortLag type satisfies the MappedNullable interface at compile time
 var _ MappedNullable = &PortLag{}
 
-// PortLag Port Lag
+// PortLag struct for PortLag
 type PortLag struct {
 	// id
 	Id *string `json:"id,omitempty"`

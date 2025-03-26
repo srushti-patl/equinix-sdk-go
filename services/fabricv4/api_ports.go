@@ -24,10 +24,24 @@ type ApiAddToLagRequest struct {
 	ApiService       *PortsApiService
 	portId           string
 	bulkPhysicalPort *BulkPhysicalPort
+	xCORRELATIONID   *string
+	xAUTHUSERNAME    *string
 }
 
 func (r ApiAddToLagRequest) BulkPhysicalPort(bulkPhysicalPort BulkPhysicalPort) ApiAddToLagRequest {
 	r.bulkPhysicalPort = &bulkPhysicalPort
+	return r
+}
+
+// Correlation identifier
+func (r ApiAddToLagRequest) XCORRELATIONID(xCORRELATIONID string) ApiAddToLagRequest {
+	r.xCORRELATIONID = &xCORRELATIONID
+	return r
+}
+
+// User name
+func (r ApiAddToLagRequest) XAUTHUSERNAME(xAUTHUSERNAME string) ApiAddToLagRequest {
+	r.xAUTHUSERNAME = &xAUTHUSERNAME
 	return r
 }
 
@@ -94,6 +108,12 @@ func (a *PortsApiService) AddToLagExecute(r ApiAddToLagRequest) (*AllPhysicalPor
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	if r.xCORRELATIONID != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-CORRELATION-ID", r.xCORRELATIONID, "simple", "")
+	}
+	if r.xAUTHUSERNAME != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-AUTH-USER-NAME", r.xAUTHUSERNAME, "simple", "")
 	}
 	// body params
 	localVarPostBody = r.bulkPhysicalPort
@@ -170,10 +190,24 @@ type ApiCreateBulkPortRequest struct {
 	ctx             context.Context
 	ApiService      *PortsApiService
 	bulkPortRequest *BulkPortRequest
+	xCORRELATIONID  *string
+	xAUTHUSERNAME   *string
 }
 
 func (r ApiCreateBulkPortRequest) BulkPortRequest(bulkPortRequest BulkPortRequest) ApiCreateBulkPortRequest {
 	r.bulkPortRequest = &bulkPortRequest
+	return r
+}
+
+// Correlation identifier
+func (r ApiCreateBulkPortRequest) XCORRELATIONID(xCORRELATIONID string) ApiCreateBulkPortRequest {
+	r.xCORRELATIONID = &xCORRELATIONID
+	return r
+}
+
+// User name
+func (r ApiCreateBulkPortRequest) XAUTHUSERNAME(xAUTHUSERNAME string) ApiCreateBulkPortRequest {
+	r.xAUTHUSERNAME = &xAUTHUSERNAME
 	return r
 }
 
@@ -184,7 +218,7 @@ func (r ApiCreateBulkPortRequest) Execute() (*BulkPort, *http.Response, error) {
 /*
 CreateBulkPort Create Port
 
-Create Port creates Equinix Fabric? Port.<font color="red"> <sup color='red'>Preview</sup></font>
+Create Port creates Equinix Fabric™ Port.<font color="red"> <sup color='red'>Preview</sup></font>
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@return ApiCreateBulkPortRequest
@@ -238,6 +272,12 @@ func (a *PortsApiService) CreateBulkPortExecute(r ApiCreateBulkPortRequest) (*Bu
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
+	if r.xCORRELATIONID != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-CORRELATION-ID", r.xCORRELATIONID, "simple", "")
+	}
+	if r.xAUTHUSERNAME != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-AUTH-USER-NAME", r.xAUTHUSERNAME, "simple", "")
+	}
 	// body params
 	localVarPostBody = r.bulkPortRequest
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
@@ -278,13 +318,27 @@ func (a *PortsApiService) CreateBulkPortExecute(r ApiCreateBulkPortRequest) (*Bu
 }
 
 type ApiCreatePortRequest struct {
-	ctx         context.Context
-	ApiService  *PortsApiService
-	portRequest *PortRequest
+	ctx            context.Context
+	ApiService     *PortsApiService
+	portRequest    *PortRequest
+	xCORRELATIONID *string
+	xAUTHUSERNAME  *string
 }
 
 func (r ApiCreatePortRequest) PortRequest(portRequest PortRequest) ApiCreatePortRequest {
 	r.portRequest = &portRequest
+	return r
+}
+
+// Correlation identifier
+func (r ApiCreatePortRequest) XCORRELATIONID(xCORRELATIONID string) ApiCreatePortRequest {
+	r.xCORRELATIONID = &xCORRELATIONID
+	return r
+}
+
+// User name
+func (r ApiCreatePortRequest) XAUTHUSERNAME(xAUTHUSERNAME string) ApiCreatePortRequest {
+	r.xAUTHUSERNAME = &xAUTHUSERNAME
 	return r
 }
 
@@ -295,7 +349,7 @@ func (r ApiCreatePortRequest) Execute() (*Port, *http.Response, error) {
 /*
 CreatePort Create Port
 
-Creates Equinix Fabric? Port.
+Creates Equinix Fabric™ Port.
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@return ApiCreatePortRequest
@@ -348,6 +402,12 @@ func (a *PortsApiService) CreatePortExecute(r ApiCreatePortRequest) (*Port, *htt
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	if r.xCORRELATIONID != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-CORRELATION-ID", r.xCORRELATIONID, "simple", "")
+	}
+	if r.xAUTHUSERNAME != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-AUTH-USER-NAME", r.xAUTHUSERNAME, "simple", "")
 	}
 	// body params
 	localVarPostBody = r.portRequest
@@ -410,9 +470,23 @@ func (a *PortsApiService) CreatePortExecute(r ApiCreatePortRequest) (*Port, *htt
 }
 
 type ApiDeletePortRequest struct {
-	ctx        context.Context
-	ApiService *PortsApiService
-	portId     string
+	ctx            context.Context
+	ApiService     *PortsApiService
+	portId         string
+	xCORRELATIONID *string
+	xAUTHUSERNAME  *string
+}
+
+// Correlation identifier
+func (r ApiDeletePortRequest) XCORRELATIONID(xCORRELATIONID string) ApiDeletePortRequest {
+	r.xCORRELATIONID = &xCORRELATIONID
+	return r
+}
+
+// User name
+func (r ApiDeletePortRequest) XAUTHUSERNAME(xAUTHUSERNAME string) ApiDeletePortRequest {
+	r.xAUTHUSERNAME = &xAUTHUSERNAME
+	return r
 }
 
 func (r ApiDeletePortRequest) Execute() (*Port, *http.Response, error) {
@@ -475,6 +549,12 @@ func (a *PortsApiService) DeletePortExecute(r ApiDeletePortRequest) (*Port, *htt
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	if r.xCORRELATIONID != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-CORRELATION-ID", r.xCORRELATIONID, "simple", "")
+	}
+	if r.xAUTHUSERNAME != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-AUTH-USER-NAME", r.xAUTHUSERNAME, "simple", "")
 	}
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
@@ -546,9 +626,23 @@ func (a *PortsApiService) DeletePortExecute(r ApiDeletePortRequest) (*Port, *htt
 }
 
 type ApiGetPortByUuidRequest struct {
-	ctx        context.Context
-	ApiService *PortsApiService
-	portId     string
+	ctx            context.Context
+	ApiService     *PortsApiService
+	portId         string
+	xCORRELATIONID *string
+	xAUTHUSERNAME  *string
+}
+
+// Correlation identifier
+func (r ApiGetPortByUuidRequest) XCORRELATIONID(xCORRELATIONID string) ApiGetPortByUuidRequest {
+	r.xCORRELATIONID = &xCORRELATIONID
+	return r
+}
+
+// User name
+func (r ApiGetPortByUuidRequest) XAUTHUSERNAME(xAUTHUSERNAME string) ApiGetPortByUuidRequest {
+	r.xAUTHUSERNAME = &xAUTHUSERNAME
+	return r
 }
 
 func (r ApiGetPortByUuidRequest) Execute() (*Port, *http.Response, error) {
@@ -611,6 +705,12 @@ func (a *PortsApiService) GetPortByUuidExecute(r ApiGetPortByUuidRequest) (*Port
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	if r.xCORRELATIONID != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-CORRELATION-ID", r.xCORRELATIONID, "simple", "")
+	}
+	if r.xAUTHUSERNAME != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-AUTH-USER-NAME", r.xAUTHUSERNAME, "simple", "")
 	}
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
@@ -682,9 +782,23 @@ func (a *PortsApiService) GetPortByUuidExecute(r ApiGetPortByUuidRequest) (*Port
 }
 
 type ApiGetPortsRequest struct {
-	ctx        context.Context
-	ApiService *PortsApiService
-	name       *string
+	ctx            context.Context
+	ApiService     *PortsApiService
+	xCORRELATIONID *string
+	xAUTHUSERNAME  *string
+	name           *string
+}
+
+// Correlation identifier
+func (r ApiGetPortsRequest) XCORRELATIONID(xCORRELATIONID string) ApiGetPortsRequest {
+	r.xCORRELATIONID = &xCORRELATIONID
+	return r
+}
+
+// User name
+func (r ApiGetPortsRequest) XAUTHUSERNAME(xAUTHUSERNAME string) ApiGetPortsRequest {
+	r.xAUTHUSERNAME = &xAUTHUSERNAME
+	return r
 }
 
 // port name to be provided if specific port(s) to be retrieved
@@ -754,6 +868,12 @@ func (a *PortsApiService) GetPortsExecute(r ApiGetPortsRequest) (*AllPortsRespon
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
+	if r.xCORRELATIONID != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-CORRELATION-ID", r.xCORRELATIONID, "simple", "")
+	}
+	if r.xAUTHUSERNAME != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-AUTH-USER-NAME", r.xAUTHUSERNAME, "simple", "")
+	}
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, nil, err
@@ -802,9 +922,23 @@ func (a *PortsApiService) GetPortsExecute(r ApiGetPortsRequest) (*AllPortsRespon
 }
 
 type ApiGetVlansRequest struct {
-	ctx        context.Context
-	ApiService *PortsApiService
-	portUuid   string
+	ctx            context.Context
+	ApiService     *PortsApiService
+	portUuid       string
+	xCORRELATIONID *string
+	xAUTHUSERNAME  *string
+}
+
+// Correlation identifier
+func (r ApiGetVlansRequest) XCORRELATIONID(xCORRELATIONID string) ApiGetVlansRequest {
+	r.xCORRELATIONID = &xCORRELATIONID
+	return r
+}
+
+// User name
+func (r ApiGetVlansRequest) XAUTHUSERNAME(xAUTHUSERNAME string) ApiGetVlansRequest {
+	r.xAUTHUSERNAME = &xAUTHUSERNAME
+	return r
 }
 
 func (r ApiGetVlansRequest) Execute() (*LinkProtocolGetResponse, *http.Response, error) {
@@ -868,6 +1002,12 @@ func (a *PortsApiService) GetVlansExecute(r ApiGetVlansRequest) (*LinkProtocolGe
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
+	if r.xCORRELATIONID != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-CORRELATION-ID", r.xCORRELATIONID, "simple", "")
+	}
+	if r.xAUTHUSERNAME != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-AUTH-USER-NAME", r.xAUTHUSERNAME, "simple", "")
+	}
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, nil, err
@@ -926,14 +1066,181 @@ func (a *PortsApiService) GetVlansExecute(r ApiGetVlansRequest) (*LinkProtocolGe
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
+type ApiSearchAvailablePortsRequest struct {
+	ctx                       context.Context
+	ApiService                *PortsApiService
+	portCapacitySearchRequest *PortCapacitySearchRequest
+	xCORRELATIONID            *string
+}
+
+func (r ApiSearchAvailablePortsRequest) PortCapacitySearchRequest(portCapacitySearchRequest PortCapacitySearchRequest) ApiSearchAvailablePortsRequest {
+	r.portCapacitySearchRequest = &portCapacitySearchRequest
+	return r
+}
+
+// Correlation identifier
+func (r ApiSearchAvailablePortsRequest) XCORRELATIONID(xCORRELATIONID string) ApiSearchAvailablePortsRequest {
+	r.xCORRELATIONID = &xCORRELATIONID
+	return r
+}
+
+func (r ApiSearchAvailablePortsRequest) Execute() (*CheckCapacityResponse, *http.Response, error) {
+	return r.ApiService.SearchAvailablePortsExecute(r)
+}
+
+/*
+SearchAvailablePorts Search Available ports
+
+The API provides capability to get list of available ports for port ordering, including optional filtering and pagination
+
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@return ApiSearchAvailablePortsRequest
+*/
+func (a *PortsApiService) SearchAvailablePorts(ctx context.Context) ApiSearchAvailablePortsRequest {
+	return ApiSearchAvailablePortsRequest{
+		ApiService: a,
+		ctx:        ctx,
+	}
+}
+
+// Execute executes the request
+//
+//	@return CheckCapacityResponse
+func (a *PortsApiService) SearchAvailablePortsExecute(r ApiSearchAvailablePortsRequest) (*CheckCapacityResponse, *http.Response, error) {
+	var (
+		localVarHTTPMethod  = http.MethodPost
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue *CheckCapacityResponse
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "PortsApiService.SearchAvailablePorts")
+	if err != nil {
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/fabric/v4/availablePorts/search"
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+	if r.portCapacitySearchRequest == nil {
+		return localVarReturnValue, nil, reportError("portCapacitySearchRequest is required and must be specified")
+	}
+
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{"application/json"}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	if r.xCORRELATIONID != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-CORRELATION-ID", r.xCORRELATIONID, "simple", "")
+	}
+	// body params
+	localVarPostBody = r.portCapacitySearchRequest
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		if localVarHTTPResponse.StatusCode == 400 {
+			var v []Error
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 401 {
+			var v []Error
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 404 {
+			var v []Error
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
 type ApiSearchPortsRequest struct {
 	ctx                 context.Context
 	ApiService          *PortsApiService
 	portV4SearchRequest *PortV4SearchRequest
+	xCORRELATIONID      *string
+	xAUTHUSERNAME       *string
 }
 
 func (r ApiSearchPortsRequest) PortV4SearchRequest(portV4SearchRequest PortV4SearchRequest) ApiSearchPortsRequest {
 	r.portV4SearchRequest = &portV4SearchRequest
+	return r
+}
+
+// Correlation identifier
+func (r ApiSearchPortsRequest) XCORRELATIONID(xCORRELATIONID string) ApiSearchPortsRequest {
+	r.xCORRELATIONID = &xCORRELATIONID
+	return r
+}
+
+// User name
+func (r ApiSearchPortsRequest) XAUTHUSERNAME(xAUTHUSERNAME string) ApiSearchPortsRequest {
+	r.xAUTHUSERNAME = &xAUTHUSERNAME
 	return r
 }
 
@@ -997,6 +1304,12 @@ func (a *PortsApiService) SearchPortsExecute(r ApiSearchPortsRequest) (*AllPorts
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	if r.xCORRELATIONID != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-CORRELATION-ID", r.xCORRELATIONID, "simple", "")
+	}
+	if r.xAUTHUSERNAME != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-AUTH-USER-NAME", r.xAUTHUSERNAME, "simple", "")
 	}
 	// body params
 	localVarPostBody = r.portV4SearchRequest
@@ -1074,10 +1387,24 @@ type ApiUpdatePortByUuidRequest struct {
 	ApiService          *PortsApiService
 	portId              string
 	portChangeOperation *[]PortChangeOperation
+	xCORRELATIONID      *string
+	xAUTHUSERNAME       *string
 }
 
 func (r ApiUpdatePortByUuidRequest) PortChangeOperation(portChangeOperation []PortChangeOperation) ApiUpdatePortByUuidRequest {
 	r.portChangeOperation = &portChangeOperation
+	return r
+}
+
+// Correlation identifier
+func (r ApiUpdatePortByUuidRequest) XCORRELATIONID(xCORRELATIONID string) ApiUpdatePortByUuidRequest {
+	r.xCORRELATIONID = &xCORRELATIONID
+	return r
+}
+
+// User name
+func (r ApiUpdatePortByUuidRequest) XAUTHUSERNAME(xAUTHUSERNAME string) ApiUpdatePortByUuidRequest {
+	r.xAUTHUSERNAME = &xAUTHUSERNAME
 	return r
 }
 
@@ -1147,6 +1474,12 @@ func (a *PortsApiService) UpdatePortByUuidExecute(r ApiUpdatePortByUuidRequest) 
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	if r.xCORRELATIONID != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-CORRELATION-ID", r.xCORRELATIONID, "simple", "")
+	}
+	if r.xAUTHUSERNAME != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-AUTH-USER-NAME", r.xAUTHUSERNAME, "simple", "")
 	}
 	// body params
 	localVarPostBody = r.portChangeOperation

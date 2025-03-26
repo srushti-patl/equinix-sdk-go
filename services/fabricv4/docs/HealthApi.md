@@ -10,7 +10,7 @@ Method | HTTP request | Description
 
 ## GetStatus
 
-> HealthResponse GetStatus(ctx).Execute()
+> HealthResponse GetStatus(ctx).CorrelationId(correlationId).XAUTHUSERNAME(xAUTHUSERNAME).Execute()
 
 Get service status
 
@@ -29,10 +29,12 @@ import (
 )
 
 func main() {
+	correlationId := "correlationId_example" // string | Correlation identifier (optional)
+	xAUTHUSERNAME := "xAUTHUSERNAME_example" // string | User name (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.HealthApi.GetStatus(context.Background()).Execute()
+	resp, r, err := apiClient.HealthApi.GetStatus(context.Background()).CorrelationId(correlationId).XAUTHUSERNAME(xAUTHUSERNAME).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `HealthApi.GetStatus``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -44,12 +46,17 @@ func main() {
 
 ### Path Parameters
 
-This endpoint does not need any parameter.
+
 
 ### Other Parameters
 
 Other parameters are passed through a pointer to a apiGetStatusRequest struct via the builder pattern
 
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **correlationId** | **string** | Correlation identifier | 
+ **xAUTHUSERNAME** | **string** | User name | 
 
 ### Return type
 

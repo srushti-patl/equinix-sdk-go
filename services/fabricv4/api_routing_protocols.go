@@ -24,10 +24,31 @@ type ApiCreateConnectionRoutingProtocolRequest struct {
 	ApiService          *RoutingProtocolsApiService
 	connectionId        string
 	routingProtocolBase *RoutingProtocolBase
+	xCORRELATIONID      *string
+	xAUTHUSERNAME       *string
+	xSOURCE             *string
 }
 
 func (r ApiCreateConnectionRoutingProtocolRequest) RoutingProtocolBase(routingProtocolBase RoutingProtocolBase) ApiCreateConnectionRoutingProtocolRequest {
 	r.routingProtocolBase = &routingProtocolBase
+	return r
+}
+
+// Correlation identifier
+func (r ApiCreateConnectionRoutingProtocolRequest) XCORRELATIONID(xCORRELATIONID string) ApiCreateConnectionRoutingProtocolRequest {
+	r.xCORRELATIONID = &xCORRELATIONID
+	return r
+}
+
+// User name
+func (r ApiCreateConnectionRoutingProtocolRequest) XAUTHUSERNAME(xAUTHUSERNAME string) ApiCreateConnectionRoutingProtocolRequest {
+	r.xAUTHUSERNAME = &xAUTHUSERNAME
+	return r
+}
+
+// source
+func (r ApiCreateConnectionRoutingProtocolRequest) XSOURCE(xSOURCE string) ApiCreateConnectionRoutingProtocolRequest {
+	r.xSOURCE = &xSOURCE
 	return r
 }
 
@@ -94,6 +115,15 @@ func (a *RoutingProtocolsApiService) CreateConnectionRoutingProtocolExecute(r Ap
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	if r.xCORRELATIONID != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-CORRELATION-ID", r.xCORRELATIONID, "simple", "")
+	}
+	if r.xAUTHUSERNAME != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-AUTH-USER-NAME", r.xAUTHUSERNAME, "simple", "")
+	}
+	if r.xSOURCE != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-SOURCE", r.xSOURCE, "simple", "")
 	}
 	// body params
 	localVarPostBody = r.routingProtocolBase
@@ -204,10 +234,31 @@ type ApiCreateConnectionRoutingProtocolsInBulkRequest struct {
 	ApiService                           *RoutingProtocolsApiService
 	connectionId                         string
 	connectionRoutingProtocolPostRequest *ConnectionRoutingProtocolPostRequest
+	xCORRELATIONID                       *string
+	xAUTHUSERNAME                        *string
+	xSOURCE                              *string
 }
 
 func (r ApiCreateConnectionRoutingProtocolsInBulkRequest) ConnectionRoutingProtocolPostRequest(connectionRoutingProtocolPostRequest ConnectionRoutingProtocolPostRequest) ApiCreateConnectionRoutingProtocolsInBulkRequest {
 	r.connectionRoutingProtocolPostRequest = &connectionRoutingProtocolPostRequest
+	return r
+}
+
+// Correlation identifier
+func (r ApiCreateConnectionRoutingProtocolsInBulkRequest) XCORRELATIONID(xCORRELATIONID string) ApiCreateConnectionRoutingProtocolsInBulkRequest {
+	r.xCORRELATIONID = &xCORRELATIONID
+	return r
+}
+
+// User name
+func (r ApiCreateConnectionRoutingProtocolsInBulkRequest) XAUTHUSERNAME(xAUTHUSERNAME string) ApiCreateConnectionRoutingProtocolsInBulkRequest {
+	r.xAUTHUSERNAME = &xAUTHUSERNAME
+	return r
+}
+
+// source
+func (r ApiCreateConnectionRoutingProtocolsInBulkRequest) XSOURCE(xSOURCE string) ApiCreateConnectionRoutingProtocolsInBulkRequest {
+	r.xSOURCE = &xSOURCE
 	return r
 }
 
@@ -274,6 +325,15 @@ func (a *RoutingProtocolsApiService) CreateConnectionRoutingProtocolsInBulkExecu
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	if r.xCORRELATIONID != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-CORRELATION-ID", r.xCORRELATIONID, "simple", "")
+	}
+	if r.xAUTHUSERNAME != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-AUTH-USER-NAME", r.xAUTHUSERNAME, "simple", "")
+	}
+	if r.xSOURCE != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-SOURCE", r.xSOURCE, "simple", "")
 	}
 	// body params
 	localVarPostBody = r.connectionRoutingProtocolPostRequest
@@ -384,6 +444,27 @@ type ApiDeleteConnectionRoutingProtocolByUuidRequest struct {
 	ApiService        *RoutingProtocolsApiService
 	routingProtocolId string
 	connectionId      string
+	xCORRELATIONID    *string
+	xAUTHUSERNAME     *string
+	xSOURCE           *string
+}
+
+// Correlation identifier
+func (r ApiDeleteConnectionRoutingProtocolByUuidRequest) XCORRELATIONID(xCORRELATIONID string) ApiDeleteConnectionRoutingProtocolByUuidRequest {
+	r.xCORRELATIONID = &xCORRELATIONID
+	return r
+}
+
+// User name
+func (r ApiDeleteConnectionRoutingProtocolByUuidRequest) XAUTHUSERNAME(xAUTHUSERNAME string) ApiDeleteConnectionRoutingProtocolByUuidRequest {
+	r.xAUTHUSERNAME = &xAUTHUSERNAME
+	return r
+}
+
+// source
+func (r ApiDeleteConnectionRoutingProtocolByUuidRequest) XSOURCE(xSOURCE string) ApiDeleteConnectionRoutingProtocolByUuidRequest {
+	r.xSOURCE = &xSOURCE
+	return r
 }
 
 func (r ApiDeleteConnectionRoutingProtocolByUuidRequest) Execute() (*RoutingProtocolData, *http.Response, error) {
@@ -449,6 +530,15 @@ func (a *RoutingProtocolsApiService) DeleteConnectionRoutingProtocolByUuidExecut
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	if r.xCORRELATIONID != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-CORRELATION-ID", r.xCORRELATIONID, "simple", "")
+	}
+	if r.xAUTHUSERNAME != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-AUTH-USER-NAME", r.xAUTHUSERNAME, "simple", "")
+	}
+	if r.xSOURCE != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-SOURCE", r.xSOURCE, "simple", "")
 	}
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
@@ -557,8 +647,29 @@ type ApiGetConnectionRoutingProtocolAllBgpActionsRequest struct {
 	ApiService        *RoutingProtocolsApiService
 	routingProtocolId string
 	connectionId      string
+	xCORRELATIONID    *string
+	xAUTHUSERNAME     *string
+	xSOURCE           *string
 	offset            *int32
 	limit             *int32
+}
+
+// Correlation identifier
+func (r ApiGetConnectionRoutingProtocolAllBgpActionsRequest) XCORRELATIONID(xCORRELATIONID string) ApiGetConnectionRoutingProtocolAllBgpActionsRequest {
+	r.xCORRELATIONID = &xCORRELATIONID
+	return r
+}
+
+// User name
+func (r ApiGetConnectionRoutingProtocolAllBgpActionsRequest) XAUTHUSERNAME(xAUTHUSERNAME string) ApiGetConnectionRoutingProtocolAllBgpActionsRequest {
+	r.xAUTHUSERNAME = &xAUTHUSERNAME
+	return r
+}
+
+// source
+func (r ApiGetConnectionRoutingProtocolAllBgpActionsRequest) XSOURCE(xSOURCE string) ApiGetConnectionRoutingProtocolAllBgpActionsRequest {
+	r.xSOURCE = &xSOURCE
+	return r
 }
 
 // offset
@@ -642,6 +753,15 @@ func (a *RoutingProtocolsApiService) GetConnectionRoutingProtocolAllBgpActionsEx
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	if r.xCORRELATIONID != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-CORRELATION-ID", r.xCORRELATIONID, "simple", "")
+	}
+	if r.xAUTHUSERNAME != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-AUTH-USER-NAME", r.xAUTHUSERNAME, "simple", "")
+	}
+	if r.xSOURCE != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-SOURCE", r.xSOURCE, "simple", "")
 	}
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
@@ -750,6 +870,27 @@ type ApiGetConnectionRoutingProtocolByUuidRequest struct {
 	ApiService        *RoutingProtocolsApiService
 	routingProtocolId string
 	connectionId      string
+	xCORRELATIONID    *string
+	xAUTHUSERNAME     *string
+	xSOURCE           *string
+}
+
+// Correlation identifier
+func (r ApiGetConnectionRoutingProtocolByUuidRequest) XCORRELATIONID(xCORRELATIONID string) ApiGetConnectionRoutingProtocolByUuidRequest {
+	r.xCORRELATIONID = &xCORRELATIONID
+	return r
+}
+
+// User name
+func (r ApiGetConnectionRoutingProtocolByUuidRequest) XAUTHUSERNAME(xAUTHUSERNAME string) ApiGetConnectionRoutingProtocolByUuidRequest {
+	r.xAUTHUSERNAME = &xAUTHUSERNAME
+	return r
+}
+
+// source
+func (r ApiGetConnectionRoutingProtocolByUuidRequest) XSOURCE(xSOURCE string) ApiGetConnectionRoutingProtocolByUuidRequest {
+	r.xSOURCE = &xSOURCE
+	return r
 }
 
 func (r ApiGetConnectionRoutingProtocolByUuidRequest) Execute() (*RoutingProtocolData, *http.Response, error) {
@@ -815,6 +956,15 @@ func (a *RoutingProtocolsApiService) GetConnectionRoutingProtocolByUuidExecute(r
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	if r.xCORRELATIONID != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-CORRELATION-ID", r.xCORRELATIONID, "simple", "")
+	}
+	if r.xAUTHUSERNAME != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-AUTH-USER-NAME", r.xAUTHUSERNAME, "simple", "")
+	}
+	if r.xSOURCE != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-SOURCE", r.xSOURCE, "simple", "")
 	}
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
@@ -919,11 +1069,32 @@ func (a *RoutingProtocolsApiService) GetConnectionRoutingProtocolByUuidExecute(r
 }
 
 type ApiGetConnectionRoutingProtocolsRequest struct {
-	ctx          context.Context
-	ApiService   *RoutingProtocolsApiService
-	connectionId string
-	offset       *int32
-	limit        *int32
+	ctx            context.Context
+	ApiService     *RoutingProtocolsApiService
+	connectionId   string
+	xCORRELATIONID *string
+	xAUTHUSERNAME  *string
+	xSOURCE        *string
+	offset         *int32
+	limit          *int32
+}
+
+// Correlation identifier
+func (r ApiGetConnectionRoutingProtocolsRequest) XCORRELATIONID(xCORRELATIONID string) ApiGetConnectionRoutingProtocolsRequest {
+	r.xCORRELATIONID = &xCORRELATIONID
+	return r
+}
+
+// User name
+func (r ApiGetConnectionRoutingProtocolsRequest) XAUTHUSERNAME(xAUTHUSERNAME string) ApiGetConnectionRoutingProtocolsRequest {
+	r.xAUTHUSERNAME = &xAUTHUSERNAME
+	return r
+}
+
+// source
+func (r ApiGetConnectionRoutingProtocolsRequest) XSOURCE(xSOURCE string) ApiGetConnectionRoutingProtocolsRequest {
+	r.xSOURCE = &xSOURCE
+	return r
 }
 
 // offset
@@ -1004,6 +1175,15 @@ func (a *RoutingProtocolsApiService) GetConnectionRoutingProtocolsExecute(r ApiG
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	if r.xCORRELATIONID != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-CORRELATION-ID", r.xCORRELATIONID, "simple", "")
+	}
+	if r.xAUTHUSERNAME != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-AUTH-USER-NAME", r.xAUTHUSERNAME, "simple", "")
+	}
+	if r.xSOURCE != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-SOURCE", r.xSOURCE, "simple", "")
 	}
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
@@ -1102,6 +1282,20 @@ type ApiGetConnectionRoutingProtocolsBgpActionByUuidRequest struct {
 	connectionId      string
 	routingProtocolId string
 	actionId          string
+	xCORRELATIONID    *string
+	xAUTHUSERNAME     *string
+}
+
+// Correlation identifier
+func (r ApiGetConnectionRoutingProtocolsBgpActionByUuidRequest) XCORRELATIONID(xCORRELATIONID string) ApiGetConnectionRoutingProtocolsBgpActionByUuidRequest {
+	r.xCORRELATIONID = &xCORRELATIONID
+	return r
+}
+
+// User name
+func (r ApiGetConnectionRoutingProtocolsBgpActionByUuidRequest) XAUTHUSERNAME(xAUTHUSERNAME string) ApiGetConnectionRoutingProtocolsBgpActionByUuidRequest {
+	r.xAUTHUSERNAME = &xAUTHUSERNAME
+	return r
 }
 
 func (r ApiGetConnectionRoutingProtocolsBgpActionByUuidRequest) Execute() (*BGPActionData, *http.Response, error) {
@@ -1170,6 +1364,12 @@ func (a *RoutingProtocolsApiService) GetConnectionRoutingProtocolsBgpActionByUui
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	if r.xCORRELATIONID != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-CORRELATION-ID", r.xCORRELATIONID, "simple", "")
+	}
+	if r.xAUTHUSERNAME != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-AUTH-USER-NAME", r.xAUTHUSERNAME, "simple", "")
 	}
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
@@ -1268,6 +1468,20 @@ type ApiGetConnectionRoutingProtocolsChangeByUuidRequest struct {
 	connectionId      string
 	routingProtocolId string
 	changeId          string
+	xCORRELATIONID    *string
+	xAUTHUSERNAME     *string
+}
+
+// Correlation identifier
+func (r ApiGetConnectionRoutingProtocolsChangeByUuidRequest) XCORRELATIONID(xCORRELATIONID string) ApiGetConnectionRoutingProtocolsChangeByUuidRequest {
+	r.xCORRELATIONID = &xCORRELATIONID
+	return r
+}
+
+// User name
+func (r ApiGetConnectionRoutingProtocolsChangeByUuidRequest) XAUTHUSERNAME(xAUTHUSERNAME string) ApiGetConnectionRoutingProtocolsChangeByUuidRequest {
+	r.xAUTHUSERNAME = &xAUTHUSERNAME
+	return r
 }
 
 func (r ApiGetConnectionRoutingProtocolsChangeByUuidRequest) Execute() (*RoutingProtocolChangeData, *http.Response, error) {
@@ -1336,6 +1550,12 @@ func (a *RoutingProtocolsApiService) GetConnectionRoutingProtocolsChangeByUuidEx
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	if r.xCORRELATIONID != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-CORRELATION-ID", r.xCORRELATIONID, "simple", "")
+	}
+	if r.xAUTHUSERNAME != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-AUTH-USER-NAME", r.xAUTHUSERNAME, "simple", "")
 	}
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
@@ -1433,8 +1653,22 @@ type ApiGetConnectionRoutingProtocolsChangesRequest struct {
 	ApiService        *RoutingProtocolsApiService
 	connectionId      string
 	routingProtocolId string
+	xCORRELATIONID    *string
+	xAUTHUSERNAME     *string
 	offset            *int32
 	limit             *int32
+}
+
+// Correlation identifier
+func (r ApiGetConnectionRoutingProtocolsChangesRequest) XCORRELATIONID(xCORRELATIONID string) ApiGetConnectionRoutingProtocolsChangesRequest {
+	r.xCORRELATIONID = &xCORRELATIONID
+	return r
+}
+
+// User name
+func (r ApiGetConnectionRoutingProtocolsChangesRequest) XAUTHUSERNAME(xAUTHUSERNAME string) ApiGetConnectionRoutingProtocolsChangesRequest {
+	r.xAUTHUSERNAME = &xAUTHUSERNAME
+	return r
 }
 
 // offset
@@ -1518,6 +1752,12 @@ func (a *RoutingProtocolsApiService) GetConnectionRoutingProtocolsChangesExecute
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	if r.xCORRELATIONID != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-CORRELATION-ID", r.xCORRELATIONID, "simple", "")
+	}
+	if r.xAUTHUSERNAME != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-AUTH-USER-NAME", r.xAUTHUSERNAME, "simple", "")
 	}
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
@@ -1616,10 +1856,31 @@ type ApiPatchConnectionRoutingProtocolByUuidRequest struct {
 	routingProtocolId         string
 	connectionId              string
 	connectionChangeOperation *[]ConnectionChangeOperation
+	xCORRELATIONID            *string
+	xAUTHUSERNAME             *string
+	xSOURCE                   *string
 }
 
 func (r ApiPatchConnectionRoutingProtocolByUuidRequest) ConnectionChangeOperation(connectionChangeOperation []ConnectionChangeOperation) ApiPatchConnectionRoutingProtocolByUuidRequest {
 	r.connectionChangeOperation = &connectionChangeOperation
+	return r
+}
+
+// Correlation identifier
+func (r ApiPatchConnectionRoutingProtocolByUuidRequest) XCORRELATIONID(xCORRELATIONID string) ApiPatchConnectionRoutingProtocolByUuidRequest {
+	r.xCORRELATIONID = &xCORRELATIONID
+	return r
+}
+
+// User name
+func (r ApiPatchConnectionRoutingProtocolByUuidRequest) XAUTHUSERNAME(xAUTHUSERNAME string) ApiPatchConnectionRoutingProtocolByUuidRequest {
+	r.xAUTHUSERNAME = &xAUTHUSERNAME
+	return r
+}
+
+// source
+func (r ApiPatchConnectionRoutingProtocolByUuidRequest) XSOURCE(xSOURCE string) ApiPatchConnectionRoutingProtocolByUuidRequest {
+	r.xSOURCE = &xSOURCE
 	return r
 }
 
@@ -1692,6 +1953,15 @@ func (a *RoutingProtocolsApiService) PatchConnectionRoutingProtocolByUuidExecute
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	if r.xCORRELATIONID != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-CORRELATION-ID", r.xCORRELATIONID, "simple", "")
+	}
+	if r.xAUTHUSERNAME != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-AUTH-USER-NAME", r.xAUTHUSERNAME, "simple", "")
+	}
+	if r.xSOURCE != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-SOURCE", r.xSOURCE, "simple", "")
 	}
 	// body params
 	localVarPostBody = r.connectionChangeOperation
@@ -1803,10 +2073,31 @@ type ApiPostConnectionRoutingProtocolBgpActionByUuidRequest struct {
 	routingProtocolId string
 	connectionId      string
 	bGPActionRequest  *BGPActionRequest
+	xCORRELATIONID    *string
+	xAUTHUSERNAME     *string
+	xSOURCE           *string
 }
 
 func (r ApiPostConnectionRoutingProtocolBgpActionByUuidRequest) BGPActionRequest(bGPActionRequest BGPActionRequest) ApiPostConnectionRoutingProtocolBgpActionByUuidRequest {
 	r.bGPActionRequest = &bGPActionRequest
+	return r
+}
+
+// Correlation identifier
+func (r ApiPostConnectionRoutingProtocolBgpActionByUuidRequest) XCORRELATIONID(xCORRELATIONID string) ApiPostConnectionRoutingProtocolBgpActionByUuidRequest {
+	r.xCORRELATIONID = &xCORRELATIONID
+	return r
+}
+
+// User name
+func (r ApiPostConnectionRoutingProtocolBgpActionByUuidRequest) XAUTHUSERNAME(xAUTHUSERNAME string) ApiPostConnectionRoutingProtocolBgpActionByUuidRequest {
+	r.xAUTHUSERNAME = &xAUTHUSERNAME
+	return r
+}
+
+// source
+func (r ApiPostConnectionRoutingProtocolBgpActionByUuidRequest) XSOURCE(xSOURCE string) ApiPostConnectionRoutingProtocolBgpActionByUuidRequest {
+	r.xSOURCE = &xSOURCE
 	return r
 }
 
@@ -1876,6 +2167,15 @@ func (a *RoutingProtocolsApiService) PostConnectionRoutingProtocolBgpActionByUui
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	if r.xCORRELATIONID != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-CORRELATION-ID", r.xCORRELATIONID, "simple", "")
+	}
+	if r.xAUTHUSERNAME != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-AUTH-USER-NAME", r.xAUTHUSERNAME, "simple", "")
+	}
+	if r.xSOURCE != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-SOURCE", r.xSOURCE, "simple", "")
 	}
 	// body params
 	localVarPostBody = r.bGPActionRequest
@@ -1987,10 +2287,31 @@ type ApiReplaceConnectionRoutingProtocolByUuidRequest struct {
 	routingProtocolId   string
 	connectionId        string
 	routingProtocolBase *RoutingProtocolBase
+	xCORRELATIONID      *string
+	xAUTHUSERNAME       *string
+	xSOURCE             *string
 }
 
 func (r ApiReplaceConnectionRoutingProtocolByUuidRequest) RoutingProtocolBase(routingProtocolBase RoutingProtocolBase) ApiReplaceConnectionRoutingProtocolByUuidRequest {
 	r.routingProtocolBase = &routingProtocolBase
+	return r
+}
+
+// Correlation identifier
+func (r ApiReplaceConnectionRoutingProtocolByUuidRequest) XCORRELATIONID(xCORRELATIONID string) ApiReplaceConnectionRoutingProtocolByUuidRequest {
+	r.xCORRELATIONID = &xCORRELATIONID
+	return r
+}
+
+// User name
+func (r ApiReplaceConnectionRoutingProtocolByUuidRequest) XAUTHUSERNAME(xAUTHUSERNAME string) ApiReplaceConnectionRoutingProtocolByUuidRequest {
+	r.xAUTHUSERNAME = &xAUTHUSERNAME
+	return r
+}
+
+// source
+func (r ApiReplaceConnectionRoutingProtocolByUuidRequest) XSOURCE(xSOURCE string) ApiReplaceConnectionRoutingProtocolByUuidRequest {
+	r.xSOURCE = &xSOURCE
 	return r
 }
 
@@ -2060,6 +2381,15 @@ func (a *RoutingProtocolsApiService) ReplaceConnectionRoutingProtocolByUuidExecu
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	if r.xCORRELATIONID != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-CORRELATION-ID", r.xCORRELATIONID, "simple", "")
+	}
+	if r.xAUTHUSERNAME != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-AUTH-USER-NAME", r.xAUTHUSERNAME, "simple", "")
+	}
+	if r.xSOURCE != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-SOURCE", r.xSOURCE, "simple", "")
 	}
 	// body params
 	localVarPostBody = r.routingProtocolBase
@@ -2170,10 +2500,24 @@ type ApiValidateRoutingProtocolRequest struct {
 	ApiService      *RoutingProtocolsApiService
 	routerId        string
 	validateRequest *ValidateRequest
+	xCORRELATIONID  *string
+	xAUTHUSERNAME   *string
 }
 
 func (r ApiValidateRoutingProtocolRequest) ValidateRequest(validateRequest ValidateRequest) ApiValidateRoutingProtocolRequest {
 	r.validateRequest = &validateRequest
+	return r
+}
+
+// Correlation identifier
+func (r ApiValidateRoutingProtocolRequest) XCORRELATIONID(xCORRELATIONID string) ApiValidateRoutingProtocolRequest {
+	r.xCORRELATIONID = &xCORRELATIONID
+	return r
+}
+
+// User name
+func (r ApiValidateRoutingProtocolRequest) XAUTHUSERNAME(xAUTHUSERNAME string) ApiValidateRoutingProtocolRequest {
+	r.xAUTHUSERNAME = &xAUTHUSERNAME
 	return r
 }
 
@@ -2240,6 +2584,12 @@ func (a *RoutingProtocolsApiService) ValidateRoutingProtocolExecute(r ApiValidat
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	if r.xCORRELATIONID != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-CORRELATION-ID", r.xCORRELATIONID, "simple", "")
+	}
+	if r.xAUTHUSERNAME != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-AUTH-USER-NAME", r.xAUTHUSERNAME, "simple", "")
 	}
 	// body params
 	localVarPostBody = r.validateRequest

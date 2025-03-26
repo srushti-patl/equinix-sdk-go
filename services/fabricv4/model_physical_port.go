@@ -26,6 +26,8 @@ type PhysicalPort struct {
 	Account *SimplifiedAccount `json:"account,omitempty"`
 	// Physical Port Speed in Mbps
 	InterfaceSpeed *int32 `json:"interfaceSpeed,omitempty"`
+	// Physical Port Speed in Mbps
+	Bandwidth *int32 `json:"bandwidth,omitempty"`
 	// Physical Port Interface Type
 	InterfaceType *string `json:"interfaceType,omitempty"`
 	// Equinix assigned response attribute for physical port identifier
@@ -257,6 +259,38 @@ func (o *PhysicalPort) HasInterfaceSpeed() bool {
 // SetInterfaceSpeed gets a reference to the given int32 and assigns it to the InterfaceSpeed field.
 func (o *PhysicalPort) SetInterfaceSpeed(v int32) {
 	o.InterfaceSpeed = &v
+}
+
+// GetBandwidth returns the Bandwidth field value if set, zero value otherwise.
+func (o *PhysicalPort) GetBandwidth() int32 {
+	if o == nil || IsNil(o.Bandwidth) {
+		var ret int32
+		return ret
+	}
+	return *o.Bandwidth
+}
+
+// GetBandwidthOk returns a tuple with the Bandwidth field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *PhysicalPort) GetBandwidthOk() (*int32, bool) {
+	if o == nil || IsNil(o.Bandwidth) {
+		return nil, false
+	}
+	return o.Bandwidth, true
+}
+
+// HasBandwidth returns a boolean if a field has been set.
+func (o *PhysicalPort) HasBandwidth() bool {
+	if o != nil && !IsNil(o.Bandwidth) {
+		return true
+	}
+
+	return false
+}
+
+// SetBandwidth gets a reference to the given int32 and assigns it to the Bandwidth field.
+func (o *PhysicalPort) SetBandwidth(v int32) {
+	o.Bandwidth = &v
 }
 
 // GetInterfaceType returns the InterfaceType field value if set, zero value otherwise.
@@ -639,6 +673,9 @@ func (o PhysicalPort) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.InterfaceSpeed) {
 		toSerialize["interfaceSpeed"] = o.InterfaceSpeed
 	}
+	if !IsNil(o.Bandwidth) {
+		toSerialize["bandwidth"] = o.Bandwidth
+	}
 	if !IsNil(o.InterfaceType) {
 		toSerialize["interfaceType"] = o.InterfaceType
 	}
@@ -700,6 +737,7 @@ func (o *PhysicalPort) UnmarshalJSON(data []byte) (err error) {
 		delete(additionalProperties, "state")
 		delete(additionalProperties, "account")
 		delete(additionalProperties, "interfaceSpeed")
+		delete(additionalProperties, "bandwidth")
 		delete(additionalProperties, "interfaceType")
 		delete(additionalProperties, "uuid")
 		delete(additionalProperties, "tether")

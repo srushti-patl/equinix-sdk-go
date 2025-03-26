@@ -11,6 +11,7 @@ Method | HTTP request | Description
 [**GetPortByUuid**](PortsApi.md#GetPortByUuid) | **Get** /fabric/v4/ports/{portId} | Get Port by uuid
 [**GetPorts**](PortsApi.md#GetPorts) | **Get** /fabric/v4/ports | Get All Ports
 [**GetVlans**](PortsApi.md#GetVlans) | **Get** /fabric/v4/ports/{portUuid}/linkProtocols | Get Vlans
+[**SearchAvailablePorts**](PortsApi.md#SearchAvailablePorts) | **Post** /fabric/v4/availablePorts/search | Search Available ports
 [**SearchPorts**](PortsApi.md#SearchPorts) | **Post** /fabric/v4/ports/search | Search ports
 [**UpdatePortByUuid**](PortsApi.md#UpdatePortByUuid) | **Patch** /fabric/v4/ports/{portId} | Update by UUID
 
@@ -18,7 +19,7 @@ Method | HTTP request | Description
 
 ## AddToLag
 
-> AllPhysicalPortsResponse AddToLag(ctx, portId).BulkPhysicalPort(bulkPhysicalPort).Execute()
+> AllPhysicalPortsResponse AddToLag(ctx, portId).BulkPhysicalPort(bulkPhysicalPort).XCORRELATIONID(xCORRELATIONID).XAUTHUSERNAME(xAUTHUSERNAME).Execute()
 
 Add to Lag
 
@@ -39,10 +40,12 @@ import (
 func main() {
 	portId := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | Port UUID
 	bulkPhysicalPort := *openapiclient.NewBulkPhysicalPort() // BulkPhysicalPort | 
+	xCORRELATIONID := "12345-6789-10123" // string | Correlation identifier (optional)
+	xAUTHUSERNAME := "alice" // string | User name (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.PortsApi.AddToLag(context.Background(), portId).BulkPhysicalPort(bulkPhysicalPort).Execute()
+	resp, r, err := apiClient.PortsApi.AddToLag(context.Background(), portId).BulkPhysicalPort(bulkPhysicalPort).XCORRELATIONID(xCORRELATIONID).XAUTHUSERNAME(xAUTHUSERNAME).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `PortsApi.AddToLag``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -69,6 +72,8 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
  **bulkPhysicalPort** | [**BulkPhysicalPort**](BulkPhysicalPort.md) |  | 
+ **xCORRELATIONID** | **string** | Correlation identifier | 
+ **xAUTHUSERNAME** | **string** | User name | 
 
 ### Return type
 
@@ -90,7 +95,7 @@ Name | Type | Description  | Notes
 
 ## CreateBulkPort
 
-> BulkPort CreateBulkPort(ctx).BulkPortRequest(bulkPortRequest).Execute()
+> BulkPort CreateBulkPort(ctx).BulkPortRequest(bulkPortRequest).XCORRELATIONID(xCORRELATIONID).XAUTHUSERNAME(xAUTHUSERNAME).Execute()
 
 Create Port
 
@@ -110,10 +115,12 @@ import (
 
 func main() {
 	bulkPortRequest := *openapiclient.NewBulkPortRequest() // BulkPortRequest | 
+	xCORRELATIONID := "12345-6789-10123" // string | Correlation identifier (optional)
+	xAUTHUSERNAME := "alice" // string | User name (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.PortsApi.CreateBulkPort(context.Background()).BulkPortRequest(bulkPortRequest).Execute()
+	resp, r, err := apiClient.PortsApi.CreateBulkPort(context.Background()).BulkPortRequest(bulkPortRequest).XCORRELATIONID(xCORRELATIONID).XAUTHUSERNAME(xAUTHUSERNAME).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `PortsApi.CreateBulkPort``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -135,6 +142,8 @@ Other parameters are passed through a pointer to a apiCreateBulkPortRequest stru
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **bulkPortRequest** | [**BulkPortRequest**](BulkPortRequest.md) |  | 
+ **xCORRELATIONID** | **string** | Correlation identifier | 
+ **xAUTHUSERNAME** | **string** | User name | 
 
 ### Return type
 
@@ -156,7 +165,7 @@ Name | Type | Description  | Notes
 
 ## CreatePort
 
-> Port CreatePort(ctx).PortRequest(portRequest).Execute()
+> Port CreatePort(ctx).PortRequest(portRequest).XCORRELATIONID(xCORRELATIONID).XAUTHUSERNAME(xAUTHUSERNAME).Execute()
 
 Create Port
 
@@ -176,10 +185,12 @@ import (
 
 func main() {
 	portRequest := *openapiclient.NewPortRequest(openapiclient.PortType("XF_PORT"), int32(123), openapiclient.Port_physicalPortsType("1000BASE_LX"), openapiclient.Port_connectivitySourceType("COLO"), *openapiclient.NewSimplifiedAccount(), *openapiclient.NewSimplifiedLocation(), *openapiclient.NewPortEncapsulation(), *openapiclient.NewPortSettings()) // PortRequest | 
+	xCORRELATIONID := "12345-6789-10123" // string | Correlation identifier (optional)
+	xAUTHUSERNAME := "alice" // string | User name (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.PortsApi.CreatePort(context.Background()).PortRequest(portRequest).Execute()
+	resp, r, err := apiClient.PortsApi.CreatePort(context.Background()).PortRequest(portRequest).XCORRELATIONID(xCORRELATIONID).XAUTHUSERNAME(xAUTHUSERNAME).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `PortsApi.CreatePort``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -201,6 +212,8 @@ Other parameters are passed through a pointer to a apiCreatePortRequest struct v
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **portRequest** | [**PortRequest**](PortRequest.md) |  | 
+ **xCORRELATIONID** | **string** | Correlation identifier | 
+ **xAUTHUSERNAME** | **string** | User name | 
 
 ### Return type
 
@@ -222,7 +235,7 @@ Name | Type | Description  | Notes
 
 ## DeletePort
 
-> Port DeletePort(ctx, portId).Execute()
+> Port DeletePort(ctx, portId).XCORRELATIONID(xCORRELATIONID).XAUTHUSERNAME(xAUTHUSERNAME).Execute()
 
 Delete a single port
 
@@ -242,10 +255,12 @@ import (
 
 func main() {
 	portId := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | Port UUID
+	xCORRELATIONID := "xCORRELATIONID_example" // string | Correlation identifier (optional)
+	xAUTHUSERNAME := "alice" // string | User name (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.PortsApi.DeletePort(context.Background(), portId).Execute()
+	resp, r, err := apiClient.PortsApi.DeletePort(context.Background(), portId).XCORRELATIONID(xCORRELATIONID).XAUTHUSERNAME(xAUTHUSERNAME).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `PortsApi.DeletePort``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -271,6 +286,8 @@ Other parameters are passed through a pointer to a apiDeletePortRequest struct v
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
+ **xCORRELATIONID** | **string** | Correlation identifier | 
+ **xAUTHUSERNAME** | **string** | User name | 
 
 ### Return type
 
@@ -292,7 +309,7 @@ Name | Type | Description  | Notes
 
 ## GetPortByUuid
 
-> Port GetPortByUuid(ctx, portId).Execute()
+> Port GetPortByUuid(ctx, portId).XCORRELATIONID(xCORRELATIONID).XAUTHUSERNAME(xAUTHUSERNAME).Execute()
 
 Get Port by uuid
 
@@ -312,10 +329,12 @@ import (
 
 func main() {
 	portId := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | Port UUID
+	xCORRELATIONID := "12345-6789-10123" // string | Correlation identifier (optional)
+	xAUTHUSERNAME := "alice" // string | User name (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.PortsApi.GetPortByUuid(context.Background(), portId).Execute()
+	resp, r, err := apiClient.PortsApi.GetPortByUuid(context.Background(), portId).XCORRELATIONID(xCORRELATIONID).XAUTHUSERNAME(xAUTHUSERNAME).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `PortsApi.GetPortByUuid``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -341,6 +360,8 @@ Other parameters are passed through a pointer to a apiGetPortByUuidRequest struc
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
+ **xCORRELATIONID** | **string** | Correlation identifier | 
+ **xAUTHUSERNAME** | **string** | User name | 
 
 ### Return type
 
@@ -362,7 +383,7 @@ Name | Type | Description  | Notes
 
 ## GetPorts
 
-> AllPortsResponse GetPorts(ctx).Name(name).Execute()
+> AllPortsResponse GetPorts(ctx).XCORRELATIONID(xCORRELATIONID).XAUTHUSERNAME(xAUTHUSERNAME).Name(name).Execute()
 
 Get All Ports
 
@@ -381,11 +402,13 @@ import (
 )
 
 func main() {
+	xCORRELATIONID := "12345-6789-10123" // string | Correlation identifier (optional)
+	xAUTHUSERNAME := "alice" // string | User name (optional)
 	name := "name_example" // string | port name to be provided if specific port(s) to be retrieved (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.PortsApi.GetPorts(context.Background()).Name(name).Execute()
+	resp, r, err := apiClient.PortsApi.GetPorts(context.Background()).XCORRELATIONID(xCORRELATIONID).XAUTHUSERNAME(xAUTHUSERNAME).Name(name).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `PortsApi.GetPorts``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -406,6 +429,8 @@ Other parameters are passed through a pointer to a apiGetPortsRequest struct via
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
+ **xCORRELATIONID** | **string** | Correlation identifier | 
+ **xAUTHUSERNAME** | **string** | User name | 
  **name** | **string** | port name to be provided if specific port(s) to be retrieved | 
 
 ### Return type
@@ -428,7 +453,7 @@ Name | Type | Description  | Notes
 
 ## GetVlans
 
-> LinkProtocolGetResponse GetVlans(ctx, portUuid).Execute()
+> LinkProtocolGetResponse GetVlans(ctx, portUuid).XCORRELATIONID(xCORRELATIONID).XAUTHUSERNAME(xAUTHUSERNAME).Execute()
 
 Get Vlans
 
@@ -448,10 +473,12 @@ import (
 
 func main() {
 	portUuid := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | Port UUID
+	xCORRELATIONID := "12345-6789-10123" // string | Correlation identifier (optional)
+	xAUTHUSERNAME := "alice" // string | User name (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.PortsApi.GetVlans(context.Background(), portUuid).Execute()
+	resp, r, err := apiClient.PortsApi.GetVlans(context.Background(), portUuid).XCORRELATIONID(xCORRELATIONID).XAUTHUSERNAME(xAUTHUSERNAME).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `PortsApi.GetVlans``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -477,6 +504,8 @@ Other parameters are passed through a pointer to a apiGetVlansRequest struct via
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
+ **xCORRELATIONID** | **string** | Correlation identifier | 
+ **xAUTHUSERNAME** | **string** | User name | 
 
 ### Return type
 
@@ -496,9 +525,77 @@ Name | Type | Description  | Notes
 [[Back to README]](../README.md)
 
 
+## SearchAvailablePorts
+
+> CheckCapacityResponse SearchAvailablePorts(ctx).PortCapacitySearchRequest(portCapacitySearchRequest).XCORRELATIONID(xCORRELATIONID).Execute()
+
+Search Available ports
+
+
+
+### Example
+
+```go
+package main
+
+import (
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/equinix/equinix-sdk-go/services/fabricv4"
+)
+
+func main() {
+	portCapacitySearchRequest := *openapiclient.NewPortCapacitySearchRequest() // PortCapacitySearchRequest | 
+	xCORRELATIONID := "xCORRELATIONID_example" // string | Correlation identifier (optional)
+
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.PortsApi.SearchAvailablePorts(context.Background()).PortCapacitySearchRequest(portCapacitySearchRequest).XCORRELATIONID(xCORRELATIONID).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `PortsApi.SearchAvailablePorts``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `SearchAvailablePorts`: CheckCapacityResponse
+	fmt.Fprintf(os.Stdout, "Response from `PortsApi.SearchAvailablePorts`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiSearchAvailablePortsRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **portCapacitySearchRequest** | [**PortCapacitySearchRequest**](PortCapacitySearchRequest.md) |  | 
+ **xCORRELATIONID** | **string** | Correlation identifier | 
+
+### Return type
+
+[**CheckCapacityResponse**](CheckCapacityResponse.md)
+
+### Authorization
+
+[BearerAuth](../README.md#BearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
 ## SearchPorts
 
-> AllPortsResponse SearchPorts(ctx).PortV4SearchRequest(portV4SearchRequest).Execute()
+> AllPortsResponse SearchPorts(ctx).PortV4SearchRequest(portV4SearchRequest).XCORRELATIONID(xCORRELATIONID).XAUTHUSERNAME(xAUTHUSERNAME).Execute()
 
 Search ports
 
@@ -518,10 +615,12 @@ import (
 
 func main() {
 	portV4SearchRequest := *openapiclient.NewPortV4SearchRequest() // PortV4SearchRequest | 
+	xCORRELATIONID := "xCORRELATIONID_example" // string | Correlation identifier (optional)
+	xAUTHUSERNAME := "alice" // string | User name (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.PortsApi.SearchPorts(context.Background()).PortV4SearchRequest(portV4SearchRequest).Execute()
+	resp, r, err := apiClient.PortsApi.SearchPorts(context.Background()).PortV4SearchRequest(portV4SearchRequest).XCORRELATIONID(xCORRELATIONID).XAUTHUSERNAME(xAUTHUSERNAME).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `PortsApi.SearchPorts``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -543,6 +642,8 @@ Other parameters are passed through a pointer to a apiSearchPortsRequest struct 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **portV4SearchRequest** | [**PortV4SearchRequest**](PortV4SearchRequest.md) |  | 
+ **xCORRELATIONID** | **string** | Correlation identifier | 
+ **xAUTHUSERNAME** | **string** | User name | 
 
 ### Return type
 
@@ -564,7 +665,7 @@ Name | Type | Description  | Notes
 
 ## UpdatePortByUuid
 
-> AllPortsResponse UpdatePortByUuid(ctx, portId).PortChangeOperation(portChangeOperation).Execute()
+> AllPortsResponse UpdatePortByUuid(ctx, portId).PortChangeOperation(portChangeOperation).XCORRELATIONID(xCORRELATIONID).XAUTHUSERNAME(xAUTHUSERNAME).Execute()
 
 Update by UUID
 
@@ -585,10 +686,12 @@ import (
 func main() {
 	portId := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | Port UUID
 	portChangeOperation := []openapiclient.PortChangeOperation{*openapiclient.NewPortChangeOperation("replace", "/name", map[string]interface{}(123))} // []PortChangeOperation | 
+	xCORRELATIONID := "12345-6789-10123" // string | Correlation identifier (optional)
+	xAUTHUSERNAME := "alice" // string | User name (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.PortsApi.UpdatePortByUuid(context.Background(), portId).PortChangeOperation(portChangeOperation).Execute()
+	resp, r, err := apiClient.PortsApi.UpdatePortByUuid(context.Background(), portId).PortChangeOperation(portChangeOperation).XCORRELATIONID(xCORRELATIONID).XAUTHUSERNAME(xAUTHUSERNAME).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `PortsApi.UpdatePortByUuid``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -615,6 +718,8 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
  **portChangeOperation** | [**[]PortChangeOperation**](PortChangeOperation.md) |  | 
+ **xCORRELATIONID** | **string** | Correlation identifier | 
+ **xAUTHUSERNAME** | **string** | User name | 
 
 ### Return type
 

@@ -25,10 +25,31 @@ type ApiAttachConnectionRouteFilterRequest struct {
 	routeFilterId              string
 	connectionId               string
 	connectionRouteFiltersBase *ConnectionRouteFiltersBase
+	xCORRELATIONID             *string
+	xAUTHUSERNAME              *string
+	xSOURCE                    *string
 }
 
 func (r ApiAttachConnectionRouteFilterRequest) ConnectionRouteFiltersBase(connectionRouteFiltersBase ConnectionRouteFiltersBase) ApiAttachConnectionRouteFilterRequest {
 	r.connectionRouteFiltersBase = &connectionRouteFiltersBase
+	return r
+}
+
+// Correlation identifier
+func (r ApiAttachConnectionRouteFilterRequest) XCORRELATIONID(xCORRELATIONID string) ApiAttachConnectionRouteFilterRequest {
+	r.xCORRELATIONID = &xCORRELATIONID
+	return r
+}
+
+// User name
+func (r ApiAttachConnectionRouteFilterRequest) XAUTHUSERNAME(xAUTHUSERNAME string) ApiAttachConnectionRouteFilterRequest {
+	r.xAUTHUSERNAME = &xAUTHUSERNAME
+	return r
+}
+
+// source
+func (r ApiAttachConnectionRouteFilterRequest) XSOURCE(xSOURCE string) ApiAttachConnectionRouteFilterRequest {
+	r.xSOURCE = &xSOURCE
 	return r
 }
 
@@ -98,6 +119,15 @@ func (a *RouteFiltersApiService) AttachConnectionRouteFilterExecute(r ApiAttachC
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	if r.xCORRELATIONID != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-CORRELATION-ID", r.xCORRELATIONID, "simple", "")
+	}
+	if r.xAUTHUSERNAME != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-AUTH-USER-NAME", r.xAUTHUSERNAME, "simple", "")
+	}
+	if r.xSOURCE != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-SOURCE", r.xSOURCE, "simple", "")
 	}
 	// body params
 	localVarPostBody = r.connectionRouteFiltersBase
@@ -207,10 +237,31 @@ type ApiCreateRouteFilterRequest struct {
 	ctx              context.Context
 	ApiService       *RouteFiltersApiService
 	routeFiltersBase *RouteFiltersBase
+	xCORRELATIONID   *string
+	xAUTHUSERNAME    *string
+	xSOURCE          *string
 }
 
 func (r ApiCreateRouteFilterRequest) RouteFiltersBase(routeFiltersBase RouteFiltersBase) ApiCreateRouteFilterRequest {
 	r.routeFiltersBase = &routeFiltersBase
+	return r
+}
+
+// Correlation identifier
+func (r ApiCreateRouteFilterRequest) XCORRELATIONID(xCORRELATIONID string) ApiCreateRouteFilterRequest {
+	r.xCORRELATIONID = &xCORRELATIONID
+	return r
+}
+
+// User name
+func (r ApiCreateRouteFilterRequest) XAUTHUSERNAME(xAUTHUSERNAME string) ApiCreateRouteFilterRequest {
+	r.xAUTHUSERNAME = &xAUTHUSERNAME
+	return r
+}
+
+// source
+func (r ApiCreateRouteFilterRequest) XSOURCE(xSOURCE string) ApiCreateRouteFilterRequest {
+	r.xSOURCE = &xSOURCE
 	return r
 }
 
@@ -274,6 +325,15 @@ func (a *RouteFiltersApiService) CreateRouteFilterExecute(r ApiCreateRouteFilter
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	if r.xCORRELATIONID != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-CORRELATION-ID", r.xCORRELATIONID, "simple", "")
+	}
+	if r.xAUTHUSERNAME != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-AUTH-USER-NAME", r.xAUTHUSERNAME, "simple", "")
+	}
+	if r.xSOURCE != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-SOURCE", r.xSOURCE, "simple", "")
 	}
 	// body params
 	localVarPostBody = r.routeFiltersBase
@@ -380,9 +440,30 @@ func (a *RouteFiltersApiService) CreateRouteFilterExecute(r ApiCreateRouteFilter
 }
 
 type ApiDeleteRouteFilterByUuidRequest struct {
-	ctx           context.Context
-	ApiService    *RouteFiltersApiService
-	routeFilterId string
+	ctx            context.Context
+	ApiService     *RouteFiltersApiService
+	routeFilterId  string
+	xCORRELATIONID *string
+	xAUTHUSERNAME  *string
+	xSOURCE        *string
+}
+
+// Correlation identifier
+func (r ApiDeleteRouteFilterByUuidRequest) XCORRELATIONID(xCORRELATIONID string) ApiDeleteRouteFilterByUuidRequest {
+	r.xCORRELATIONID = &xCORRELATIONID
+	return r
+}
+
+// User name
+func (r ApiDeleteRouteFilterByUuidRequest) XAUTHUSERNAME(xAUTHUSERNAME string) ApiDeleteRouteFilterByUuidRequest {
+	r.xAUTHUSERNAME = &xAUTHUSERNAME
+	return r
+}
+
+// source
+func (r ApiDeleteRouteFilterByUuidRequest) XSOURCE(xSOURCE string) ApiDeleteRouteFilterByUuidRequest {
+	r.xSOURCE = &xSOURCE
+	return r
 }
 
 func (r ApiDeleteRouteFilterByUuidRequest) Execute() (*RouteFiltersData, *http.Response, error) {
@@ -445,6 +526,15 @@ func (a *RouteFiltersApiService) DeleteRouteFilterByUuidExecute(r ApiDeleteRoute
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	if r.xCORRELATIONID != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-CORRELATION-ID", r.xCORRELATIONID, "simple", "")
+	}
+	if r.xAUTHUSERNAME != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-AUTH-USER-NAME", r.xAUTHUSERNAME, "simple", "")
+	}
+	if r.xSOURCE != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-SOURCE", r.xSOURCE, "simple", "")
 	}
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
@@ -549,10 +639,31 @@ func (a *RouteFiltersApiService) DeleteRouteFilterByUuidExecute(r ApiDeleteRoute
 }
 
 type ApiDetachConnectionRouteFilterRequest struct {
-	ctx           context.Context
-	ApiService    *RouteFiltersApiService
-	routeFilterId string
-	connectionId  string
+	ctx            context.Context
+	ApiService     *RouteFiltersApiService
+	routeFilterId  string
+	connectionId   string
+	xCORRELATIONID *string
+	xAUTHUSERNAME  *string
+	xSOURCE        *string
+}
+
+// Correlation identifier
+func (r ApiDetachConnectionRouteFilterRequest) XCORRELATIONID(xCORRELATIONID string) ApiDetachConnectionRouteFilterRequest {
+	r.xCORRELATIONID = &xCORRELATIONID
+	return r
+}
+
+// User name
+func (r ApiDetachConnectionRouteFilterRequest) XAUTHUSERNAME(xAUTHUSERNAME string) ApiDetachConnectionRouteFilterRequest {
+	r.xAUTHUSERNAME = &xAUTHUSERNAME
+	return r
+}
+
+// source
+func (r ApiDetachConnectionRouteFilterRequest) XSOURCE(xSOURCE string) ApiDetachConnectionRouteFilterRequest {
+	r.xSOURCE = &xSOURCE
+	return r
 }
 
 func (r ApiDetachConnectionRouteFilterRequest) Execute() (*ConnectionRouteFilterData, *http.Response, error) {
@@ -618,6 +729,15 @@ func (a *RouteFiltersApiService) DetachConnectionRouteFilterExecute(r ApiDetachC
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	if r.xCORRELATIONID != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-CORRELATION-ID", r.xCORRELATIONID, "simple", "")
+	}
+	if r.xAUTHUSERNAME != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-AUTH-USER-NAME", r.xAUTHUSERNAME, "simple", "")
+	}
+	if r.xSOURCE != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-SOURCE", r.xSOURCE, "simple", "")
 	}
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
@@ -722,10 +842,31 @@ func (a *RouteFiltersApiService) DetachConnectionRouteFilterExecute(r ApiDetachC
 }
 
 type ApiGetConnectionRouteFilterByUuidRequest struct {
-	ctx           context.Context
-	ApiService    *RouteFiltersApiService
-	routeFilterId string
-	connectionId  string
+	ctx            context.Context
+	ApiService     *RouteFiltersApiService
+	routeFilterId  string
+	connectionId   string
+	xCORRELATIONID *string
+	xAUTHUSERNAME  *string
+	xSOURCE        *string
+}
+
+// Correlation identifier
+func (r ApiGetConnectionRouteFilterByUuidRequest) XCORRELATIONID(xCORRELATIONID string) ApiGetConnectionRouteFilterByUuidRequest {
+	r.xCORRELATIONID = &xCORRELATIONID
+	return r
+}
+
+// User name
+func (r ApiGetConnectionRouteFilterByUuidRequest) XAUTHUSERNAME(xAUTHUSERNAME string) ApiGetConnectionRouteFilterByUuidRequest {
+	r.xAUTHUSERNAME = &xAUTHUSERNAME
+	return r
+}
+
+// source
+func (r ApiGetConnectionRouteFilterByUuidRequest) XSOURCE(xSOURCE string) ApiGetConnectionRouteFilterByUuidRequest {
+	r.xSOURCE = &xSOURCE
+	return r
 }
 
 func (r ApiGetConnectionRouteFilterByUuidRequest) Execute() (*ConnectionRouteFilterData, *http.Response, error) {
@@ -791,6 +932,15 @@ func (a *RouteFiltersApiService) GetConnectionRouteFilterByUuidExecute(r ApiGetC
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	if r.xCORRELATIONID != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-CORRELATION-ID", r.xCORRELATIONID, "simple", "")
+	}
+	if r.xAUTHUSERNAME != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-AUTH-USER-NAME", r.xAUTHUSERNAME, "simple", "")
+	}
+	if r.xSOURCE != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-SOURCE", r.xSOURCE, "simple", "")
 	}
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
@@ -895,9 +1045,30 @@ func (a *RouteFiltersApiService) GetConnectionRouteFilterByUuidExecute(r ApiGetC
 }
 
 type ApiGetConnectionRouteFiltersRequest struct {
-	ctx          context.Context
-	ApiService   *RouteFiltersApiService
-	connectionId string
+	ctx            context.Context
+	ApiService     *RouteFiltersApiService
+	connectionId   string
+	xCORRELATIONID *string
+	xAUTHUSERNAME  *string
+	xSOURCE        *string
+}
+
+// Correlation identifier
+func (r ApiGetConnectionRouteFiltersRequest) XCORRELATIONID(xCORRELATIONID string) ApiGetConnectionRouteFiltersRequest {
+	r.xCORRELATIONID = &xCORRELATIONID
+	return r
+}
+
+// User name
+func (r ApiGetConnectionRouteFiltersRequest) XAUTHUSERNAME(xAUTHUSERNAME string) ApiGetConnectionRouteFiltersRequest {
+	r.xAUTHUSERNAME = &xAUTHUSERNAME
+	return r
+}
+
+// source
+func (r ApiGetConnectionRouteFiltersRequest) XSOURCE(xSOURCE string) ApiGetConnectionRouteFiltersRequest {
+	r.xSOURCE = &xSOURCE
+	return r
 }
 
 func (r ApiGetConnectionRouteFiltersRequest) Execute() (*GetAllConnectionRouteFiltersResponse, *http.Response, error) {
@@ -960,6 +1131,15 @@ func (a *RouteFiltersApiService) GetConnectionRouteFiltersExecute(r ApiGetConnec
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	if r.xCORRELATIONID != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-CORRELATION-ID", r.xCORRELATIONID, "simple", "")
+	}
+	if r.xAUTHUSERNAME != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-AUTH-USER-NAME", r.xAUTHUSERNAME, "simple", "")
+	}
+	if r.xSOURCE != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-SOURCE", r.xSOURCE, "simple", "")
 	}
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
@@ -1064,9 +1244,30 @@ func (a *RouteFiltersApiService) GetConnectionRouteFiltersExecute(r ApiGetConnec
 }
 
 type ApiGetRouteFilterByUuidRequest struct {
-	ctx           context.Context
-	ApiService    *RouteFiltersApiService
-	routeFilterId string
+	ctx            context.Context
+	ApiService     *RouteFiltersApiService
+	routeFilterId  string
+	xCORRELATIONID *string
+	xAUTHUSERNAME  *string
+	xSOURCE        *string
+}
+
+// Correlation identifier
+func (r ApiGetRouteFilterByUuidRequest) XCORRELATIONID(xCORRELATIONID string) ApiGetRouteFilterByUuidRequest {
+	r.xCORRELATIONID = &xCORRELATIONID
+	return r
+}
+
+// User name
+func (r ApiGetRouteFilterByUuidRequest) XAUTHUSERNAME(xAUTHUSERNAME string) ApiGetRouteFilterByUuidRequest {
+	r.xAUTHUSERNAME = &xAUTHUSERNAME
+	return r
+}
+
+// source
+func (r ApiGetRouteFilterByUuidRequest) XSOURCE(xSOURCE string) ApiGetRouteFilterByUuidRequest {
+	r.xSOURCE = &xSOURCE
+	return r
 }
 
 func (r ApiGetRouteFilterByUuidRequest) Execute() (*RouteFiltersData, *http.Response, error) {
@@ -1129,6 +1330,15 @@ func (a *RouteFiltersApiService) GetRouteFilterByUuidExecute(r ApiGetRouteFilter
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	if r.xCORRELATIONID != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-CORRELATION-ID", r.xCORRELATIONID, "simple", "")
+	}
+	if r.xAUTHUSERNAME != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-AUTH-USER-NAME", r.xAUTHUSERNAME, "simple", "")
+	}
+	if r.xSOURCE != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-SOURCE", r.xSOURCE, "simple", "")
 	}
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
@@ -1233,10 +1443,24 @@ func (a *RouteFiltersApiService) GetRouteFilterByUuidExecute(r ApiGetRouteFilter
 }
 
 type ApiGetRouteFilterChangeByUuidRequest struct {
-	ctx           context.Context
-	ApiService    *RouteFiltersApiService
-	routeFilterId string
-	changeId      string
+	ctx            context.Context
+	ApiService     *RouteFiltersApiService
+	routeFilterId  string
+	changeId       string
+	xCORRELATIONID *string
+	xAUTHUSERNAME  *string
+}
+
+// Correlation identifier
+func (r ApiGetRouteFilterChangeByUuidRequest) XCORRELATIONID(xCORRELATIONID string) ApiGetRouteFilterChangeByUuidRequest {
+	r.xCORRELATIONID = &xCORRELATIONID
+	return r
+}
+
+// User name
+func (r ApiGetRouteFilterChangeByUuidRequest) XAUTHUSERNAME(xAUTHUSERNAME string) ApiGetRouteFilterChangeByUuidRequest {
+	r.xAUTHUSERNAME = &xAUTHUSERNAME
+	return r
 }
 
 func (r ApiGetRouteFilterChangeByUuidRequest) Execute() (*RouteFilterChangeData, *http.Response, error) {
@@ -1302,6 +1526,12 @@ func (a *RouteFiltersApiService) GetRouteFilterChangeByUuidExecute(r ApiGetRoute
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	if r.xCORRELATIONID != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-CORRELATION-ID", r.xCORRELATIONID, "simple", "")
+	}
+	if r.xAUTHUSERNAME != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-AUTH-USER-NAME", r.xAUTHUSERNAME, "simple", "")
 	}
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
@@ -1395,11 +1625,25 @@ func (a *RouteFiltersApiService) GetRouteFilterChangeByUuidExecute(r ApiGetRoute
 }
 
 type ApiGetRouteFilterChangesRequest struct {
-	ctx           context.Context
-	ApiService    *RouteFiltersApiService
-	routeFilterId string
-	offset        *int32
-	limit         *int32
+	ctx            context.Context
+	ApiService     *RouteFiltersApiService
+	routeFilterId  string
+	xCORRELATIONID *string
+	xAUTHUSERNAME  *string
+	offset         *int32
+	limit          *int32
+}
+
+// Correlation identifier
+func (r ApiGetRouteFilterChangesRequest) XCORRELATIONID(xCORRELATIONID string) ApiGetRouteFilterChangesRequest {
+	r.xCORRELATIONID = &xCORRELATIONID
+	return r
+}
+
+// User name
+func (r ApiGetRouteFilterChangesRequest) XAUTHUSERNAME(xAUTHUSERNAME string) ApiGetRouteFilterChangesRequest {
+	r.xAUTHUSERNAME = &xAUTHUSERNAME
+	return r
 }
 
 // offset
@@ -1480,6 +1724,12 @@ func (a *RouteFiltersApiService) GetRouteFilterChangesExecute(r ApiGetRouteFilte
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	if r.xCORRELATIONID != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-CORRELATION-ID", r.xCORRELATIONID, "simple", "")
+	}
+	if r.xAUTHUSERNAME != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-AUTH-USER-NAME", r.xAUTHUSERNAME, "simple", "")
 	}
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
@@ -1573,9 +1823,30 @@ func (a *RouteFiltersApiService) GetRouteFilterChangesExecute(r ApiGetRouteFilte
 }
 
 type ApiGetRouteFilterConnectionsRequest struct {
-	ctx           context.Context
-	ApiService    *RouteFiltersApiService
-	routeFilterId string
+	ctx            context.Context
+	ApiService     *RouteFiltersApiService
+	routeFilterId  string
+	xCORRELATIONID *string
+	xAUTHUSERNAME  *string
+	xSOURCE        *string
+}
+
+// Correlation identifier
+func (r ApiGetRouteFilterConnectionsRequest) XCORRELATIONID(xCORRELATIONID string) ApiGetRouteFilterConnectionsRequest {
+	r.xCORRELATIONID = &xCORRELATIONID
+	return r
+}
+
+// User name
+func (r ApiGetRouteFilterConnectionsRequest) XAUTHUSERNAME(xAUTHUSERNAME string) ApiGetRouteFilterConnectionsRequest {
+	r.xAUTHUSERNAME = &xAUTHUSERNAME
+	return r
+}
+
+// source
+func (r ApiGetRouteFilterConnectionsRequest) XSOURCE(xSOURCE string) ApiGetRouteFilterConnectionsRequest {
+	r.xSOURCE = &xSOURCE
+	return r
 }
 
 func (r ApiGetRouteFilterConnectionsRequest) Execute() (*GetRouteFilterGetConnectionsResponse, *http.Response, error) {
@@ -1638,6 +1909,15 @@ func (a *RouteFiltersApiService) GetRouteFilterConnectionsExecute(r ApiGetRouteF
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	if r.xCORRELATIONID != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-CORRELATION-ID", r.xCORRELATIONID, "simple", "")
+	}
+	if r.xAUTHUSERNAME != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-AUTH-USER-NAME", r.xAUTHUSERNAME, "simple", "")
+	}
+	if r.xSOURCE != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-SOURCE", r.xSOURCE, "simple", "")
 	}
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
@@ -1746,10 +2026,31 @@ type ApiPatchRouteFilterByUuidRequest struct {
 	ApiService                   *RouteFiltersApiService
 	routeFilterId                string
 	routeFiltersPatchRequestItem *[]RouteFiltersPatchRequestItem
+	xCORRELATIONID               *string
+	xAUTHUSERNAME                *string
+	xSOURCE                      *string
 }
 
 func (r ApiPatchRouteFilterByUuidRequest) RouteFiltersPatchRequestItem(routeFiltersPatchRequestItem []RouteFiltersPatchRequestItem) ApiPatchRouteFilterByUuidRequest {
 	r.routeFiltersPatchRequestItem = &routeFiltersPatchRequestItem
+	return r
+}
+
+// Correlation identifier
+func (r ApiPatchRouteFilterByUuidRequest) XCORRELATIONID(xCORRELATIONID string) ApiPatchRouteFilterByUuidRequest {
+	r.xCORRELATIONID = &xCORRELATIONID
+	return r
+}
+
+// User name
+func (r ApiPatchRouteFilterByUuidRequest) XAUTHUSERNAME(xAUTHUSERNAME string) ApiPatchRouteFilterByUuidRequest {
+	r.xAUTHUSERNAME = &xAUTHUSERNAME
+	return r
+}
+
+// source
+func (r ApiPatchRouteFilterByUuidRequest) XSOURCE(xSOURCE string) ApiPatchRouteFilterByUuidRequest {
+	r.xSOURCE = &xSOURCE
 	return r
 }
 
@@ -1819,6 +2120,15 @@ func (a *RouteFiltersApiService) PatchRouteFilterByUuidExecute(r ApiPatchRouteFi
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	if r.xCORRELATIONID != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-CORRELATION-ID", r.xCORRELATIONID, "simple", "")
+	}
+	if r.xAUTHUSERNAME != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-AUTH-USER-NAME", r.xAUTHUSERNAME, "simple", "")
+	}
+	if r.xSOURCE != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-SOURCE", r.xSOURCE, "simple", "")
 	}
 	// body params
 	localVarPostBody = r.routeFiltersPatchRequestItem
@@ -1928,10 +2238,31 @@ type ApiSearchRouteFiltersRequest struct {
 	ctx                    context.Context
 	ApiService             *RouteFiltersApiService
 	routeFiltersSearchBase *RouteFiltersSearchBase
+	xCORRELATIONID         *string
+	xAUTHUSERNAME          *string
+	xSOURCE                *string
 }
 
 func (r ApiSearchRouteFiltersRequest) RouteFiltersSearchBase(routeFiltersSearchBase RouteFiltersSearchBase) ApiSearchRouteFiltersRequest {
 	r.routeFiltersSearchBase = &routeFiltersSearchBase
+	return r
+}
+
+// Correlation identifier
+func (r ApiSearchRouteFiltersRequest) XCORRELATIONID(xCORRELATIONID string) ApiSearchRouteFiltersRequest {
+	r.xCORRELATIONID = &xCORRELATIONID
+	return r
+}
+
+// User name
+func (r ApiSearchRouteFiltersRequest) XAUTHUSERNAME(xAUTHUSERNAME string) ApiSearchRouteFiltersRequest {
+	r.xAUTHUSERNAME = &xAUTHUSERNAME
+	return r
+}
+
+// source
+func (r ApiSearchRouteFiltersRequest) XSOURCE(xSOURCE string) ApiSearchRouteFiltersRequest {
+	r.xSOURCE = &xSOURCE
 	return r
 }
 
@@ -1995,6 +2326,15 @@ func (a *RouteFiltersApiService) SearchRouteFiltersExecute(r ApiSearchRouteFilte
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	if r.xCORRELATIONID != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-CORRELATION-ID", r.xCORRELATIONID, "simple", "")
+	}
+	if r.xAUTHUSERNAME != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-AUTH-USER-NAME", r.xAUTHUSERNAME, "simple", "")
+	}
+	if r.xSOURCE != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-SOURCE", r.xSOURCE, "simple", "")
 	}
 	// body params
 	localVarPostBody = r.routeFiltersSearchBase

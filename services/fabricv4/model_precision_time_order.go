@@ -9,6 +9,7 @@ package fabricv4
 
 import (
 	"encoding/json"
+	"time"
 )
 
 // checks if the PrecisionTimeOrder type satisfies the MappedNullable interface at compile time
@@ -21,7 +22,13 @@ type PrecisionTimeOrder struct {
 	// Customer reference number
 	CustomerReferenceNumber *string `json:"customerReferenceNumber,omitempty"`
 	// Order Reference Number
-	OrderNumber          *string `json:"orderNumber,omitempty"`
+	OrderNumber *string `json:"orderNumber,omitempty"`
+	// Order status
+	OrderStatus *string `json:"orderStatus,omitempty"`
+	// Order channel type
+	OrderType *string `json:"orderType,omitempty"`
+	// Order Effective Date
+	EffectiveDateTime    *time.Time `json:"effectiveDateTime,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -140,6 +147,102 @@ func (o *PrecisionTimeOrder) SetOrderNumber(v string) {
 	o.OrderNumber = &v
 }
 
+// GetOrderStatus returns the OrderStatus field value if set, zero value otherwise.
+func (o *PrecisionTimeOrder) GetOrderStatus() string {
+	if o == nil || IsNil(o.OrderStatus) {
+		var ret string
+		return ret
+	}
+	return *o.OrderStatus
+}
+
+// GetOrderStatusOk returns a tuple with the OrderStatus field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *PrecisionTimeOrder) GetOrderStatusOk() (*string, bool) {
+	if o == nil || IsNil(o.OrderStatus) {
+		return nil, false
+	}
+	return o.OrderStatus, true
+}
+
+// HasOrderStatus returns a boolean if a field has been set.
+func (o *PrecisionTimeOrder) HasOrderStatus() bool {
+	if o != nil && !IsNil(o.OrderStatus) {
+		return true
+	}
+
+	return false
+}
+
+// SetOrderStatus gets a reference to the given string and assigns it to the OrderStatus field.
+func (o *PrecisionTimeOrder) SetOrderStatus(v string) {
+	o.OrderStatus = &v
+}
+
+// GetOrderType returns the OrderType field value if set, zero value otherwise.
+func (o *PrecisionTimeOrder) GetOrderType() string {
+	if o == nil || IsNil(o.OrderType) {
+		var ret string
+		return ret
+	}
+	return *o.OrderType
+}
+
+// GetOrderTypeOk returns a tuple with the OrderType field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *PrecisionTimeOrder) GetOrderTypeOk() (*string, bool) {
+	if o == nil || IsNil(o.OrderType) {
+		return nil, false
+	}
+	return o.OrderType, true
+}
+
+// HasOrderType returns a boolean if a field has been set.
+func (o *PrecisionTimeOrder) HasOrderType() bool {
+	if o != nil && !IsNil(o.OrderType) {
+		return true
+	}
+
+	return false
+}
+
+// SetOrderType gets a reference to the given string and assigns it to the OrderType field.
+func (o *PrecisionTimeOrder) SetOrderType(v string) {
+	o.OrderType = &v
+}
+
+// GetEffectiveDateTime returns the EffectiveDateTime field value if set, zero value otherwise.
+func (o *PrecisionTimeOrder) GetEffectiveDateTime() time.Time {
+	if o == nil || IsNil(o.EffectiveDateTime) {
+		var ret time.Time
+		return ret
+	}
+	return *o.EffectiveDateTime
+}
+
+// GetEffectiveDateTimeOk returns a tuple with the EffectiveDateTime field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *PrecisionTimeOrder) GetEffectiveDateTimeOk() (*time.Time, bool) {
+	if o == nil || IsNil(o.EffectiveDateTime) {
+		return nil, false
+	}
+	return o.EffectiveDateTime, true
+}
+
+// HasEffectiveDateTime returns a boolean if a field has been set.
+func (o *PrecisionTimeOrder) HasEffectiveDateTime() bool {
+	if o != nil && !IsNil(o.EffectiveDateTime) {
+		return true
+	}
+
+	return false
+}
+
+// SetEffectiveDateTime gets a reference to the given time.Time and assigns it to the EffectiveDateTime field.
+func (o *PrecisionTimeOrder) SetEffectiveDateTime(v time.Time) {
+	o.EffectiveDateTime = &v
+}
+
 func (o PrecisionTimeOrder) MarshalJSON() ([]byte, error) {
 	toSerialize, err := o.ToMap()
 	if err != nil {
@@ -158,6 +261,15 @@ func (o PrecisionTimeOrder) ToMap() (map[string]interface{}, error) {
 	}
 	if !IsNil(o.OrderNumber) {
 		toSerialize["orderNumber"] = o.OrderNumber
+	}
+	if !IsNil(o.OrderStatus) {
+		toSerialize["orderStatus"] = o.OrderStatus
+	}
+	if !IsNil(o.OrderType) {
+		toSerialize["orderType"] = o.OrderType
+	}
+	if !IsNil(o.EffectiveDateTime) {
+		toSerialize["effectiveDateTime"] = o.EffectiveDateTime
 	}
 
 	for key, value := range o.AdditionalProperties {
@@ -184,6 +296,9 @@ func (o *PrecisionTimeOrder) UnmarshalJSON(data []byte) (err error) {
 		delete(additionalProperties, "purchaseOrderNumber")
 		delete(additionalProperties, "customerReferenceNumber")
 		delete(additionalProperties, "orderNumber")
+		delete(additionalProperties, "orderStatus")
+		delete(additionalProperties, "orderType")
+		delete(additionalProperties, "effectiveDateTime")
 		o.AdditionalProperties = additionalProperties
 	}
 

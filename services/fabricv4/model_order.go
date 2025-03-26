@@ -27,7 +27,10 @@ type Order struct {
 	// Order Reference Number
 	OrderNumber *string `json:"orderNumber,omitempty"`
 	// Term length in months, valid values are 1, 12, 24, 36 where 1 is the default value (for on-demand case).
-	TermLength           *int32 `json:"termLength,omitempty"`
+	TermLength *int32           `json:"termLength,omitempty"`
+	TermAction *OrderTermAction `json:"termAction,omitempty"`
+	// Future use, renewal term duration in months
+	TermRollInterval     *int32 `json:"termRollInterval,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -246,6 +249,70 @@ func (o *Order) SetTermLength(v int32) {
 	o.TermLength = &v
 }
 
+// GetTermAction returns the TermAction field value if set, zero value otherwise.
+func (o *Order) GetTermAction() OrderTermAction {
+	if o == nil || IsNil(o.TermAction) {
+		var ret OrderTermAction
+		return ret
+	}
+	return *o.TermAction
+}
+
+// GetTermActionOk returns a tuple with the TermAction field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *Order) GetTermActionOk() (*OrderTermAction, bool) {
+	if o == nil || IsNil(o.TermAction) {
+		return nil, false
+	}
+	return o.TermAction, true
+}
+
+// HasTermAction returns a boolean if a field has been set.
+func (o *Order) HasTermAction() bool {
+	if o != nil && !IsNil(o.TermAction) {
+		return true
+	}
+
+	return false
+}
+
+// SetTermAction gets a reference to the given OrderTermAction and assigns it to the TermAction field.
+func (o *Order) SetTermAction(v OrderTermAction) {
+	o.TermAction = &v
+}
+
+// GetTermRollInterval returns the TermRollInterval field value if set, zero value otherwise.
+func (o *Order) GetTermRollInterval() int32 {
+	if o == nil || IsNil(o.TermRollInterval) {
+		var ret int32
+		return ret
+	}
+	return *o.TermRollInterval
+}
+
+// GetTermRollIntervalOk returns a tuple with the TermRollInterval field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *Order) GetTermRollIntervalOk() (*int32, bool) {
+	if o == nil || IsNil(o.TermRollInterval) {
+		return nil, false
+	}
+	return o.TermRollInterval, true
+}
+
+// HasTermRollInterval returns a boolean if a field has been set.
+func (o *Order) HasTermRollInterval() bool {
+	if o != nil && !IsNil(o.TermRollInterval) {
+		return true
+	}
+
+	return false
+}
+
+// SetTermRollInterval gets a reference to the given int32 and assigns it to the TermRollInterval field.
+func (o *Order) SetTermRollInterval(v int32) {
+	o.TermRollInterval = &v
+}
+
 func (o Order) MarshalJSON() ([]byte, error) {
 	toSerialize, err := o.ToMap()
 	if err != nil {
@@ -273,6 +340,12 @@ func (o Order) ToMap() (map[string]interface{}, error) {
 	}
 	if !IsNil(o.TermLength) {
 		toSerialize["termLength"] = o.TermLength
+	}
+	if !IsNil(o.TermAction) {
+		toSerialize["termAction"] = o.TermAction
+	}
+	if !IsNil(o.TermRollInterval) {
+		toSerialize["termRollInterval"] = o.TermRollInterval
 	}
 
 	for key, value := range o.AdditionalProperties {
@@ -302,6 +375,8 @@ func (o *Order) UnmarshalJSON(data []byte) (err error) {
 		delete(additionalProperties, "orderId")
 		delete(additionalProperties, "orderNumber")
 		delete(additionalProperties, "termLength")
+		delete(additionalProperties, "termAction")
+		delete(additionalProperties, "termRollInterval")
 		o.AdditionalProperties = additionalProperties
 	}
 

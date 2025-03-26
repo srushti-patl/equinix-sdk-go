@@ -19,8 +19,10 @@ Name | Type | Description | Notes
 **Project** | Pointer to [**Project**](Project.md) |  | [optional] 
 **State** | Pointer to [**PortState**](PortState.md) |  | [optional] 
 **Order** | Pointer to [**PortOrder**](PortOrder.md) |  | [optional] 
+**CvpId** | Pointer to **string** | Equinix assigned response attribute for Unique ID for a virtual port. | [optional] 
 **Operation** | Pointer to [**PortOperation**](PortOperation.md) |  | [optional] 
 **Account** | [**SimplifiedAccount**](SimplifiedAccount.md) |  | 
+**Change** | Pointer to [**PortChange**](PortChange.md) |  | [optional] 
 **ChangeLog** | Pointer to [**Changelog**](Changelog.md) |  | [optional] 
 **ServiceType** | Pointer to [**PortServiceType**](PortServiceType.md) |  | [optional] 
 **Bandwidth** | Pointer to **int32** | Equinix assigned response attribute for Port bandwidth in Mbps | [optional] 
@@ -420,6 +422,31 @@ SetOrder sets Order field to given value.
 
 HasOrder returns a boolean if a field has been set.
 
+### GetCvpId
+
+`func (o *PortRequest) GetCvpId() string`
+
+GetCvpId returns the CvpId field if non-nil, zero value otherwise.
+
+### GetCvpIdOk
+
+`func (o *PortRequest) GetCvpIdOk() (*string, bool)`
+
+GetCvpIdOk returns a tuple with the CvpId field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetCvpId
+
+`func (o *PortRequest) SetCvpId(v string)`
+
+SetCvpId sets CvpId field to given value.
+
+### HasCvpId
+
+`func (o *PortRequest) HasCvpId() bool`
+
+HasCvpId returns a boolean if a field has been set.
+
 ### GetOperation
 
 `func (o *PortRequest) GetOperation() PortOperation`
@@ -464,6 +491,31 @@ and a boolean to check if the value has been set.
 
 SetAccount sets Account field to given value.
 
+
+### GetChange
+
+`func (o *PortRequest) GetChange() PortChange`
+
+GetChange returns the Change field if non-nil, zero value otherwise.
+
+### GetChangeOk
+
+`func (o *PortRequest) GetChangeOk() (*PortChange, bool)`
+
+GetChangeOk returns a tuple with the Change field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetChange
+
+`func (o *PortRequest) SetChange(v PortChange)`
+
+SetChange sets Change field to given value.
+
+### HasChange
+
+`func (o *PortRequest) HasChange() bool`
+
+HasChange returns a boolean if a field has been set.
 
 ### GetChangeLog
 

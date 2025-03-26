@@ -14,7 +14,7 @@ Method | HTTP request | Description
 
 ## CreateStreamAlertRules
 
-> StreamAlertRule CreateStreamAlertRules(ctx, streamId).AlertRulePostRequest(alertRulePostRequest).Execute()
+> StreamAlertRule CreateStreamAlertRules(ctx, streamId).AlertRulePostRequest(alertRulePostRequest).XCORRELATIONID(xCORRELATIONID).XAUTHUSERNAME(xAUTHUSERNAME).XSOURCE(xSOURCE).Execute()
 
 Create Stream Alert Rules
 
@@ -35,10 +35,13 @@ import (
 func main() {
 	streamId := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | Stream UUID
 	alertRulePostRequest := *openapiclient.NewAlertRulePostRequest() // AlertRulePostRequest | 
+	xCORRELATIONID := "12345-6789-10123" // string | Correlation identifier (optional)
+	xAUTHUSERNAME := "alice" // string | User name (optional)
+	xSOURCE := "xSOURCE_example" // string | source (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.StreamAlertRulesApi.CreateStreamAlertRules(context.Background(), streamId).AlertRulePostRequest(alertRulePostRequest).Execute()
+	resp, r, err := apiClient.StreamAlertRulesApi.CreateStreamAlertRules(context.Background(), streamId).AlertRulePostRequest(alertRulePostRequest).XCORRELATIONID(xCORRELATIONID).XAUTHUSERNAME(xAUTHUSERNAME).XSOURCE(xSOURCE).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `StreamAlertRulesApi.CreateStreamAlertRules``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -65,6 +68,9 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
  **alertRulePostRequest** | [**AlertRulePostRequest**](AlertRulePostRequest.md) |  | 
+ **xCORRELATIONID** | **string** | Correlation identifier | 
+ **xAUTHUSERNAME** | **string** | User name | 
+ **xSOURCE** | **string** | source | 
 
 ### Return type
 
@@ -86,7 +92,7 @@ Name | Type | Description  | Notes
 
 ## DeleteStreamAlertRuleByUuid
 
-> StreamAlertRule DeleteStreamAlertRuleByUuid(ctx, streamId, alertRuleId).Execute()
+> StreamAlertRule DeleteStreamAlertRuleByUuid(ctx, streamId, alertRuleId).XCORRELATIONID(xCORRELATIONID).XAUTHUSERNAME(xAUTHUSERNAME).Execute()
 
 Update Stream Alert Rules
 
@@ -107,10 +113,12 @@ import (
 func main() {
 	streamId := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | Stream UUID
 	alertRuleId := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | alert rule UUID
+	xCORRELATIONID := "12345-6789-10123" // string | Correlation identifier (optional)
+	xAUTHUSERNAME := "alice" // string | User name (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.StreamAlertRulesApi.DeleteStreamAlertRuleByUuid(context.Background(), streamId, alertRuleId).Execute()
+	resp, r, err := apiClient.StreamAlertRulesApi.DeleteStreamAlertRuleByUuid(context.Background(), streamId, alertRuleId).XCORRELATIONID(xCORRELATIONID).XAUTHUSERNAME(xAUTHUSERNAME).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `StreamAlertRulesApi.DeleteStreamAlertRuleByUuid``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -138,6 +146,8 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
 
+ **xCORRELATIONID** | **string** | Correlation identifier | 
+ **xAUTHUSERNAME** | **string** | User name | 
 
 ### Return type
 
@@ -159,7 +169,7 @@ Name | Type | Description  | Notes
 
 ## GetStreamAlertRuleByUuid
 
-> StreamAlertRule GetStreamAlertRuleByUuid(ctx, streamId, alertRuleId).Execute()
+> StreamAlertRule GetStreamAlertRuleByUuid(ctx, streamId, alertRuleId).XCORRELATIONID(xCORRELATIONID).XAUTHUSERNAME(xAUTHUSERNAME).Execute()
 
 Get Stream Alert Rules
 
@@ -180,10 +190,12 @@ import (
 func main() {
 	streamId := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | Stream UUID
 	alertRuleId := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | alert rule UUID
+	xCORRELATIONID := "12345-6789-10123" // string | Correlation identifier (optional)
+	xAUTHUSERNAME := "alice" // string | User name (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.StreamAlertRulesApi.GetStreamAlertRuleByUuid(context.Background(), streamId, alertRuleId).Execute()
+	resp, r, err := apiClient.StreamAlertRulesApi.GetStreamAlertRuleByUuid(context.Background(), streamId, alertRuleId).XCORRELATIONID(xCORRELATIONID).XAUTHUSERNAME(xAUTHUSERNAME).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `StreamAlertRulesApi.GetStreamAlertRuleByUuid``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -211,6 +223,8 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
 
+ **xCORRELATIONID** | **string** | Correlation identifier | 
+ **xAUTHUSERNAME** | **string** | User name | 
 
 ### Return type
 
@@ -232,7 +246,7 @@ Name | Type | Description  | Notes
 
 ## GetStreamAlertRules
 
-> StreamAlertRule GetStreamAlertRules(ctx, streamId).Offset(offset).Limit(limit).Execute()
+> StreamAlertRule GetStreamAlertRules(ctx, streamId).XCORRELATIONID(xCORRELATIONID).XAUTHUSERNAME(xAUTHUSERNAME).Offset(offset).Limit(limit).Execute()
 
 Get Stream Alert Rules
 
@@ -252,12 +266,14 @@ import (
 
 func main() {
 	streamId := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | Stream UUID
+	xCORRELATIONID := "12345-6789-10123" // string | Correlation identifier (optional)
+	xAUTHUSERNAME := "alice" // string | User name (optional)
 	offset := int32(1) // int32 | offset (optional)
 	limit := int32(10) // int32 | number of records to fetch (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.StreamAlertRulesApi.GetStreamAlertRules(context.Background(), streamId).Offset(offset).Limit(limit).Execute()
+	resp, r, err := apiClient.StreamAlertRulesApi.GetStreamAlertRules(context.Background(), streamId).XCORRELATIONID(xCORRELATIONID).XAUTHUSERNAME(xAUTHUSERNAME).Offset(offset).Limit(limit).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `StreamAlertRulesApi.GetStreamAlertRules``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -283,6 +299,8 @@ Other parameters are passed through a pointer to a apiGetStreamAlertRulesRequest
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
+ **xCORRELATIONID** | **string** | Correlation identifier | 
+ **xAUTHUSERNAME** | **string** | User name | 
  **offset** | **int32** | offset | 
  **limit** | **int32** | number of records to fetch | 
 
@@ -306,7 +324,7 @@ Name | Type | Description  | Notes
 
 ## UpdateStreamAlertRuleByUuid
 
-> StreamAlertRule UpdateStreamAlertRuleByUuid(ctx, streamId, alertRuleId).AlertRulePutRequest(alertRulePutRequest).Execute()
+> StreamAlertRule UpdateStreamAlertRuleByUuid(ctx, streamId, alertRuleId).AlertRulePutRequest(alertRulePutRequest).XCORRELATIONID(xCORRELATIONID).XAUTHUSERNAME(xAUTHUSERNAME).Execute()
 
 Update Stream Alert Rules
 
@@ -328,10 +346,12 @@ func main() {
 	streamId := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | Stream UUID
 	alertRuleId := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | alert rule UUID
 	alertRulePutRequest := *openapiclient.NewAlertRulePutRequest() // AlertRulePutRequest | 
+	xCORRELATIONID := "12345-6789-10123" // string | Correlation identifier (optional)
+	xAUTHUSERNAME := "alice" // string | User name (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.StreamAlertRulesApi.UpdateStreamAlertRuleByUuid(context.Background(), streamId, alertRuleId).AlertRulePutRequest(alertRulePutRequest).Execute()
+	resp, r, err := apiClient.StreamAlertRulesApi.UpdateStreamAlertRuleByUuid(context.Background(), streamId, alertRuleId).AlertRulePutRequest(alertRulePutRequest).XCORRELATIONID(xCORRELATIONID).XAUTHUSERNAME(xAUTHUSERNAME).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `StreamAlertRulesApi.UpdateStreamAlertRuleByUuid``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -360,6 +380,8 @@ Name | Type | Description  | Notes
 
 
  **alertRulePutRequest** | [**AlertRulePutRequest**](AlertRulePutRequest.md) |  | 
+ **xCORRELATIONID** | **string** | Correlation identifier | 
+ **xAUTHUSERNAME** | **string** | User name | 
 
 ### Return type
 

@@ -19,8 +19,22 @@ import (
 type HealthApiService service
 
 type ApiGetStatusRequest struct {
-	ctx        context.Context
-	ApiService *HealthApiService
+	ctx           context.Context
+	ApiService    *HealthApiService
+	correlationId *string
+	xAUTHUSERNAME *string
+}
+
+// Correlation identifier
+func (r ApiGetStatusRequest) CorrelationId(correlationId string) ApiGetStatusRequest {
+	r.correlationId = &correlationId
+	return r
+}
+
+// User name
+func (r ApiGetStatusRequest) XAUTHUSERNAME(xAUTHUSERNAME string) ApiGetStatusRequest {
+	r.xAUTHUSERNAME = &xAUTHUSERNAME
+	return r
 }
 
 func (r ApiGetStatusRequest) Execute() (*HealthResponse, *http.Response, error) {
@@ -80,6 +94,12 @@ func (a *HealthApiService) GetStatusExecute(r ApiGetStatusRequest) (*HealthRespo
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	if r.correlationId != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "Correlation-Id", r.correlationId, "simple", "")
+	}
+	if r.xAUTHUSERNAME != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-AUTH-USER-NAME", r.xAUTHUSERNAME, "simple", "")
 	}
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
